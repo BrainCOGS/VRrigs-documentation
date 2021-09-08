@@ -1,0 +1,21 @@
+{
+  "name": "vrrigs",
+  "version": "0.0.1",
+  "description": "Documentation for virtual reality rigs at Princeton BRAIN CoGS project",
+  "main": "index.js",
+  "authors": {
+    "name": "Juan Lopez Luna",
+    "email": "juanlopez@princeton.edu"
+  },
+  "repository": "/VR_rigs_docs",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@vuepress/plugin-back-to-top": "^1.8.2",
+    "@vuepress/plugin-medium-zoom": "^1.8.2",
+    "vuepress": "^1.8.2"
+  }
+}
