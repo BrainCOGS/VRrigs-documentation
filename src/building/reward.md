@@ -30,8 +30,8 @@ The reward solenoid valve is connected to the solenoid valve driver and controll
 ### Reward solenoid valve
 
 1. Any regular srynge according to the needed volume
-2. Plastic Quick-Turn Tube Coupling Plugs, for 1/16" Barbed Tube ID, Nylon from [McMaster-Carr](https://www.mcmaster.com/51525K121/)
-3. Tygon PVC Soft Plastic Tubing for Air & Water Clear, 1/16" ID, 1/8" OD from [McMaster-Carr](https://www.mcmaster.com/6516T11/)
+2. Tight-Seal Moisture-Resistant Barbed Tube Fitting Plastic, for 1/16" Tube ID x 10-32 Thread Male Pipe from [McMaster-Carr](https://www.mcmaster.com/5047K11/)
+3. Tygon PVC Tubing for Food, Beverage, and Dairy 1/16" ID, 1/8" OD from [McMaster-Carr](https://www.mcmaster.com/6546T33/)
 4. 161T012 solenoid valve, 2-way, normally closed, isolation, 24vdc, PSIG 30 from [NResearch](https://www.nresearch.com/)
 
 ## Drawings
