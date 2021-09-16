@@ -75,6 +75,7 @@ module.exports = {
 function getBuildingSidebar () {
   return [
     '',
+    'stage',
     'reward',
     'positioning',
     'air-puffs'
