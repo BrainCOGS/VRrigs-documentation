@@ -12,7 +12,7 @@ deploy:
   provider: pages
   local_dir: src/.vuepress/dist
   token: $GITHUB_TOKEN
-  repo: braincogs.github.io
+  repo: BrainCOGS/braincogs.github.io
   keep_history: true
   on:
     branch: master
