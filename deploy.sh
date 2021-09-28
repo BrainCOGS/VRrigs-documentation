@@ -16,6 +16,6 @@ git add -A
 git commit -m 'deploy'
 
 # if you are deploying to https://<USERNAME>.github.io
-git push -f git@github.com:braincogs/braincogs.github.io.git master
+git push -f git@github.com:BrainCOGS/braincogs.github.io.git master
 
 cd -
