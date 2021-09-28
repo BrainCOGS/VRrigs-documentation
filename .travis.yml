@@ -5,9 +5,8 @@ install:
   - yarn
 script:
   - yarn build
-root:
-  dist: xenial
-  os: linux
+dist: xenial
+os: linux
 deploy:
   strategy: git
   provider: pages
