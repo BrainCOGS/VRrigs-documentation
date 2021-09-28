@@ -14,5 +14,6 @@ deploy:
   token: $GITHUB_TOKEN
   repo: braincogs.github.io
   keep_history: true
+  target-branch: master
   on:
     branch: master
