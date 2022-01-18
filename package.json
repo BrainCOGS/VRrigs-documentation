@@ -17,5 +17,13 @@
     "@vuepress/plugin-back-to-top": "^1.8.2",
     "@vuepress/plugin-medium-zoom": "^1.8.2",
     "vuepress": "^1.8.2"
+  },
+  "resolutions": {
+    "vuepress/@vuepress/core/vue-server-renderer/**/chalk": "4.1.2",
+    "vuepress/@vuepress/core/**/webpackbar": "5.0.2",
+    "vuepress/**/globby": "11.1.0",
+    "vuepress/**/chokidar": "3.5.3",
+    "vuepress/**/copy-webpack-plugin": "10.2.0",
+    "**/**/follow-redirects": "1.14.7"
   }
 }
