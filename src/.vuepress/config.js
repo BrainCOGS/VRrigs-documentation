@@ -75,6 +75,7 @@ module.exports = {
 function getBuildingSidebar () {
   return [
     '',
+    'projection',
     'stage',
     'reward',
     'positioning',
