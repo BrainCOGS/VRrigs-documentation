@@ -49,7 +49,7 @@ lang: en-US
   <img src='./assets/images/projection/screen-building-5.png'>
  </figure>
 
- ### Day 2 [time: ~2 hours]
+ ### Day 2 [time: ~3 hours]
 
  1. Place the screen with the plate on a flat surface. We use a couple 14" (1 inch diameter) pillars, other stuff could potentially be used just making sure the ball is freely hanguing from the plate and have enough space (at least ~6 inches) from the bottom of the screen to the flat surface. We place the pillars diagonally for stability.
 
@@ -71,7 +71,88 @@ lang: en-US
   <img src='./assets/images/projection/screen-building-8.png'>
  </figure>
 
+ 4. Place a mark at 4.75" and at 6" from the midline along the joint of the spheres (at the top) and along the equator. Use the laser level to project a line from the top marks to the marks on the equator and draw with a marker a pointed line. 
+
+ <figure>
+  <img src='./assets/images/projection/screen-building-9.png'>
+ </figure>
  
+ 5. Place a mark at 2.5" from the equator to the top of the ball along the 4.75" and 6" lines.
 
+ <figure>
+  <img src='./assets/images/projection/screen-building-10.png'>
+ </figure>
 
+ 6. Join with a marker (we used a different color to make it noticeable) the intersections between the pointed lines as shown in the pictures below.
+
+      - (A & I) The intersection between the bottom 4.75" line from the equator and the 6" line from the meridian.
+      - (B & H) The intersection between the top 2.5" line from the equator and the 6" line from the meridian.
+      - (C & G) The intersection between the top 2.5" line from the equator and the 4.75" line from the meridian.
+      - (D & F) The intersection between the top joint of the sphere and the 4.75" line from the meridian.
+      - (E) The intersection between the top 4" mark from the top joint of the sphere and the meridian.
+
+      <figure>
+         <img src='./assets/images/projection/screen-building-11.png'>
+      </figure>
+
+ 7. Use a styrofoam cutter (we use the *200 W Pro Electric Hot Knife from RoMech Foam Cutter*) to cut the sphere though the marked lines. We recommend to use a bench vise or C-clamps to hold the sphere through the aluminum plate follow the next steps:
+
+     - Cut the bottom part of the sphere following the line marked at 4.75" below the equator.
+     - Cut the line through intersections (B) toward (A).
+     - Cut the line through the instersection (D) toward (C).
+     - Cut the line through the intersection (B) toward (C).
+     - Repeat the steps for the other side.
+
+      <figure>
+         <img src='./assets/images/projection/screen-building-12.png'>
+      </figure>
+
+     - Cut the line through the intersection (D) toward (F).
+     - Remove cutted styrofoam part as shown in the picture below.
+
+      <figure>
+         <img src='./assets/images/projection/screen-building-13.png'>
+      </figure>
+
+     - Cut a line from the mark (E) toward the bottom of the sphere.
+     - Cut a line through the intersection (D) toward (E) and remove the cutted styrofoam part.
+     - Cut a line through the intersection (F) toward (E) and remove the cutted styrofoam part.
+
+      <figure>
+         <img src='./assets/images/projection/screen-building-14.png'>
+      </figure>
+
+ 8. Apply joint compound to the crack on the half spheres intersection from the inside of the screen using a curved rubber wipe down knife. Let it dry overnight and apply a second hand if necessary to have a smooth surface.
+
+ <figure>
+   <img src='./assets/images/projection/screen-building-15.png'>
+ </figure>
+
+ ### Day 3 [time: ~1 hour]
+
+ 1. Apply All purpose foam coat + Bounce from Hot Wire Factory following the instructions for mixing (just make sure the mix is thin enough to handle but thick enough to work as a protective layer). Apply one coat to the exterior part of the sphere, if you find the layer to thin you can apply 2 layers. We recommend to first apply to the top part of the sphere from the aluminum plate, then the bottom part and finally the cutted edges of the sphere (everything but the inner surface of the sphere). Let it dry for 24 hrs.
+
+ <figure>
+   <img src='./assets/images/projection/screen-building-16.png'>
+ </figure>
+
+ ### Day 4 [time: ~1/2 hour each layer plus drying time]
+
+ 1. Apply white lightweight spackling to the inner surface of the sphere using a curved rubber wipe down knife, making sure cover the imperfections on the surface as much as you can. Let it dry for ~3 hours (or more depending on ambient temperature and humidity), you can touch the surface and it shouldn't stick to your hand. Sand the surface and apply another layer. Repeat the process from 2 to 3 times until you get a smooth surface on the screen.
+
+ <figure>
+   <img src='./assets/images/projection/screen-building-17.png'>
+ </figure>
+
+ ### Day 5 [time: ~1/2 hour each layer plus drying time]
+
+ 1. Paint the outer part of the screen with a black matte paint (we recommend the black paint on screen wall and ceiling ambien light rejectting acoustic dampening) using a 3" or 4" brush. Do not paint the edges of the screen yet. Apply 2 layers of paint to the outer part.
+
+ 2. Use a roller to paint the inner part of the screen. Apply 1 layer of primer (we recommend to use the paint on screen leveling primer) and 2 to 3 layers of silver paint (we use the paint on screen S1 Screen Plus).
+
+ 3. Using a 1" brush paint the edges of the sphere with black matte paint.
+
+ <figure>
+   <img src='./assets/images/projection/screen-building-18.png'>
+ </figure>
 
