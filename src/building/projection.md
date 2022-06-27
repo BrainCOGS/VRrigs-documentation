@@ -156,3 +156,27 @@ lang: en-US
    <img src='./assets/images/projection/screen-building-18.png'>
  </figure>
 
+ ## Parts list
+
+ 1. 18" OD 16" ID Styrofoam half ball from Fifty-Five Manufacturing/Global Foam Company.
+ 2. Alignment Laser: 3 Beams, 0 Dots, 0 Lines, Red, 200 ft Range w/o Detector from [Grainger](https://www.grainger.com/product/BOSCH-Alignment-Laser-3-Beams-450W78?internalSearchTerm=Alignment+Laser%3A+3+Beams%2C+0+Dots%2C+0+Lines%2C+Red%2C+200+ft+Range+w%2Fo+Detector&suggestConfigId=8&searchBar=true&opr=THKS)
+ 3. 3M Foam Fast 74 CA spray adhesive from [Grainger](https://www.grainger.com/product/3M-Spray-Adhesive-3MA18)
+ 4. Lightweight Spackling from [Grainger](https://www.grainger.com/product/DAP-Lightweight-Spackling-Pail-5E113)
+ 5. Hand Applicator from [Grainger](https://www.grainger.com/product/3M-Hand-Applicator-Blue-6KHT0)
+ 6. Wipe Down Knife from [Grainger](https://www.grainger.com/product/KRAFT-TOOL-Wipe-Down-Knife-6-1-2-in-Blade-35EM57)
+ 7. Glue Gun from [Grainger](https://www.grainger.com/product/3M-Glue-Gun-AE-II-1VAK8)
+ 8. Hot Melt Adhesive from [Grainger](https://www.grainger.com/product/FASTENMASTER-Hot-Melt-Adhesive-FLEX40-52PF30)
+ 9. RoMech Foam Cutter - Pro Electric Hot Knife (200W) from [Amazon](https://www.amazon.com/RoMech-Foam-Cutter-Styrofoam-Accessories/dp/B07JBQ58L2)
+ 10. All purpose foam coat - 3 lbs are enough for ~3 rigs from [Hot wire factory](https://hotwirefoamfactory.com/025_All_Purp_FoamCoat.html)
+ 11. Bounce Rubberizer - 32 oz are enough for ~3 rigs from [Hot wire factory](https://hotwirefoamfactory.com/025B0-BounceRubberizer.html)
+ 12. Premium Lightweight Joint Compound from [Grainger](https://www.grainger.com/product/DAP-Premium-Lightweight-Joint-10L498)
+ 13. Black Wall and Ceiling Ambient Light Rejecting Acoustic Dampening from [Paint on screen](https://paintonscreen.com/products/wall-and-ceiling-ambient-light-rejecting-acoustic-dampening-studio-grey?variant=29416888893463)
+ 14. 3" or 4" Paint brush from [Grainger](https://www.grainger.com/product/WOOSTER-Paint-Brush-Flat-Sash-Brush-14A035)
+ 15. Leveling Primer from [Paint on screen](https://paintonscreen.com/products/leveling-primer?variant=1618182144029)
+ 16. S1 Screen Plus paint from [Paint on screen](https://paintonscreen.com/products/s1-screen-plus?variant=1616223731741) 
+ 17. Mini paint roller kit from [Grainger](https://www.grainger.com/product/PREMIER-Mini-Paint-Roller-Kit-3-in-29UT49)
+ 18. 1" Paint brush from [Grainger](https://www.grainger.com/product/SHUR-LINE-Paint-Brush-Angle-Sash-Brush-48WL96)
+
+ ## Drawing 
+
+ 1. aluminum plate
