@@ -24,7 +24,8 @@
     "vuepress/**/globby": "11.1.0",
     "vuepress/**/chokidar": "3.5.3",
     "vuepress/**/copy-webpack-plugin": "5.1.2",
-    "**/**/follow-redirects": "1.14.7"
+    "**/**/follow-redirects": "1.14.7",
+    "**/**/glob-parent": "5.1.2"
   },
   "dependencies": {
     "@babel/core": "^7.18.6"
