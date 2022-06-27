@@ -23,7 +23,10 @@
     "vuepress/@vuepress/core/**/webpackbar": "5.0.2",
     "vuepress/**/globby": "11.1.0",
     "vuepress/**/chokidar": "3.5.3",
-    "vuepress/**/copy-webpack-plugin": "10.2.0",
+    "vuepress/**/copy-webpack-plugin": "5.0.2",
     "**/**/follow-redirects": "1.14.7"
+  },
+  "dependencies": {
+    "@babel/core": "^7.18.6"
   }
 }
