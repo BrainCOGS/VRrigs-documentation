@@ -49,7 +49,7 @@ module.exports = {
     '@vuepress/plugin-medium-zoom',
   ],
 
-  chainWebpack: (config, isServer) => {
+  chainWebpack: (config, _isServer) => {
     config.module
       .rule('files')
       .test(/\.(pdf|zip|ait|log|txt|stp)$/)
