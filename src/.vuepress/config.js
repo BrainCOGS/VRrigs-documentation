@@ -34,10 +34,12 @@ module.exports = {
     lastUpdated: false,
     nav: [
       { text: 'Building', link: '/building/' },
-      { text: 'Maintenance', link: '/maintenance/' }
+      { text: 'Maintenance', link: '/maintenance/' },
+      { text: 'Software', link: '/software/' }
     ],
     sidebar: {
-      '/building/': getBuildingSidebar()
+      '/building/': getBuildingSidebar(),
+      '/software/': getSoftwareSidebar(),
     }
   },
 
@@ -80,5 +82,11 @@ function getBuildingSidebar () {
     'reward',
     'positioning',
     'air-puffs'
+  ]
+}
+
+function getSoftwareSidebar () {
+  return [
+    ''
   ]
 }

@@ -9,5 +9,7 @@ features:
   details: Detailed documentation to build a mini VR rig from scratch
 - title: Maintenance of a mini VR
   details: Documentation for the maintenance of a mini virtual reality rig modules
+- title: Software
+  details: Documentation for the software
 footer: Made by BRAIN CoGS at Princeton Neuroscience Institute
 ---
