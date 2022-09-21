@@ -42,10 +42,8 @@ We use a 3D printing external service to manufacture the cup, Nylon 12 works fin
 2. Cut the cables from the 8 pin connector to 4 inches and remove the tip of the plastic protective cover, place a female crimp pin in each cable one at the time and use the crimping tool following the instructions [here](https://www.pololu.com/product/1928).
 
     ::: tip
-    The strain relief barrel sometimes ends up a little overly flattened, making it too wide to fit comfortably into the crimp pin housing. In such situations, you can use a pair of pliers to gently squeeze the wider axis of the barrel into a more cylindrical shape that will slide easily into the housing.
+     The strain relief barrel sometimes ends up a little overly flattened, making it too wide to fit comfortably into the crimp pin housing. In such situations, you can use a pair of pliers to gently squeeze the wider axis of the barrel into a more cylindrical shape that will slide easily into the housing. This tip is taken directly from the [source](https://www.pololu.com/product/1928)
     :::
-
-* note about how this tip comes from pololu's page
 
 3. Insert each crimped cable into the housing with the correct position.
 
