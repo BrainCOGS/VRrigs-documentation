@@ -14,7 +14,17 @@ The stage holds a 3D printed cup where the optical flow sensor is placed at the 
 
 The stage consist on a pair of optical breadboards attached by a set of posts. The posts lenght is calculated so that the stage has the proper height at which the mice will be positioned and the projection will be calibrated. The top optical breadboard is modified to insert the cup that will direct the constant air flow to the bottom of the styrofoam ball and will make it float, allowing the mice to freely move and run.
 
-We send the optical breadboard to be modified at a machine shop and assemble the stage by screwing each of the components as shown in the picture below.
+We send the optical breadboard to be modified at a machine shop. To assemble the stage you have to first screw the 4 posts by attaching a 1" diameter 1" long post to a 1" diamater 2" long post using a 1/4" set screw (alternatively, you can use a 1" diamater 3" long post). Then attach both the top plate and the bottom plate to each end of the 4 posts using 1/4" screws.
+
+<figure>
+  <img src='./assets/images/stage/stage-assembly-1.png'>
+</figure>
+
+Send the adapter to be made at a machine shop, then attach the latch holder to the adapter using a pair of M4 x 0.7mm, 8mm long screws. Attach the adapter to the bottom part of the bottom plate, in the intersection of the middle columns and the second row as shown in the picture below.
+
+<figure>
+  <img src='./assets/images/stage/stage-assembly-2.png'>
+</figure>
 
 ## Cup with optical flow sensor
 
@@ -113,3 +123,5 @@ Why a cable and hose carrier. How to install it.
 
 
 ## GERBER files
+
+1. Gerber files for the IR LED available <a href='./assets/GERBER/stage/IR-LED-circuit-for-optical-flow-sensor.zip'>here</a>
