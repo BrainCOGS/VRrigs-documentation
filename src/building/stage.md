@@ -119,8 +119,25 @@ The bottom plate design is sent to a machine shop to be made in aluminum. The bo
 
 ## Cable and hose carrier (optional)
 
-Why a cable and hose carrier. How to install it.
+We place a cable and hose carrier to avoid them to be crushed or damaged while the stage is taken in and out. It is also useful to keep the working space clean and neat. Follow the next steps for assembly.
 
+1. Print the carrier to breadboard adapter and install it in the bottom part of the top breadboard (it is easier to screw it before the posts, but you can always take the top breadboard apart or screw brom the bottom). Place the M6 x 1mm square nuts on the square hole in the bottom part of the adapter and use a pair of M6 x 1mm, 10 mm long to screw the carrier mounting bracket to it.
+
+ <figure>
+  <img src='./assets/images/stage/carrier-assembly-1.png'>
+ </figure>
+
+2. Place the second mounting bracket for the carrier on the 2 holes at the bottom left part of the aluminum bottom plate in the cabinet.
+
+ <figure>
+  <img src='./assets/images/stage/carrier-assembly-2.png'>
+ </figure>
+
+3. We order a 3 ft. long cable and hose carrier. Count 17 pieces of the carrier and snap off the rest of them. Attach the carrier to both mounting brackets.
+
+ <figure>
+  <img src='./assets/images/stage/carrier-assembly-3.png'>
+ </figure>
 
 ## GERBER files
 
