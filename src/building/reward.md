@@ -1,5 +1,5 @@
 ---
-title: Reward module
+title: Reward
 lang: en-US
 ---
 

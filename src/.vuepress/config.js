@@ -77,11 +77,14 @@ module.exports = {
 function getBuildingSidebar () {
   return [
     '',
-    'projection',
+    'cabinet',
     'stage',
-    'reward',
+    'air-supply',
     'positioning',
-    'air-puffs'
+    'projection',
+    'reward',
+    'air-puffs',
+    'control'
   ]
 }
 
