@@ -14,7 +14,7 @@ The cabinet is the box made out of T-slotted frames and panels in which all the 
 
 ## Sound absorbing sheet preparation
 
-We use 90% sound absorbing sheets with adhesive backing that are glued at the internal part of all the panels of the cabinet, which helps to isolate the sound from the lab environment, nevertheless the rooms should be silent and darks when the animals are training.
+We use 75% sound absorbing sheets with adhesive backing that are glued at the internal part of all the panels of the cabinet, which helps to isolate the sound from the lab environment, nevertheless the rooms should be silent and darks when the animals are training.
 
 Cut cardboard molds to cut the foams for the panels according to the following table.
 
