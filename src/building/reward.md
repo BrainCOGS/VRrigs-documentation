@@ -5,37 +5,57 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-The reward module has two main parts, the reward spout and the reward solenoid valve. The reward spout consist on a bended food grade stainles steel (2 inches and 75 degrees bend). Then, 10-32 UNF holes are made at the ends to attach a Luer lock tube coupling and a 1/16" barbed tube fitting. Curved feeding needles for mice are then attached to the Luer lock coupling. Using a custom made adapter, the tube is then fixed to a Thorlabs TRB1 locking ball and socket mount, this piece allows the spout to move freely to make fine adjustments to the position depending of animal idiosyncrasies. This is attached to a Thorlabs TR2 post that will be locked by a Thorlabs PH2 post holder, this will allow to adjust the height of the spout.
-
-The angle, and the pieces used make it easy for the user to adjust the spout position for the animal, they are calculated to freely move before locking in an area delimited by the animal eye position and the headplate position (given by the positioning tool).
+The reward module consist on a open srynge that holds the reward liquid that will be dispensed to the mice through a lick spout controlled by a solenoid valve.
 
 <figure>
-  <img src='./assets/images/reward/reward-description.png'>
-  <center><figcaption><small>Description of the reward spout (mouse drawing by <a href="https://doi.org/10.5281/zenodo.3926057">Ethan Tyler</a> )</small></figcaption></center>
+  <img src='./assets/images/reward/reward-1.png'>
+  <center><figcaption><small>Reward spout module</small></figcaption></center>
 </figure>
 
-The reward solenoid valve is connected to the solenoid valve driver and controlled by ViRMEn with a NIDAQ device, the reward liquid is filled in a Srynge hanguing on top of the rig and connected to the solenoid valve using 1/16 ID Tygon tube, the same tubing is used to connect the solenoid valve to the reward spout.
+## Solenoid valve manifold assembly
 
-## Parts list
+The solenoid valve dispensing component consist on a custom made stainless steel manifold that should be manufactured at a machine shop, it is designed following the recommendations from the solenoid valve manufacturer. We choose to use an isolation AS series solenoid valve from Gems sensors and controls because the body of the valve can be made of stainless steel, which is better in case a solution made out of condensed milk is used as a reward during training. The srynge is made out of glass and both the in and out connectors to the manifold are made of stainless steel, making the whole component less prone to corrotion or milk clog formation.
 
-### Reward spout
+To assemble the manifold follow the next steps.
 
-1. Corrosion-Resistant Round Tube 316 Stainless Steel, 0.065" Wall Thickness, 1/4" OD from [McMaster-Carr](https://www.mcmaster.com/89495K395/)
-2. Plastic Quick-Turn Tube Coupling Plugs, 10-32 UNF Male, White Nylon Plastic from [McMaster-Carr](https://www.mcmaster.com/51525K428/), [Clear Polycarbonate Plastic](https://www.mcmaster.com/51525K431/) or [316 Stainless Steel](https://www.mcmaster.com/5194K43/) can be used too.
-3. Curved Feeding Needles 18 Gauge (FNC-18-2-2) from [Kent Scientific](https://www.kentscientific.com/products/curved-feeding-needles/)
-4. Stainless Steel High-Pressure Barbed Tube Fitting for Air and Water, 1/16" Tube ID x 10-32 UNF Male from [McMaster-Carr](https://www.mcmaster.com/4406T11/)
-5. TRB1 Locking Ball and Socket Mount, 8-32 Threaded Base and Setscrew from [Thorlabs](https://www.thorlabs.com/thorproduct.cfm?partnumber=TRB1)
-6. TR2 Ø1/2" Optical Post, SS, 8-32 Setscrew, 1/4"-20 Tap, L = 2" from [Thorlabs](https://www.thorlabs.com/thorproduct.cfm?partnumber=TR2)
+1. Have made in a machine shop the solenoid valve manifold in stainless steel (preferably 316) and the manifold to frame adapter. Screw at the top of the manifold a quick turn tube coupling for air made out of 316 stainless steel, socket for 1/4"-28 UN/UNF (SAE) threaded pipe. Screw at the bottom of the manifold a stainless steel barbed tube fitting, 1/16" tube ID x 1/4"-28 UNF male. Screw at the front of the manifold an isolation valve from Gems sensor and controls (AS2030-05MM-V-G5-204).
 
-### Reward solenoid valve
+<figure>
+  <img src='./assets/images/reward/reward-assembly-1.png'>
+</figure>
 
-1. Any regular srynge according to the needed volume
-2. Tight-Seal Moisture-Resistant Barbed Tube Fitting Plastic, for 1/16" Tube ID x 10-32 Thread Male Pipe from [McMaster-Carr](https://www.mcmaster.com/5047K11/)
-3. Tygon PVC Tubing for Food, Beverage, and Dairy 1/16" ID, 1/8" OD from [McMaster-Carr](https://www.mcmaster.com/6546T33/)
-4. 161T012 solenoid valve, 2-way, normally closed, isolation, 24vdc, PSIG 30 from [NResearch](https://www.nresearch.com/)
+2. Use a pair of T-Slotted framing drop-in nuts with spring tab and place them in the upper profile on the right side of the rig (where the DIN rails are), attach the manifold to frame adapter.
 
-## Drawings
+<figure>
+  <img src='./assets/images/reward/reward-assembly-2.png'>
+</figure>
 
-1. Reward stainless steel tube available <a href='./assets/pdf/reward/stainless_steel_tube.pdf' target='_blank'>here</a>
-2. Tube to TRB1 aluminum adapter available <a href='./assets/pdf/reward/tube_to_trb1_adapter.pdf' target='_blank'>here</a>
-3. <a href='./assets/drawings/reward.zip'>Download</a> complete inventor file drawings for the reward spout
+3. Use a couple of 4-40 thread size, 1" long flat head screws and attach the manifold to the adapter.
+
+<figure>
+  <img src='./assets/images/reward/reward-assembly-3.png'>
+</figure>
+
+4. Once the manifold is fixed into position, screw at the top luer lock connector a glass srynge.
+
+<figure>
+  <img src='./assets/images/reward/reward-assembly-4.png'>
+</figure>
+
+## Lick spout holder assembly
+
+The lick spout holder is designed to be fixed in the sagital and coronal position and adjustable in the Z (height) position. This way the variability in the position of both the mice and the spout is reduced. To this end, we designed a 3D printed arm that holds a spout holder, which also serves as the air puffs delivery system, that is attached to a kinetic base to make it easy to place and remove when the styrofoam ball need to be taken out. The kinetic base is screwed to a dovetail translation stage with 1/4" travel to adjust the height of the spout.
+
+To assemble, follow the next steps.
+
+1. Have printed the arm (we recommend an external service and PA12GB material) and install a 8-32 thread size, 0.312" installed length heath insert for plastic in the hole at the lower part of the arm that is going to be attached to the kinetic base. Then, screw the top part of the KB1X1 kinetic base from Thorlabs to the arm using an 8-32 thread size, 1/4" long low-profile screw.
+
+:::tip
+ To install the heat insert follow the instructions in the step 3 of the bottom plate assembly in the [stage](/building/stage) section.
+:::
+
+2. Install the 1/16" tube ID x 10-32 thread male pipe in the bottom part of the spout holder and place it into the arm using a pair of 2-56 thread size, 5/32" long screws. Put the FNS-18-2-2 straight feeding needle from Kent scientific on the spout holder and fix the top part of the holder using a four 100 degree countersink, 0-80 thread, 7/32" long screws.
+
+3. Print or have printed the breadboard to DT12 adapter and screw the DT12 dovetail translation stage from Thorlabs to the adapter using a 8-32 thread size, 3/8" long flat head screw, making sure the screw to move the stage is facing up (to the ceiling of the rig). Attach at the other end the bottom part of the KB1X1 kinetic base from Thorlabs using an 8-32 thread size, 1/4" long low-profile screw. Finally, install into the breadboard using a pair of 1/4"-20 thread size, 11/16" long flat head screw.
+
+3. Finally place the arm with the spout holder in place by connecting the top and bottom parts of the kinetic base.
