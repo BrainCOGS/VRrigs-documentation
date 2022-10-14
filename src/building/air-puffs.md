@@ -8,34 +8,40 @@ lang: en-US
 The air puffs module can be divided in two main parts, the air pressure regulation and valve control and the delivery of the stimuli.
 
 <figure>
-  <img src='./assets/images/air-puffs/air-puffs-description.png'>
-  <center><figcaption><small>Description of the air pressure regulation and valve control</small></figcaption></center>
+  <img src='./assets/images/air-puffs/air-puffs-1.png'>
+  <center><figcaption><small>Air puffs module.</small></figcaption></center>
 </figure>
--> image of the air puffs module
 
 ## Pressure regulator assembly
 
-1. Assemble the gauge and the pressure regulator with the proper fittings at input and output.
+1. Remove the screw from the front of the miniature compressed air regulator (placing the inlet down and the regulator screw at the right) and screw in the pressure gauge. Place the straight reducer, 3/8 x 1/8 NPT male at the inlet of the regulator and a push-to-connect tube fitting for 3/8" tube OD x 1/8 NPT male at the oulet of the regulator. Then screw the assembly into the second outlet of the air supply manifold.
 
-2. Screw the gauge to the main supply manifold and connect the outlet to the control manifold.
+:::tip
+ Make sure to place this assembly before screwing the air supply manifold to the T-slotted frame.
+:::
 
-One of the outputs from the main air supply manifold is used for the air puffs, a 3/8" outer diameter tube to 3/8" NPT male push to connect tube fitting is used to connect a 3/8" outer diameter tube from the air supply manifold to a compressed air regulator. A precision compressed air regulator with 1/8" NPT female inputs and 1-30 PSI range is used, a pair of 3/8" tube outer diameter to 3/8" NPT push to connect fittings are attached to both input and output of the regulator, a 1-30 pressure gauge is also connected to the regulator to easily adjust the air puff pressure as needed.
+<figure>
+  <img src='./assets/images/air-puffs/air-puffs-assembly-1.png'>
+</figure>
 
 ## Control manifold assembly
 
-1. Connect everything that needs to be connected to the control manifold.
-
-2. Screw the control manifold to the adapter to the DIN rail mounting clip and mount into the DIN rail.
-
-3. Connect the valves output to the spout mount.
-
-4. Connect the valves to the proper outputs of the solenoid valve driver in the control module.
-
-
-The control manifold has screwed to one side a 3/8" tube outer diameter to 1/8" NPT push to connect fitting and on the other side a 1/8" NPT plug. Screwed at the bottom of the manifold are a pair of 1/16" tube internal diameter to 10-32 thread male low pressure tube fitting and at the top a pair of E2012 manifold mount 10-32 threaded stud subminiature solenoid valves from Gems sensors and controls. The controlled air pressure output from the regulator is then attached with a 3/8" outer diameter tube to the control manifold and the output is connected to the delivery part mounted on the reward spout with a 1/16" inner diameter and 1/8" outer diameter tygon tube.
+1. Have made the air puffs control manifold in a machine shop in aluminum. Insert at the right end (placing the small 10-32 holes facing down) a plug with hex drive, 1/8 NPTF, at the bottom a pair of 1/16" tube ID x 10-32 thread male pipe barbed tube fitting, at the left a push-to-connect tube fitting for 3/8" tube OD x 1/8 NPT male, and finally a pair of subminiature solenoid valves for air from Gems sensors and controls (EG2020-06MM-B-G1-204).
 
 <figure>
-  <img src='./assets/images/air-puffs/air-puffs-description.png'>
+  <img src='./assets/images/air-puffs/air-puffs-assembly-2.png'>
 </figure>
 
-The delivery of the air puffs is done with a Delrin part that is designed to be attached to the reward delivery module, it has 2 holes made at an angle of 45 degrees to point the air flow toward the whiskers of the mice and avoid the eyes. This part consist on 2 pieces that are tightened around the reward spout with 0-80 1/4" long screws. At the back, two 1/6" tube internal diameter to 10-32 thread male barbed tube fitting are screwed to attach the tygon tube coming from the control manifold output.
+2. Place a couple of 10-24 square nuts at the back of the manifold to DIN rail clip adapter, if needed apply some pressure to it for them to enter completely into the hole (you could use a hammer for this), then use a couple of 6-32 x 1" long screws to screw the manifold to the adapter. After that, use a couple of number 6 size, 1/4" long thread-forming screws to attach a 75 mm DIN rail mounting clip to the adapter. Place the entire assembly into the bottom DIN rail, somewhere between the hole for the tubing and the air supply manifold.
+
+<figure>
+  <img src='./assets/images/air-puffs/air-puffs-assembly-3.png'>
+</figure>
+
+3. Connect the manifold outputs to the tube fitting at the back of the spout holder inside the rig using tygon PVC tubing for food, beverage, and dairy 1/16" ID, 1/8" OD. If you installed a hose and cable carrier, make sure to pass them through it.
+
+<figure>
+  <img src='./assets/images/air-puffs/air-puffs-assembly-4.png'>
+</figure>
+
+4. Connect the valves to the proper outputs of the solenoid valve driver in the control module.
