@@ -5,9 +5,12 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-Brief explanation of the control module and parts.
+The control module consist on a 24V power source, a couple of distribution blocks, which make it easier to connect any other stuff that works on 24V; a custom made solenoid valve driver, an USB NiDAQ card from National Instruments and an Arduino due that is inside a 3D printed housing with a DIN rail clip attached. Each of these parts will be explained in detail below with instructions for assembly.
 
--> picture of the control module and main parts.
+<figure>
+  <img src='./assets/images/control/control-1.png'>
+  <center><figcaption><small>Control module.</small></figcaption></center>
+</figure>
 
 ## Solenoid valve driver assembly
 
@@ -38,6 +41,16 @@ Explanation of the design of the solenoid valve driver.
 2. Open the NIDAQ case and make a hole at the middle of the back case. Screw the DIN rail mounting clip to it, then close the case and place the top screws (send the bottom screw to hell).
 
 3. Connect everything - power supply to solenoid valve driver, NIDAQ outputs to solenoid valve driver inputs, common to everyone, valves to solenoid valve driver outputs. Maybe make a diagram here.
+
+## Arduino module assembly
+
+1. Have printed the arduino case and screw the arduino. Insert the connector in place and crimp the cables.
+
+2. Make sure to follow the color code and connect the cables to the arduino.
+
+3. Cover the case and install the din rail mounting clip. Install the arduino module in the top DIN rail.
+
+4. Make the cable. Cut the cable and insert into the connector on one end. Connect it to the arduino, then insert the cable trough the hole and the cable carrier until it reached the cup, cut the cable and peel off the cover, install the connector on the other end and connect it to the cup.
 
 ## USB HUB and Speaker
 
