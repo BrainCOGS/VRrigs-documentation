@@ -54,8 +54,20 @@ To assemble, follow the next steps.
  To install the heat insert follow the instructions in the step 3 of the bottom plate assembly in the [stage](/building/stage) section.
 :::
 
-2. Install the 1/16" tube ID x 10-32 thread male pipe in the bottom part of the spout holder and place it into the arm using a pair of 2-56 thread size, 5/32" long screws. Put the FNS-18-2-2 straight feeding needle from Kent scientific on the spout holder and fix the top part of the holder using a four 100 degree countersink, 0-80 thread, 7/32" long screws.
+<figure>
+  <img src='./assets/images/reward/reward-assembly-5.png'>
+</figure>
+
+2. Install the 1/16" tube ID x 10-32 thread male pipe in the back of the spout holder and place it into the arm using a pair of 2-56 thread size, 5/32" long screws. Put the FNS-18-2-2 straight feeding needle from Kent scientific on the spout holder and fix the top part of the holder using a four 100 degree countersink, 0-80 thread, 7/32" long screws.
+
+<figure>
+  <img src='./assets/images/reward/reward-assembly-6.png'>
+</figure>
 
 3. Print or have printed the breadboard to DT12 adapter and screw the DT12 dovetail translation stage from Thorlabs to the adapter using a 8-32 thread size, 3/8" long flat head screw, making sure the screw to move the stage is facing up (to the ceiling of the rig). Attach at the other end the bottom part of the KB1X1 kinetic base from Thorlabs using an 8-32 thread size, 1/4" long low-profile screw. Finally, install into the breadboard using a pair of 1/4"-20 thread size, 11/16" long flat head screw.
+
+<figure>
+  <img src='./assets/images/reward/reward-assembly-7.png'>
+</figure>
 
 3. Finally place the arm with the spout holder in place by connecting the top and bottom parts of the kinetic base.
