@@ -49,7 +49,7 @@ We use a 3D printing external service to manufacture the cup, Nylon 12 works fin
   <img src='./assets/images/stage/cup-assembly-2.png'>
 </figure>
 
-2. Cut the cables from the 8 pin connector to 4 inches and remove the tip of the plastic protective cover, cut the black and red 26 AWG cables at 3 inches and remove the plastic cover from the tips as well. Place a female crimp pin in each cable one at the time and use the crimping tool following the instructions [here](https://www.pololu.com/product/1928). For the grey and red cables, crimp the black and red 26 AWG cables with them respectively; as shown in the picture below.
+2. Cut the cables from the 8 pin connector to 4 inches and remove the tip of the plastic protective cover, also remove the dark purple lead, cut the black and red 26 AWG cables at 3 inches and remove the plastic cover from the tips as well. Place a female crimp pin in each cable one at the time and use the crimping tool following the instructions [here](https://www.pololu.com/product/1928). For the grey and red cables, crimp the black and red 26 AWG cables with them respectively; as shown in the picture below.
 
 <figure>
   <img src='./assets/images/stage/cup-assembly-3.png'>
