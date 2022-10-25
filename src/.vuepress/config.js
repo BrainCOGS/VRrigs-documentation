@@ -90,6 +90,8 @@ function getBuildingSidebar () {
 
 function getSoftwareSidebar () {
   return [
-    ''
+    '',
+    'db_access',
+    'automation_pipeline'
   ]
 }
