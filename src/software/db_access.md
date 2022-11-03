@@ -12,7 +12,6 @@ lang: en-US
     - For **Python**: <a href="https://github.com/BrainCOGS/U19-pipeline_python">https://github.com/BrainCOGS/U19-pipeline_python</a> 
     - For **MATLAB**: <a href="https://github.com/BrainCOGS/U19-pipeline-matlab">https://github.com/BrainCOGS/U19-pipeline-matlab</a> 
 
-
  ## DB Access for Python repository
 
  ### Prerequisites
@@ -170,3 +169,21 @@ lang: en-US
 
   + Add this repository to MATLAB Path
   + Run ```startup_virtual_machine.m```
+
+
+## Add researcher to user table
+
+  + This set of instructions only apply for users that will have subjects on his/her supervision:
+
+  ### Add researcher to user table with MATLAB
+
+  + Connect to DB
+  + Run ```lab.utils.add_researcher_user_table('NETID', 'full name', 'email', 'phone')```
+  + **Note:** (All data in function call should be written inside quotes)
+
+  ### Add researcher to user table with PYTHON
+
+  + Activate conda environment and start a python command line
+  + ```import u19_pipeline.utils.insert_miscelaneous_db as imd```
+    ```imd.add_researcher_user_table('NETID', 'full name', 'email', 'phone')```
+  + **Note:** (All data in function call should be written inside quotes)

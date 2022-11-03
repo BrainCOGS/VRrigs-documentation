@@ -23,6 +23,23 @@ lang: en-US
    <center><figcaption><small>Automation GUI main screen</small></figcaption></center>
   </figure>
 
+
+   + If no surgery data is found for the subject, a small form to insert surgery and device insertion coordinates will be shown.
+
+  <figure>
+   <img src='./assets/images/automation_gui/Add_surgery_data.png'>
+   <center><figcaption><small>Add surgery data form</small></figcaption></center>
+  </figure>
+
+   + Common coordinates for previous recordings:
+
+  | **Area**         | ml(mm) | ap(mm) | depth(mm) | theta(°) | phi(°) | rho(°) |
+  |-----------------:|-------:|-------:|----------:|---------:|-------:|-------:|
+  | **mPFC L HEMIS** |   -0.6 |    1.8 |       3.8 |      -45 |     -9 |    180 |
+  | **mPFC R HEMIS** |    0.6 |    1.8 |       3.8 |       45 |      9 |      0 |
+  | **HPC  L HEMIS** |   -1.5 |      2 |       1.8 |      -45 |     -9 |    180 |
+  | **HPC  R HEMIS** |    1.5 |      2 |       1.8 |       45 |      9 |      0 |
+
   + Wait until recording has been copied to PNI storage resources (cup).
 
   <figure>
@@ -40,10 +57,4 @@ lang: en-US
   + Select the recording directory from dropdown list in section 1.
   + Check "Add surgery & insertion device if missing" checkbox if you want to add electrode/microscope/optic fiber insertion coordinates.
   + Select behavior session corresponding to recording from dropdown list in section 2.
-  + Click Register Recording button.
-  
-  
-  
-  ### First time use configuration
-
-   + Open the GUI
+  + Uncheck "Use default processing parameters for recording?" checkbox
