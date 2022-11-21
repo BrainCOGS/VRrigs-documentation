@@ -12,11 +12,11 @@ lang: en-US
 
   ### Default use case
 
-  + Open the GUI just after recording has ended.
-  + Select the recording directory from dropdown list in section 1.
-  + Check "Add surgery & insertion device if missing" checkbox if you want to add electrode/microscope/optic fiber insertion coordinates.
-  + Select behavior session corresponding to recording from dropdown list in section 2.
-  + Click Register Recording button.
+  1 Open the GUI just after recording has ended.
+  2 Select the recording directory from dropdown list in section 1.
+  3 Check "Add surgery & insertion device if missing" checkbox if you want to add electrode/microscope/optic fiber insertion coordinates.
+  4 Select behavior session corresponding to recording from dropdown list in section 2.
+  5 Click Register Recording button.
 
   <figure>
    <img src='./assets/images/automation_gui/Automation_GUI_main_screen.png'>
@@ -53,8 +53,19 @@ lang: en-US
 
   ### "Advanced" (select parameters) use case
   
-  + Open the GUI just after recording has ended.
-  + Select the recording directory from dropdown list in section 1.
-  + Check "Add surgery & insertion device if missing" checkbox if you want to add electrode/microscope/optic fiber insertion coordinates.
-  + Select behavior session corresponding to recording from dropdown list in section 2.
-  + Uncheck "Use default processing parameters for recording?" checkbox
+  1. Follow 1-4 from Default use case
+  2. Uncheck "Use default processing parameters for recording?" checkbox
+  3. Click "Select parameters >>>" button
+
+  <figure>
+   <img src='./assets/images/automation_gui/Select_parameters.png'>
+   <center><figcaption><small></small>Parameter selection main screen</figcaption></center>
+  </figure>
+
+  4. On the "Select parameters" tab (assume that all probes/fovs are going to be processed with same parameters)
+      1. Select a Preprocessing Param list from the dropdown in section 1.
+        + You can check which preprocessing steps are defined for that list on the listbox to the right)
+        + If you select a preprocessing step from the listbox you can check the specific parameters for that preprocessing step on the text area to the right.
+      2. Select a Processing parameter from the dropdown in section 2.
+        + If you select a processing parameter from the dropdown you can check the specific parameters for it on the text area to the right.
+  5. Click Register Recording button.

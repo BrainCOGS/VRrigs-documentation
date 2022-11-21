@@ -92,6 +92,8 @@ function getSoftwareSidebar () {
   return [
     '',
     'db_access',
+    'db_organization',
+    'db_analysis',
     'automation_pipeline'
   ]
 }
