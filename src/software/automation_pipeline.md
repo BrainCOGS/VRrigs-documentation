@@ -92,10 +92,9 @@ lang: en-US
    <center><figcaption>Recording table tab screenshot</figcaption></center>
   </figure>
 
+ #### Notes
 
-  #### Notes
-
-   + This use case assumes that default parameters will be used to process the recording.
+ + This use case assumes that default parameters will be used to process the recording.
 
   ## "Advanced" (select parameters) use case
   
@@ -110,17 +109,17 @@ lang: en-US
 
   4. On the **"Select parameters"** tab (assume that all probes/fovs are going to be processed with same parameters) 
   ### On section 1:
-   6. In **Preprocessing Params Lists** dropdown Select a Preprocessing Param list
+   5. In **Preprocessing Params Lists** dropdown Select a Preprocessing Param list
    + You can check which preprocessing steps are defined for that list on the listbox to the right)
    + If you select a preprocessing step from the listbox you can check the specific parameters for that preprocessing step on the text area to the right.
   ### On section 2:
-   7. In **Processing Params"** dropdown select a Processing parameter suited for recording
+   6. In **Processing Params"** dropdown select a Processing parameter suited for recording
    + If you select a processing parameter from the dropdown you can check the specific parameters for it on the text area to the right.
-  8. Click **Register Recording** button.
+  7. Click **Register Recording** button.
 
-  + Next actions are idential to the **"Default use"** case   
+  + Next actions are idential to the **"Default use"** case
 
- ## Monitor jobs
+  ## Monitor jobs
   + After a recording is submitted to processing the user is able to track, reprocess and visualize all jobs corresponsing to that recording.
 
   <figure>
@@ -128,7 +127,8 @@ lang: en-US
    <center><figcaption>Manage Processing Jobs main screen</figcaption></center>
   </figure>
 
- ### Track status
+
+  ### Track status
   1. Switch to **"Manage Processing Jobs"** tab.
   2. Use **"User"**, **"Subject"** & **"Date"** dropdwons / edits to find desired jobs
   3. Select row corresponding to the corresponding job:
@@ -151,12 +151,10 @@ lang: en-US
   </figure>
 
   #### Rerun jobs
+
   + A job can be rerun with different parameters by clicking **New Job With different Parameters** button.
-  + Follow <a href='./assets/files/automation_gui/kilosort_parameters_example.json.zip'> <a>software/automation_pipeline.html#advanced-select-parameters-use-case
+  + Follow <a href='https://braincogs.github.io/software/automation_pipeline.html#advanced-select-parameters-use-case'> "Advanced" (select parameters) use case </a>
 
-
-
-    
  ## Create new sets of processing parameters for recordings
 
   + In order to process recordings with parameters different than default you need at least one of the following:
