@@ -12,7 +12,7 @@ This website is a central repository for the documentation regarding the **build
 Building documentation is divided into modules, each module contains the purchase list of parts, the drawings for the module set up and custom parts that can be made in a work shop or 3D printed, and a detailed explanaiton of the building process.
 
 Recommended steps to assembly.
-1. Begin with the bottom part of the cabinet. [Which steps of the cabinet assembly?].
+1. Begin with the bottom part of the cabinet.
 2. Install the stage. [Whole stage].
 3. Install the projection module.
 4. Install the panels of the main cabinet (without the doors).
