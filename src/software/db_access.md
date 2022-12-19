@@ -12,6 +12,31 @@ lang: en-US
     - For **Python**: <a href="https://github.com/BrainCOGS/U19-pipeline_python">https://github.com/BrainCOGS/U19-pipeline_python</a> 
     - For **MATLAB**: <a href="https://github.com/BrainCOGS/U19-pipeline-matlab">https://github.com/BrainCOGS/U19-pipeline-matlab</a> 
 
+ ## Mount file server volumes
+
++ There are several data files (behavior, imaging & electrophysiology) that are referenced in the database
+
++ To access these files you should mount PNI file server volumes on your system.
+
++ There are three main file servers across PNI where data is stored (braininit, Bezos & u19_dj)
+
+ ### On windows systems
+ 1. From Windows Explorer, select "Map Network Drive" and enter:
+  + `\\cup.pni.princeton.edu\braininit\` (for braininit)
+  + `\\cup.pni.princeton.edu\Bezos-center\` (for Bezos)
+  + `\\cup.pni.princeton.edu\u19_dj\` (for u19_dj)
+ 2. Authenticate with your NetID and PU password (NOT your PNI password, which may be different). When prompted for your username, enter PRINCETON\netid (note that PRINCETON can be upper or lower case) where netid is your PU NetID.
+
+ ### On OS X systems
+  1. Select "Go->Connect to Server..." from Finder and enter:
+   + `smb://cup.pni.princeton.edu/braininit/` (for braininit)
+   + `smb://cup.pni.princeton.edu/Bezos-center/` (for Bezos)
+   + `smb://cup.pni.princeton.edu/u19_dj/` (for u19_dj)
+  2. Authenticate with your NetID and PU password (NOT your PNI password, which may be different).
+
+ ### On Linux systems
+  1. Follow extra steps depicted in this: <a href="https://npcdocs.princeton.edu/index.php/Mounting_the_PNI_file_server_on_your_desktop">link</a> 
+ 
 
  ## DB Access for Python repository
 
@@ -170,3 +195,21 @@ lang: en-US
 
   + Add this repository to MATLAB Path
   + Run ```startup_virtual_machine.m```
+
+
+## Add researcher to user table
+
+  + This set of instructions only apply for users that will have subjects on his/her supervision:
+
+  ### Add researcher to user table with MATLAB
+
+  + Connect to DB
+  + Run ```lab.utils.add_researcher_user_table('NETID', 'full name', 'email', 'phone')```
+  + **Note:** (All data in function call should be written inside quotes)
+
+  ### Add researcher to user table with PYTHON
+
+  + Activate conda environment and start a python command line
+  + ```import u19_pipeline.utils.insert_miscelaneous_db as imd```
+    ```imd.add_researcher_user_table('NETID', 'full name', 'email', 'phone')```
+  + **Note:** (All data in function call should be written inside quotes)
