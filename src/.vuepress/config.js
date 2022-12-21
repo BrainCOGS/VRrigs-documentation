@@ -95,6 +95,10 @@ function getSoftwareSidebar () {
     'db_organization',
     'db_analysis',
     'automation_pipeline',
+    'automation_pipeline_developer',
     'configure_systems',
+    'alert_system',
+    'manipulation_pipeline',
+    'subtask_pipeline'
   ]
 }
