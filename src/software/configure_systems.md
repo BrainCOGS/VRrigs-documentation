@@ -93,12 +93,48 @@ lang: en-US
   + **Mini VR projection parameters** (Ask lab manager about this parameters)
  8. run `lab.utils.add_behavior_rig(RigParameters.rig)`
  9. run `live_calibration` experiment  (Ask lab manager about this process)
- 10. Create a MATLAB shorcut and set **Start in** as  `C:\Experiments\ViRMEn`
+ 10. Create a MATLAB shortcut and set **Start in** as  `C:\Experiments\ViRMEn`. 
+ 11. Add this shortcut to the Windows task bar in the bottom.
 
  <figure>
   <img src='./assets/images/configure_systems/Matlab_shorcut.png'>
   <center><figcaption>MATLAB Shorcut example</figcaption></center>
  </figure>
+
+ ### Behavior data backup task schedule
+ 
+ 1. On Windows type **"Task Scheduler"**
+ 2. Open **Task Scheduler** "App"
+ 3. On right hand side menu, click on **"Create Task"** Action
+
+ <figure>
+  <img src='./assets/images/configure_systems/Menu_task_scheduler.png'>
+  <center><figcaption>Task scheduler menu</figcaption></center>
+ </figure>
+
+ 4. Name new task as **new_data_backup**
+
+ <figure>
+  <img src='./assets/images/configure_systems/General_tab_task_scheduler.png'>
+  <center><figcaption>Task scheduler General Tab</figcaption></center>
+ </figure>
+
+ 5. Add a trigger to run task daily at 11:00 pm
+
+ <figure>
+  <img src='./assets/images/configure_systems/Trigger_tab_task_scheduler.png'>
+  <center><figcaption>Task scheduler Trigger Tab</figcaption></center>
+ </figure>
+
+ 6. Add an action: add this line to the Program/script edit: `C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_behavior_files`
+
+ <figure>
+  <img src='./assets/images/configure_systems/Action_tab_task_scheduler.png'>
+  <center><figcaption>Task scheduler Action Tab</figcaption></center>
+ </figure>
+ 
+ 7. Hit **OK** button
+
 
  ## Configure new recording system
 
@@ -126,3 +162,11 @@ lang: en-US
   <img src='./assets/images/configure_systems/recording_automation_GUI_installer.png'>
   <center><figcaption>Anaconda avanced options step</figcaption></center>
  </figure>
+
+ ### Register recording system
+
+  + On a computer with access to the database (e.g. any Rig Computer).
+  1. Open MATLAB
+  2. Execute: `lab.utils.add_recording_system((recording_system_name), (modality))` where:
+   + **recording_system_name:** (on the format: `Room#-Recording`).
+   + **modality:** (one of the following: `electrophysiology, 2photon, 3photon, mesoscope`).
