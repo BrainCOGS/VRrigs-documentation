@@ -24,7 +24,7 @@ lang: en-US
 
  + Connect to database ```connect_datajoint00```
  + Create new manipulation schema (substitute manipulation_name with the real name of the manipulation: ```create_new_manipulation_schema('(manipulation_name)', 1)```
- + This will create a new schema “base” code on the U19-pipeline-matlab/schemas directory:
+ + This will create a new schema “base” code on the `U19-pipeline-matlab/schemas` directory:
  + (We will use “thermal” manipulation for this example).
 
  <figure>
@@ -208,7 +208,7 @@ for itrial = 1:nTrials
 
 <figure>
  <img src='./assets/images/manipulation_pipeline/manipulation_trainingGUI.png'>
- <center><figcaption>Parameter selection (manipulation, protocol & software Parameter) for a training schedule of a subject..</figcaption></center>
+ <center><figcaption>Parameter selection (manipulation, protocol & software Parameter) for a training schedule of a subject.</figcaption></center>
 </figure>
 
 ### Fetching Data

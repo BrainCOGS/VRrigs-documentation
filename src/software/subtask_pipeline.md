@@ -28,221 +28,156 @@ lang: en-US
 ## Initial set-up 
 
  + Connect to database ```connect_datajoint00```
- + Create new manipulation schema (substitute manipulation_name with the real name of the manipulation: ```create_new_manipulation_schema('(manipulation_name)', 1)```
- + This will create a new schema “base” code on the U19-pipeline-matlab/schemas directory:
- + (We will use “thermal” manipulation for this example).
+ + Create new subtask base code (substitute subtask_name with the real name of the subtask: ```create_new_subtask_classes('(subtask_name)')```
+ + This will create table codes templates for subtask : **(Subtask)Session.m, (Subtask)Block.m & (Subtask)Trial.m** on the `U19-pipeline-matlab/schemas/+behavior_subtask` directory:
+ + (We will use **“Twolickspouts” subtask** for this example).
 
  <figure>
-  <img src='./assets/images/manipulation_pipeline/Thermal_schema_files.png'>
- </figure>
-
- <figure>
-  <img src='./assets/images/manipulation_pipeline/Thermal_pipeline_ERD.png'>
-  <center><figcaption>Thermal manipulation file creation & Entity-Relationship diagram on the BRAINCoGS DB</figcaption></center>
+  <img src='./assets/images/subtask_pipeline/Twolickspouts_subtask_files.png'>
+  <center><figcaption>Files created for Twolickspouts subtask on U19-pipeline-matlab/schemas/+behavior_subtask directory</figcaption></center>
  </figure>
 
 ## Table description
 
- + Throughout the table description chapter we are going to give an example of an already working manipulation pipeline. (Optogenetics)
+ + Throughout the table description chapter we are going to give an example of an already working subtask pipeline. (Twolicksspouts).
 
- ### "Manipulation" Protocol table
+ ### task.Subtask table
+
+ + This table registers all subtasks being created with this pipeline.
+
+ ### acquisition.SessionSubtask table
+
+ + This table stores subtask register for a specific behavior session. This table “links” a Task.subtask table with acquisition.Sesison table.
+
+ ### "Subtask" Session table
 	
-  + The protocol table stores related information that defines the current manipulation “type” to be used on a behavior session.
-  + Here is the minimum table definition for a manipulation protocol table, it is composed by an id to identify the protocol and a description field.
-  
-  + Generic **"Manipulation" Protocol.m**
-  ```
-  %{
-  # Defined <manipulation> protocols for training
-  <manipulation>_protocol_id     : int AUTO_INCREMENT
-  ---
-  protocol_description        : varchar(256)                  
-  %}
-  ```
+ + The Session table stores related information for the entire session (review acquisition.Session for a related example).
 
- ### Adding features to "Manipulation" Protocol table
+ ### "Subtask" Block table
+	
+ + The Block table stores related information for each block of the session (review behavior.TowersBlock for a related example).
 
- + For each manipulation protocol it is possible to add from 0 to n “features” that will define & describe the protocol. We are going to describe all features added for **OptogeneticsProtocol** as an example:
+ ### "Subtask" BlockTrial table
+	
+ + The BlockTrial table stores related information for each trial of the session (review behavior.TowersBlockTrial for a related example).
 
- + It is important to know from an optogenetic experiment what kind of stimulation was given to the subject: Frequency, wavelength, power etc. All these variables can be stored into a “feature” table and be categorized as StimulationParameters.
- + What if stimulation was not a square pulse ? We can create a “feature” table to define (if needed) specific waveforms for a given session. (OptogeneticsWaveform)
- + What if different rooms have different laser systems models ? We can create a “feature” table to store all possible devices to be used in an optogenetic experiment (OptogeneticsDevice).
- + For each of these features we need to create a new table that encompasses the needed information for that feature. We will call all these extra tables a protocol “feature” table.
- + For a guide on how to define DJ tables go to: <a href="https://docs.datajoint.org/matlab/definition/02-Creating-Tables.html">this link</a>.
+ ## Adding code to "Subtask" tables
 
- <figure>
-  <img src='./assets/images/manipulation_pipeline/Optogenetics_pipeline.png'>
-  <center><figcaption>Tables that define an optogenetic protocol for a session.</figcaption></center>
- </figure>
+ + For each subtask you can add all needed variables from the behavior file to the "Subtask" tables.
+ + Example for **“Twolickspouts” subtask**
 
- + For the current guide we will only show OptogeneticsStimulationParameters definition as an example:
+ ### TwolickspoutsSession table code
 
- ### OptogeneticsStimulationParameters.m:
  ```
   %{
-  # Parameters related to laser stimulation
-  stim_parameter_set_id       : int AUTO_INCREMENT  # 
-  ---
-  stim_parameter_description  : varchar(256)        #
-  stim_wavelength             : decimal(5,1)        # (nm)
-  stim_power                  : decimal(4,1)        # (mW)
-  stim_frequency              : decimal(6,2)        # (Hz)
-  stim_pulse_width            : decimal(5,1)        # (ms)
-  %}
-  
-  classdef OptogeneticStimulationParameter < dj.Lookup
-    properties
-    end
-  end
-  ```
-
- + Fields needed for a protocol “feature” table:
-
-+ **id field:** as an int AUTO_INCREMENT type as the only primary key  (e.g. stim_parameter_set_id).
-+ **extra_fields:** Any other field that helps to define the feature. 
-+ After all feature tables are defined they should be added to the "Manipulation" Protocol table.
-
-+ For our Optogenetics example:
- ```
- % Declare new "feature" table
- optogenetics.OptogeneticsStimulationParameters
- % Add the feature -> protocol table
- add_feature_key_protocol_table(optogenetics.OptogeneticsProtocol, ... optogenetics.OptogeneticsStimulationParameters)
- % Sync definition from DB to .m file
- syncDef(optogenetics.OptogeneticsProtocol);
- % clear previous connection and connect again
- clear all
- connect_datajoint00
- ```
-
-+ After the “features” tables are added to the "Manipulation" Protocol table we are ready to add protocols to be “ready” and selectable for a behavior session:
-
-```
- % Insert stim parameter record
- stim_parameter_rec.stim_parameter_description = 'cool stims'
- stim_parameter_rec.stim_wavelength = 473
- stim_parameter_rec.stim_power = 10                
- stim_parameter_rec.stim_frequency = 100        
- stim_parameter_rec.stim_pulse_width = 1
- insert(optogenetics.OptogeneticsStimulationParameters, stim_parameter_rec)  
-
- % get last inserted stim_id
- stim_id = fetch(optogenetics.OptogeneticsStimulationParameters, 'ORDER BY stim_parameter_set_id desc LIMIT 1');
-
- % or look for a previously inserted parameter
- all_stim_params = fetch(optogenetics.OptogeneticsStimulationParameters, '*')
- stim_id = 1;
-
- % Insert new protocol with new stimulation parameter
- new_protocol.protocol_description = 'this_is_new_protocol'
- new_protocol.stim_parameter_set_id = stim_id;
- insert(optogenetics.OptogeneticsProtocol, new_protocol)
-```  
-
-### "Manipulation" SoftwareParameters table
-
- + The software parameters table stores a set of parameters (a matlab struct, a python dictionary) that the code that handles the behavior will use during the session.
- + We will show how to insert new software parameters:
- + This for the **optogenetics.OptogeneticSoftwareParameter** table
-
- ```
- param_struct = struct();
- param_struct.software_parameter_description =  'stimulation_sequence # 1';
-  
- % All parameters goes in here 
- %(P_on and lsrepoch are the common and needed for current opto experiments)
- param_struct.software_parameters.P_on      = 0.21;
- param_struct.software_parameters.lsrepoch  = 'cue';
-   
- %Insert parameter
- software_param_id = try_insert(optogenetics.OptogeneticSoftwareParameter, param_struct)
- ```
-
- + How to read software parameters on experiment code (ViRMEn)
- + Example to get software parameters on the initializatonCodeFun on virmen:
-
- ```
- function vr = initializationCodeFun(vr)
- 
- vr.software_params     = vr.exper.userdata.trainee.softwareParams.software_parameters;
- vr.lsrepoch = vr.software_params.lsrepoch;
- vr.P_on = vr.software_params.P_on;
- ```
-
-### "Manipulation" Session table
-
- + This table stores manipulation data for a specific behavior session. This table “links” a manipulationProtocol & manipulationSoftwareParameters with a behavior Session.
- + This table does not need any additional code on it. (Unless extra fields from the behavior file are needed to be stored). **Researcher should contact DB designer if that is their intention**
-
- ```
- OptogeneticSession.m 
- %{
- # Information of a optogenetic session
+ # Session level data for a twolickspouts subtask session
  -> acquisition.Session
  ---
- -> acquisition.SessionManipulation
- -> optogenetics.OptogeneticProtocol
- -> optogenetics.OptogeneticSoftwareParameter
  %}
+ 
+ classdef TwolickspoutsSession < dj.Imported
  ```
 
-### "Manipulation" SessionTrial table
+ + There is no extra field to add at session level, no code added to the file.
 
-+ This table stores data, on a trial by trial basis, corresponding to the manipulation performed during the behavior session.
-+ There is a section on any  "Manipulation" SessionTrial class on the get_manipulation_trial_data function code where researcher has to add lines to fetch specific trial manipulation data:
+  ### TwolickspoutsBlock table code
 
-Code extract  from **OptogeneticSessionTrial** table
+ ```
+%{
+# Block level data for a twolickspouts subtask session
+-> behavior_subtask.TwolickspoutsSession
+-> acquisition.SessionBlock
+---
+sublevel                  : int                           # sublevel for the block
+trial_params              : blob                          # maze features of current block
+%}
+ .
+ .
 
-```
-function trial_structure = get_manipulation_trials_data(~,session_key, log)
-.
-.
-for itrial = 1:nTrials
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %%%% fill here read corresponding TestSubtask data for each block
+ tuple.sublevel = block_data.sublevel;
+ tuple.trial_params = block_data.trialParams;
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ ```
 
-  curr_trial = log.block(iBlock).trial(itrial);                            
-  trial_data = session_key;
-  trial_data.stim_on           = curr_trial.lsrON;
-  trial_data.t_stim_on  = time_trial(curr_trial.iLaserOn);
-  trial_data.stim_epoch = num2str(curr_trial.LaserTrialType);
-  trial_structure(total_trials) = trial_data;
-```
+ + In this example two fields were added to TwolickspoutsBlock table: (sublevel & trial_params)
+ + Two things are needed: 
+  1. Adding them to the table definition (1st part of the code block)
+  2. Add how this fields are being set from **block_data** variable: (search for **fill here** section on the code). block_data has all block data from behavior file.
 
-### Training with new manipulation
+ ### TwolickspoutsBlockTrial table code
 
-+ After all code for new manipulation has been set up the researcher will be able to select a specific manipulation type, protocol & software parameters that will be associated with the schedule for a given animal. Subsequent behavior sessions will correspond to that selection.
+ ```    
+  %{
+  # Trial level data for a twolickspouts subtask session
+  -> behavior_subtask.TwolickspoutsBlock
+  -> acquisition.SessionBlockTrial
+  ---
+  licks                        : tinyblob                      # all iterations with lick detected and side
+  trial_difficult_type         : varchar(16)                   # trial type label (easy, medium, difficult, etc)
+  forced_automatic_reward=null : tinyint                       # 1 if reward was forced for trial 0 otherwise
+  %}
+  .
+  .
+  %%%%%%%%%%%%%%%%%%%%%%%
+  %%%% fill here read corresponding Twolickspouts data for each trial
+  trial_data.licks = curr_trial.licks;
+  if isfield(curr_trial, 'forced_automatic_reward')
+    trial_data.forced_automatic_reward = curr_trial.forced_automatic_reward;
+  else
+    trial_data.forced_automatic_reward = NaN;
+  end
+  if isfield(curr_trial, 'trialDifficultyType')
+    trial_data.trial_difficult_type = curr_trial.trialDifficultyType;  
+  else
+    trial_data.trial_difficult_type = '';
+  end
+  %%%%%%%%%%%%%%%%%%%%%%%%
+  ```
+ 
+ + In this example three fields were added to TwolickspoutsBlockTrial table: (licks & trial_difficult_type, forced_automatic_reward)
+ + Two things are needed: 
+  1. Adding them to the table definition (1st part of the code block)
+  2. Add how this fields are being set from **trial_data** variable: (search for **fill here** section on the code). trial_data has all trial data from behavior file.
 
-<figure>
- <img src='./assets/images/manipulation_pipeline/manipulation_trainingGUI.png'>
- <center><figcaption>Parameter selection (manipulation, protocol & software Parameter) for a training schedule of a subject..</figcaption></center>
-</figure>
+ ### Create tables
 
-### Fetching Data
+ + After all code has been written on "Subtask"Session, "Subtask"Block & "Subtas"BlockTrial codebase it is needed to actually create the tables in the DB.
+ + Execute: ```create_new_subtask_tables('(subtask_name)')```
 
-+ After training has occurred all relevant data will be accessible in the corresponding tables of the database.
+ ### Training with new subtask
+
++ After all code for new sbutask has been set up and tables have been created the researcher will be able to select a specific subtask that will be associated with the schedule for a given animal. Subsequent behavior sessions will correspond to that selection.
+
+ <figure>
+  <img src='./assets/images/subtask_pipeline/subtask_trainingGUI.png'>
+  <center><figcaption>Subtask selection for a training schedule of a subject.</figcaption></center>
+ </figure>
+
+ ### Fetching Data
+
++ After training has occurred all relevant data will be accessible in the corresponding tables on the behavior_subtask DB.
 + <a href="https://docs.datajoint.org/matlab/queries/03-Fetch.html">Datajoint fetch guide</a> 
++ Example to fetch all Twolickspouts data for a single session:
 
 ```
-key = struct('subject_fullname', 'sbolkan_a2a_492', 'session_date', '2022-06-27')
-fetch(optogenetics.OptogeneticSessionTrial * optogenetics.OptogeneticSession & key,'*')
+key = struct('subject_fullname', 'testuser_T01', 'session_date', '2022-12-27', 'session_number', 1)
+fetch(behavior_subtask.TwolickspoutsSession * behavior_subtask.TwolickspoutsBlock * behavior_subtask.TwolickspoutsBlockTrial & key, '*')
 
 ans = 
 
-  363×1 struct array with fields:
+  5×1 struct array with fields:
 
     subject_fullname
     session_date
     session_number
+    subtask
     block
     trial_idx
-    stim_on
-    t_stim_on
-    t_stim_off
-    stim_epoch
+    sublevel
+    trial_params
+    licks
+    trial_difficult_type
+    forced_automatic_reward
 ```
-
-
-
- 
-
-
-
