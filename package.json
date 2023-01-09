@@ -30,7 +30,8 @@
     "**/**/nth-check": "2.0.1",
     "**/**/got": "11.8.5",
     "**/**/highlight.js": "10.4.1",
-    "**/**/markdown-it": "12.3.2"
+    "**/**/markdown-it": "12.3.2",
+    "**/**/loader-utils": "1.4.1"
   },
   "dependencies": {
     "@babel/core": "^7.18.6"
