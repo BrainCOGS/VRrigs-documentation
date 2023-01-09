@@ -1,11 +1,70 @@
 ---
-title: Projection module
+title: Projection
 lang: en-US
 ---
 
 # {{ $frontmatter.title }}
 
  The projection module consist on the screen assembly inside the cabinet, a projector is positioned at the back of the exterior part of the cabinet and it throws the image towards an spherical mirror attached to the cabinet positioned in the bottom part of the screen. The spherical mirror reflects the image onto the dome screen.
+
+<figure>
+  <img src='./assets/images/projection/projection-1.png'>
+  <center><figcaption><small>Projection assembly. The projector is for display purposes only and it is not the same model than the actual one.</small></figcaption></center>
+</figure>
+
+ ## Mirror
+
+The spherical mirror is custom made from Thorlabs with the item number LA1740-P01-SP, be sure to contact them for a quote before polaceing the order and ask for the price breaks if you're planning to build more than 5 training rigs (it could go down up to 50% from 5 to 10 pieces).
+
+We place the spherical mirror on an aluminum custom made base that is sent to a machine shop. The instruction for the assembly are descripted below.
+
+1. Start by assembling the mirror holder, which is composed of the custom made holder, one 1" diameter 2" long post (RS1), one 1" diameter 1.5" long post (RS2) and a BA2 post base from Thorlabs. Use a screwdriver thin enough to pass through the hole at the center of the post and apply enough force to properly screw each piece onto each other.
+
+<figure>
+  <img src='./assets/images/projection/mirror-assembly-1.png'>
+</figure>
+
+2. To align the pieces, screw the base but not all the way. Then, place the pieces on a flat surface and make sure that both the mirror base and the BA2 post base lie completely flat on the surface, apply some force with one of your hands to make sure they stay that way and with the other hand tight screw the base.
+
+<figure>
+  <img src='./assets/images/projection/mirror-assembly-2.png'>
+</figure>
+
+3. Use a file to scratch the surface that will hold the mirror, then clean it with ethanol. Use estructural epoxy, follow the instruction on your specific type, and apply to the aluminum base. Make sure to use a nitrile gloves to carefully place the mirror on top of the base and apply some pressure to let it sit flat on the base surface, wait and clean apoxy leakage if any. Let the epoxy dry for 24 hrs.
+
+::: tip
+  Apply just a sufficient ammount of epoxy in the middle of the aluminum base, don't spread it all over since it could leak once you place the mirror and apply pressure on it.
+:::
+
+<figure>
+  <img src='./assets/images/projection/mirror-assembly-3.png'>
+</figure>
+
+<figure>
+  <img src='./assets/images/projection/mirror-assembly-4.png'>
+</figure>
+
+4. Screw the mirror and the base to the cabinet bottom plate using 1/4-20 screws, make sure to place the base as far as it can get from the stage (push it all the ways toward the projector, then screw it), as shown below.
+
+<figure>
+  <img src='./assets/images/projection/mirror-assembly-5.png'>
+</figure>
+
+ ## Projector
+
+ The projector is installed at the back of the cabinet, at the top of a T-slotted frame structure. To assembly, use a couple of T-slot fasteners and place them on the frame at the back of the cabinet. Then, loosely screw the projector aluminum plate, measure 1 and 1/4 inches from the edge of the plate to the intersection of the frames as shown in the pictures below and tighten the screws. Finally, screw the projector to the aluminum plate.
+
+<figure>
+  <img src='./assets/images/projection/projector-assembly-1.png'>
+</figure>
+
+<figure>
+  <img src='./assets/images/projection/projector-assembly-2.png'>
+</figure>
+
+<figure>
+  <img src='./assets/images/projection/projector-assembly-3.png'>
+</figure>
 
  ## Screen building
 
@@ -156,7 +215,23 @@ lang: en-US
    <img src='./assets/images/projection/screen-building-18.png'>
  </figure>
 
- ## Parts list
+  ## Screen assembly
+
+Once the screen is built, follow the isntructions to install them in the cabinet.
+
+1. Assemble the 1.5" diameter 10" long posts (P10) by screwing a pair of mounting bases (BA2) from Thorlabs at the bottom. Then install the posts to the cabinet bottom plate using 1/4-20 screws at at the closest position to the projector as shown in the picture below.
+
+ <figure>
+   <img src='./assets/images/projection/screen-assembly-1.png'>
+ </figure>
+
+2. Have the custom made aluminum screen plate to post adapter in a machine shop, then screw it to the screen plate and place it over the posts. Tight screw the screen to the posts.
+
+ <figure>
+   <img src='./assets/images/projection/screen-assembly-2.png'>
+ </figure>
+
+ <!-- ## Parts list
 
  1. 18" OD 16" ID Styrofoam half ball from Fifty-Five Manufacturing/Global Foam Company.
  2. Alignment Laser: 3 Beams, 0 Dots, 0 Lines, Red, 200 ft Range w/o Detector from [Grainger](https://www.grainger.com/product/BOSCH-Alignment-Laser-3-Beams-450W78?internalSearchTerm=Alignment+Laser%3A+3+Beams%2C+0+Dots%2C+0+Lines%2C+Red%2C+200+ft+Range+w%2Fo+Detector&suggestConfigId=8&searchBar=true&opr=THKS)
@@ -179,4 +254,4 @@ lang: en-US
 
  ## Drawing 
 
- 1. aluminum plate
+ 1. aluminum plate -->

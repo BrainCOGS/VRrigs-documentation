@@ -14,7 +14,17 @@ The stage holds a 3D printed cup where the optical flow sensor is placed at the 
 
 The stage consist on a pair of optical breadboards attached by a set of posts. The posts lenght is calculated so that the stage has the proper height at which the mice will be positioned and the projection will be calibrated. The top optical breadboard is modified to insert the cup that will direct the constant air flow to the bottom of the styrofoam ball and will make it float, allowing the mice to freely move and run.
 
-We send the optical breadboard to be modified at a machine shop and assemble the stage by screwing each of the components as shown in the picture below.
+We send the optical breadboard to be modified at a machine shop. To assemble the stage you have to first screw the 4 posts by attaching a 1" diameter 1" long post to a 1" diamater 2" long post using a 1/4" set screw (alternatively, you can use a 1" diamater 3" long post). Then attach both the top plate and the bottom plate to each end of the 4 posts using 1/4" screws.
+
+<figure>
+  <img src='./assets/images/stage/stage-assembly-1.png'>
+</figure>
+
+Send the adapter to be made at a machine shop, then attach the latch holder to the adapter using a pair of M4 x 0.7mm, 8mm long screws. Attach the adapter to the bottom part of the bottom plate, in the intersection of the middle columns and the second row as shown in the picture below.
+
+<figure>
+  <img src='./assets/images/stage/stage-assembly-2.png'>
+</figure>
 
 ## Cup with optical flow sensor
 
@@ -39,7 +49,7 @@ We use a 3D printing external service to manufacture the cup, Nylon 12 works fin
   <img src='./assets/images/stage/cup-assembly-2.png'>
 </figure>
 
-2. Cut the cables from the 8 pin connector to 4 inches and remove the tip of the plastic protective cover, cut the black and red 26 AWG cables at 3 inches and remove the plastic cover from the tips as well. Place a female crimp pin in each cable one at the time and use the crimping tool following the instructions [here](https://www.pololu.com/product/1928). For the grey and red cables, crimp the black and red 26 AWG cables with them respectively; as shown in the picture below.
+2. Cut the cables from the 8 pin connector to 4 inches and remove the tip of the plastic protective cover, also remove the dark purple lead, cut the black and red 26 AWG cables at 3 inches and remove the plastic cover from the tips as well. Place a female crimp pin in each cable one at the time and use the crimping tool following the instructions [here](https://www.pololu.com/product/1928). For the grey and red cables, crimp the black and red 26 AWG cables with them respectively; as shown in the picture below.
 
 <figure>
   <img src='./assets/images/stage/cup-assembly-3.png'>
@@ -109,7 +119,26 @@ The bottom plate design is sent to a machine shop to be made in aluminum. The bo
 
 ## Cable and hose carrier (optional)
 
-Why a cable and hose carrier. How to install it.
+We place a cable and hose carrier to avoid them to be crushed or damaged while the stage is taken in and out. It is also useful to keep the working space clean and neat. Follow the next steps for assembly.
 
+1. Print the carrier to breadboard adapter and install it in the bottom part of the top breadboard (it is easier to screw it before the posts, but you can always take the top breadboard apart or screw brom the bottom). Place the M6 x 1mm square nuts on the square hole in the bottom part of the adapter and use a pair of M6 x 1mm, 10 mm long to screw the carrier mounting bracket to it.
+
+ <figure>
+  <img src='./assets/images/stage/carrier-assembly-1.png'>
+ </figure>
+
+2. Place the second mounting bracket for the carrier on the 2 holes at the bottom left part of the aluminum bottom plate in the cabinet.
+
+ <figure>
+  <img src='./assets/images/stage/carrier-assembly-2.png'>
+ </figure>
+
+3. We order a 3 ft. long cable and hose carrier. Count 17 pieces of the carrier and snap off the rest of them. Attach the carrier to both mounting brackets.
+
+ <figure>
+  <img src='./assets/images/stage/carrier-assembly-3.png'>
+ </figure>
 
 ## GERBER files
+
+1. Gerber files for the IR LED available <a href='./assets/GERBER/stage/IR-LED-circuit-for-optical-flow-sensor.zip'>here</a>

@@ -77,16 +77,29 @@ module.exports = {
 function getBuildingSidebar () {
   return [
     '',
-    'projection',
+    'cabinet',
     'stage',
-    'reward',
+    'air-supply',
     'positioning',
-    'air-puffs'
+    'projection',
+    'reward',
+    'air-puffs',
+    'control'
   ]
 }
 
 function getSoftwareSidebar () {
   return [
-    ''
+    '',
+    'db_access',
+    'db_organization',
+    'db_analysis',
+    'virmen_guide',
+    'automation_pipeline',
+    'automation_pipeline_developer',
+    'configure_systems',
+    'alert_system',
+    'manipulation_pipeline',
+    'subtask_pipeline'
   ]
 }
