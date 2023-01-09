@@ -162,8 +162,9 @@ trial_params              : blob                          # maze features of cur
 + Example to fetch all Twolickspouts data for a single session:
 
 ```
-key = struct('subject_fullname', 'testuser_T01', 'session_date', '2022-12-27', 'session_number', 1)
-fetch(behavior_subtask.TwolickspoutsSession * behavior_subtask.TwolickspoutsBlock * behavior_subtask.TwolickspoutsBlockTrial & key, '*')
+key = struct('subject_fullname', 'testuser_T01', 'session_date', '2022-12-27')
+fetch(behavior_subtask.TwolickspoutsSession * behavior_subtask.TwolickspoutsBlock ...
+* behavior_subtask.TwolickspoutsBlockTrial & key, '*')
 
 ans = 
 
