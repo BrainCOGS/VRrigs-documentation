@@ -190,6 +190,26 @@ lang: en-US
   <center><figcaption>Main screen training GUI with subject</figcaption></center>
  </figure>
 
+ ### Set up motor positioning
+  + If the rig where training is happening has a motor positioning system (ask lab manager about it). It is needed to set up initial coordinates for each subject training in the rig.
+
+  1. Adjust subject positioning for the first time in the rig with the motor GUI (installed in the rig computer).
+
+ <figure>
+  <img src='./assets/images/virmen_guide/training_GUI_main2.png'>
+  <center><figcaption>Motor GUI</figcaption></center>
+ </figure>
+
+  2. In MATLAB write the following (replace code in brackets with corresponding info for the subject):
+  '''
+  new_record = struct
+  new_record.subject_fullname = ('efonseca_ef481_actpg004'); # Subject fullname 
+  new_record.ml_position = (17.5)   # ml position in mm (motor #1 position in GUI)
+  new_record.ap_position = (10)     # ap position in mm (motor #2 position in GUI)
+  new_record.dv_position = (5.3)    # dv position in mm (motor #3 position in GUI)
+  insert(subject.LickometerMotorPosition, new_record)
+  '''
+
  ## Training GUI detailed description
 
  In this section all elements of the training GUI will be described: 
