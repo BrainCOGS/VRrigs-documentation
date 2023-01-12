@@ -60,7 +60,7 @@ lang: en-US
  #### Main tables
  + **TowersBlock** Specific block data from behavior sessions. (level, main_level, block_performance, etc).
  + **TowersBlockTrial** Specific trial data from behavior sessions. (towers positions, trial_type, choice, position, velocity etc).
- + **SpatialTimeBlobs** Efficient time, position, velocity storage (per session and not by trial). Check <a href="https://braincogs.github.io/software/db_analysis.html">Using SpatialTimeBlobs section</a> to know how to use this.
+ + **SpatialTimeBlobs** Efficient time, position, velocity storage (per session and not by trial). Check <a href="https://braincogs.github.io/software/db_analysis.html#matlab">get_full_trial_data with SpatialTimeBlobs </a> to know how to use this.
  + **Towers Session/Subject ** Psych** Group of tables with Psychometric Curves parameters per session, block_type (main, guiding), subject, etc. Check <a href="https://braincogs.github.io/software/db_analysis.html">Using psychometric data</a> to know how to use this. Check <a href="https://braincogs01.pni.princeton.edu/">BRAINCoGS Data viewer </a> to check psychometric curves. 
  
  ### **4. u19_behavior_subtask:**

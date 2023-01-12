@@ -18,13 +18,9 @@ lang: en-US
 
  #### Install MATLAB 2019 or higher
 
- #### Configure behavior backup task
+ #### Download and install NiDAQmx from <a href="ni.com/r/downloaddaqmx">National Instruments website </a>
 
- 1. Open Task Scheduler
- 2. Select "Create Task ..."
- 3. Name new task as "new_data_backup"
- 4. On **"Trigger"** tab create a new daily trigger set daily at 11:00 pm
- 5. On **"Acitions"** tab write `C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_behavior_files` on the **Program/Script** edit
+ #### Download and install Microsoft visual studio community 2019. Make sure to select the option desktop development with C++
 
  #### Instal Git for Windows
 
@@ -80,19 +76,20 @@ lang: en-US
  ### Virmen Repository
 
  1. Create `C:\Experiments` directory
- 2. Open Git Bash and execute: `cd /c/Experiments`
- 3. Execute in `git config --global user.email "alvaroluna.pni@gmail.com"`
- 4. Clone Virmen Repository, called **TankMouseVR** `git clone https://github.com/BrainCOGS/TankMouseVR.git`
- 5. Rename directory `C:\Experiments\TankMouseVR` to `C:\Experiments\ViRMEn`
+ 2. Open Git Bash and execute: `cd /c/Experiments`.
+ 3. Execute in `git config --global user.email "alvaroluna.pni@gmail.com"`.
+ 4. Clone Virmen Repository, called **TankMouseVR** `git clone https://github.com/BrainCOGS/TankMouseVR.git`.
+ 5. Rename directory `C:\Experiments\TankMouseVR` to `C:\Experiments\ViRMEn`.
  #### MATLAB Instructions
  6. run `install_virmen` inside `C:\Experiments\ViRMEn`
+ + If compilation fails. Run `mex -setup c++` to select **Visual Studio C++ Compiler**
  7. Open file `C:\Experiments\ViRMEn\RigParameters.m` and edit corresponding variables:
   + **rig:** (RigName on the format: `Room#-"Rig"#-T`)
   + **rig_type:** (`miniVR` or `NormalVR`)
-  + **add NIDAQ Channles in corresponding variables** (Ask lab manager about this parameters)
-  + **Mini VR projection parameters** (Ask lab manager about this parameters)
- 8. run `lab.utils.add_behavior_rig(RigParameters.rig)`
- 9. run `live_calibration` experiment  (Ask lab manager about this process)
+  + **add NIDAQ Channles in corresponding variables** (Ask lab manager about these parameters)
+  + **Mini VR projection parameters** (Ask lab manager about these parameters)
+ 8. run `lab.utils.add_behavior_rig(RigParameters.rig)`.
+ 9. run `live_calibration` experiment  (Ask lab manager about this process).
  10. Create a MATLAB shortcut and set **Start in** as  `C:\Experiments\ViRMEn`. 
  11. Add this shortcut to the Windows task bar in the bottom.
 
