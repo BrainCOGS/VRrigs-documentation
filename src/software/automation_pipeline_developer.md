@@ -1,5 +1,5 @@
 ---
-title: Ephys/Imaging Automation Pipeline (Developer Guide)
+title: Ephys/Imaging Automation Pipeline in BRAINCoGS (Developer Guide)
 lang: en-US
 ---
 

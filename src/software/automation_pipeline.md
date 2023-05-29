@@ -45,6 +45,7 @@ lang: en-US
 
   1. Open the GUI just after recording has ended.
   2. Select the recording directory from dropdown list in section 1.
+   +  If no behavior associated with this recording uncheck ****
   3. Check "Add surgery & insertion device if missing" checkbox if you want to add electrode/microscope/optic fiber insertion coordinates.
   4. Select behavior session corresponding to recording from dropdown list in section 2.
   5. Click Register Recording button.

@@ -152,7 +152,8 @@ lang: en-US
  %Insert parameter
  software_param_id = try_insert(optogenetics.OptogeneticSoftwareParameter, param_struct)
  ```
-
+ 
+ + Check <a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/scripts/insert_software_parameters/insert_optogenetic_software_parameter.m">insert_optogenetic_software_parameter</a> script to use as example.
  + How to read software parameters on experiment code (ViRMEn)
  + Example to get software parameters on the initializatonCodeFun on virmen:
 

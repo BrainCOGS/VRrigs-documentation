@@ -96,6 +96,7 @@ function getSoftwareSidebar () {
     'db_analysis',
     'virmen_guide',
     'automation_pipeline',
+    'automated_cronjobs',
     'automation_pipeline_developer',
     'configure_systems',
     'alert_system',
