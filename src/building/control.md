@@ -85,22 +85,76 @@ We designed a simple solenoid valve driver circuit using a MOSFET, the gate is d
   <img src='./assets/images/control/control-assembly-12.png'>
 </figure>
 
+::: tip
+
+Use a standard PC power cable and cut the portion of the connector that goes to the PC, cut the ground cable and connect the neutral cable to the negative input of the power supply and the hot cable to the positive input.
+
+:::
+
 2. Open the NIDAQ case and make a hole at the middle of the back case. Screw the DIN rail mounting clip to it, then close the case and place the top screws only.
 
-3. Connect everything - power supply to solenoid valve driver, NIDAQ outputs to solenoid valve driver inputs, common to everyone, valves to solenoid valve driver outputs. Maybe make a diagram here.
+<figure>
+  <img src='./assets/images/control/control-assembly-13.png'>
+</figure>
+
+<figure>
+  <img src='./assets/images/control/control-assembly-14.png'>
+</figure>
+
+3. Connect everything!
+  * Start by connecting the positive output of the power supply from one of the pins of the red distribution blocks to the V IN input of the solenoid valve driver, then the ground from one of the pins of the black distribution block to the GND pin of the solenoid valve driver.
+  * Then connect the one of the GND pins of the solenoid valve driver to the the digital ground pin of the NIDAQ.
+  * Connect the solenoid valve driver inputs to the NIDAQ outputs as follows: P0.0 from NIDAQ to V IN 1, P0.1 to V IN 2 and P0.2 to V IN 3.
+  * Finally connect the solenoid valve driver outputs to the solenoid valve drivers. Since the solenoid valves doesn't have polarity, you should use the V OUT (+) as common in the valves, you can use one or multiple pins of the solenoid valve driver. Then connect the V OUT 1 (-) pin to the reward solenoid valve, the V OUT 2 (-) pin to the left solenoid valve and the V OUT 3 (-) to the right solenoid valve.
+
+::: tip
+
+The solenoid valve driver has more outputs for you to connect and control with the NIDAQ digital outputs any other piece of hardware (like a 24 V IR light source for example), just make sure to wire the ports to the input and output of the driver and match them in the Rig Parameters portion of ViRMEN.
+
+:::
+
+<figure>
+  <img src='./assets/images/control/control-assembly-15.png'>
+  <center><figcaption><small>Control module wiring diagram for solenoid valves.</small></figcaption></center>
+</figure>
 
 ## Arduino module assembly
 
-1. Have printed the arduino case and screw the arduino. Insert the connector in place and crimp the cables.
+1. Have printed the arduino case and screw the arduino. Insert the connector in place and crimp the cables. Make sure to follow the color code and connect the cables to the arduino.
 
-2. Make sure to follow the color code and connect the cables to the arduino.
+<figure>
+  <img src='./assets/images/control/control-assembly-16.png'>
+  <center><figcaption><small>Wiring diagram for Arduino due to connector.</small></figcaption></center>
+</figure>
 
 3. Cover the case and install the din rail mounting clip. Install the arduino module in the top DIN rail.
 
-4. Make the cable. Cut the cable and insert into the connector on one end. Connect it to the arduino, then insert the cable trough the hole and the cable carrier until it reached the cup, cut the cable and peel off the cover, install the connector on the other end and connect it to the cup.
+<figure>
+  <img src='./assets/images/control/control-assembly-17.png'>
+</figure>
+
+4. Make the cable to connect the arduino to the 3D printer cup. Unscrew the outer portion of the connector and insert it into the cable (you need to do this before connecting the cables, otherwise you will not be able to insert the cover and will have to do everything again). Unscrew all the conectors and insert the cable following the color code in the image below, screw them and place the connector cover.
+
+<figure>
+  <img src='./assets/images/control/control-assembly-18.png'>
+</figure>
+
+<figure>
+  <img src='./assets/images/control/control-assembly-19.png'>
+</figure>
+
+::: tip
+
+Place one connector first and connect it to the arduino box placed in the top DIN rail at the outer portion of the rig, then measure the lenght of the cable by inserting into the rig and into the cable carrier. Cut the cable and place the other connector, finally connect it to the 3D printed cup.
+
+:::
 
 ## USB HUB and Speaker
 
-1. Use double side tape to glue the USB Hub and connect everything that must be connected there.
+1. Use double side tape to glue the USB Hub to the cabinet at the top left portion above the DIN rail and connect everything that must be connected there (if using USB or USB powered speakers, the NIDAQ). Use a USB C extension to connect the hub to the computer.
 
-2. Place the speaker inside the cabinet and connect to Hub - Make an upper hole on the cabinet for other cables (?).
+<figure>
+  <img src='./assets/images/control/control-assembly-20.png'>
+</figure>
+
+2. Place the speaker inside the cabinet and connect to Hub - Make an upper hole on the cabinet for other cables as shown in the picture above. You can use a USB speakers or a desktop speakers and place them on top of the screen plate and connect it to the hub and, if necessary, to the computer audio input.
