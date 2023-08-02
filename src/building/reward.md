@@ -12,35 +12,28 @@ The reward module consist on a open srynge that holds the reward liquid that wil
   <center><figcaption><small>Reward spout module</small></figcaption></center>
 </figure>
 
-## Solenoid valve manifold assembly
+## Solenoid valve assembly
 
-The solenoid valve dispensing component consist on a custom made stainless steel manifold that should be manufactured at a machine shop, it is designed following the recommendations from the solenoid valve manufacturer. We choose to use an isolation AS series solenoid valve from Gems sensors and controls because the body of the valve can be made of stainless steel, which is better in case a solution made out of condensed milk is used as a reward during training. The srynge is made out of glass and both the in and out connectors to the manifold are made of stainless steel, making the whole component less prone to corrotion or milk clog formation.
-
-To assemble the manifold follow the next steps.
-
-1. Have made in a machine shop the solenoid valve manifold in stainless steel (preferably 316) and the manifold to frame adapter. Screw at the top of the manifold a quick turn tube coupling for air made out of 316 stainless steel, socket for 1/4"-28 UN/UNF (SAE) threaded pipe. Screw at the bottom of the manifold a stainless steel barbed tube fitting, 1/16" tube ID x 1/4"-28 UNF male. Screw at the front of the manifold an isolation valve from Gems sensor and controls (AS2030-05MM-V-G5-204).
+The solneoid valve assembly consist of a standard plastic 60 mL srynge placed at the top of the rig conncected to a solenoid valve driver using Tygon PVC (for dairy) tubing. Since it's a gravity based module, it is recommended to place the srygne as high as possible. The srynge can be placed in the top frame of the rig cabinet using a 15/16" cable holder (you could use some thorlabs parts placed at the top of the rig to adjust the height of the srynge and place it in a higher position), remove the plunger from the srynge and use a luer lock to 1/16" ID tubing fitting to connect the srynge to the solenoid valve driver (we use the 003-0096-900 model from Parker).
 
 <figure>
-  <img src='./assets/images/reward/reward-assembly-1.png'>
+  <img src='./assets/images/reward/reward-assembly-8.png'>
+  <center><figcaption><small>Reward srynge and solenoid valve driver, reward module assembly on the right.</small></figcaption></center>
 </figure>
 
-2. Use a pair of T-Slotted framing drop-in nuts with spring tab and place them in the upper profile on the right side of the rig (where the DIN rails are), attach the manifold to frame adapter.
+To fix the reward solenoid valve to the DIN rail we use a 3D printed part, to which the solenoid valve is attached using 4-40 x 3/16" long screws and a DIN valve clip using a Rounded Head Thread-Forming Screws no. 8 5/16" long. Assemble them as shown in the picture below and attach it to the bottom DIN rail.
 
 <figure>
-  <img src='./assets/images/reward/reward-assembly-2.png'>
+  <img src='./assets/images/reward/reward-assembly-9.png'>
 </figure>
 
-3. Use a couple of 4-40 thread size, 1" long flat head screws and attach the manifold to the adapter.
+Finally, connect the srynge to the IN plug of the solenoid valve driver and connect the OUT plug to the srynge inside the rig  using 1/16" ID 1/8" OD Tygon soft tubing for food, beverages and dairy.
 
-<figure>
-  <img src='./assets/images/reward/reward-assembly-3.png'>
-</figure>
+::: tip
 
-4. Once the manifold is fixed into position, screw at the top luer lock connector a glass srynge.
+Ee don't use the cable carrier for this tubing because it has to be replaced every month and it makes maintenance time consuming.
 
-<figure>
-  <img src='./assets/images/reward/reward-assembly-4.png'>
-</figure>
+:::
 
 ## Lick spout holder assembly
 
@@ -69,5 +62,15 @@ To assemble, follow the next steps.
 <figure>
   <img src='./assets/images/reward/reward-assembly-7.png'>
 </figure>
+
+::: tip
+
+Due to inaccuracies in the 3D printed part the spout might be out of position, if this problem is present it is recommended to use a different printed breadboard to DT 12 adapter as shown in the picture below, this way the position of the reward spout can be adjusted.
+
+<figure>
+  <img src='./assets/images/reward/reward-assembly-10.png'>
+</figure>
+
+:::
 
 3. Finally place the arm with the spout holder in place by connecting the top and bottom parts of the kinetic base.
