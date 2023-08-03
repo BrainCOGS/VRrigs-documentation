@@ -26,6 +26,14 @@ Send the adapter to be made at a machine shop, then attach the latch holder to t
   <img src='./assets/images/stage/stage-assembly-2.png'>
 </figure>
 
+## Stage installation
+
+Install the stage into the cabinet using 1/4"-20 1/2" long low profile socket head screws from the bottom of the drawer slider into the breadboard (the stage can be installed in the cabinet before or after placing the 3D printed cup). Extend the drawer all the way out and place the stage on top of it, align it according to the image below.
+
+<figure>
+  <img src='./assets/images/stage/stage-assembly-3.png'>
+</figure>
+
 ## Cup with optical flow sensor
 
 The cup has 2 main components, the cup itself that includes a circular arm through which a constant air flow will be introduced to the inner part and a connector that will transmit the power and data from the sensor to the arduino that is part of the control module of the training mini VR. The second main component is the bottom plate, that has attached the optical flow sensor, a mirror, and a LED printed circuit board (PCB).
