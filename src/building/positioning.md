@@ -5,11 +5,11 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-The positioning system is designed to fix the subject within the projection and correct posture boundaries, but also to have high repeatibility, allowing to have specific coordinates for different subjects trained on the same rig.
+The positioning system is designed to fix the subject within the projection and correct posture boundaries, but also to have high repeatibility, allowing to have specific coordinates for different subjects trained on the same rig. There are two different positioning systems currently used at our facilities, an automated positioning system that ensures repeatibility and personalized positioning for each subject across training rigs and training sessions; and the manual positioning system, which consist of low cost thorlabs components and a positioning tool developed in house.
 
 <figure>
   <img src='./assets/images/positioning/positioning-1.png'>
-  <center><figcaption><small>Positioning system.</small></figcaption></center>
+  <center><figcaption><small>Positioning systems.</small></figcaption></center>
 </figure>
 
 The animal position in the ball should prioritize the correct posture for running whithin boundaries of the projection calibration. The projection is calibrated assuming the animal eyes are going to be positioned 0.256 inches behind the center of the ball on the X axis, 1 inch over the top of the center of the ball on the Y axis and centered along the Z axis. A 0.5 inches range error is acceptable.
