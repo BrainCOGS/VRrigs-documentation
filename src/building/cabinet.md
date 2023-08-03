@@ -86,7 +86,17 @@ We use 1.5" x 1.5" T-slotted profile to build the frame of the cabinet and 1/4" 
   <img src='./assets/images/cabinet/cabinet-assembly-7.png'>
 </figure>
 
-5. Use 1/4"-20 x 1/2" long low-profile screws to install the 26" long steel base-mount drawer sliders. Screw with M4x0.7 mm, 8 mm long screws the latch holder to the latch holder adapter, then use 1/4"-20 x 11/16" flat head screws to attach the latch holder with the adapter to the bottom plate.
+::: tip
+
+Use a permanent marker to draw two straight lines on top of the botomm plate using the groves at the sides as shown below, this will be extremely useful for the projection calibration.
+
+<figure>
+  <img src='./assets/images/cabinet/cabinet-assembly-tip-1.png'>
+</figure>
+
+:::
+
+5. Cut 8.2 inches to the top base of the drawer slider, then use 1/4"-20 x 1/2" long low-profile screws to install the 26" long steel base-mount drawer sliders. Screw with M4x0.7 mm, 8 mm long screws the latch holder to the latch holder adapter, then use 1/4"-20 x 11/16" flat head screws to attach the latch holder with the adapter to the bottom plate.
 
 <figure>
   <img src='./assets/images/cabinet/cabinet-assembly-8.png'>
