@@ -9,7 +9,7 @@ The positioning system is designed to fix the subject within the projection and 
 
 <figure>
   <img src='./assets/images/positioning/positioning-1.png'>
-  <center><figcaption><small>Positioning systems.</small></figcaption></center>
+  <center><figcaption><small>Automatic (left) and manual (right) positioning system.</small></figcaption></center>
 </figure>
 
 The animal position in the ball should prioritize the correct posture for running whithin boundaries of the projection calibration. The projection is calibrated assuming the animal eyes are going to be positioned 0.256 inches behind the center of the ball on the X axis, 1 inch over the top of the center of the ball on the Y axis and centered along the Z axis. A 0.5 inches range error is acceptable.
@@ -19,44 +19,67 @@ The animal position in the ball should prioritize the correct posture for runnin
   <center><figcaption><small>Projection calibration boundaries and animal position (mouse drawings by <a href="https://doi.org/10.5281/zenodo.3926057">Ethan Tyler</a> and <a href="https://zenodo.org/record/3925997#.YOcrtUwpDRY">Federico Claudi</a> )</small></figcaption></center>
 </figure>
 
-To ensure repeatibility in the positioning of the mouse, we designed a positioning system based on the assembly of 3 6.5 mm travel micropositioners in a XYZ configuration. This is mounted on a kinetic base, making it easy to remove it when the styrofoam ball need to be taken out to clean after the training is done. Then we designed a 3D printed arm that will hold a custom made stainless steel headplate holder in the correct position within the boundaries of the projection calibration, with a 6.5 mm travel in all direction to account for mice idiosyncrasies.
+## Automated positioning system
 
-::: tip
-We have noticed that the most important variable for a correct posture and better quality training in terms of performance and number of trials is the height of the headplate holder with respect to the styrofoam ball. To set it properly, we mount a camera and IR LED at the side to monitor the posture during training.
-:::
-
-## Positioning system assembly
-
-To assemble the positioning system, follow the next steps.
-
-1. Assemble the 3 axis micropositioner system, use a M4 x 0.7 mm thread, 8 mm long screw and a pair of 3/32" diameter, 3/16" long dowel pins to screw the first MS1S/M (you could also use a MS1S if you're more comfortable with imperial system) micropositioner to a MS101 baseplate, the micrometer should be facing the back of the plate. Then, use a couple of M3 x 0.5 mm thread, 6 mm long and a pair of 3/32" diameter, 3/16" long dowel pins to screw the second micropositioner on top of the first one, make sure that the micrometer is facing the left part of the baseplate. Use a M4 x 0.7 mm thread, 8 mm long screw and a couple of 3/32" diameter, 3/16" long dowel pins to attach a MS102 Thorlabs bracket to the top of the micropositioner, making sure the bracket is facing the right part of the baseplate. Finally, use a M4 x 0.7 mm thread, 8 mm long screw and a pair of 3/32" diameter, 3/16" long dowel pins to screw the last micropositioner, the micrometer should be facing the top of the baseplate.
+The automated positioning system consist of a set of motorized platforms set in a XYZ configuration. We use the small factor 25mm linear stage (LSA25) from Zaber technologies. A 3D printed arm in Nylon 12 with glass beads - PA12 (MJF) from shapeways - from the top motor (height control) was designed, at the end of the arm we designed a stainless steel headplate holder. The whole assembly is attached to the stage breadboard using a custom adapter.
 
 <figure>
-  <img src='./assets/images/positioning/positioning-assembly-1.png'>
+  <img src='./assets/images/positioning/positioning-2.png'>
 </figure>
 
-2. Have the arm 3D printed (we recommend any high stiffness material like PA12GB), and have the headplate holder machined (we recommend having it made in stainless steel). Then attach the headplate holder to the arm using a pair of 2-56 thread Size, 3/8" long flat head screws from the top of the arm and a pair of 2-56 thread Size, 5/8" long flat head screws from the back of the arm. We use a 4-40 thread Size, 1/4" long stainless steel flared-collar knurled-head thumb screw to hold in place the headplate since it is easy to screw it using the hands without any tool. Finally, screw the arm to the micropositioner array using 4 M4 x 0.7 mm thread, 35 mm long flat head screws.
+The headplate holder has to be designed to fit the head plate to be used in order to minimize the variability in the pitch, roll and yaw of the head plate and the animal position. This way, the motors can have better repeatability by adjusting the antero-posterior, dorso-ventral and medio-lateral position of the animal.
 
 <figure>
-  <img src='./assets/images/positioning/positioning-assembly-2.png'>
+  <img src='./assets/images/positioning/positioning-3.png'>
 </figure>
 
-3. Finally screw the micropositioners into the top part of a kinetic base using 2 1/4"-20 screws as shown in the picture below. Then attach the bottom part of the kinetic base to the top breadboard of the stage in the position shown below, make sure the bottom and top kinetic base matches and the position of the arm is the right one.
+The positioning system is designed to be fixed at the expected position of the headplate in the antero-posterior (AP) and mediolateral (ML) position as shown in the picture below when the motorized stages are set at midrange.
 
 <figure>
-  <img src='./assets/images/positioning/positioning-assembly-3.png'>
+  <img src='./assets/images/positioning/positioning-4.png'>
 </figure>
 
-## Legacy positioning system
-
-The animal position in the ball should prioritize the correct posture for running whithin boundaries of the projection calibration. The projection is calibrated assuming the animal eyes are going to be positioned 0.256 inches behind the center of the ball on the X axis, 1 inch over the top of the center of the ball on the Y axis and centered along the Z axis. A 0.5 inches range error is acceptable.
+To assemble the positioning system, first attach the custom made breadboard adapter to the top stage breadboard at the position shown below using 82 Degree Countersink Angle, 1/4"-20 Thread Size, 1/2" Long Drive Flat Head screws. Then attach the first motorized stage at correct position as shown in the image below using Low-Profile, M3 x 0.5 mm Thread, 5 mm Long screws.
 
 <figure>
-  <img src='./assets/images/positioning/animal-position.png'>
-  <center><figcaption><small>Projection calibration boundaries and animal position (mouse drawings by <a href="https://doi.org/10.5281/zenodo.3926057">Ethan Tyler</a> and <a href="https://zenodo.org/record/3925997#.YOcrtUwpDRY">Federico Claudi</a> )</small></figcaption></center>
+  <img src='./assets/images/positioning/positioning-5.png'>
 </figure>
 
-To this end, a positioning tool was designed taking as reference the 2 pillars that are part of the stage of the mini VR rig. The tool consist on a 3D printed part that hold a glued transparency, lines are made with a marker for the Y position of the animal (1st and 2nd dents of the tool) and the Z line (A and B arrows on the tool). The user can easily use this tool to adjust the animal in the right X and Y position, and the height must be fine tuned to allow the animal to run comfortable.
+Attach the second (AP position) motorized linear stage to the first one using the same kind of screws at the position shown in the image below. Then, attach the Z adapter from zaber technologies (AB106) to the stage using M2 x 0.4 mm Thread, 5 mm Long Low profile socket head screws at the position as shown below.
+
+<figure>
+  <img src='./assets/images/positioning/positioning-6.png'>
+</figure>
+
+Attach the third (DV position) motorized linear stage to the AB106 Zaber adapter using Low-Profile, M3 x 0.5 mm Thread, 5 mm Long screws at the position indicated in the image below. Finally, screw the 3D printed arm to the DV position motorized linear stage using M3 x 0.5 mm Thread, 30 mm Long Hex Drive Flat Head screws as shown below.
+
+<figure>
+  <img src='./assets/images/positioning/positioning-7.png'>
+</figure>
+
+One of the most importants variables for the mice on the VR tasks are the DV positioning (height), the mice needs to be comfortable enough to properly run on top of the styrofoam ball. The automated positioning system allows to set customizable heights for each subject. The whole coordinated of the subjects can also be stored on a DB and retrieved before training, which improves the repeatibility and decreases the time needed to set the subjects.
+
+## Manual positioning system
+
+The manual positioning system consist of a set of Thorlabs and custom made parts. To assemble it, first attach a 4" post (either PSR-4.0 from siskiyou or RS4 from Throlabs) at the position of the top stage breadboard shown in the image below. Then, attach a 3" post (RS3 from Thorlabs) on top of the previous installed posts.
+
+<figure>
+  <img src='./assets/images/positioning/positioning-8.png'>
+</figure>
+
+Screw down a RB2 part from Thorlabs down the right post (looking at the stage from behind), then attach a TR1 using a 4-40 screw to the RB2 clamp. Then slide down and tight a RA90 Thorlabs part to the TR1 post as indicated in the image below.
+
+<figure>
+  <img src='./assets/images/positioning/positioning-9.png'>
+</figure>
+
+Finally, screw the custom made stainless steel head plate adapter to the a TR2 post from Thorlans, then attach it to the RA90 and tight it down as shown below.
+
+<figure>
+  <img src='./assets/images/positioning/positioning-10.png'>
+</figure>
+
+A positioning tool was designed taking as reference the 2 pillars that are part of the stage of the mini VR rig. The tool consist on a 3D printed part that hold a glued transparency, lines are made with a marker for the Y position of the animal (1st and 2nd dents of the tool) and the Z line (A and B arrows on the tool). The user can easily use this tool to adjust the animal in the right X and Y position, and the height must be fine tuned to allow the animal to run comfortable.
 
 The tool also has space to add a magnet fixed with epoxy resin on the pillars holes to be steady when placed on top of the pillars.
 
