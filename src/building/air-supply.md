@@ -14,7 +14,7 @@ The air supply module consist of a manifold that is connected to the main lab ai
 
 ## Manifold assembly
 
-If the air puffs are going to be used, we recommend to add the pressure gauge during this step, otherwise place a plug instead of the gauge on the second outlet of the manifold. First, install a 1/2 NPT plug and a 1/4" ID x 1/2 NPT male barbed hose fitting in the manifold, then install the pressure gauge or another plug if air puffs are not going to be installed. Finally, install a 3/8 NPT male inlet x 3/8" push-to-connect female outlet air flow control valve into the first outlet of the manifold.
+If the air puffs are going to be used, we recommend to add the pressure gauge during this step, otherwise place a plug instead of the gauge on the second outlet of the manifold. First, install a 1/2 NPT plug and a Push-to-Connect tube fitting for air straight sdapter, for 3/8" Tube OD x 1/2 NPT Male in the manifold. Then install the pressure gauge or another plug if air puffs are not going to be installed. Finally, install a 3/8 NPT male inlet x 3/8" push-to-connect female outlet air flow control valve into the first outlet of the manifold.
 
 <figure>
   <img src='./assets/images/air-supply/air-supply-assembly-1.png'>
