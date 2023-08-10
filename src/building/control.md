@@ -21,7 +21,7 @@ The control module consist on a 24V power source, a couple of distribution block
 We designed a simple solenoid valve driver circuit using a MOSFET, the gate is driven by a digital input that will be supplied by the NIDAQ card, which open and closes the circuit from the solenoid valve to a 24V power supply. We added a diode to protect the circuit from discharge from the solenoid valve. To assembly the solenoid valve driver follow the next steps.
 
 
-1. Have the PCB made (we use pcbway since they can make and ship the stencil) and make sure to order a stencil. We use a manual printer for PCB stencil to spread the soldering paste across the PCB pads evenly. First, place the PCB on the surface using high temperature tape and place the stencil on top of it. Make sure to match the solder pads to the holes of the stencil.
+1. Have the PCB made (we use pcbway since they can make and ship the stencil, you can found our project [here](https://www.pcbway.com/project/shareproject/Simple_Solenoid_valve_driver_1340eb55.html)) and make sure to order a stencil. We use a manual printer for PCB stencil to spread the soldering paste across the PCB pads evenly. First, place the PCB on the surface using high temperature tape and place the stencil on top of it. Make sure to match the solder pads to the holes of the stencil.
 
 <figure>
   <img src='./assets/images/control/control-assembly-2.png'>
