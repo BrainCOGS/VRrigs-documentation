@@ -39,6 +39,7 @@ module.exports = {
     ],
     sidebar: {
       '/building/': getBuildingSidebar(),
+      '/maintenance/': getMaintenanceSidebar(),
       '/software/': getSoftwareSidebar(),
     }
   },
@@ -85,6 +86,16 @@ function getBuildingSidebar () {
     'reward',
     'air-puffs',
     'control'
+  ]
+}
+
+function getMaintenanceSidebar () {
+  return [
+    '',
+    'projection',
+    'reward',
+    'stage',
+    'positioning'
   ]
 }
 
