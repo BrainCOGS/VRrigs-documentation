@@ -74,7 +74,7 @@ We place the spherical mirror on an aluminum custom made base that is sent to a 
 
  ### Day 1 [time: ~3 hours].
 
- 1. If the balls are shipped in halfs, first measure and mark the equator in each of the half spheres. Place a mark at the bottom of the sphere at 9 inches and at 14 inches from one of the sides to the pole using either a tread marked or a soft plastic ruler. We use a laser level to project a straight line through both marks and draw a line with a sharpie.
+ 1. If the balls are shipped in halfs, first mark the equator in each of the half spheres. Use a thread to measure the outer diameter of the screen (should be around 18") and place a mark at the middle (or around 9"), place the thread at the bottom of the half sphere and mark at the sphere the joint of the thread and the middle (9") mark. We use a laser level to project a straight line through both marks and draw a line with a sharpie.
 
  <figure>
   <img src='./assets/images/projection/screen-building-1.png'>
@@ -92,7 +92,7 @@ We place the spherical mirror on an aluminum custom made base that is sent to a 
   <img src='./assets/images/projection/screen-building-3.png'>
  </figure>
 
- 4. Place the aluminum plate in a flat surface making sure is hanging with enough space to fit the screen. Use a sharpie to mark a straigth line by joining the marks in the aluminum plate as seen in the pictures. Place the screen in the plate, making sure to align the equator with the plate and the meridian (the mark where the half spheres where joined) with the plate markers.
+ 4. Place the aluminum plate in a flat surface making sure is hanging with enough space to fit the screen. Use a sharpie to mark a straigth line by joining the marks in the aluminum plate (placed at the middle of the circle) as seen in the pictures. Place the screen in the plate, making sure to align the equator with the plate and the meridian (the mark where the half spheres where joined) with the plate marked line.
 
     ::: tip
     Sometimes the diameter of the balls is different from the plate, you can use some paper or carboard and tape it to fill the space between the screen and the plate for it to hang properly.
