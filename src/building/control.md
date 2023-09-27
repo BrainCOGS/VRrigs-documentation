@@ -33,7 +33,7 @@ We designed a simple solenoid valve driver circuit using a MOSFET, the gate is d
   <img src='./assets/images/control/control-assembly-3.png'>
 </figure>
 
-3. Place each component into place, we begin with the resistances, then place the MOSFET and finally the diodes, make sure that the diodes are placed correctly (the band should match the ] symbol on the PCB).
+3. Place each component into place, we place the resistances (R1, R3, R5, R7, and R9 resistor values are 10K Ohm and R2, R4, R6, R8 and R10 resistor values are 1K Ohm) first, then place the MOSFET and finally the diodes, make sure that the diodes are placed correctly (the band should match the ] symbol on the PCB).
 
 ::: tip
  Each time you place a component in the pad make sure to slightly press it against the solder paste with the same tweezers that you use.
