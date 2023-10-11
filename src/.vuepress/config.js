@@ -85,7 +85,9 @@ function getBuildingSidebar () {
     'projection',
     'reward',
     'air-puffs',
-    'control'
+    'control',
+    'pupillometry',
+    'lick-detection'
   ]
 }
 
