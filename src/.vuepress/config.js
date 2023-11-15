@@ -96,7 +96,8 @@ function getMaintenanceSidebar () {
     '',
     'projection',
     'reward',
-    'stage'
+    'stage',
+    'miscellaneous'
   ]
 }
 
