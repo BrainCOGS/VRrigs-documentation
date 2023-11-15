@@ -101,3 +101,35 @@ Follow the procedure below to calibrate the lenght scale of the optical flow sen
 ## Troubleshooting
 
 Troubleshooting should be done from cleaning the 3D cup and window first, making sure the ball is in proper conditions, and then the optical flow sensor replacement if necessary, then the arduino. If the arduino is the problem, refer to the troubleshooting guide in the control portion of the documentation.
+
+### Arduino not recognized
+
+If the arduino is not recognized by the rig tester arduino detection button follow the next steps:
+
+1. First check if the arduino is being detected by the CPU by opening the device manager windows (typing device manager in the search bar) and clicking on the Ports (COM&LPT) label to display the list of devices connected.
+  
+    * If the Arduino is listed there, then the COM port might have changed. Make sure the COM port listed in the device manager matches the `arduinoPort` variable in the rig parameters file. Restart Matlab and try again.
+
+2. If the Arduino is not listed on the device manager window it could be either a faulty cable or a broken Arduino. Start by troubleshooting the Arduino (cables might be harder to check since many times they have intricate paths behind the rig).
+
+    ::: tip
+
+    You can perform a quick check before removing the arduino from the box to discard that the cable is faulty. Unplug the arduino USB cable from the black box on the DIN rail and connect a new arduino, if this one is recognized in the device manager window, then proceed to the following steps, otherwise go ahead and change the cable.
+
+    :::
+    
+    * Disconnect both the cable and the connector of the black box holding the arduino and take it out of the DIN rail (by slightly pushing it downwards and pulling the bottom part towards you).
+
+    * Open the box by unscrewing the 4 screws holding the cover and the 2 screws holding the arduino to the 3D printed box.
+
+    * Remove the arduino and replace it with a new one. Screw it to the box and screw the cover. Place the box with the new arduino into the DIN rail and connect first the sensor cable and then the US cable.
+
+    * Program the arduino following this [instructions](/building/control.html#programming-the-arduino).
+
+3. If the cable is malfunctioning, then replace the cable. We recommend to use a [USB Type-C male to micro-USB Type-B male cable](https://www.bhphotovideo.com/c/product/1387544-REG/tether_tools_cuc2515_blk_tetherpro_usb_c_to_2_0.html?sts=pi&pim=Y). Or any other cable matching your setup, but make sure it is a single tether cable or USB 3.0 cable, and avoid using either multiple cables or HUBs (or make sure everything is high speed rated).
+
+[comment]: # (### Rig tester freeze when sensor quality button is clicked)
+
+[comment]: # (1. Restart the computer. If the problem is not solved, then go to step 2.)
+
+[comment]: # (### Rig tester sensor quality reading bad (motion sensor): 0.0! all the time)
