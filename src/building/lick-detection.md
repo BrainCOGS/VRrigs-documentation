@@ -15,9 +15,24 @@ The module was designed this way to enable a specific task that require the use 
 
 ## Two lick detection module assembly
 
-The schematics of the PCB can be found here and the drawings with the specs of the part can be found here, below is an image that can be used as a reference. The step by step instructions to solder the components on the solenoid valve driver from the [control module](/building/control.html#solenoid-valve-driver-assembly) can be used as well for this module, making sure to use the appropiate components and placing them as labeled in the PCB.
+Have the PCB fabricated [here](https://www.pcbway.com/project/shareproject/Two_spouts_lick_detector_059c7e07.html) (or download the GERBER files and have it made elsewhere). The step by step instructions to solder the components on the solenoid valve driver from the [control module](/building/control.html#solenoid-valve-driver-assembly) can be used as well for this module, making sure to use the appropiate components and placing them as labeled in the PCB.
 
-[comment]: # (Image of the PCB with the part number labels or references)
+<figure>
+  <img src='./assets/images/lick-detection/lick-detection-1.png'>
+</figure>
+
+| Label | Part No. | Description |
+| ----------- | ----------- | ----------- |
+| R1, R2, R4, R5 | [AC1206FR-0710ML](https://www.digikey.com/en/products/detail/yageo/AC1206FR-0710ML/5897214) | 10M Ohm resistors |
+| R3, R6 | [AC1206FR-0747KL](https://www.digikey.com/en/products/detail/yageo/AC1206FR-0747KL/5897559) | 47K Ohm resistors |
+| R7, R8 | [AC1206FR-0710KL](https://www.digikey.com/en/products/detail/yageo/ac1206fr-0710kl/5897213) | 10K Ohm resistors |
+| T1, T2, T3, T4 | [MMBT2222LT1G](https://www.digikey.com/en/products/detail/onsemi/mmbt2222lt1g/919595) | BJT Transistor NPN |
+| 8L61-12-011 (2) | [8L61-12-011](https://www.digikey.com/en/products/detail/coto-technology/8l61-12-011/1914969) | Relay reed SPDT 250MA 12V |
+| U2 | [UA78L05ACPKE6](https://www.digikey.com/en/products/detail/texas-instruments/ua78l05acpke6/9860880) | Linear Voltage Regulator |
+| No label (middle big square) | [TRS 2-2412](https://www.digikey.com/en/products/detail/traco-power/trs-2-2412/9383650) | Isolated Module DC DC Converter |
+| C1 | [CL31B475KBHNNNE](https://www.digikey.com/en/products/detail/samsung-electro-mechanics/cl31b475kbhnnne/3888447) | 4.7 µF Ceramic Capacitor |
+| C2 | [CL31C151JBCNNNC](https://www.digikey.com/en/products/detail/samsung-electro-mechanics/cl31c151jbcnnnc/3888469) | 150 pF Ceramic Capacitor |
+| 22 micro | [IFSC1008ABER220M01](https://www.digikey.com/en/products/detail/vishay-dale/ifsc1008aber220m01/2744218) | 22 µH Shielded Inductor |
 
 After assemblying the module, place the labels as shown in the picture below.
 
