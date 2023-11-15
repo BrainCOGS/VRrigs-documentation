@@ -153,6 +153,18 @@ Place one connector first and connect it to the arduino box placed in the top DI
 
 :::
 
+5. Connect the arduino to the computer using a [USB Type-C male to micro-USB Type-B male cable](https://www.bhphotovideo.com/c/product/1387544-REG/tether_tools_cuc2515_blk_tetherpro_usb_c_to_2_0.html?sts=pi&pim=Y). Or any other cable matching your setup, we do recommend to use a single tether cable or USB 3.0 cable and avoid using either multiple cables or HUBs (or make sure everything is high speed rated).
+
+## Programming the Arduino
+
+1. Download the latest version of the [arduino IDE](https://www.arduino.cc/en/software) and download the Arduino SAM Boards (32-bits ARM Cortex-M3) toolbox from the boards manager (Tools > Boards > Boards Manager), v1.6.11 has been working for us.
+
+2. Connect the arduino to the computer using the [Programming port](https://www.arduino.cc/en/uploads/Main/DueUSBPorts.jpg) (connect the cable to the USB port closest to the circular power connector). The arduino should be listed in the devices at the top of the window as `Arduino Due (Programming port)`.
+
+3. Either download or open from Matlab the firmware from the repository. The file is inside **sensors > ADNS_aout_wUSB_1sensor_or_squal_nativeport** folder and is named `ADNS_aout_wUSB_1sensor_or_squal_nativeport.ino`. Make sure you have selecteed the board at the top of the window and upload the firmware by pressing the upload button (right arrow icon).
+
+4. Wait until the firmware is uploaded (a message in the terminal of the arduino IDE should confirm this) and disconnect the USB cable from the Programming port and connect it to the [Native Port](https://www.arduino.cc/en/uploads/Main/DueUSBPorts.jpg). The arduino should be programmed and working, you can confirm this by running the rig tester and pressing the *Arduino detection* and *sensor quality* buttons.
+
 ## USB HUB and Speaker
 
 1. Use double side tape to glue the USB Hub to the cabinet at the top left portion above the DIN rail and connect everything that must be connected there (if using USB or USB powered speakers, the NIDAQ). Use a USB C extension to connect the hub to the computer.
