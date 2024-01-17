@@ -128,8 +128,16 @@ If the arduino is not recognized by the rig tester arduino detection button foll
 
 3. If the cable is malfunctioning, then replace the cable. We recommend to use a [USB Type-C male to micro-USB Type-B male cable](https://www.bhphotovideo.com/c/product/1387544-REG/tether_tools_cuc2515_blk_tetherpro_usb_c_to_2_0.html?sts=pi&pim=Y). Or any other cable matching your setup, but make sure it is a single tether cable or USB 3.0 cable, and avoid using either multiple cables or HUBs (or make sure everything is high speed rated).
 
+### Timed out while waiting for a reply.
+
+<figure>
+  <img src='./assets/images/stage/stage-4.png'>
+</figure>
+
+This error could be caused by a corrupted firmware in the Arduino. To solve follow the steps on [instructions](/building/control.html#programming-the-arduino) to program the arduino again.
+
 [comment]: # (### Rig tester freeze when sensor quality button is clicked)
 
 [comment]: # (1. Restart the computer. If the problem is not solved, then go to step 2.)
 
-[comment]: # (### Rig tester sensor quality reading bad (motion sensor): 0.0! all the time)
+[comment]: # (### Rig tester sensor quality reading bad [motion sensor]: 0.0! all the time)
