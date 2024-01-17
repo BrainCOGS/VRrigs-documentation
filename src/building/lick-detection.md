@@ -36,7 +36,9 @@ Have the PCB fabricated [here](https://www.pcbway.com/project/shareproject/Two_s
 
 After assemblying the module, place the labels as shown in the picture below.
 
-[comment]: # (Image of the enclosure with labels)
+<figure>
+  <img src='./assets/images/lick-detection/lick-detection-2.png'>
+</figure>
 
 The description of each pin of the lick detector module can be found in the table below.
 
@@ -51,7 +53,7 @@ The description of each pin of the lick detector module can be found in the tabl
 | 7. HEADPLATE | Input - Connect the headplate to this pin |
 | 8. COMMON | Input - Connect the ground from the NiDAQ (or any acquisition device) to this pin |
 
-### Soldering a cable to the feeding spout and headplate
+### Soldering a cable to the feeding spout and headplate holder
 
 [comment]: # (If possible, add photos of the process)
 
@@ -62,3 +64,5 @@ The description of each pin of the lick detector module can be found in the tabl
 3. Drop a small drop of flux in the sanded surface and place the tip of the solder iron over the flux - the tip might stick to the stainless steel, that's normal - continue heating the surface and use soldering wire (we found lead works best) to solder the coaxial cable to the spout and headplate.
 
 4. Use heat shrinkable tube to cover the soldering spot.
+
+To close the circuit for detection, you need a contact in the mice body. We solder a lead (repeating steps 1-4) at the headplate holder, but that can be adjusted on different setups.
