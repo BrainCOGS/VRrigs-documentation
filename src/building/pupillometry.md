@@ -21,7 +21,9 @@ Despite the fact that the screen has a hole in one of the sides, we didn't obser
 
 :::
 
-[comment]: # (Image of the position of the hole in the screen and final result photo)
+<figure>
+  <img src='./assets/images/pupillometry/pupillometry-1.png'>
+</figure>
 
 2. Set up the camera and position it on the aluminum plate.
 
