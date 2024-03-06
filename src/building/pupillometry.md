@@ -44,3 +44,5 @@ Explain step by step how to focus the image and screw all the parts to get the c
 [comment]: # (Image of how the mice should look)
 
 ## Explanation of the processing and how to set up the pipeline
+
+Check <a href="https://braincogs.github.io/software/pupillometry_guide.html"> Pupillometry Pipeline Guide </a> for more information.

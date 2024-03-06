@@ -114,6 +114,7 @@ function getSoftwareSidebar () {
     'configure_systems',
     'alert_system',
     'manipulation_pipeline',
+    'pupillometry_guide',
     'subtask_pipeline'
   ]
 }

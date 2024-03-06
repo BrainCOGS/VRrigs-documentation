@@ -45,6 +45,7 @@ lang: en-US
   + **SessionBlockTrial** Basic reference to all trials from all behavior sessions.
   + **SessionManipulation** Reference to which manipulation (if any) was performed for a behavior session. Check <a href="https://braincogs.github.io/software/manipulation_pipeline.html">manipulation pipeline section</a> for more information.
   + **SessioSubtask** Reference to which subtask (if any) was performed for a behavior session. Check <a href="https://braincogs.github.io/software/subtask_pipeline.html">subtask pipeline section</a> for more information.
+  + **SessionVideo** Reference to video adquisition if performed while behavior session. Check <a href="https://braincogs.github.io/software/pupillometry_guide.html">Pupillometry Pipeline Guide</a> for more information.
  
  ### **2. u19_action:**
  + Stores daily, recurrent and specific actions performed to subjects.
@@ -157,3 +158,14 @@ lang: en-US
   + **ScanInfo** Similar to **u19_imaging_pipeline.Acquiredtiff**. General data and metadata from scans.
   + **ScanInfoField** Data specific to each of the fields of the scan.
   + **ScanInfoScanFile** All files that are part of a scan.
+
+ ### **9. u19_pupillometry:** 
+ + Stores all thing related to pupillometry recordings. From reference to behavior sessions to final results. Check <a href="https://braincogs.github.io/software/pupillometry_guide.html"> Pupillometry Pipeline Guide </a> for more information.
+
+ #### Main tables
+  + **PupillometrySession** Reference to behavior session that had pupillometry acquisition.
+  + **PupillometryModels** Training models ready to use for processing pupillometry data.
+  + **PupillometrySyncBehavior** Time correspondence between each trial-iteration in behavior file and each video frame.
+  + **PupillometrySyncBehavior** Time correspondence between each trial-iteration in behavior file and each video frame.
+  + **PupillometrySessionModel** Reference to which model was used to process a behavior session (More than one model can be used to process data from a session).
+  + **PupillometrySessionModelData** Status of pupillometry processing and final result storage. 
