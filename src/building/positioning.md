@@ -7,8 +7,6 @@ lang: en-US
 
 The positioning system is designed to fix the subject within the projection and correct posture boundaries, but also to have high repeatibility, allowing to have specific coordinates for different subjects trained on the same rig. There are two different positioning systems currently used at our facilities, an automated positioning system that ensures repeatibility and personalized positioning for each subject across training rigs and training sessions; and the manual positioning system, which consist of low cost thorlabs components and a positioning tool developed in house.
 
-test
-
 <figure>
   <img src='./assets/images/positioning/positioning-1.png'>
   <center><figcaption><small>Automatic (left) and manual (right) positioning system.</small></figcaption></center>
