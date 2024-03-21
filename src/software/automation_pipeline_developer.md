@@ -42,7 +42,7 @@ The class that manages workflow at the recording level is (<a href="https://gith
 
 ### Main functions and variables in recording workflow manager
 
-+ **recording_status_dict** in (<a href="https://https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and corresponding functions to execute.
++ **recording_status_dict** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and corresponding functions to execute.
 + **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main function in recording workflow
 1. Executes corresponding functions based in status.
 2. Executed every 30 minutes to check for new recordings to be handled.
