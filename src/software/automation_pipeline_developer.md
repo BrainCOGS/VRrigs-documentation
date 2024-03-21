@@ -7,7 +7,7 @@ lang: en-US
 
 The Ephys/Imaging Automation Pipeline in BRAINCoGS main goals are:
 
-+ Automate spike sorting and imaging segmentation for all recordings 
++ Automate spike sorting and imaging segmentation for all recordings
 + Centralize/Standardize paths for Recording Data Storage
 + Unify & Register Ephys/Imaging Processing
 + Store processed data in BRAINCoGS Database (DJ)
@@ -16,7 +16,7 @@ To accomplish this we developed three tools:
 
 + Ephys/Imaging Automation GUI (<a href="https://github.com/BrainCOGS/RecordingProcessJobGUI">RecordingProcessJobGUI</a>)
 + Recording Workflow management (<a href="https://github.com/BrainCOGS/U19-pipeline_python/tree/master/u19_pipeline/automatic_job">Automatic_job directory in U19-pipeline_python </a>)
-+ Collab reposiotries to handle Ephys/Imaging Processing (<a href="https://github.com/BrainCOGS/BrainCogsEphysSorters">BrainCogsEphysSorters </a> and <a href="https://github.com/BrainCOGS/BrainCogsImagingSegmentation">BrainCogsImagingSegmentation </a>) 
++ Collab reposiotries to handle Ephys/Imaging Processing (<a href="https://github.com/BrainCOGS/BrainCogsEphysSorters">BrainCogsEphysSorters </a> and <a href="https://github.com/BrainCOGS/BrainCogsImagingSegmentation">BrainCogsImagingSegmentation </a>)
 
 
  ## Ephys/Imaging Automation GUI
@@ -33,14 +33,14 @@ Workflow management is composed mainly by two classes that handles recordings an
  + Ephys recordings are composed by one or many independent probe electrophysiology recordings. Each probe recording correspond to a job in the workflow management
  + Calcium imaging recordings are composed by one or many independent field of views image stacks. Each field of view image stack correspond to a job in the workflow management.
 
-The class that manages workflow at the recording level is (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>)
+The class that manages workflow at the recording level is (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>)
 
  <figure>
 <img src='./assets/images/automation_pipeline_developer/workflow_manager_recordings.png'>
 <center><figcaption>Workflow manager diagam at the recording level</figcaption></center>
  </figure>
 
-### Main functions and variables in recording workflow manager 
+### Main functions and variables in recording workflow manager
 
 + **recording_status_dict** in (<a href="https://https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and corresponding functions to execute.
 + **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main function in recording workflow
@@ -48,9 +48,9 @@ The class that manages workflow at the recording level is (<a href="https://gith
 2. Executed every 30 minutes to check for new recordings to be handled.
 3. Send notifications for processed and failed functions.
 +  **exception_handler** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Python decorator for error handling.
-+  **modality_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main ingestion function from recording to recording_process tables. There are subcalls depending on modality of recording (ephys or imaging). 
++  **modality_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main ingestion function from recording to recording_process tables. There are subcalls depending on modality of recording (ephys or imaging).
 
-#### Imaging preingestion main steps: 
+#### Imaging preingestion main steps:
 
 +  **imaging_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to recording_process table for an imaging recording. Get all FOVs (TIFF stacks) for the recording and assign a new job for each one with corresponding parameters fetched from selection done in automation GUI.
 **AcquiredTiff populate function** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/imaging_pipeline.py">Imaging pipeline</a>): Auxiliar script to call **populate_Imaging_AcquiredTiff** script in MATLAB.
@@ -66,7 +66,7 @@ The class that manages workflow at the recording level is (<a href="https://gith
 <center><figcaption>ERD for imaging pipeline at the recording level</figcaption></center>
  </figure>
 
-#### Ephys preingestion main steps: 
+#### Ephys preingestion main steps:
 
  +  **electrophysiology_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to recording_process table for an ephys recording. Get all probes for the recording and assign a new job for each one with corresponding parameters fetched from selection done in automation GUI.
  1. Ingest **ephys_pipeline.EphysPipelineSession** table
@@ -81,7 +81,7 @@ The class that manages workflow at the recording level is (<a href="https://gith
 <center><figcaption>ERD for ephys pipeline at the recording level</figcaption></center>
  </figure>
 
- ### Main functions and variables in recording_process workflow manager 
+ ### Main functions and variables in recording_process workflow manager
 
  + **recording_process_status_dict** in (<a href="https://https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and corresponding functions to execute.
 + **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording__process_handler.py">RecProcessHandler</a>): Main function in recording process workflow
@@ -110,4 +110,4 @@ The class that manages workflow at the recording level is (<a href="https://gith
 
 #### Set up instructions for BrainCogsEphysSorters in cluster system
 
-1. 
+1.
