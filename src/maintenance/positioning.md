@@ -5,7 +5,7 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-## Automated positioning
+# Automated positioning
 
 The automated positioning system maintenance conssist of checking the motors and making sure everything is properly tighten (use loctite if necessary, altough it is recommended). Troubleshooting is mostly related to the motors driver.
 
@@ -16,7 +16,7 @@ If the motors don't respond correctly, open the Zaber software. Select the 'Basi
 ## Restore 
 If sending the motors home doesn't work, the next step is to restore the affected motor. In the basic options, select the motor experiencing the issue, click on the settings icon, and choose 'Restore'.
 
-# Recomendation
+### Recomendation
 After completing the training, please send all the motors home.
 
 # Manual
