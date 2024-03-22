@@ -5,6 +5,8 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
+## Automated positioning
+
 The automated positioning system maintenance conssist of checking the motors and making sure everything is properly tighten (use loctite if necessary, altough it is recommended). Troubleshooting is mostly related to the motors driver.
 
 ## Calibrating 
