@@ -21,6 +21,7 @@
   "resolutions": {
     "vuepress/@vuepress/core/vue-server-renderer/**/chalk": "4.1.2",
     "vuepress/@vuepress/core/**/webpackbar": "5.0.2",
+    "vuepress/@vuepress/core/webpack-dev-server": "3.11.3",
     "vuepress/**/globby": "11.1.0",
     "vuepress/**/chokidar": "3.5.3",
     "vuepress/**/copy-webpack-plugin": "5.1.2",
