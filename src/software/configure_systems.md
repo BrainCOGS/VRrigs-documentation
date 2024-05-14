@@ -40,7 +40,7 @@ lang: en-US
 #### Add key to virmen user in github
 
  1. Copy ssh public key to clipboard in Git Bash `clip < ~/.ssh/id_ed25519.pub`
- 2. Open <a href="https://github.com/login`">https://github.com/login</a>
+ 2. Open [https://github.com/login](github.com)
  2. Login with vrrigs user (ask your Lab Manager for password)
 
  <figure>
