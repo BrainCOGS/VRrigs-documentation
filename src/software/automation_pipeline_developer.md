@@ -21,6 +21,112 @@ To accomplish this we developed three tools:
 
  ## Ephys/Imaging Automation GUI
 
+In this mini guide for the automation GUI we will show the relationship between the GUI and the Database. From which tables some values are taken and which records are written by the GUI.
+
+### Automation GUI main screen
+
+ <figure>
+<img src='./assets/images/automation_pipeline_developer/GUI_tab1_table_connection.png'>
+<center><figcaption>Automation GUI main screen fill values</figcaption></center>
+ </figure>
+
+### Ephys Preprocessing (precluster) parameters organization
+
+ #### Main tables
+  + **u19_pipeline_ephys_element.#pre_cluster_method** List of methods (or algorithms) supported for ephys preprocessing 
+  + **u19_pipeline_ephys_element.pre_cluster_param_set** Specific set of parameters (mainly a dictionary) for a given preprocessing method. Multiple set of parameters can be stored for the same method.
+  + **u19_pipeline_ephys_element.pre_cluster_param_steps** (Ephys) Reference to a set to steps to perform in ephys preprocessing
+  + **u19_pipeline_ephys_element.pre_cluster_param_steps__step** These records indicate which set of parameters for given preprocessing methods will be executed (and in which order).
+
+ <figure>
+<img src='./assets/images/automation_pipeline_developer/precluster_params_example.png'>
+<center><figcaption>Precluster tables record examples </figcaption></center>
+ </figure>
+
++ Depicted in the above image:
+ 1. Let's pretend: **precluster_param_steps_name** = new_preprocessing_steps_1 (precluster_param_steps_id = 10 ) is selected for preprocessing.
+ 2. According to **pre_cluster_param_steps__step** 
+    * paramset_idx = 9 will be executed 1st
+    * paramset_idx = 2 2nd
+    * paramset_idx = 3 3rd.
+ 3. Checking **pre_cluster_param_set** for paramset_idx = 9,2,3 we conclude preprocessing will comprise:
+    *   **Tprime** (Tprime ParamSet 1)
+    *   **Catgt** (Catgt ParamSet for Towers Task)
+    *   **PreClustMethod1** (PreClusterMethod1 Paramset Mika)
+
+### Epgys Processing (cluster) parameters organization
+
++ Simpler than preprocessing structure (since there are no multiple steps involved), we have two tables to organize Ephys Processing parameters.
+
+ <figure>
+<img src='./assets/images/automation_pipeline_developer/cluster_params_example.png'>
+<center><figcaption>Cluster tables record examples </figcaption></center>
+ </figure>
+
+ #### Main tables
+  + **u19_pipeline_ephys_element.#clustering_method** List of methods (or algorithms) supported for ephys processing 
+  + **u19_pipeline_ephys_element.#clustering_param_set** Specific set of parameters (mainly a dictionary) for a given processing method. Multiple set of parameters can be stored for the same method.
+
++ Each recording (or to be precise, recording process) can be processed with a different set of parameters. Default parameters are used for the majority of the recordings in BRAINCoGS.
+
+### Default parameters for preprocessing and processing
+
++ As seen in in Automation GUI main screen, **u19_recording.#modality** stores default parameters for each modality.
++ As a developer **manually update  default parameters** for all modalities when needed by the project.
+
+ <figure>
+<img src='./assets/images/automation_pipeline_developer/default_parameters_main.png'>
+<center><figcaption>From which tables default parameters are taken </figcaption></center>
+ </figure>
+
++ In **u19_recording.#modality** table it is stored a reference for default parameters most commonly used for processing ephys & imaging.
++ Main table to store preprocessing parameters:
+    1. **u19_pipeline_ephys_element.pre_cluster_param_steps**: (Ephys) Reference to a set to steps to perform in ephys preprocessing
+    2. **Imaging, u19_pipeline_imaging_element.pre_process_param_steps**: (Imaging) Reference to a set to steps to perform in imaging preprocessing (No preprocessing in imaging for any user at the moment)
++ Main table to store processing parameters:
+    1. **Ephys, u19_pipeline_ephys_element.#clustering_param_set**: (Ephys) Reference to a set of parameters for chosen sorting algorithm.
+    2. **Imaging, u19_pipeline_imaging_element.#processing_param_set**: (Imaging) Reference to a set of parameters for chosen segmentation algorithm.
+
+### Imaging equivalence parameter tables:
+
+ <figure>
+<img src='./assets/images/automation_pipeline_developer/imaging_equivalence_parameter_tables.png'>
+<center><figcaption>Imaging equivalence parameter tables </figcaption></center>
+ </figure>
+
++ All description made for ephys preprocessing and processing tables apply for the imaging counterparts.
+
+### Tables written when recording is registered:
+
+ <figure>
+<img src='./assets/images/automation_pipeline_developer/new_default_recording_records.png'>
+<center><figcaption>Tables written when new recording is registered </figcaption></center>
+ </figure>
+
++ When a new recording is created three tables are written:
+    1. **u19_recording.recording**: Main table for recordings. Recording_id is created will identify the recording through all the process
+    2. **u19_recording.recording__behavior_session**: Reference to which behavior session corresponds this recording.
+    3. **u19_recording.default_params**: Set of parameters chosen for this recording.
+
++ If there is no behavior session attached to recording:
+ * **u19_recording.recording__recording_session**: Subject and datetime of recording is stored as reference in this table.
+
+ #### u19_recording.default_params design:
+
+ + Default_params works as a "guide" to know which parameters where chosen for recording.
+ + Explanation for all fields of this table:
+  1. **recording_id** Reference to which recording parameters are being selected
+  2. **fragment_number** Reference to which "fragment" (or job) the parameters apply to. (Check next session to know how recordings are split in fragments).
+  3. **default_same_preparams_all** If default_same_preparams_all = 1 (default case), same preprocessing parameters will be applied to all fragments of recording.
+  4. **preprocess_param_steps_id** Preprocessing parameter id chosen for this recording-fragment. Taken from u19_recording.#modality by default.
+  5. **default_same_params_all** If default_same_params_all = 1 (default case), same processing parameters will be applied to all fragments of recording.
+  6. **paramset_idx** Processing parameter id chosen for this recording-fragment. Taken from u19_recording.#modality by default.
+
++ In the default case (main screen Automation GUI) default_same_preparams_all=1 & default_same_params_all=1 so default parameters will be applied to all fragments of recording.
+
+
+
+
  ## Workflow management description
 
 Workflow management code creates and coordinates of a set of tasks for all recordings that were registered with the GUI to make sure they are entirely processed.
@@ -108,6 +214,11 @@ The class that manages workflow at the recording level is (<a href="https://gith
 
 ### BrainCogsEphysSorters
 
+
+
 #### Set up instructions for BrainCogsEphysSorters in cluster system
 
-1. 
+
+### Set up new processing cluster
+
+Instructions to set up a new computing cluster to process Ephys & Imaging 

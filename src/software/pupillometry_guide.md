@@ -171,14 +171,62 @@ psmd = pupillometry.PupillometrySessionModelData()
 pupillometry_finished_sessions = psmd.get_finished_jobs_pupillometry()
 ```    
 
-
-
-
 ## Add a new video model to the pipeline
 
+1. Check <a href="https://deeplabcut.github.io/DeepLabCut/README.html">Deeplabcut documentation</a> for step by step guide.
 
+2. Ask for tips and tricks to our BRAINCoGS personnel that have created video models in the past:
+  + Joshua Julian (jjulian@princeton.edu)
+  +  Juan Lopez (juanlopez@princeton.edu)
 
-## 
+3. After video model has been created, copy the main directory of the model to this location: `\\cup.pni.princeton.
+  edu\braininit\Data\Raw\video_models\(video_model_directory)`
+
+4. Add model to the DB (u19_pupillometry.PupillometryModels table):
+ + MATLAB code:
+
+```
+new_model_key = struct()
+new_model_key.model_description = 'New model to insert'
+new_model_key.model_path = 'video_models/new_model_directory_name'
+insert(pupillometry.PupillometryModels,new_model_key)
+```
++ Always add `video_models/` to the model_path, `before model_directory_name`.
+
+5. Get `model_id` of model you want to use for your sessions:
+
+```
+>> pupillometry.PupillometryModels
+
+ans = 
+Object pupillometry.PupillometryModels
+ :: Table to store reference for each model ::
+    MODEL_ID      model_description                        model_path                  
+    ________    _____________________    ______________________________________________
+
+       1        {'Pupillometry_2022'}    {'video_models/Pupillometry2-Ryan-2022-04-07'}
+       2        {'Pupillometry_2023'}    {'video_models/twolickspouts-esme-2023-06-22'}
+```
+
+`fetch(pupillometry.PupillometryModels,'*')`
+
+ <figure>
+  <img src='./assets/images/pupillometry_guide/pupillometry_model_selection.png'>
+  <center><figcaption>Pupillometry model_id selection</figcaption></center>
+ </figure>
+
+6. Insert into `u19_pupillometry.PupillometrySessionModel` sessions to be processed with the new model:
+
+```
+key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
+key.model_id = 2
+insert(pupillometry.PupillometrySessionModel, key, 'IGNORE');
+```
+
+7. Sessions will be processed with new model overnight.
+
+### **Note: All pupillometry sessions are processed with a default model (model_id = 2, Pupillometry_2023).**
+### **In the future we plan a way to select model for subjects and or rigs instead of being processed with default model.**
 
 
 ## Review processed data
