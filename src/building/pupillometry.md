@@ -43,6 +43,46 @@ Explain step by step how to focus the image and screw all the parts to get the c
 
 [comment]: # (Image of how the mice should look)
 
+## FLIR Spinnaker Support Installation and Configuration Manual in MATLAB
+
+### Installation Instructions
+
+1. **Open MATLAB**:
+   - Launch the MATLAB application on your computer.
+
+2. **Access Add-Ons**:
+   - In the main MATLAB window, access the "Add-Ons" menu.
+
+3. **Search and Download FLIR Spinnaker Support**:
+   - Use the search bar to find "FLIR Spinnaker Support".
+   - Check the version of MATLAB you have installed.
+   - Download the corresponding version of the program by selecting the "Full exe" option.
+
+4. **Run the Program**:
+   - Execute the downloaded installer.
+   - Accept the terms and conditions of the software.
+   - In the configuration section, select "Application Developer".
+   - Uncheck the "GigE Driver" option twice.
+   - Proceed with the software installation.
+
+5. **Add the Package to MATLAB**:
+   - Open the directory of the downloaded package: `C:\\Users\ephys\AppData\Roaming\MathWorks\MATLAB Add-Ons\Toolboxes\FLIR Spinnaker Support by Image Acquisition Toolbox\FLIR Spinnaker Support by Image`.
+
+6. **Open the README File**:
+   - Locate and open the "README" file in the package directory.
+   - Change the driver registry patch as instructed, ensuring you use the patch for MATLAB version 2022a.
+
+7. **Verification**:
+   - Run all the stages described in the README file to verify that FLIR Spinnaker support is functioning correctly.
+
+8. **Configure Rig Parameters**:
+   - Return to the "Rig Parameters" configuration.
+   - Add the necessary elements according to the specific instructions for your work environment.
+
+#### Additional Note:
+Ensure you follow each step precisely and verify the compatibility of each component with your installed MATLAB version to avoid issues during the software installation and configuration.
+
+
 ## Explanation of the processing and how to set up the pipeline
 
 Check <a href="https://braincogs.github.io/software/pupillometry_guide.html"> Pupillometry Pipeline Guide </a> for more information.
