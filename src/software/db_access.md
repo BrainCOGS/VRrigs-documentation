@@ -15,7 +15,7 @@ lang: en-US
 
  ## Mount file server volumes
 
-+ There are several data files (behavior, imaging & electrophysiology) that are referenced in the database
++ There are several xxxxxxxxxxx data files (behavior, imaging & electrophysiology) that are referenced in the database
 
 + To access these files you should mount PNI file server volumes on your system.
 
