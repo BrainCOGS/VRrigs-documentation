@@ -55,7 +55,7 @@ The description of each pin of the lick detector module can be found in the tabl
 
 ### Soldering a cable to the feeding spout and headplate holder
 
-[comment]: # (If possible, add photos of the process)
+[comment]: # (If possible, please add photos of the process)
 
 1. Use sandpaper to remove the outer layer of the stainless steel spout at one of the sides if the luer lock connector (as far as possible from the connector tip), do the same with the headplate (wherever you want to place the cable, we recommend to use the arm without the tapped hole to fit a heat shrinkable tube).
 
