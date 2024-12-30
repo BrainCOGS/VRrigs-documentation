@@ -63,37 +63,39 @@ export default defineUserConfig({
    */
   bundler: webpackBundler({
     configureWebpack: (config) => {
-      config.plugins.push({
-        apply(compiler) {
-          compiler.hooks.done.tap('SuppressSassWarnings', (stats) => {
-            stats.compilation.warnings = stats.compilation.warnings.filter(
-              (warning) =>
-                !warning.message.includes('Deprecation') &&
-                !warning.message.includes('sass')
-            );
-          });
-        },
-      }),
-      config.module.rules.push({
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
-        },
-      })
-    },
-    sass: {
-      sassOptions: {
-        quietDeps: true,
-        logger: {
-          debug: () => {}, // Suppresses debug logs
-          warn: () => {}, // Suppresses warnings entirely
-        },
-      },
-    },
+      // Temporarly supress warnings while vuepress 2.0 fix bugs
+      const sassLoaderRule = config.module.rules.find((rule) => {
+        return rule.use && rule.use.some((loader) => loader.loader.includes('sass-loader'));
+      });
+    
+      if (sassLoaderRule) {
+        sassLoaderRule.use = sassLoaderRule.use.map((loader) => {
+          if (loader.loader.includes('sass-loader')) {
+            loader.options = {
+              ...loader.options,
+              sassOptions: {
+                quietDeps: true,
+                logger: {
+                  warn: () => {}, // Suppresses warnings entirely
+                },
+              },
+            };
+          }
+          return loader;
+        });
+      }
+
+      // config.module.rules.push({
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   use: {
+      //     loader: 'babel-loader',
+      //     options: {
+      //       presets: ['@babel/preset-env'],
+      //     },
+      //   },
+      // });
+    }
   }),
 
   /**
@@ -177,4 +179,8 @@ function getSoftwareSidebar (): string[] {
     'pupillometry_guide',
     'subtask_pipeline'
   ]
+}
+
+if (process.env.NODE_ENV === 'development') {
+  console.warn = () => {} // Suppress all warnings
 }
