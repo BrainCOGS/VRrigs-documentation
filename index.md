@@ -3,7 +3,10 @@ home: true
 heroImage: ./images/braincogslogo.png
 tagline: Documentation for building and mantain mini virtual reality rigs at Princeton BRAIN CoGS
 actionText: Quick start
-actionLink: /building/
+actions:
+  - text: Quick start
+    link: building/
+    type: primary
 features:
 - title: Build a mini VR rig
   details: Detailed documentation to build a mini VR rig from scratch
