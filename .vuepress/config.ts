@@ -130,57 +130,71 @@ export default defineUserConfig({
 /**
  * Sidebar configuration for /building/
  */
-function getBuildingSidebar (): string[] {
+function getBuildingSidebar() {
   return [
-    '',
-    'cabinet',
-    'stage',
-    'air-supply',
-    'positioning',
-    'projection',
-    'reward',
-    'air-puffs',
-    'control',
-    'pupillometry',
-    'lick-detection'
-  ]
+    {
+      text: 'Building a Mini VR Rig',
+      link: '/building/',
+      collapsible: true,
+      children: [
+        '/building/cabinet.md',           // Maps to `building/cabinet.md`
+        '/building/stage.md',             // Maps to `building/stage.md`
+        '/building/air-supply.md',        // Maps to `building/air-supply.md`
+        '/building/positioning.md',       // Maps to `building/positioning.md`
+        '/building/projection.md',        // Maps to `building/projection.md`
+        '/building/reward.md',            // Maps to `building/reward.md`
+        '/building/air-puffs.md',         // Maps to `building/air-puffs.md`
+        '/building/control.md',           // Maps to `building/control.md`
+        '/building/pupillometry.md',      // Maps to `building/pupillometry.md`
+        '/building/lick-detection.md',    // Maps to `building/lick-detection.md`
+      ],
+    },
+  ];
 }
 
 /**
  * Sidebar configuration for /maintenance/
  */
-function getMaintenanceSidebar (): string[] {
+function getMaintenanceSidebar() {
   return [
-    '',
-    'projection',
-    'reward',
-    'stage',
-    'positioning',
-    'miscellaneous'
-  ]
+    {
+      text: 'Maintenance',
+      link: '/maintenance/',
+      collapsible: true,
+      children: [
+        '/maintenance/projection.md',      // Maps to `maintenance/projection.md`
+        '/maintenance/reward.md',          // Maps to `maintenance/reward.md`
+        '/maintenance/stage.md',           // Maps to `maintenance/stage.md`
+        '/maintenance/positioning.md',     // Maps to `maintenance/positioning.md`
+        '/maintenance/miscellaneous.md',   // Maps to `maintenance/miscellaneous.md`
+      ],
+    },
+  ];
 }
 
 /**
  * Sidebar configuration for /software/
  */
-function getSoftwareSidebar (): string[] {
+function getSoftwareSidebar() {
   return [
-    '',
-    'db_access',
-    'db_organization',
-    'db_analysis',
-    'virmen_guide',
-    'automation_pipeline',
-    'automated_cronjobs',
-    'automation_pipeline_developer',
-    'configure_systems',
-    'alert_system',
-    'manipulation_pipeline',
-    'pupillometry_guide',
-    'subtask_pipeline'
-  ]
-}
-
-if (process.env.NODE_ENV === 'development') {
-  console.warn = () => {} // Suppress all warnings
+    {
+      text: 'Software',
+      link: '/software/',
+      collapsible: true,
+      children: [
+        '/software/db_access.md',                 // Maps to `software/db_access.md`
+        '/software/db_organization.md',           // Maps to `software/db_organization.md`
+        '/software/db_analysis.md',               // Maps to `software/db_analysis.md`
+        '/software/virmen_guide.md',              // Maps to `software/virmen_guide.md`
+        '/software/automation_pipeline.md',       // Maps to `software/automation_pipeline.md`
+        '/software/automated_cronjobs.md',        // Maps to `software/automated_cronjobs.md`
+        '/software/automation_pipeline_developer.md', // Maps to `software/automation_pipeline_developer.md`
+        '/software/configure_systems.md',         // Maps to `software/configure_systems.md`
+        '/software/alert_system.md',              // Maps to `software/alert_system.md`
+        '/software/manipulation_pipeline.md',     // Maps to `software/manipulation_pipeline.md`
+        '/software/pupillometry_guide.md',        // Maps to `software/pupillometry_guide.md`
+        '/software/subtask_pipeline.md',          // Maps to `software/subtask_pipeline.md`
+      ],
+    },
+  ];
 }
