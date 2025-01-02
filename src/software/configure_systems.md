@@ -8,7 +8,7 @@ lang: en-US
  ## Configure new behavior rig system
 
  ### First steps
- 
+
  #### Mount cup PNI drives
 
  1. From Windows Explorer, select "Map Network Drive" and enter:
@@ -16,22 +16,24 @@ lang: en-US
   + `\\cup.pni.princeton.edu\u19_dj\` (for u19_dj)
  2. Authenticate with your NetID and PU password (NOT your PNI password, which may be different). When prompted for your username, enter PRINCETON\netid (note that PRINCETON can be upper or lower case) where netid is your PU NetID.
 
- #### Install MATLAB 2019 or higher
+ #### Install MATLAB 2020a or higher
 
  #### Download and install NiDAQmx from <a href="ni.com/r/downloaddaqmx">National Instruments website </a>
 
- #### Download and install Microsoft visual studio community 2019. Make sure to select the option desktop development with C++
+ #### Download and install Microsoft Visual Studio community.
+  1. Make sure to select a version that is compatible with the Matlab version installed which typically means ensure the VS Community year is older than the Matlab Year (e.g., VS Community 2022 for Matlab R2024a).
+  2. Be sure to install the option desktop development with C++
 
- #### Instal Git for Windows
+ #### Install Git for Windows
 
- 1. Install from this <a href="https://git-for-windows.github.io/">link</a> 
+ 1. Install from this <a href="https://git-for-windows.github.io/">link</a>
  ##### Installation options:
   + Use Git from the Windows Command Prompt (5th pane)
   + Checkout as-is, commit as-is (6th pane)
 
  #### Create ssh key to clone repositories
 
- 1. Open Git Bash 
+ 1. Open Git Bash
  2. `ssh-keygen -t ed25519 -C "vrrigsbi@princeton.edu"`
  3. Leave empty passphrase (Hit Enter two times)
  4. `eval "$(ssh-agent -s)"`
@@ -40,7 +42,7 @@ lang: en-US
 #### Add key to virmen user in github
 
  1. Copy ssh public key to clipboard in Git Bash `clip < ~/.ssh/id_ed25519.pub`
- 2. Open [https://github.com/login](github.com)
+ 2. Open [github](https://github.com/login)
  2. Login with vrrigs user (ask your Lab Manager for password)
 
  <figure>
@@ -61,8 +63,8 @@ lang: en-US
 
  #### Compiler
 
- 1. Install Visual Studio Code Compiler; make sure to select C++ support from the menu.  <a href="https://visualstudio.microsoft.com/downloads/`">https://visualstudio.microsoft.com/downloads/</a> 
- 2. In MATLAB, Run `mex -setup -v`. This sets up the compiler. It should output something like found "Microsoft Visual C++ 2015" 
+ 1. Install Visual Studio Code Compiler; make sure to select C++ support from the menu.  <a href="https://visualstudio.microsoft.com/downloads/`">https://visualstudio.microsoft.com/downloads/</a>
+ 2. In MATLAB, Run `mex -setup -v`. This sets up the compiler. It should output something like found "Microsoft Visual C++ 202X"
 
 
  ### U19-pipeline-matlab Repository
@@ -90,7 +92,7 @@ lang: en-US
   + **Mini VR projection parameters** (Ask lab manager about these parameters)
  8. run `lab.utils.add_behavior_rig(RigParameters.rig)`.
  9. run `live_calibration` experiment  (Ask lab manager about this process).
- 10. Create a MATLAB shortcut and set **Start in** as  `C:\Experiments\ViRMEn`. 
+ 10. Create a MATLAB shortcut and set **Start in** as  `C:\Experiments\ViRMEn`.
  11. Add this shortcut to the Windows task bar in the bottom.
 
  <figure>
@@ -99,7 +101,7 @@ lang: en-US
  </figure>
 
  ### Behavior data backup task schedule
- 
+
  1. On Windows type **"Task Scheduler"**
  2. Open **Task Scheduler** "App"
  3. On right hand side menu, click on **"Create Task"** Action
@@ -129,8 +131,13 @@ lang: en-US
   <img src='./assets/images/configure_systems/Action_tab_task_scheduler.png'>
   <center><figcaption>Task scheduler Action Tab</figcaption></center>
  </figure>
- 
+
  7. Hit **OK** button
+
+ ## Modify the Sleep Behaviors
+To prevent the screen from turning off while the subjects are training
+ 1. Under the ("Power & Sleep")[ms-settings:powersleep?activationSource=SMC-IA-4027067] (settings)[https://support.microsoft.com/en-us/windows/how-to-adjust-power-and-sleep-settings-in-windows-26f623b5-4fcc-4194-863d-b824e5ea7679] within Windows, set "Turn my screen off after" to the longest option possible.
+ 2. Additionally, set the "Make my device Sleep after" to the longest option possible.
 
 
  ## Configure new recording system
