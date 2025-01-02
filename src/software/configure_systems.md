@@ -63,7 +63,7 @@ lang: en-US
 
  #### Compiler
 
- 1. Install Visual Studio Code Compiler; make sure to select C++ support from the menu.  <a href="https://visualstudio.microsoft.com/downloads/`">https://visualstudio.microsoft.com/downloads/</a>
+ 1. Install Visual Studio Code Compiler; make sure to select C++ support from the menu.  <a href="https://visualstudio.microsoft.com/downloads/">https://visualstudio.microsoft.com/downloads/</a>
  2. In MATLAB, Run `mex -setup -v`. This sets up the compiler. It should output something like found "Microsoft Visual C++ 202X"
 
 
