@@ -9,6 +9,7 @@
   },
   "repository": "/VR_rigs_docs",
   "scripts": {
+    "clean": "rm -rf .vuepress/.temp node_modules node_modules/.cache",
     "dev": "vuepress dev",
     "build": "vuepress build"
   },
