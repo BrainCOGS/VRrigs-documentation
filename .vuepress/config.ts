@@ -2,6 +2,7 @@ import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from '@vuepress/theme-default'
 import { description } from '../package.json'
 import { webpackBundler } from '@vuepress/bundler-webpack'
+import { searchPlugin } from '@vuepress/plugin-search';
 
 const siteDescription = typeof description === 'string' ? description : 'Default site description';
 
@@ -55,6 +56,16 @@ export default defineUserConfig({
    * Ref: https://v2.vuepress.vuejs.org/reference/plugin-api.html
    */
   plugins: [
+    searchPlugin({
+      // Options for the search plugin
+      maxSuggestions: 10, // Maximum number of search suggestions
+      isSearchable: (page) => page.path !== '/', // Specify which pages are searchable
+      locales: {
+        '/': {
+          placeholder: 'Search...',
+        },
+      },
+    }),
   ],
 
   /**
