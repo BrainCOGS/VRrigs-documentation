@@ -153,4 +153,4 @@ We place a cable and hose carrier to avoid them to be crushed or damaged while t
 
 ## GERBER files
 
-1. Gerber files for the IR LED available <a href='./assets/GERBER/stage/IR-LED-circuit-for-optical-flow-sensor.zip'>here.</a>
+1. Gerber files for the IR LED available <a href='/building/GERBER/IR-LED-circuit-for-optical-flow-sensor.zip'>here.</a>

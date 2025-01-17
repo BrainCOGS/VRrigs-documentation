@@ -85,4 +85,5 @@ Ensure you follow each step precisely and verify the compatibility of each compo
 
 ## Explanation of the processing and how to set up the pipeline
 
+<!-- TODO: change link -->
 Check <a href="https://braincogs.github.io/software/pupillometry_guide.html"> Pupillometry Pipeline Guide </a> for more information.

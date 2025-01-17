@@ -13,7 +13,7 @@ lang: en-US
 
 This website is a central repository for the documentation regarding the **building** of mini virtual reality training rigs as part of BRAIN CoGS at Princeton Neuroscience Institute.
 
-Building documentation is divided into modules, each module contains a detailed explanaiton of the building process. The STEP files for of the entire rig can be found <a href='./assets/drawings/Training mini VR rig.step.zip'>here</a>. And a list of parts can be found [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vSSVNJ8194nIha6Z6vqLnmFLNS-IRL88ZfY1aRPxX1KbcyrDNHXVJ4QOEmY1oKVSrLkx7DTxyjK0ceC/pubhtml#) or [downloaded in xlsx format](https://docs.google.com/spreadsheets/d/e/2PACX-1vSSVNJ8194nIha6Z6vqLnmFLNS-IRL88ZfY1aRPxX1KbcyrDNHXVJ4QOEmY1oKVSrLkx7DTxyjK0ceC/pub?output=xlsx)
+Building documentation is divided into modules, each module contains a detailed explanaiton of the building process. The STEP files for of the entire rig can be found <a href='/building/drawings/Training-mini-VR-rig.step.zip' download>here</a>. And a list of parts can be found [here](https://docs.google.com/spreadsheets/d/e/2PACX-1vSSVNJ8194nIha6Z6vqLnmFLNS-IRL88ZfY1aRPxX1KbcyrDNHXVJ4QOEmY1oKVSrLkx7DTxyjK0ceC/pubhtml#) or [downloaded in xlsx format](https://docs.google.com/spreadsheets/d/e/2PACX-1vSSVNJ8194nIha6Z6vqLnmFLNS-IRL88ZfY1aRPxX1KbcyrDNHXVJ4QOEmY1oKVSrLkx7DTxyjK0ceC/pub?output=xlsx)
 
 If you need any other file, any other format, need help or just wanted to reach out don't hesitate to contact [Juan Luna](mailto:jl4459@princeton.edu) or any other memeber of the BRAIN CoGS team.
 
