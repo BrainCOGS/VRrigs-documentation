@@ -20,6 +20,9 @@ jobs:
     - name: Build VuePress
       run: yarn build
 
+    - name: Verify Build Output
+      run: ls -la .vuepress/dist
+
     - name: Deploy to GitHub Pages
       uses: JuanLoLuna/vuepress-deploy@master
       env:
