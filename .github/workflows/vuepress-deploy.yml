@@ -20,13 +20,10 @@ jobs:
     - name: Build VuePress
       run: yarn build
 
-    - name: Verify Build Output
-      run: ls -la .vuepress/dist
-
     - name: Deploy to GitHub Pages
       uses: JuanLoLuna/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: BrainCOGS/braincogs.github.io
         TARGET_BRANCH: gh-pages
-        BUILD_DIR: src/.vuepress/dist
+        BUILD_DIR: docs/.vuepress/dist
