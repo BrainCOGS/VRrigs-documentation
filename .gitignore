@@ -9,3 +9,8 @@ run
 .basement
 config.local.js
 basement_dist
+.vuepress/.cache
+.vuepress/.temp
+# Rule to prevent non-standard lock files
+yarn*.lock
+!yarn.lock

@@ -1,5 +1,7 @@
 name: Build and Deploy
+
 on: [push]
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -7,11 +9,21 @@ jobs:
     - name: Checkout
       uses: actions/checkout@master
 
-    - name: vuepress-deploy
-      uses:  JuanLoLuna/vuepress-deploy@master
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.20.2
+
+    - name: Install Dependencies
+      run: yarn
+
+    - name: Build VuePress
+      run: yarn build
+
+    - name: Deploy to GitHub Pages
+      uses: JuanLoLuna/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: BrainCOGS/braincogs.github.io
         TARGET_BRANCH: gh-pages
-        BUILD_SCRIPT: yarn && yarn build
-        BUILD_DIR: src/.vuepress/dist
+        BUILD_DIR: .vuepress/dist
