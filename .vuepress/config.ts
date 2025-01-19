@@ -36,6 +36,7 @@ export default defineUserConfig({
   theme: defaultTheme({
     repo: '',
     editLink: false, // Replaced editLinks with editLink
+    contributors: false, // Disable contributors feature
     docsDir: '',
     editLinkText: '',
     lastUpdated: false, // This is correct for VuePress 2.x
