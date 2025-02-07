@@ -43,12 +43,14 @@ export default defineUserConfig({
     navbar: [
       { text: 'Building', link: '/building/' },
       { text: 'Maintenance', link: '/maintenance/' },
-      { text: 'Software', link: '/software/' }
+      { text: 'Software', link: '/software/' },
+      { text: 'Your New Section', link: '/your-section/' } // Add this line
     ],
     sidebar: {
       '/building/': getBuildingSidebar(),
       '/maintenance/': getMaintenanceSidebar(),
       '/software/': getSoftwareSidebar(),
+      '/your-section/': getYourSectionSidebar() // Add this line
     }
   }),
 
@@ -79,7 +81,7 @@ export default defineUserConfig({
       const sassLoaderRule = config.module.rules.find((rule) => {
         return rule.use && rule.use.some((loader) => loader.loader.includes('sass-loader'));
       });
-    
+
       if (sassLoaderRule) {
         sassLoaderRule.use = sassLoaderRule.use.map((loader) => {
           if (loader.loader.includes('sass-loader')) {
@@ -122,7 +124,7 @@ export default defineUserConfig({
       .options({
         name: `[path][name].[ext]`
       });
-    
+
     config.module
       .rule('vue')
       .use('vue-loader')
@@ -206,6 +208,24 @@ function getSoftwareSidebar() {
         '/software/manipulation_pipeline.md',     // Maps to `software/manipulation_pipeline.md`
         '/software/pupillometry_guide.md',        // Maps to `software/pupillometry_guide.md`
         '/software/subtask_pipeline.md',          // Maps to `software/subtask_pipeline.md`
+      ],
+    },
+  ];
+}
+
+/**
+ * Sidebar configuration for /your-section/
+ */
+function getYourSectionSidebar() {
+  return [
+    {
+      text: 'Your Section Title',
+      link: '/your-section/',
+      collapsible: true,
+      children: [
+        '/your-section/page1.md',    // Maps to `your-section/page1.md`
+        '/your-section/page2.md',    // Maps to `your-section/page2.md`
+        // Add more pages as needed
       ],
     },
   ];
