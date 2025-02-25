@@ -15,6 +15,6 @@ features:
 - title: Software
   details: Documentation for the software
 - title: Upgrades
-  details: Documentation for upgrades in Mini-VR
+  details: Documentation of upgrades in Mini-VR
 footer: Made by BRAIN CoGS at Princeton Neuroscience Institute
 ---

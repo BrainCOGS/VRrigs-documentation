@@ -50,7 +50,7 @@ export default defineUserConfig({
       '/building/': getBuildingSidebar(),
       '/maintenance/': getMaintenanceSidebar(),
       '/software/': getSoftwareSidebar(),
-      '/Upgrades/': getUpgradesSidebar() // Add this line
+      '/Upgrades/': getUpgradeSidebar() // Add this line
     }
   }),
 
@@ -216,15 +216,15 @@ function getSoftwareSidebar() {
 /**
  * Sidebar configuration for /your-section/
  */
-function getUpgradeSidebar() {
+function getUpgradesSidebar() {
   return [
     {
       text: 'Upgrades',
       link: '/Upgrades/',
       collapsible: true,
       children: [
-        '/Upgrades/page1.md',    // Maps to `your-section/page1.md`
-        '/Upgrades/page2.md',    // Maps to `your-section/page2.md`
+        '/Upgrades/Headplate-holder.md',    // Maps to `Upgrades/page1.md`
+        '/Upgrades/Headplate.md',    // Maps to `Upgrades/page2.md`
         // Add more pages as needed
       ],
     },
