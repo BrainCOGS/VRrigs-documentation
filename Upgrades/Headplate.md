@@ -1,8 +1,8 @@
 ---
-title: Page2
+title: Headplate
 lang: en-US
 ---
 
 # {{ $frontmatter.title }}
 
-## This is page 2
+## This is page 1

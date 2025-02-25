@@ -44,13 +44,13 @@ export default defineUserConfig({
       { text: 'Building', link: '/building/' },
       { text: 'Maintenance', link: '/maintenance/' },
       { text: 'Software', link: '/software/' },
-      { text: 'Your New Section', link: '/your-section/' } // Add this line
+      { text: 'Upgrades', link: '/Upgrades/' } // Add this line
     ],
     sidebar: {
       '/building/': getBuildingSidebar(),
       '/maintenance/': getMaintenanceSidebar(),
       '/software/': getSoftwareSidebar(),
-      '/your-section/': getYourSectionSidebar() // Add this line
+      '/Upgrades/': getUpgradesSidebar() // Add this line
     }
   }),
 
@@ -216,15 +216,15 @@ function getSoftwareSidebar() {
 /**
  * Sidebar configuration for /your-section/
  */
-function getYourSectionSidebar() {
+function getUpgradeSidebar() {
   return [
     {
-      text: 'Your Section Title',
-      link: '/your-section/',
+      text: 'Upgrades',
+      link: '/Upgrades/',
       collapsible: true,
       children: [
-        '/your-section/page1.md',    // Maps to `your-section/page1.md`
-        '/your-section/page2.md',    // Maps to `your-section/page2.md`
+        '/Upgrades/page1.md',    // Maps to `your-section/page1.md`
+        '/Upgrades/page2.md',    // Maps to `your-section/page2.md`
         // Add more pages as needed
       ],
     },

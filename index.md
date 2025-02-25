@@ -14,7 +14,7 @@ features:
   details: Documentation for the maintenance of a mini virtual reality rig modules
 - title: Software
   details: Documentation for the software
-- title: Your section
-  details: Documentation for your section
+- title: Upgrades
+  details: Documentation for upgrades in Mini-VR
 footer: Made by BRAIN CoGS at Princeton Neuroscience Institute
 ---
