@@ -1,5 +1,5 @@
 # Base node image to run this version of the documentation site
-FROM node:18.20.2
+FROM node:25
 
 # Set the working directory inside the container
 WORKDIR /app
