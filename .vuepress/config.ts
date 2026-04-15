@@ -79,7 +79,7 @@ export default defineUserConfig({
       const sassLoaderRule = config.module.rules.find((rule) => {
         return rule.use && rule.use.some((loader) => loader.loader.includes('sass-loader'));
       });
-    
+
       if (sassLoaderRule) {
         sassLoaderRule.use = sassLoaderRule.use.map((loader) => {
           if (loader.loader.includes('sass-loader')) {
@@ -122,7 +122,7 @@ export default defineUserConfig({
       .options({
         name: `[path][name].[ext]`
       });
-    
+
     config.module
       .rule('vue')
       .use('vue-loader')
