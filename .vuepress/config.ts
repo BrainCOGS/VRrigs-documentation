@@ -206,6 +206,7 @@ function getSoftwareSidebar() {
         '/software/manipulation_pipeline.md',     // Maps to `software/manipulation_pipeline.md`
         '/software/pupillometry_guide.md',        // Maps to `software/pupillometry_guide.md`
         '/software/subtask_pipeline.md',          // Maps to `software/subtask_pipeline.md`
+        '/software/virmen_developer.md',          // Maps to `software/virmen_developer.md`
       ],
     },
   ];

@@ -5,6 +5,16 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
+ ## Data Folders
+
+ - These are the data folder structures used for Ephys & Imaging pipeline:
+
+ - **Raw Data Directory Imaging** braininit/Data/Raw/imaging/(user)/(subject)/(session_date)_g(session#)/(user_defined_dir)
+ - **Processed Data Directory Imaging** braininit/Data/Processed/imaging/(user)/(subject)/(session_date)_g(session#)/(user_defined_dir)/job_id_(jobid)/suite2p_output/suite2p
+ - **Raw Data Directory Ephys** braininit/Data/Raw/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)
+ - **Processed Data Directory Ephys** braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/(sorter)_output
+
+
  ## Initial configuration
 
   + Note: These steps are only needed if a label in red with "Configuration needed" is shown on the top right corner of the GUI.

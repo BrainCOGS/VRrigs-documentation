@@ -79,64 +79,47 @@ lang: en-US
 
  1. Create `C:\Experiments` directory
  2. Open Git Bash and execute: `cd /c/Experiments`.
- 3. Execute in `git config --global user.email "alvaroluna.pni@gmail.com"`.
- 4. Clone Virmen Repository, called **TankMouseVR** `git clone https://github.com/BrainCOGS/TankMouseVR.git`.
- 5. Rename directory `C:\Experiments\TankMouseVR` to `C:\Experiments\ViRMEn`.
+ 3. Execute in `git config --global user.email "vrrigsbi@princeton.edu"`.
+ 4. Clone Virmen Repository, called **ViRMEn** `git clone git@github.com:BrainCOGS/ViRMEn.git`.
  #### MATLAB Instructions
+ 5. Open MATLAB as Administrator
  6. run `install_virmen` inside `C:\Experiments\ViRMEn`
  + If compilation fails. Run `mex -setup c++` to select **Visual Studio C++ Compiler**
- 7. Open file `C:\Experiments\ViRMEn\RigParameters.m` and edit corresponding variables:
+ 7. run:
+ + `import_scheduled_tasks(1)` if this is a 165 room rig (or mainly managed by techs)
+ + `import_scheduled_tasks(0)` if this is an acquisition (ephys/imaging) rig or rig managed by researchers
+ 8. Open file `C:\Experiments\ViRMEn\RigParameters.m` and edit corresponding variables:
   + **rig:** (RigName on the format: `Room#-"Rig"#-T`)
   + **rig_type:** (`miniVR` or `NormalVR`)
   + **add NIDAQ Channles in corresponding variables** (Ask lab manager about these parameters)
   + **Mini VR projection parameters** (Ask lab manager about these parameters)
- 8. run `lab.utils.add_behavior_rig(RigParameters.rig)`.
- 9. run `live_calibration` experiment  (Ask lab manager about this process).
- 10. Create a MATLAB shortcut and set **Start in** as  `C:\Experiments\ViRMEn`.
- 11. Add this shortcut to the Windows task bar in the bottom.
+ 9. run `lab.utils.add_behavior_rig(RigParameters.rig)`.
+ 10. run `live_calibration` experiment  (Ask lab manager about this process).
+ 11. Create a MATLAB shortcut and set **Start in** as  `C:\Experiments\ViRMEn`.
+ 12. Add this shortcut to the Windows task bar in the bottom.
 
  <figure>
   <img src='./assets/images/configure_systems/Matlab_shorcut.png'>
   <center><figcaption>MATLAB Shorcut example</figcaption></center>
  </figure>
 
- ### Behavior data backup task schedule
+ ### MATLAB Add-Ons
+ If not all toolbox where installed in MATLAB installation, make sure these Add-Ons are added to MATLAB:
 
- 1. On Windows type **"Task Scheduler"**
- 2. Open **Task Scheduler** "App"
- 3. On right hand side menu, click on **"Create Task"** Action
++ Image Acquisition Toolbox
++ Image Processing Toolbox
++ Image Acquisition Toolbox Support Package for GenlCam Interface
++ Image Acquisition Toolbox Support Package for OS Generic Video Interface
++ PsychToolbox
++ Statistics and Machine Learning Toolbox
++ Instrument Control Toolbox
++ Data Acquisition Toolbox
++ Zaber
 
- <figure>
-  <img src='./assets/images/configure_systems/Menu_task_scheduler.png'>
-  <center><figcaption>Task scheduler menu</figcaption></center>
- </figure>
-
- 4. Name new task as **new_data_backup**
-
- <figure>
-  <img src='./assets/images/configure_systems/General_tab_task_scheduler.png'>
-  <center><figcaption>Task scheduler General Tab</figcaption></center>
- </figure>
-
- 5. Add a trigger to run task daily at 11:00 pm
-
- <figure>
-  <img src='./assets/images/configure_systems/Trigger_tab_task_scheduler.png'>
-  <center><figcaption>Task scheduler Trigger Tab</figcaption></center>
- </figure>
-
- 6. Add an action: add this line to the Program/script edit: `C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_behavior_files`
-
- <figure>
-  <img src='./assets/images/configure_systems/Action_tab_task_scheduler.png'>
-  <center><figcaption>Task scheduler Action Tab</figcaption></center>
- </figure>
-
- 7. Hit **OK** button
 
  ## Modify the Sleep Behaviors
 To prevent the screen from turning off while the subjects are training
- 1. Under the ("Power & Sleep")[ms-settings:powersleep?activationSource=SMC-IA-4027067] (settings)[https://support.microsoft.com/en-us/windows/how-to-adjust-power-and-sleep-settings-in-windows-26f623b5-4fcc-4194-863d-b824e5ea7679] within Windows, set "Turn my screen off after" to the longest option possible.
+ 1. Under the  <a href="https://support.microsoft.com/en-us/windows/how-to-adjust-power-and-sleep-settings-in-windows-26f623b5-4fcc-4194-863d-b824e5ea7679"> ("Power & Sleep") </a> within Windows, set "Turn my screen off after" to the longest option possible.
  2. Additionally, set the "Make my device Sleep after" to the longest option possible.
 
 

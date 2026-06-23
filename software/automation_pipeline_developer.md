@@ -159,13 +159,10 @@ The class that manages workflow at the recording level is (<a href="https://gith
 #### Imaging preingestion main steps:
 
 +  **imaging_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to recording_process table for an imaging recording. Get all FOVs (TIFF stacks) for the recording and assign a new job for each one with corresponding parameters fetched from selection done in automation GUI.
-**AcquiredTiff populate function** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/imaging_pipeline.py">Imaging pipeline</a>): Auxiliar script to call **populate_Imaging_AcquiredTiff** script in MATLAB.
-+ **populate_Imaging_AcquiredTiff** in (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/scripts/populate_Imaging_AcquiredTiff.m">populate_Imaging_AcquiredTiff</a>): Population calls to:
-  1. **u19_imaging_pipeline.AcquiredTiff**: Each recording is divided into Tiff Splits (e.g. Mesoscope recordings contain multiple tiff stacks that will be processed independently). (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/schemas/%2Bimaging_pipeline/AcquiredTiff.m">Code here</a>)
-  2. **u19_imaging_pipeline.SyncImagingBehavior**: Find correspondence between virtual reality frame in the behavior experiment and Calcium Imaging frame in recording.
-  (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/schemas/%2Bimaging_pipeline/SyncImagingBehavior.m">Code here</a>)
-
-
+**Make function in AcquiredTiff** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/imaging_pipeline.py#L79">AcquiredTiff make function </a>): Population calls to:
+  1. **u19_imaging_pipeline.AcquiredTiff**: Each recording is divided into Tiff Splits (e.g. Mesoscope recordings contain multiple tiff stacks that will be processed independently)
+  2. **u19_imaging_pipeline.SyncImagingBehavior**: Find correspondence between virtual reality frame in the behavior experiment and Calcium Imaging frame in recording.   
+  (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/schemas/%2Bimaging_pipeline/SyncImagingBehavior.m">Code here</a>). Given that most of users use MATLAB to read sync data population of this table is done in general **populate tables** cronjob script.  (<a href="https://braincogs.github.io/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob">populate tables script description</a>).
 
  <figure>
 <img src='./assets/images/automation_pipeline_developer/imaging_pipeline_basic_ERD.png'>
@@ -214,11 +211,137 @@ The class that manages workflow at the recording level is (<a href="https://gith
 
 ### BrainCogsEphysSorters
 
+- BrainCogsEphysSorters is the electrophysiology processing pipeline used by BrainCOGS to preprocess, sort, and post-process Neuropixels recordings. This repository works with parameters defined in previous steps of the Automation Pipeline.
+- **Location:** Current location of repository: /mnt/cup/braininit/Shared/repos/AutomaticPipelineProcessing/electrophysiology_processing/BrainCogsEphysSorters
+- **System:** The repository is installed in **g-bcogs-u19proc2.pni.princeton.edu** and is run through slurm job scheduler.
+- **Logs locations:** 
+  - **ErrorLogs:** /mnt/cup/braininit/Shared/repos/AutomaticPipelineProcessing/u19_pipeline/automatic_job/ErrorLog
+  - **OutputLogs:** /mnt/cup/braininit/Shared/repos/AutomaticPipelineProcessing/u19_pipeline/automatic_job/OutputLog
+
+- The repository acts as a unified orchestration layer around multiple electrophysiology tools:
+  - CatGT (preprocessing)
+  - Kilosort 2
+  - Kilosort 3
+  - Kilosort 4
+  - IBL Atlas post-processing pipeline
 
 
-#### Set up instructions for BrainCogsEphysSorters in cluster system
+#### High-Level Workflow
+  Raw Neuropixels Recording
+            │
+            ▼
+    Preprocessing
+        (CatGT)
+            │
+            ▼
+      Spike Sorting
+  (Kilosort2/3/4)
+            │
+            ▼
+  Partial Cleanup
+            │
+            ▼
+  IBL Atlas Conversion
+            │
+            ▼
+  Processed Output
 
 
-### Set up new processing cluster
+#### Main Components
 
-Instructions to set up a new computing cluster to process Ephys & Imaging 
+1. main_script
+
+- Coordinates the entire pipeline.
+- **File:** main_script.py, and main entry point of repository.
+
+```
+# Get recording process and data directories
+recording_process_id = os.environ['recording_process_id']
+raw_data_directory = os.environ['raw_data_directory']
+processed_data_directory = os.environ['processed_data_directory']
+
+# Get absolute paths to raw and processed
+raw_data_directory = pathlib.Path(config.root_raw_data_dir,raw_data_directory)
+processed_data_directory = pathlib.Path(config.root_processed_data_dir,processed_data_directory)
+
+# Execute selected preprocessing steps
+new_raw_data_directory = pw.preprocess_main(recording_process_id, raw_data_directory, processed_data_directory)
+
+# Execute selected sorter
+sorter_processed_directory = sw.sorter_main(recording_process_id, new_raw_data_directory, processed_data_directory)
+
+# Post process data
+pw.post_process_partial_results(recording_process_id, raw_data_directory, processed_data_directory)
+ppw.post_process_main(raw_data_directory, processed_data_directory, sorter_processed_directory)
+
+```
+
+2. Preprocessing Layer
+
+- Checks which preprocessing steps to perform based on preprocessing param file. And executes them (for now only CatGT is implemented as preprocessing stage).
+- **File:** u19_sorting/preprocess_wrappers.py
+- **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/catGT_output
+
+```
+def preprocess_main(recording_process_id, raw_data_directory, processed_data_directory):
+
+    preprocess_parameters = json.load(preprocess_param_file)
+
+    for this_preparam in preprocess_parameters:
+        if config.preproc_tools['catgt'] in this_preparam:
+            catgt_output_dir = pathlib.Path(processed_data_directory, config.preproc_tools['catgt']+"_output")
+            new_raw_data_directory = cat_gt.run_cat_gt(new_raw_data_directory, catgt_output_dir, this_preparam[config.preproc_tools['catgt']])
+```
+    
+3. Sorting Layer
+
+- Executes the selected spike sorting algorithm.
+- **File:** u19_sorting/sorter_wrappers.py
+- **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/(sorter)_output
+
+
+```
+ sorter = config.sorters_names[process_parameters['clustering_method']]
+
+sorter_processed_directory = pathlib.Path(processed_directory, process_parameters['clustering_method']+'_output')
+
+  if sorter == config.sorters_names['kilosort2']:
+      Kilosort2.run_Kilosort2(raw_directory, sorter_processed_directory, process_parameters_filename, chanmap_filename)
+  elif sorter == config.sorters_names['kilosort3']:
+      Kilosort3.run_Kilosort3(raw_directory, sorter_processed_directory, process_parameters_filename, chanmap_filename)
+  elif sorter == config.sorters_names['kilosort4']:
+      print('running Kilosort 4 here xxxxxxxx')
+      Kilosort4.run_Kilosort4(raw_directory, sorter_processed_directory, process_parameters_filename, chanmap_filename)
+
+```
+
+4. Post-Processing 
+
+- Convert sorter outputs into formats required by downstream analysis pipelines.
+- **File:** u19_sorting/postprocess_wrappers.py
+- **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/ibl_data
+
+```
+  # For the moment we just call ibl_data transformation to run atlas
+  ibl_atlas_post_processing.run_ibl_atlas_post_processing(raw_data_directory, processed_data_directory, sorter_processed_directory)
+```
+
+#### Design Patterns
+
+- The repository isolates third-party tools behind wrappers:
+  - CatGT
+  - Kilosort2
+  - Kilosort3
+  - Kilosort4
+
+- This makes it easier to:
+
+  - Replace sorters
+  - Add new preprocessing tools
+  - Keep a common interface
+  - Configuration-Driven Execution
+
+- Behavior is controlled entirely by JSON files (created by Automation Pipeline):
+
+  - preprocess_paramset_(id).json
+  - process_paramset_(id).json

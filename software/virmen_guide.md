@@ -1,5 +1,5 @@
 ---
-title: ViRMEn User/Developer Guide
+title: ViRMEn User Guide
 lang: en-US
 ---
 
