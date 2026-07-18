@@ -22,7 +22,7 @@ lang: en-US
  ### Read behavior file:
 
  1. Execute: (change key for desired session)
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  [status,data] = lab.utils.read_behavior_file(key)
  ```
@@ -31,7 +31,7 @@ lang: en-US
  ### Get behavior file location (local & for spock/scotty)
 
  1. If you only need to know the path of behavior file use:
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  baseDir = fetch1(acquisition.SessionStarted & key, 'new_remote_path_behavior_file');
  [bucket_path, local_path] =  lab.utils.get_path_from_official_dir(baseDir)
@@ -42,19 +42,19 @@ lang: en-US
  + Get trial data (position, velocity, etc) efficiently with DB.
  + New method to retrieve all trial data for multiple sessions faster.
  1. Execute:
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  get_full_trial_data(key)
  ```
 
  + Get trial data from joined tables as well (e.g. **TowersBlock**):
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  get_full_trial_data(key, behavior.TowersBlockTrial * behavior.TowersBlock)
  ```
 
  + Get data from subtasks as well (e.g. **Twolickspouts** subtask)
- ```
+ ```matlab
  key = struct('subject_fullname', 'efonseca_ef114_act114', 'session_date', '2023-01-11');
  all_tables = behavior.TowersBlockTrial * behavior.TowersBlock * behavior_subtask.TwolickspoutsBlockTrial * behavior_subtask.TwolickspoutsBlock
  get_full_trial_data(key, all_tables)
@@ -64,7 +64,7 @@ lang: en-US
 
  + To get behavior file like stats (on the trial level) for a single or multiple sessions use this function
  + Stats include, but not limited to: (```correct_left, correct_right, cum_correct_trials, performance, goodFraction, numPerMin, numRewardsPerMin, bias```) 
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  stat_struct = get_stats_from_session(key, "all")
  ```
@@ -72,7 +72,7 @@ lang: en-US
  ### get behaviorfile as db
 
  + Function to unnest behavior file structure to get a plain trial table (with block data merged). 
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  data_struct = get_behaviorfile_as_db(key)
  ```
@@ -81,7 +81,7 @@ lang: en-US
 
  + Example of how to "translate" a variable from iteration# to trial_time
  + In this case, 1st row of variable licks (iteration#) is translated to lick_times and then added to original trial structure
- ```
+ ```matlab
  key = struct('subject_fullname', 'efonseca_ef114_act114', 'session_date', '2023-01-11');
 trial_data = get_full_trial_data(key, behavior.TowersBlockTrial * behavior_subtask.TwolickspoutsBlockTrial);
 licks_time_struct = struct;
@@ -94,7 +94,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  ### plot framerate frequency sessions
 
  + Plot trial by trial framerate of multiple sessions for comparison
- ```
+ ```matlab
  key = 'subject_fullname like "mioffe%" and session_date > "2022-01-01" and session_date < "2022-01-30"';
  analyze_iteration_time(key)
  ```
@@ -107,7 +107,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  ### plot framerate frequency levels and rigs
 
  + Plot mean framerate by level and rig for multiple sessions
- ```
+ ```matlab
  key = 'subject_fullname like "mioffe%" and session_date > "2022-01-01" and session_date < "2022-12-10"';
  analyze_iteration_time_level_rig(key)
  ```
@@ -120,7 +120,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  ### plot velocity sessions
 
  + Plot mean - max range velocity by session for multiple behavior sessions
- ```
+ ```matlab
  key = struct('subject_fullname', 'emdiamanti_gps7');
  plot_velocity_session(key)
  ```
@@ -133,7 +133,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  ### get path table
 
  1. Get default paths for network cup drives for different OS and spock/scotty (bucket)
- ```
+ ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  baseDir = fetch1(acquisition.SessionStarted & key, 'new_remote_path_behavior_file');
  [bucket_path, local_path] =  lab.utils.get_path_from_official_dir(baseDir)
@@ -146,7 +146,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
 ### Common errors and troubleshooting
 
  1. When trying to fetch from a table with external storage and corresponding network cup drive is not mounted:
- ```
+ ```matlab
  Error using dj.store_plugins.File (line 89)
  Directory `/Volumes/u19_dj/external_dj_blobs` not accessible.
 
@@ -154,7 +154,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
             self.spec = dj.store_plugins.(storePlugin)(config);
  ```
 
- ```
+ ```matlab
  Error using fread
  Invalid file identifier. Use fopen to generate a valid file identifier.
 
@@ -164,16 +164,11 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  + Just mount all cup drives and try agian !!
 
  2. key reference more than one session when function was supposed to work for single sessions 
-  ```
+  ```matlab
   Error using dj.internal.GeneralRelvar/fetch1 (line 250)
   fetch1 can only retrieve a single existing tuple.
   ```
  + Just recreate key to reference a single session.
-
- ## PYTHON
-
- ### Common errors and troubleshooting
-
 
 
 

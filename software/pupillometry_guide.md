@@ -12,72 +12,47 @@ lang: en-US
 1. Ask your lab manager for helo to set up a camera in the rig.
 2. If needed, add these parameters in **RigParameters.m** 
 
-```
+```matlab
 %% Pupilometry video parameters
 video_parent_path               =   'E:/VideoData'
 video_ext                       =   '.mj2'
 video_acquisition_rate          =   30
-video_record                    =   true
 video_gain                      =   8
 preview                         =   true
-```    
-
-3. In Tranining GUI subject task selection menu, under `PupillometryVideo` select `2. In RigParameters`:
-
- <figure>
-  <img src='./assets/images/pupillometry_guide/training_gui_pupillometry.png'>
-  <center><figcaption>Training GUI for pupillometry</figcaption></center>
- </figure>
- 
- 4. In Experiment file add the following lines in `initializationcodeFun` function (just after `vr = initializeGradedExperiment(vr);` line):
-
 ```
+- The parameter (in RigParameters.m) to control video acquisition for the next session is **video_record** if set to true, pupillometry session will be registed.
+
+```matlab
+video_record                    =   true
+```
+
+3. In Experiment file add the following lines in `initializationcodeFun` function (just after `vr = initializeGradedExperiment(vr);` line):
+
+```matlab
 % Start video acquisition
-if ~isempty(vr.trainee.pupillometryVideo) && vr.trainee.pupillometryVideo ~= 1
+if RigParameters.hasDAQ && isprop(RigParameters, 'video_record') && RigParameters.video_record
     vr = startVideoAcquisition(vr);
 end
 ```
 
-5. In Experiment file add the following lines in `runtimeCodeFun` function (just after `catch err displayException(err);` line):
 
-```
+4. In Experiment file add the following lines in `runtimeCodeFun` function (just after `catch err displayException(err);` line):
+
+```matlab
 % Stop video acquisition
-if ~isempty(vr.trainee.pupillometryVideo) && vr.trainee.pupillometryVideo ~= 1
-        vr = stopVideoAcquisition(vr);
+if RigParameters.hasDAQ && isprop(RigParameters, 'video_record') && RigParameters.video_record
+    vr = stopVideoAcquisition(vr);
 end
 ```
 
-6. In Experiment file add the following lines in `terminationCodeFun` function (the very first line):
+5. In Experiment file add the following lines in `terminationCodeFun` function (the very first line):
 
-```
+```matlab
 % Stop video acquisition
-if ~isempty(vr.trainee.pupillometryVideo) && vr.trainee.pupillometryVideo ~= 1
-        vr = stopVideoAcquisition(vr);
+if RigParameters.hasDAQ && isprop(RigParameters, 'video_record') && RigParameters.video_record
+    vr = stopVideoAcquisition(vr);
 end
 ```
-
- ### Pupillometry backup videos task schedule
- 
- 1. On Windows type **"Task Scheduler"**
- 2. Open **Task Scheduler** "App"
- 3. On right hand side menu, click on **"Create Task"** Action
-
- <figure>
-  <img src='./assets/images/configure_systems/Menu_task_scheduler.png'>
-  <center><figcaption>Task scheduler menu</figcaption></center>
- </figure>
-
- 4. Name new task as **video_backup**
- 5. Add a trigger to run task daily at 11:30 pm
-
- <figure>
-  <img src='./assets/images/configure_systems/Trigger_tab_task_scheduler.png'>
-  <center><figcaption>Task scheduler Trigger Tab</figcaption></center>
- </figure>
-
- 6. Add an action: add this line to the Program/script edit: `C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_video_files`
- 7. Hit **OK** button
-
 
 ## Pupillometry DB and data organization
 
@@ -123,7 +98,7 @@ end
 + A few MATLAB functions were built to check how pupillometry jobs are doing:
 
 + Get processed data from a session:
-```
+```matlab
 key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
 pupillometry_data = fetch(pupillometry.PupillometrySessionModelData * pupillometry.PupillometrySyncBehavior & key, '*')
 pupillometry_data = 
@@ -145,7 +120,7 @@ pupillometry_data =
 
 + Restart processing for failed processing
 Sometimes processing fails for external factors (processing system was down, model was not properly selected, etc). As a first attempt to solve the issue a restart processing function was created:
-```
+```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
 psmd.restart_pupillometry_failed_job(key)
@@ -153,20 +128,20 @@ psmd.restart_pupillometry_failed_job(key)
 If processing fails again, contact Software Developer and check `#automation_pipeline_errors` slack channel for more information about the error.    
 
 + Check status for all sessions:
-```
+```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 all_sessions_table = psmd.check_status_pupillometry_jobs()
 ```    
 
 + Check status for a specific session(s):
-```
+```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
 session_status = psmd.check_status_pupillometry_jobs(key)
 ```    
 
 + Get all succesfully processed sessions:
-```
+```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 pupillometry_finished_sessions = psmd.get_finished_jobs_pupillometry()
 ```    
@@ -185,7 +160,7 @@ pupillometry_finished_sessions = psmd.get_finished_jobs_pupillometry()
 4. Add model to the DB (u19_pupillometry.PupillometryModels table):
  + MATLAB code:
 
-```
+```matlab
 new_model_key = struct()
 new_model_key.model_description = 'New model to insert'
 new_model_key.model_path = 'video_models/new_model_directory_name'
@@ -195,7 +170,7 @@ insert(pupillometry.PupillometryModels,new_model_key)
 
 5. Get `model_id` of model you want to use for your sessions:
 
-```
+```matlab
 >> pupillometry.PupillometryModels
 
 ans = 
@@ -217,7 +192,7 @@ Object pupillometry.PupillometryModels
 
 6. Insert into `u19_pupillometry.PupillometrySessionModel` sessions to be processed with the new model:
 
-```
+```matlab
 key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
 key.model_id = 2
 insert(pupillometry.PupillometrySessionModel, key, 'IGNORE');
@@ -227,7 +202,3 @@ insert(pupillometry.PupillometrySessionModel, key, 'IGNORE');
 
 ### **Note: All pupillometry sessions are processed with a default model (model_id = 2, Pupillometry_2023).**
 ### **In the future we plan a way to select model for subjects and or rigs instead of being processed with default model.**
-
-
-## Review processed data
-

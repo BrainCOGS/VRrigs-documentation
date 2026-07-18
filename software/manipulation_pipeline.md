@@ -46,7 +46,7 @@ lang: en-US
   + Here is the minimum table definition for a manipulation protocol table, it is composed by an id to identify the protocol and a description field.
   
   + Generic **"Manipulation" Protocol.m**
-  ```
+  ```matlab
   %{
   # Defined <manipulation> protocols for training
   <manipulation>_protocol_id     : int AUTO_INCREMENT
@@ -73,7 +73,7 @@ lang: en-US
  + For the current guide we will only show OptogeneticsStimulationParameters definition as an example:
 
  ### OptogeneticsStimulationParameters.m:
- ```
+ ```matlab
   %{
   # Parameters related to laser stimulation
   stim_parameter_set_id       : int AUTO_INCREMENT  # 
@@ -98,7 +98,7 @@ lang: en-US
 + After all feature tables are defined they should be added to the "Manipulation" Protocol table.
 
 + For our Optogenetics example:
- ```
+ ```matlab
  % Declare new "feature" table
  optogenetics.OptogeneticsStimulationParameters
  % Add the feature -> protocol table
@@ -112,7 +112,7 @@ lang: en-US
 
 + After the “features” tables are added to the "Manipulation" Protocol table we are ready to add protocols to be “ready” and selectable for a behavior session:
 
-```
+```matlab
  % Insert stim parameter record
  stim_parameter_rec.stim_parameter_description = 'cool stims'
  stim_parameter_rec.stim_wavelength = 473
@@ -140,7 +140,7 @@ lang: en-US
  + We will show how to insert new software parameters:
  + This for the **optogenetics.OptogeneticSoftwareParameter** table
 
- ```
+ ```matlab
  param_struct = struct();
  param_struct.software_parameter_description =  'stimulation_sequence # 1';
   
@@ -170,7 +170,7 @@ lang: en-US
  + This table stores manipulation data for a specific behavior session. This table “links” a manipulationProtocol & manipulationSoftwareParameters with a behavior Session.
  + This table does not need any additional code on it. (Unless extra fields from the behavior file are needed to be stored). **Researcher should contact DB designer if that is their intention**
 
- ```
+ ```matlab
  OptogeneticSession.m 
  %{
  # Information of a optogenetic session
@@ -189,7 +189,7 @@ lang: en-US
 
 Code extract  from **OptogeneticSessionTrial** table
 
-```
+```matlab
 function trial_structure = get_manipulation_trials_data(~,session_key, log)
 .
 .
@@ -217,7 +217,7 @@ for itrial = 1:nTrials
 + After training has occurred all relevant data will be accessible in the corresponding tables of the database.
 + <a href="https://docs.datajoint.org/matlab/queries/03-Fetch.html">Datajoint fetch guide</a> 
 
-```
+```matlab
 key = struct('subject_fullname', 'sbolkan_a2a_492', 'session_date', '2022-06-27')
 fetch(optogenetics.OptogeneticSessionTrial * optogenetics.OptogeneticSession & key,'*')
 

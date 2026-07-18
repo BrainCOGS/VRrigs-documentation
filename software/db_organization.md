@@ -10,7 +10,7 @@ lang: en-US
  2. Behavior DBs
  3. Ephys & Imaging DBs
 
-## Lab & Subject DBs
+## Lab, Subject & Schedule DBs
 
  ### **1. u19_lab**
   +  Stores all general information that apply for entire BRAINCoGS projects. Aditionally general information for researchers are stored here.
@@ -33,6 +33,17 @@ lang: en-US
   + **HealthStatus** Daily health assesment for subject. Fields like normal_behavior, posture_grooming, technician_comments etc.
   + **Allele** All subjects' genotypes in BRAINCoGS.
   + **Cage** Cage list for subjects. 
+
+### **3. u19_scheduler** 
+ + Stores all thing related to Scheduling future sessions for subjects in the <a href="https://braincogs.github.io/software/virmen_developer.html#new-training-gui"> "NewTrainingGUI" model </a>.
+ + It includes rig current IOs, training profiles for all experiments and schedule calendar for future sessions  
+
+ #### Main tables
+  + **Schedule** Register which subjects are scheduled to train in which date, on which rig and what training profile they are assigned. 
+  + **TrainingProfile** All variables for a given experiment, (e.g. experiment world, protocol, rewardFactor). Check  <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> Rig Tester </a> documentation for more information.
+  + **InputOutputRig** All IOs "types" defined for every rig (e.g. Reward, LeftAirPuff, Arduino). Check  <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> Rig Tester </a> documentation for more information.
+  + **InputOutputRigParameters** All RigParameters.m parameters needed for a given IO.
+  + **InputOutputProfile** Define Which IOs are needed for a specific rig and/or task.
 
 ## Behavior DBs 
 

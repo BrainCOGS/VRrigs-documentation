@@ -59,12 +59,18 @@ lang: en-US
  #### Check available user channels:
 
  ##### MATLAB
- 1. Execute ```fetch(lab.User & "slack_webhook <> ''",'slack_webhook')```
+ 1. Execute 
+ 
+ ```matlab
+ fetch(lab.User & "slack_webhook <> ''",'slack_webhook')
+ ```
 
  ##### Python
  1. Execute: 
-  + ```lab = dj.create_virtual_module('lab', 'u19_lab')```
-  + ```(lab.User & "slack_webhook <> ''").fetch('KEY', 'slack_webhook', as_dict=True)```
+  ```python
+  lab = dj.create_virtual_module('lab', 'u19_lab')
+  (lab.User & "slack_webhook <> ''").fetch('KEY', 'slack_webhook', as_dict=True)
+  ```
 
 ### Create and register new webhooks for alerts:
 
@@ -76,7 +82,7 @@ lang: en-US
 
  ##### MATLAB
  
- ```
+ ```matlab
  new_slack_webhook = struct
  new_slack_webhook.webhook_name = (notification channel name)
  new_slack_webhook.webhook_url  = (webhook url from slack API)
@@ -85,7 +91,7 @@ lang: en-US
 
  ##### Python
 
- ```
+ ```python
  lab = dj.create_virtual_module('lab', 'u19_lab')
  new_slack_webhook = dict()
  new_slack_webhook['webhook_name'] = (notification channel name)
@@ -97,7 +103,7 @@ lang: en-US
 
  ##### MATLAB
  
- ```
+ ```matlab
  user = struct
  user.user_id = (NETID of user)
  update(lab.User & user,'slack_webhook', (webhook url from slack API))
@@ -105,7 +111,7 @@ lang: en-US
 
  ##### Python
 
- ```
+ ```python
  lab = dj.create_virtual_module('lab', 'u19_lab')
  user = dict()
  user['user_id'] = (NETID of user)

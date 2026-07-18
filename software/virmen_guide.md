@@ -13,11 +13,9 @@ lang: en-US
 
  + Read ViRMEn Manual. Access from virmen Repository (login to github first): <a href="https://github.com/BrainCOGS/TankMouseVR/blob/master/ViRMEn%20manual.pdf">Virmen Manual Link</a> 
 
- ### Initial set-up 
-
  + Each task is conformed by a group of files (2 .mat files and 4 .m functions) that make everything work. All files are described here:
 
- #### Experiment code file
+ ### Experiment code file
  + Located in **ViRMEn\experiments** (Rigs) or **tankmousevr\experiments** (Personal computer) directory.
  + File that controls stimulus presentation and trial/block progression. Each frame this code is executed, it's general structure is a state machine that follow the trial schema.
  + Detailed guide on how to modify things on ViRMEn Manual.
@@ -33,7 +31,7 @@ lang: en-US
   <center><figcaption>ViRMEn Experiment Code</figcaption></center>
  </figure>
 
- #### World file
+ ### World file
  + Located in **ViRMEn\experiments** (Rigs) or **tankmousevr\experiments** (Personal computer) directory.
  + File that defines the structure of the Virmen world(s) settings.
  + Detailed guide on how to modify things on ViRMEn Manual.
@@ -49,7 +47,7 @@ lang: en-US
   <center><figcaption>ViRMEn GUI: to modify world files</figcaption></center>
  </figure>
 
- #### Protocol file
+ ### Protocol file
  + Located in **ViRMEn\experiments\protocols** (Rigs) or **tankmousevr\experiments\protocols** (Personal computer) directory.
  + File that declares the number of levels, mazes settings and criteria to decide when to advance subjects to next levels.
  + Original file: ```C:\Experiments\ViRMEn\experiments\protocols\PoissonBlocksCondensed3m.m```
@@ -113,7 +111,7 @@ lang: en-US
  | fracDuplicated   | Proportion of trials that are duplicated                                                                                                                                                 | Real number ([0-1]) |
  | trialDuplication | Number of times each set of stimulus parameters are duplicated, for a given fracDuplicated (i.e., number of exact replications of each trial type for the duplicated fraction of trials) | Natural number      |
 
- #### Stimuli bank file
+ ### Stimuli bank file
 
  + Located in **ViRMEn\experiments\protocols** (Rigs) or **tankmousevr\experiments\protocols** (Personal computer) directory.
  + File that contains stimuli sets that will be drawn for during session. It contains trial data: towers positions, number of towers for each maze level depending on protocol variables.
@@ -122,7 +120,218 @@ lang: en-US
   1. Create protocol and world files.
   2. Run ```generatePoissonStimuli(('world_file'), @('protocol_file'))```. Substitute **world_file & protocol_file** with corresponding names.
 
- #### Program wrapper file
+### RigParameters file
+
+ + Located in **ViRMEn\extras** (Rigs) or **tankmousevr\extras** (Personal computer) directory.
+ + File that defines a bunch of parameters to control/adjust hardware, display and motion in task.
+ + Only file: ```C:\Experiments\extras\RigParameters.m```
+ ##### If working on a rig computer:
+  * Most likely that this file has been set up by Lab Manager. Do nothing. 
+ ##### If working on a personal computer:
+ * The most common use for this file when working on a personal computer is to run ViRMEn simulations without interacting with the hardware, to do this set:
+ * ```simulationMode: = true```
+ * ```hasDAQ: = false```
+ * This will allow you to run simulations on any Windows computer and use the keyboard to simulate mouse movement.
+
+ <figure>
+  <img src='./assets/images/virmen_guide/rigparameters_file.png'>
+  <center><figcaption>RigParameters File</figcaption></center>
+ </figure>
+
+## New Training GUI 
+
+- The next sections will describe a workflow for training from start to finish. From selecting which experiment will be executed to reviewing session performance just after it finished.
+
+### Define Training Profile (WebGUI)
+
+ <figure>
+  <img src='./assets/images/virmen_guide/training_profile_management.png'>
+  <center><figcaption>Training Profile Management Site</figcaption></center>
+ </figure>
+
+
+
+### Rig Schedule (WebGUI)
+
+ <figure>
+  <img src='./assets/images/virmen_guide/rig_schedule.png'>
+  <center><figcaption>Rig Schedule Site</figcaption></center>
+ </figure>
+
+
+
+### Rig Tester
+
+- The Rig Tester GUI allows to check all Inputs and Outputs (IOs) for a rig before training starts. The IOs are predefined, via Input Output Profile and Rig Status tables. Check <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> Virmen developer Rig Tester section </a> for more information.
+- Starting here, all steps next sections are performed in the rig machine.
+- MATLAB should be already open and Rig Tester GUI should be visible (if not type ```TrainingToday``` to start training process).
+
+ <figure>
+  <img src='./assets/images/virmen_guide/rig_tester.png'>
+  <center><figcaption>Rig Tester GUI</figcaption></center>
+ </figure>
+
+
+ + Description of all parts of the Rig Tester GUI. Take into account that some buttons will not be shown (or some extra buttons will be shown) compared to the example image.
+ 1. **Start all tests Button:** Automatically starts all "Automatic Tests". It goes one by one until is done.
+ 2. **Start individual test Button:** For "Output Tests" such as valves and air puffs. This button briefly activate the output to manually verify if it is working properly.
+ 3. **Mark Passed/Failed Buttons:** For "Input & Output Tests" technician should push this button to mark test as passed or failed. 
+ 4. **Report Checkboxes:** If a test is failed, technician can report it by checking the report checkbox.
+ 5. **Calibation Panel:**
+    - **Left Valve/Right Valve/Valve Button:** Calibration will be perfomred: 25 drops will be delivered in the corresponding lick spout. Technician can check if ml delivered correspond to desired value (4ul per drop).
+    - **Up and down Arrow Buttons:** to adjust valve timing accordingly to the desired calibration.
+    - **Set calibration time Button:** to save adjusted valve times in RigParameters file.
+    - **Both valves Button:** to perform calibration on both valves simultaneously.
+ 6. **Ready Button:** If all tests are passed, proceed to Training Flow GUI screen.
+ 7. **Report & Comment Button:** If at least 1 of the IOs test is not passed and the Report Checkboxes are marked a report screen will be shown to write additional comments for Lab Manager (see below).
+
+  <figure>
+  <img src='./assets/images/virmen_guide/rig_tester_report.png'>
+  <center><figcaption>Missing Rig Parameters Dialog</figcaption></center>
+ </figure>
+
+ - If there is a missing rig parameter in the RigParameters.m file for the configured IOs in the rig a dialog as the shown below will be prompted. Please add the parameters in RigParameters.m file and check Check <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> Virmen developer Rig Tester section </a> for more information. A slack message will be sent to the **#rig_issues_and_troubleshooting** channel when report is sent. 
+
+ <figure>
+  <img src='./assets/images/virmen_guide/missing_rig_parameters.png'>
+  <center><figcaption>Missing Rig Parameters Dialog</figcaption></center>
+ </figure>
+
+
+### Training Flow GUI
+
+- After Rig tester GUI passed the Training Flow GUI will be shown:
+- This GUI is the interface to:
+    - Start subject training
+    - Check training status for subjects scheduled for the day
+    - Verify training profiles for each subject
+    - Add test subjects to train to check experiment code 
+
+ <figure>
+  <img src='./assets/images/virmen_guide/training_flow_gui.png'>
+  <center><figcaption>Training Flow GUI</figcaption></center>
+ </figure>
+
+
+ + Description of all parts of the Training Flow GUI.
+ 1. **Slot # Labels:** Informative label to inform order of training for the day.
+ 2. **Training Status Icon:** Icon to inform current status for the corresponding subject. Check image below for all possible icon status:
+
+ <figure>
+  <img src='./assets/images/virmen_guide/training_flow_gui_icons.png'>
+  <center><figcaption>Training Flow GUI Icons</figcaption></center>
+ </figure>
+
+ 3. **Train Button:** When clicked start selected subject training process. Training Setup GUI will be opened.
+ 4. **Tech instructions Area:** General instructions provided by the researcher to do before start training.
+ 5. **Tech instructions Checkbox:** Training Button will not be enabled until the tech instructions checkbox is marked.
+ 6. **Level & Sublevel Override Selectors:** "Force" training to start in a specific level (and sublevel if experiment works with them).
+ 7. **Past performance Plot:** Plot to verify main training performance stats (# trials, session perfomance & level) for the last 50 sessions of the corresponding subject.
+ 8. **Check Training Profile Button:** When clicked, a dialog will be prompted (shown below) to verify all training profile variables for the experiment. Check <a href="https://braincogs.github.io/software/virmen_guide.html#define-training-profile-webgui"> Define Training Profile Web GUI section </a> for more information.
+
+ <figure>
+  <img src='./assets/images/virmen_guide/check_training_profile.png'>
+  <center><figcaption>Review Training Profile Dialog</figcaption></center>
+ </figure>
+
+ * a. **Verify DB & Network Drive:** Labels to show if Database & Network drive are working correctly. If DB is not connected, <a href="https://braincogs.github.io/software/virmen_developer.html#virmen-offline"> ViRMEn Offilne </a> will be used to continue training.
+ * b. **Add Test Training Slot Button:** Click this to verify experiment code without the need to create a "real" session. The "Add test training Dialog will be prompted. This dialog is shown and described below:
+ * c. **Refresh Schedule Button:** Refresh schedule in case of some changes have been made to it during the day.
+ * d. **Open Rig Tester Button:** If an IO has to be rechecked, click this button to open Rig Tester GUI.
+
+#### Add test training Dialog 
+
+  <figure>
+  <img src='./assets/images/virmen_guide/add_test_training_slot.png'>
+  <center><figcaption>Add test training Dialog</figcaption></center>
+ </figure>
+
+ + Description of all parts of the Add Test Training Dialog
+ 1. **Copy Training Vars from scheduled Checkbox:** Click this checkbox if you want to create a test-subject with the same configuration as one of the scheduled subjects for the day.
+ 2. **Copy Training Perfomance Checkbox:** Click this checkbox if you want to copy last 20 session perfomance from the scheduled subject for the newly created test-subject. Use this primarily to check that maze advancement code and/or criteria is working as expected. Check <a href="https://braincogs.github.io/software/virmen_guide.html#protocol-file"> Protocol file </a> and <a href="https://braincogs.github.io/software/virmen_developer.html#select-maze-for-each-experiment"> Maze advancement code </a> for more information.
+ 3. **Subject Sheduled Selector:** if 1 is checked, select here which subject are you copying configuration from.
+ 4. **Subject Selector:** If 1 is unchecked, select which test subject will be used for the test training slot.
+ 5. **Training Profile Selector:** If 1 is unchecked, select which training profile will be used for test training slot.
+ 6. **InputOutput Profile Selector:** If 1 is unchecked, select which InputOutput profile will be used for test training slot. Normally this has no effect on the test training, leave untouched if unsure.
+ 7. **Add Test Training Slot Button:** When clicked a new test subject slot will be appeared listed on the Training Flow GUI.
+ 8. **Training Profile Panel:** Panel to verify all Training Profile variables for the test training slot.
+
+### Training Setup GUI
+
+ <figure>
+  <img src='./assets/images/virmen_guide/training_setup_gui.png'>
+  <center><figcaption>Training Setup GUI</figcaption></center>
+ </figure>
+
+- After clicking training button on Training Flow GUI. Training Setup GUI will be shown. Here fianl adjustments can be made before experiment stats.
+
++ Description of all parts of the Training Setup GUI.
+ 1. **Turn On/Off Cameras Switch:** Clicking this switch will turn on cameras (if installed) to verify correct position of subject.
+ 2. **Lateral Camera View:** View to verify and correct Anterior & Dorsal positioning of the subject. 
+ 3. **Top Camera View:** View to verify and correct Lateral & Anterior positioning of the subject. 
+ 4. **Movement Sensor Plot:** Plot to verify the correct function of the Arduino Movement Sensor.
+ 5. **Motor Panel:** Panel to adjust motor position.
+    - **Arrow Buttons:** Perform a single step of the motor in the desired direction.
+    - **Step Edits:** Adjust step size of the motor in the corresponding axis.
+    - **Current Position Labels:** Show current position of the motors.
+    - **Sotred Position Labels:** Show last stored position in the Database for the current subject in this particular rig. If new subject average position of the subjects for this rig will be shown.
+    - **Set Motors Home Button:** Set all motors to position 0 mm. Use this only when there is no subject already in the rig !!.
+    - **Load Subject Coordinates Button:** Normally coordinates will be already loaded for subject. Use this only when coordinates have changed substantially.
+    - **Save New Coordinates Button:** Click this when motors position have been adjusted. New coordinates will be available for next run.
+ 6. **Reward & Calibration Panel:** Calibration with same functionality as in <a href="https://braincogs.github.io/software/virmen_guide.html#rig-tester"> Rig Tester </a>. Buttons to deliver small reward for subject. This allows to verify if subject is able to reach reward lick spouts comfortably.
+ 7. **Puff Panel:** (Only visible for rigs with air puffs). It also works to verify if subject and air puffs valves are correctly placed for subject to recieve the air puff stimulation.
+ 8. **Pre Training Instructions Panel:** (Only visible for subjects with defined pretraining instructions in training profile). Check <a href="https://braincogs.github.io/software/virmen_guide.html#define-training-profile-webgui"> Training Profile Management Section </a>. Last instructions to be performed by technician before start training subject. **Start training subject button** will not be enabled until all of these are checked.
+
+
+
+### ViRMEn Experiment Stats GUI & Maze Projection
+
+
+- After clicking Start training subject button Virmen Experiment should start and ViRMEn Experiment Stats GUI will be shown. This GUI works for monitoring current performance of subject throughout the session.
+
+
+ <figure>
+  <img src='./assets/images/virmen_guide/virmen_experiment_stats.png'>
+  <center><figcaption>Virmen Experiment Stats GUI</figcaption></center>
+ </figure>
+
+ 
++ Description of all parts ViRMEn Experiment Stats GUI.
+ 1. **Fraction Correct Plot:** Overall & left/right performance for the all blocks of the session.
+ 2. **Pass Criteria Plot:** Verify last 40 trials performance & bias. These stats are used to determine if subject is promoted to the next level. 
+ 3. **Speed, Rotation & Angle Plots:** Plots to verify displacement variables of the last trial. These are used to verify correct operation of movement sensor and monitoring subject side bias.
+ 4. **Psychometric Plot:** % of right responses vs right-left towers trials. This plot should approximate roughly to a sigmoid for well trained subjects.
+ 5. **Message Test Area:** Session milestones are written here. Some of these are: New level achieved, forced delivery reward, level demotion, etc.
+
+- In addition to the Experiment Stats GUI. The virtual reality world should be shown in the rig projector. The world could look something similar to the image shown below:
+
+ <figure>
+  <img src='./assets/images/virmen_guide/virmen_maze.png'>
+  <center><figcaption>ViRMEn Maze Projection</figcaption></center>
+ </figure>
+
+### Post Training GUI
+
+- After subject session is over the Post Training GUI will be prompted. This GUI works to monitor overall performance & verify that no code error occured during the experiment. 
+
+ <figure>
+  <img src='./assets/images/virmen_guide/post_training_gui.png'>
+  <center><figcaption>Post Training GUI</figcaption></center>
+ </figure>
+
+ + Description of all parts Post Training GUI.
+ 1. **Session Stats Panel:** Most common performance stats for the session. If session data is shown in red it is most likely that an error or something abnormal occured during the session.
+ 2. **Session Plots:** Overall & left/right performance for the all blocks of the session.
+ 3. **Reward Panel:** Same functionality as the Reward Panel in Training Setup GUI.
+ 4. **Restart Panel:** By default MATLAB is restarted after a subject is trained. This can be prevented by unchecking the checkbox in this panel. 
+ 5. **Eror Description Area:** If an error occured during training, this window will show it as MATLAB states it.
+ 6. **Error Comment Area:** Window to provide aditional comments if a report is sent.
+ 7. **Post Training Instructions Checkboxes:** (Only visible for subjects with defined ppsttraining instructions in training profile). Check <a href="https://braincogs.github.io/software/virmen_guide.html#define-training-profile-webgui"> Training Profile Management Section </a>. Last instructions to be performed by technician after training subject. **Everything OK** button will not be enabled until all of these are checked.
+ 8. **Send Report and Everything OK Buttons :** If an error occured, technician can send a report by clicking corresponding button. This will send a slack message to the **#rig_training_error_notification** channel.
+
+ ## Old Training GUI
+
+ ### Program wrapper file
 
  + Located in **ViRMEn\experiments\programs** (Rigs) or **tankmousevr\experiments\programs** (Personal computer) directory.
  + File to set up a cohort of animals on the training GUI.
@@ -141,25 +350,9 @@ lang: en-US
   <center><figcaption>Program Wrapper File</figcaption></center>
  </figure>
 
- #### RigParameters file
 
- + Located in **ViRMEn\extras** (Rigs) or **tankmousevr\extras** (Personal computer) directory.
- + File that defines a bunch of parameters to control/adjust hardware, display and motion in task.
- + Only file: ```C:\Experiments\extras\RigParameters.m```
- ##### If working on a rig computer:
-  * Most likely that this file has been set up by Lab Manager. Do nothing. 
- ##### If working on a personal computer:
- * The most common use for this file when working on a personal computer is to run ViRMEn simulations without interacting with the hardware, to do this set:
- * ```simulationMode: = true```
- * ```hasDAQ: = false```
- * This will allow you to run simulations on any Windows computer and use the keyboard to simulate mouse movement.
 
- <figure>
-  <img src='./assets/images/virmen_guide/rigparameters_file.png'>
-  <center><figcaption>RigParameters File</figcaption></center>
- </figure>
-
- ## Set up training 
+ ### Set up training 
 
   1. Make sure you have all files needed on the section above.
   2. Run your **Program wrapper file**  (e.g. ```trainPoissonBlocks_lp_cohort1()```).
@@ -201,7 +394,7 @@ lang: en-US
  </figure>
 
   2. In MATLAB write the following (replace code in brackets with corresponding info for the subject):
-  ```
+  ```matlab
   new_record = struct
   new_record.subject_fullname = ['efonseca_ef481_actpg004']; # Subject fullname 
   new_record.ml_position = [17.5]   # ml position in mm (motor axis#1 position in GUI)
@@ -210,7 +403,7 @@ lang: en-US
   insert(subject.LickometerMotorPosition, new_record)
   ```
 
- ## Training GUI detailed description
+ ### Old Training GUI detailed description
 
  In this section all elements of the training GUI will be described: 
 
@@ -235,7 +428,7 @@ lang: en-US
  13. **Close GUI:** Click to close GUI.
  14. **Restart MATLAB shortcut:** Click to restart MATLAB.
 
- ## Add animal dialog detailed description
+ ### Add animal dialog detailed description
 
  <figure>
   <img src='./assets/images/virmen_guide/add_animal_dialog_description.png'>
@@ -291,31 +484,31 @@ lang: en-US
  #### Arduino Serial communication error
 
  + Errors like these:
- ```
+ ```matlab
  Open failed: Port: COM7 is not available. Available ports: COM1.
  Use INSTRFIND to determine if other instrument objects are connected to the requested device.
  ```
- ```
+ ```matlab
  Serial communications have not been properly initiated.
  ```
- ```
+ ```matlab
  Device Error: Unanticipated host error
  ```
  + Are the most common error during training. Check if Arduino COM Port is found in device manager and restart MATLAB and/or system to solve this.
 
  #### virmen variable not properly set
 
- ```
+ ```matlab
  Reference to non-existent field (variable_name)...
  ```
- ```
+ ```matlab
  Unrecognized field name (variable_name).
  ```
  + This error is solved if variable is initialized in ```initializationCodeFun()``` (e.g: ```vr.(variable_name) = 0```)
 
  #### Nidaq channel is busy or not found
 
-```
+```matlab
  [nidaqPulseRightReward:commit]  Requested operation could not be performed, because the specified digital lines are either reserved or the device is not present in NI-DAQmx.
  It is possible that these lines are reserved by another task or the device is being reset. If you are using these lines with another task, wait for the task to complete.  If you want to force the other task to relinquish the device, reset the device. If you are resetting the device, wait for the reset to finish.
  Device:  Dev1

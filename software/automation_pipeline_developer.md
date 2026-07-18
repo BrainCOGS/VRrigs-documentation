@@ -1,5 +1,5 @@
 ---
-title: Ephys/Imaging Automation Pipeline in BRAINCoGS (Developer Guide)
+title: Ephys/Imaging Automation Pipeline (Developer Guide)
 lang: en-US
 ---
 
@@ -22,6 +22,26 @@ To accomplish this we developed three tools:
  ## Ephys/Imaging Automation GUI
 
 In this mini guide for the automation GUI we will show the relationship between the GUI and the Database. From which tables some values are taken and which records are written by the GUI.
+
+### Create Executable and install Ephys/Imagin Automation GUI
+
+- Follow these steps to create the executable: 
+
+1. Connect to the 185a Recording machine.
+2. Open **C:\Experiments\RecordingProcessJobGUI** directory.
+3. Open **Recording_Automation_GUI.prj** file.
+4. Click **Package** button.
+5. When packaging is done all files will be available in **\\cup.pni.princeton.edu\braininit\Shared\AutomationGUI_Installation**
+
+- To install GUI:
+
+1. Connect to machine where GUI will be installed (182-Imaging-Rig1 & 165A-OneboxRecording at the moment).
+2. If installing for the first time:
+    - Copy **AutomationGUI_update** directory from **braininit\Shared\AutomationGUI_Installation** into the desktop.
+    - Execute **firstTimeAutomationGUI.BAT** from **AutomationGUI_update** directory in the desktop.
+3. Execute **update_AutomationGUI.BAT** from **AutomationGUI_update** directory in the desktop.
+4. Follow instructions to install GUI (create shortcut in the desktop)
+5. Open Recording Automation GUI
 
 ### Automation GUI main screen
 
@@ -254,7 +274,7 @@ The class that manages workflow at the recording level is (<a href="https://gith
 - Coordinates the entire pipeline.
 - **File:** main_script.py, and main entry point of repository.
 
-```
+```python
 # Get recording process and data directories
 recording_process_id = os.environ['recording_process_id']
 raw_data_directory = os.environ['raw_data_directory']
@@ -282,7 +302,7 @@ ppw.post_process_main(raw_data_directory, processed_data_directory, sorter_proce
 - **File:** u19_sorting/preprocess_wrappers.py
 - **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/catGT_output
 
-```
+```python
 def preprocess_main(recording_process_id, raw_data_directory, processed_data_directory):
 
     preprocess_parameters = json.load(preprocess_param_file)
@@ -300,7 +320,7 @@ def preprocess_main(recording_process_id, raw_data_directory, processed_data_dir
 - **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/(sorter)_output
 
 
-```
+```python
  sorter = config.sorters_names[process_parameters['clustering_method']]
 
 sorter_processed_directory = pathlib.Path(processed_directory, process_parameters['clustering_method']+'_output')
@@ -321,7 +341,7 @@ sorter_processed_directory = pathlib.Path(processed_directory, process_parameter
 - **File:** u19_sorting/postprocess_wrappers.py
 - **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/ibl_data
 
-```
+```python
   # For the moment we just call ibl_data transformation to run atlas
   ibl_atlas_post_processing.run_ibl_atlas_post_processing(raw_data_directory, processed_data_directory, sorter_processed_directory)
 ```

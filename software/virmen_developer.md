@@ -71,6 +71,8 @@ Here is an overview of which main functions are run ordered chronogically:
   - The TestTable is filtered with the corresponding IOs:
     1. If used in **TrainingToday**: IOs = Corresponding IOs for all subjects to train in that Rig. The corresponding IOs are taken from InputOutput Profiles of the subjects in the schedule.
     2. If called on its own "TestVRRig_2": IOs = All IOs registered for rig (all IOs with status != N/A on *scheduler.RigStatus*)
+    3. The function that "filters" all not used tests is called **selectTask** <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_2/selectTask.m">select task function code</a>. This is done by setting a rowHeight = 0 to all tests not used in the RigTester run.
+
 
   #### IO Malfunction    
 
@@ -189,6 +191,60 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
 - ViRMEn\experiments\utility\get_if_rig_double_valve_local.m		
 - ViRMEn\notifications\error_training_notification_slack_local.m		
 
+## Select Maze for each experiment
+
+- From Old Training GUI or New Training GUI this works exactly the same way:
+
+1. Inside experiment code previous performance data is saved in **trainee** variable, accesed in experiment code as: **vr.exper.userdata.trainee**
+2. In  **setupTrials** function, a function declared for all experiments **getTrainingLevel** function is executed.
+3. New level (or maze) to be executed is defined in **getTrainingLevel** function. For more details in how this is achieved, refer to the function code itself. (Very well documented) <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/common/getTrainingLevel.m'> Code here </a>.
+4. There are two functions: **getTrainingLevel_josh** and **getTrainingLevelSublevelMode** that replace common getTrainingLevel function that take into account extra variables in specific experiments: (context and sublevel stats). 
+
+### Sublevel selection
+
+- For experiments that include sublevel configuration. A couple of functions are added to select corresponding sublevel after level selection:
+
+1. **getCurrentSubLevel** Get last sublevel to be achieved in previous session.
+2. **selectInitialSubLevel** Set maze specific sublevel variables for experiment. 
+
+
+## Behavior File creation
+
+- Behavior files (or log files) are stored locally for each ViRMEn session.
+- These files are then later copied to braininit Drive and populated to the Database. Check <a href='https://braincogs.github.io/software/virmen_developer.html#lists-of-current-scheduled-tasks'> Scheduled tasks </a> and  <a href='https://braincogs.github.io/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob'> Behavior DB population cronjob </a> for more info in those processes.
+
+- Behavior file creation is handled by **ExperimentLog** class. Specifically in **save** function of that class.
+**ExperimentLog** class handles all data collection throughout a session. Check <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/classes/ExperimentLog.m'> ExperimentLog code </a> for more information.
+
+
+### Behavior filepath in Old Training GUI
+
+  - Filepath is created in **TrainingRegiment** class. Specifically in **whichLog** function. 
+  - TrainingRegiment class is the code itself for the GUI in the "Old Traning GUI". 
+  - Most of the TrainingRegiment class actions are described : <a href='https://braincogs.github.io/software/virmen_developer.html#old-training-gui'> here </a> and <a href='https://braincogs.github.io/software/virmen_guide.html#training-gui-detailed-description'> here </a>.
+  - Filepath is given by the <a href='https://braincogs.github.io/software/virmen_guide.html#program-wrapper-file'> Program wrapper file </a>. Where **dataPath**, **experName** & **cohortName** variables are defined following this convention:
+
+  ```matlab
+  behaviorfilepath = [ dataPath, filesep, strrep(experName,' ',''), '_', cohortName '_', RigParameters.rig, '.mat' ] 
+  ```
+  - behaviorfilepath e.g. = **C:\Data\josh\data\jjulian_jj077\josh_context_josh_poisson_blocks_context_165I-Rig4-T_jjulian_jj077_T_20230324_1.mat** 
+
+### Behavior filepath in New Training GUI
+
+  - Filepath is created in **TrainingRegiment_DBGUI** class. Specifically in **whichLog** function. 
+  - TrainingRegiment_DBGUI is a stripped version of TrainingRegiment class, with only filepath creation functions ported over.
+  - 
+  - Filepath follows this convention: *****
+
+  ```matlab
+  behaviorfilepath = ['C:/Data/(userID)/(subject_fullname)/', 'Session_', experiment_name, ...
+          '_', RigParameters.rig, ...
+          '_', trainee.name, ...
+          '_', char(datetime('now', 'Format', 'uuuuMMdd')), ...
+          '_',  num2str(session_number),'.mat']
+  ```
+  - behaviorfilepath e.g. = **C:\Data\jk8386\jk8386_jk73\Session_jesse_chronic_spatfreq_TTL_165I-Rig4-T_jk8386_jk73_20250423_0_1.mat** 
+
 
 ## Initialize Trial World Sequence
 
@@ -196,7 +252,6 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
 - There are two "modes" to execute Trial World Sequence. "Classic" (inside experiment code and dependent of StimulusBank file) & "NoStimBank" mode.
 
 
-#### 
 
 
 #### High-Level Comparison
@@ -654,13 +709,20 @@ The next list comprehends the most common errors and a way to fix them.
         - **function ('init', ...)** to initialize nidaq function
         - **function ((specific functionality read, on, off, etc))** to execute function
         - **function ('end')** to end functionality and close port for the next task
+- Common places for nidaq function in experiments. Although there are no specific places on experiments where nidaq functions are located, there are common patterns, such as:
+      - **Input functions:** location is usually in runTimeCodeFun before the main BehaviorState switch case is checked. These functions have to be executed every iteration to poll any update in input port. (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/LSTT_Active_TrialStructure_EF.m#L130'> islick2 </a>) function.
+      - **Syncing signals outputs:** location is usually at the end of runTimeCodeFun afrer the main BehaviorStatw switch case is checked. Like inputs, these functions must be executed every iteration for ephys/imaging syncing purposes. (e.g  <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/doorstop_track.m#L1685'> updateDAQSyncSignals </a>) function.
+      - **"General pulse outputs:** These functions are normally executed once (or a few times) every trial. These are commonly located inside the main BehaviorState switch because they are executed only in a specific portion of the trial. (e.g  <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/poisson_patchesAndPuff_laserTTL_multiregion.m#L206'> nidaqPulse3 in poisson_patchesAndPuff_laserTTL_multiregion experiment </a>). 
 
+      
+
+https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/LSTT_Active_TrialStructure_EF.m#L130
 
 ## Scheduled tasks
 - Several daily tasks for rig computers have been created for common daily tasks in rig computers.
 - These tasks are stored in **braininit/Shared/TasksScheduler** directory
 - Scheduled tasks are set up for a rig computer via PowerShell scripts saved in:
-  + C:\Experiments\ViRMEn\extras\import_scheduled_tasks.ps1 ()
+  + C:\Experiments\ViRMEn\extras\import_scheduled_tasks.ps1
   + C:\Experiments\ViRMEn\extras\import_main_scheduled_tasks.ps1
 
 ### Lists of current Scheduled tasks
@@ -712,6 +774,76 @@ The next list comprehends the most common errors and a way to fix them.
 7. Repeat steps 5-6 for all rigs where this task will be scheduled. 
 
 
-Z:\Shared\TasksScheduler
+## Weighing GUI
+
+- MATLAB Graphic interface to register subject weight, water administration, health variables and provide general information for each subject.
+- More detailed documentation in code.
+
++ Basic features:
+  - Load subjects for all researchers
+  - Two different "modes" technician & researcher (corresponding subjects are shown for each scenario)
+  - Read water amount to be administrated to all subjects (daily amount - earned by training).
+  - Write to Database water administration, weighing & health records
+  - Send slack alert notifications when low weight is detected for subjects.
 
 
++ Weighing GUI code:
+  <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/WeighingGUI'> Code here </a>
+
+ <figure>
+  <img src='./assets/images/virmen_developer/WeighingGUI.png'>
+  <center><figcaption>Weighing GUI</figcaption></center>
+ </figure>
+
+## Water Pubs GUI
+
+- Python (PyQT) Graphic interface based on Weighing GUI to automatically provide "scheduled" water amount for subjects.
+- Designed for a Raspberry PI that will control 4 Water Pubs simultaneously.
+- More detailed documentation in code.
+
++ Basic features:
+  - Load subjects (as in Weighing GUI).
+  - Read water amount to be administrated to all subjects.
+  - Calibrate valves module.
+  - Count licks for each subject "scheduled" in each Water Pub to administer desired volume of water.
+
++ Water Pubs GUI Repository:
+  <a href='https://github.com/BrainCOGS/WaterPubsGUI'> Code here </a>
+
+ <figure>
+  <img src='./assets/images/virmen_developer/WaterPubGUI.png'>
+  <center><figcaption>Water Pubs GUI</figcaption></center>
+ </figure>
+
+
+## Known fixes to update to MATLAB >= 2025
+
++ **uisplittool** replamcement for running "base" ViRMEn GUI.
+
+```matlab
+Error using uisplittool
+uisplittool has been removed. To create a push tool in a toolbar, use uipushtool instead.
+
+Error in createFigures (line 82)
+            hm = uisplittool(toolbar,'tooltipstring',row{colm.ToolTip});
+```
+
++ Update zaber MATLAB Toolbox & code.
+  + Check <a href='https://software.zaber.com/motion-library/docs/tutorials/install/matlab'> Zaber MATLAB </a> for more information.
+  + Functions like <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_Setup/getMotorPosition.m'> getMotorPosition </a> will need to be updated. Look for functions & scripts with this line **getMotorPosition**
+
+
+## Run Live Calibration
+
+- To run the live calibration to adjust calibration parameters simply type:
+
+```matlab
+run_live_calibration
+```
+
+- You should see something similar to this image in rig projector:
+
+ <figure>
+  <img src='./assets/images/virmen_developer/virmen_calibration_image.png'>
+  <center><figcaption>Virmen Calibration Projection</figcaption></center>
+ </figure>
