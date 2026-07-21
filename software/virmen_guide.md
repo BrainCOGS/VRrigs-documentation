@@ -142,6 +142,8 @@ This guide walks the researcher through every step, along with tips and tricks, 
 ## New Training GUI
 
 - The following sections describe the training workflow from start to finish: from selecting which experiment will run to reviewing session performance right after it finishes.
+- First steps is defining a training profile & scheduling a subject on a specific rig on the BRAINCoGS Web GUI: https://braincogs-webgui.pni.princeton.edu/. These steps should be done at least the day before the session occurs.
+- Next steps are done in the rig computers on the same day of the experiment session.
 
 ### Define Training Profile (WebGUI)
 

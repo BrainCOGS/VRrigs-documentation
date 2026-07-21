@@ -707,9 +707,9 @@ The list below covers the most common errors and a way to fix each one.
         - **function (specific functionality: read, on, off, etc.)** to execute the function.
         - **function ('end')** to end the functionality and close the port for the next task.
 - Common places for nidaq functions in experiments. Although there are no specific places in experiments where nidaq functions must go, there are common patterns:
-      - **Input functions:** Usually located in runTimeCodeFun before the main BehaviorState switch case is checked. These functions must run every iteration to poll for any update on the input port (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/LSTT_Active_TrialStructure_EF.m#L130'> islick2 </a>).
-      - **Syncing signal outputs:** Usually located at the end of runTimeCodeFun after the main BehaviorState switch case is checked. Like inputs, these functions must run every iteration for ephys/imaging syncing purposes (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/doorstop_track.m#L1685'> updateDAQSyncSignals </a>).
-      - **General pulse outputs:** Normally executed once (or a few times) per trial. These are commonly located inside the main BehaviorState switch, because they run only in a specific portion of the trial (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/poisson_patchesAndPuff_laserTTL_multiregion.m#L206'> nidaqPulse3 in the poisson_patchesAndPuff_laserTTL_multiregion experiment </a>).
+    + **Input functions:** Usually located in runTimeCodeFun before the main BehaviorState switch case is checked. These functions must run every iteration to poll for any update on the input port (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/LSTT_Active_TrialStructure_EF.m#L130'> islick2 </a>).
+    + **Syncing signal outputs:** Usually located at the end of runTimeCodeFun after the main BehaviorState switch case is checked. Like inputs, these functions must run every iteration for ephys/imaging syncing purposes (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/doorstop_track.m#L1685'> updateDAQSyncSignals </a>).
+    + **General pulse outputs:** Normally executed once (or a few times) per trial. These are commonly located inside the main BehaviorState switch, because they run only in a specific portion of the trial (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/poisson_patchesAndPuff_laserTTL_multiregion.m#L206'> nidaqPulse3 in the poisson_patchesAndPuff_laserTTL_multiregion experiment </a>).
 
 ## Scheduled tasks
 - Several tasks have been created to handle common daily jobs on rig computers.
@@ -808,6 +808,23 @@ The list below covers the most common errors and a way to fix each one.
   <center><figcaption>Water Pubs GUI</figcaption></center>
  </figure>
 
+
+## Test Laser GUI
+
+- MATLAB graphical interface to register laser power (mw) and hardware settings for lasers "installed" on rig machines.
+- More detailed documentation is in the code.
+
++ Basic features:
+  - Data is stored in **action.LaserMeasurement** table
+  - Prompted inside Rig Tester GUI after a month has passed since last measurement.
+
++ Test Laser GUI code in Virmen Repository:
+  <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/Test_VRrigs/%40TestLaserGUI'> Code here </a>
+
+ <figure>
+  <img src='./assets/images/virmen_developer/TestLaserGUI.png'>
+  <center><figcaption>Water Pubs GUI</figcaption></center>
+ </figure>
 
 ## Known fixes to update to MATLAB >= 2025
 
