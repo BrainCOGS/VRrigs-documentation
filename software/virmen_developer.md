@@ -130,7 +130,7 @@ Here is an overview of which main functions are run ordered chronogically:
   3. Assigns training profile as trainee variable: **vr.trainee  = training_profile**. Trainee variable is widely used accross experiment codes.
   4. Load post-training-instructions (for later use in **PostTrainingGUI** call)
   5. Write hardcoded "dummy" variables for **vr.trainee** (e.g. vr.trainee.sessionIndex = 1)
-  6. Load protocol function **vr.trainee.protocol = str2func(vr.trainee.protocol)** [Protocol Reference](./virmen_guide.md#protocol-file) 
+  6. Load protocol function **vr.trainee.protocol = str2func(vr.trainee.protocol)** [Protocol Reference](./virmen_guide.md#new-task-creation) 
   7. If in 165 room EnableLiveStats **vr.trainee.EnableLiveStats = true**  <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/classes/ExperimentLog.m#L630"> Use of LiveStats </a>
   8. Checks if level and/or sublevel will be overrided by user (from TrainingFlowGUI selection). **vr.trainee.overrideMazeID & vr.trainee.overrideSubMazeID** 
   9. Creates minimal substitute for *TrainingRegiment* class **vr.regiment = TrainingRegiment_DBGUI;** (used mainly for creating filePath for behaviorFile).
@@ -194,9 +194,6 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
 
 - The Initialize trial world sequence is at the very core of a ViRMEn experiment. It coordinates multiple vital functions (maze advancement, trial generation, towers positioning) for ViRMEn operation.
 - There are two "modes" to execute Trial World Sequence. "Classic" (inside experiment code and dependent of StimulusBank file) & "NoStimBank" mode.
-
-
-#### 
 
 
 #### High-Level Comparison
@@ -710,8 +707,4 @@ The next list comprehends the most common errors and a way to fix them.
  + `import_scheduled_tasks(1)` if this is a 165 room rig (or mainly managed by techs)
  + `import_scheduled_tasks(0)` if this is an acquisition (ephys/imaging) rig or rig managed by researchers
 7. Repeat steps 5-6 for all rigs where this task will be scheduled. 
-
-
-Z:\Shared\TasksScheduler
-
 

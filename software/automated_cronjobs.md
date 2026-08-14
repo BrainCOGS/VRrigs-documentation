@@ -52,7 +52,7 @@ lang: en-US
  + **Overview:** Call <a href='https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/alert_system/rig_maintenance/check_rig_maintenance.py#L532'> rig_maintenance.py script </a>.
  + **Log files:**  /home/u19prod/log/rig_maintenance_alert/rma_log_$(datetime execution)
 
- ## Missing Sync Behavior
+## Missing Sync Behavior
 
  + **Execution schedule:** daily at 7:00 am
  + **Location in u19proc2:** /home/u19prod/Datajoint_projs/U19-pipeline_python/u19_pipeline/alert_system/automatic_job/call_populate_missing_syncbehavior.sh
@@ -60,7 +60,7 @@ lang: en-US
  + **Log files:**  /home/u19prod/log/missing_syncbehavior_logs/msbhl_$(datetime execution)
 
 
- ## Water-Weight Alert
+## Water-Weight Alert
 
  + **Execution schedule:** daily at 6:00 & 7:00 pm
  + **Location in u19proc2:** /home/u19prod/Datajoint_projs/U19-pipeline_python/u19_pipeline/alert_system/water_weigh_alert/call_cronjob_water_weigh_alert.sh 
@@ -82,14 +82,14 @@ lang: en-US
  + **Overview:** Call <a href='https://github.com/BrainCOGS/U19-pipeline_python/blob/masteru19_pipeline/automatic_job/cronjob_automatic_job.py'> cronjob_automatic_job.py (Ephys Imaging cronjob script) </a>. Check if a new recording has been added from <a href='https://github.com/BrainCOGS/RecordingProcessJobGUI '> RecordingProcessJobGUI </a>  or a job (recording process) has advanced to a new status. If any of these have occurred the "next" function or process is called for the recording and/or job.
  + **Log files:**  /home/u19prod/log/automation_pipeline_log/aplog_(datetime execution)
 
- ## Pupillometry Pipeline Queue process
+## Pupillometry Pipeline Queue process
 
  + **Called when:** at every 20th minute.
  + **Location in u19proc2:** /home/u19prod/Datajoint_projs/U19-pipeline_python/u19_pipeline/automatic_job/call_pupillometry_queue_jobs.sh 
  + **Overview:** Call <a href='https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/pupillometry_handler.py#L256'> pupillometry handler check_pupillometry_sessions_queue </a>. Queue new job to `spockvm2` for pupillometry session.
  + **Log files:**  /home/u19prod/log/pupillometry_queue_logs/pqlogs_(datetime execution)
 
-  ## Pupillometry Pipeline Check process
+## Pupillometry Pipeline Check process
 
  + **Called when:** daily at 2:00 am
  + **Location in u19proc2:** /home/u19prod/Datajoint_projs/U19-pipeline_python/u19_pipeline/automatic_job/call_pupillometry_check_jobs.sh 
