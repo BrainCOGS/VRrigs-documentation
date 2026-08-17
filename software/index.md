@@ -7,6 +7,6 @@ lang: en-US
 
 ## Introduction
 
-In this section, we will document all **software and database tools and pipelines** developed for BRAIN CoGS community. 
+This section documents all **software and database tools and pipelines** developed for the BRAINCoGS community.
 
-Software documentation is divided in sections, in each section you will find the information you need to access as a user or how to modify things as a developer. Many sections will also have MATLAB and Python subsection for you to choose your preferred language.
+The software documentation is divided into sections. In each section, you will find the information you need to use a tool as a user or to modify it as a developer. Many sections also include separate MATLAB and Python subsections, so you can choose your preferred language.

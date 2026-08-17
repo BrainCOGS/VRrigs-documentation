@@ -197,16 +197,17 @@ function getSoftwareSidebar() {
         '/software/db_access.md',                 // Maps to `software/db_access.md`
         '/software/db_organization.md',           // Maps to `software/db_organization.md`
         '/software/db_analysis.md',               // Maps to `software/db_analysis.md`
-        '/software/virmen_guide.md',              // Maps to `software/virmen_guide.md`
-        '/software/automation_pipeline.md',       // Maps to `software/automation_pipeline.md`
-        '/software/automated_cronjobs.md',        // Maps to `software/automated_cronjobs.md`
-        '/software/automation_pipeline_developer.md', // Maps to `software/automation_pipeline_developer.md`
         '/software/configure_systems.md',         // Maps to `software/configure_systems.md`
-        '/software/alert_system.md',              // Maps to `software/alert_system.md`
-        '/software/manipulation_pipeline.md',     // Maps to `software/manipulation_pipeline.md`
-        '/software/pupillometry_guide.md',        // Maps to `software/pupillometry_guide.md`
-        '/software/subtask_pipeline.md',          // Maps to `software/subtask_pipeline.md`
+        '/software/virmen_guide.md',              // Maps to `software/virmen_guide.md`
         '/software/virmen_developer.md',          // Maps to `software/virmen_developer.md`
+        '/software/automation_pipeline.md',       // Maps to `software/automation_pipeline.md`
+        '/software/automation_pipeline_developer.md', // Maps to `software/automation_pipeline_developer.md`
+        '/software/pupillometry_guide.md',        // Maps to `software/pupillometry_guide.md`
+        '/software/automated_cronjobs.md',        // Maps to `software/automated_cronjobs.md`
+        '/software/alert_system.md',              // Maps to `software/alert_system.md`
+        '/software/subtask_pipeline.md',          // Maps to `software/subtask_pipeline.md`
+        '/software/manipulation_pipeline.md',     // Maps to `software/manipulation_pipeline.md`
+
       ],
     },
   ];
