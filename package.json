@@ -13,7 +13,9 @@
     "dev": "vuepress dev",
     "build": "vuepress build",
     "postbuild": "node .vuepress/scripts/strip-css-bom.js",
-    "test": "node .vuepress/scripts/test-css-bom.js"
+    "test": "yarn test:css-bom && yarn test:visual-homepage",
+    "test:css-bom": "node .vuepress/scripts/test-css-bom.js",
+    "test:visual-homepage": "node .vuepress/scripts/test-visual-homepage.js"
   },
   "license": "MIT",
   "devDependencies": {
@@ -26,6 +28,7 @@
     "@vuepress/theme-default": "2.0.0-rc.19",
     "babel-loader": "^9.2.1",
     "envinfo": "^7.14.0",
+    "playwright": "^1.62.1",
     "sass": "^1.49.0",
     "sass-loader": "^12.4.0",
     "vuepress": "^2.0.0-rc.19",
