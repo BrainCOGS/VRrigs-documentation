@@ -11,6 +11,7 @@ config.local.js
 basement_dist
 .vuepress/.cache
 .vuepress/.temp
+.vuepress/dist
 # Rule to prevent non-standard lock files
 yarn*.lock
 !yarn.lock
