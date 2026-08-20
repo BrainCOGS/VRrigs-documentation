@@ -12,7 +12,8 @@
     "clean": "rm -rf .vuepress/.temp node_modules node_modules/.cache",
     "dev": "vuepress dev",
     "build": "vuepress build",
-    "postbuild": "node .vuepress/scripts/strip-css-bom.js"
+    "postbuild": "node .vuepress/scripts/strip-css-bom.js",
+    "test": "node .vuepress/scripts/test-css-bom.js"
   },
   "license": "MIT",
   "devDependencies": {
