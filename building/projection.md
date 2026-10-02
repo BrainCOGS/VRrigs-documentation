@@ -123,19 +123,19 @@ We place the spherical mirror on an aluminum custom made base that is sent to a 
  <figure>
   <img src='./assets/images/projection/screen-building-7.png'>
  </figure>
- 
+
  3. Measure from the joint of the two half spheres 4" to the top and 4.75" to the sides, place a mark and draw by hand a half circle using those 3 points.
 
  <figure>
   <img src='./assets/images/projection/screen-building-8.png'>
  </figure>
 
- 4. Place a mark at 4.75" and at 6" from the midline along the joint of the spheres (at the top) and along the equator. Use the laser level to project a line from the top marks to the marks on the equator and draw with a marker a pointed line. 
+ 4. Place a mark at 4.75" and at 6" from the midline along the joint of the spheres (at the top) and along the equator. Use the laser level to project a line from the top marks to the marks on the equator and draw with a marker a pointed line.
 
  <figure>
   <img src='./assets/images/projection/screen-building-9.png'>
  </figure>
- 
+
  5. Place a mark at 2.5" from the equator to the top of the ball along the 4.75" and 6" lines.
 
  <figure>
@@ -248,10 +248,10 @@ Once the screen is built, follow the isntructions to install them in the cabinet
  13. Black Wall and Ceiling Ambient Light Rejecting Acoustic Dampening from [Paint on screen](https://paintonscreen.com/products/wall-and-ceiling-ambient-light-rejecting-acoustic-dampening-studio-grey?variant=29416888893463)
  14. 3" or 4" Paint brush from [Grainger](https://www.grainger.com/product/WOOSTER-Paint-Brush-Flat-Sash-Brush-14A035)
  15. Leveling Primer from [Paint on screen](https://paintonscreen.com/products/leveling-primer?variant=1618182144029)
- 16. S1 Screen Plus paint from [Paint on screen](https://paintonscreen.com/products/s1-screen-plus?variant=1616223731741) 
+ 16. S1 Screen Plus paint from [Paint on screen](https://paintonscreen.com/products/s1-screen-plus?variant=1616223731741)
  17. Mini paint roller kit from [Grainger](https://www.grainger.com/product/PREMIER-Mini-Paint-Roller-Kit-3-in-29UT49)
  18. 1" Paint brush from [Grainger](https://www.grainger.com/product/SHUR-LINE-Paint-Brush-Angle-Sash-Brush-48WL96)
 
- ## Drawing 
+ ## Drawing
 
  1. aluminum plate -->
