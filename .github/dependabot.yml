@@ -1,0 +1,126 @@
+# Dependabot configuration.
+#
+# Sibling configs (keep in sync when changing policy):
+#   BrainCOGS/U19-pipeline-python
+#
+# Every ecosystem has a 7-day cooldown so brand-new releases are not proposed
+# right away. Version and security updates are grouped independently.
+#
+# npm: the repo uses yarn classic (yarn.lock v1). Dependabot handles it under
+# the `npm` ecosystem.
+
+version: 2
+
+updates:
+  #
+  # GitHub Actions
+  #
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    cooldown:
+      default-days: 7
+
+    schedule:
+      interval: "monthly"
+      day: "monday"
+      time: "06:00"
+      timezone: "UTC"
+
+    open-pull-requests-limit: 5
+
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+    commit-message:
+      prefix: "ci"
+
+    rebase-strategy: "auto"
+
+    # A group without `applies-to` only batches scheduled version updates.
+    # Security updates are grouped separately, so declare both or the
+    # security fixes keep arriving as one PR per package.
+    groups:
+      actions:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+      actions-security:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
+
+  #
+  # Docker (root Dockerfile)
+  #
+  - package-ecosystem: "docker"
+    directory: "/"
+    cooldown:
+      default-days: 7
+
+    schedule:
+      interval: "monthly"
+      day: "tuesday"
+      time: "06:00"
+      timezone: "UTC"
+
+    open-pull-requests-limit: 5
+
+    labels:
+      - "dependencies"
+      - "docker"
+
+    commit-message:
+      prefix: "docker"
+
+    rebase-strategy: "auto"
+
+    # A group without `applies-to` only batches scheduled version updates.
+    # Security updates are grouped separately, so declare both or the
+    # security fixes keep arriving as one PR per package.
+    groups:
+      docker:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+      docker-security:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
+
+  #
+  # npm / yarn
+  #
+  - package-ecosystem: "npm"
+    directory: "/"
+    cooldown:
+      default-days: 7
+
+    schedule:
+      interval: "monthly"
+      day: "thursday"
+      time: "06:00"
+      timezone: "UTC"
+
+    open-pull-requests-limit: 5
+
+    labels:
+      - "dependencies"
+
+    commit-message:
+      prefix: "deps"
+
+    rebase-strategy: "auto"
+
+    # A group without `applies-to` only batches scheduled version updates.
+    # Security updates are grouped separately, so declare both or the
+    # security fixes keep arriving as one PR per package.
+    groups:
+      npm:
+        applies-to: "version-updates"
+        patterns:
+          - "*"
+      npm-security:
+        applies-to: "security-updates"
+        patterns:
+          - "*"
