@@ -312,7 +312,7 @@ def preprocess_main(recording_process_id, raw_data_directory, processed_data_dir
             catgt_output_dir = pathlib.Path(processed_data_directory, config.preproc_tools['catgt']+"_output")
             new_raw_data_directory = cat_gt.run_cat_gt(new_raw_data_directory, catgt_output_dir, this_preparam[config.preproc_tools['catgt']])
 ```
-    
+
 3. Sorting Layer
 
 - Executes the selected spike sorting algorithm.
@@ -335,7 +335,7 @@ sorter_processed_directory = pathlib.Path(processed_directory, process_parameter
 
 ```
 
-4. Post-Processing 
+4. Post-Processing
 
 - Convert sorter outputs into the formats required by downstream analysis pipelines.
 - **File:** u19_sorting/postprocess_wrappers.py

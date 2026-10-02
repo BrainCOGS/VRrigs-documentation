@@ -51,7 +51,7 @@ lang: en-US
   # Defined <manipulation> protocols for training
   <manipulation>_protocol_id     : int AUTO_INCREMENT
   ---
-  protocol_description        : varchar(256)                  
+  protocol_description        : varchar(256)  
   %}
   ```
 
@@ -76,7 +76,7 @@ lang: en-US
  ```matlab
   %{
   # Parameters related to laser stimulation
-  stim_parameter_set_id       : int AUTO_INCREMENT  # 
+  stim_parameter_set_id       : int AUTO_INCREMENT  #
   ---
   stim_parameter_description  : varchar(256)        #
   stim_wavelength             : decimal(5,1)        # (nm)
@@ -84,7 +84,7 @@ lang: en-US
   stim_frequency              : decimal(6,2)        # (Hz)
   stim_pulse_width            : decimal(5,1)        # (ms)
   %}
-  
+
   classdef OptogeneticStimulationParameter < dj.Lookup
     properties
     end
@@ -116,8 +116,8 @@ lang: en-US
  % Insert stim parameter record
  stim_parameter_rec.stim_parameter_description = 'cool stims'
  stim_parameter_rec.stim_wavelength = 473
- stim_parameter_rec.stim_power = 10                
- stim_parameter_rec.stim_frequency = 100        
+ stim_parameter_rec.stim_power = 10  
+ stim_parameter_rec.stim_frequency = 100  
  stim_parameter_rec.stim_pulse_width = 1
  insert(optogenetics.OptogeneticsStimulationParameters, stim_parameter_rec)  
 
@@ -143,12 +143,12 @@ lang: en-US
  ```matlab
  param_struct = struct();
  param_struct.software_parameter_description =  'stimulation_sequence # 1';
-  
- % All parameters goes in here 
+
+ % All parameters goes in here
  %(P_on and lsrepoch are the common and needed for current opto experiments)
  param_struct.software_parameters.P_on      = 0.21;
  param_struct.software_parameters.lsrepoch  = 'cue';
-   
+
  %Insert parameter
  software_param_id = try_insert(optogenetics.OptogeneticSoftwareParameter, param_struct)
  ```
@@ -159,7 +159,7 @@ lang: en-US
 
  ```
  function vr = initializationCodeFun(vr)
- 
+
  vr.software_params     = vr.exper.userdata.trainee.softwareParams.software_parameters;
  vr.lsrepoch = vr.software_params.lsrepoch;
  vr.P_on = vr.software_params.P_on;
@@ -171,7 +171,7 @@ lang: en-US
 + This table does not need any additional code (unless extra fields from the behavior file need to be stored). **The researcher should contact the DB designer if that is their intention.**
 
  ```matlab
- OptogeneticSession.m 
+ OptogeneticSession.m
  %{
  # Information of a optogenetic session
  -> acquisition.Session
@@ -195,7 +195,7 @@ function trial_structure = get_manipulation_trials_data(~,session_key, log)
 .
 for itrial = 1:nTrials
 
-  curr_trial = log.block(iBlock).trial(itrial);                            
+  curr_trial = log.block(iBlock).trial(itrial);  
   trial_data = session_key;
   trial_data.stim_on           = curr_trial.lsrON;
   trial_data.t_stim_on  = time_trial(curr_trial.iLaserOn);
@@ -221,7 +221,7 @@ for itrial = 1:nTrials
 key = struct('subject_fullname', 'sbolkan_a2a_492', 'session_date', '2022-06-27')
 fetch(optogenetics.OptogeneticSessionTrial * optogenetics.OptogeneticSession & key,'*')
 
-ans = 
+ans =
 
   363×1 struct array with fields:
 
