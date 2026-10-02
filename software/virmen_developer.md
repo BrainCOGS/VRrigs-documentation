@@ -175,20 +175,20 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
 
 4. **Local "replacement" functions:** When the DB is not found, a set of "local" functions is used throughout the ViRMEn repository to replicate the functionality needed for normal subject training. Here is a list of all those functions:
 
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\createNewRemoteBehaviorFilenameLocal.m		
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadScheduleLocal.m		
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadTrainingProfileLocal.m		
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadWaterAllocLocal.m		
-- ViRMEn\experiments\utility\Test_VRrigs\@PostTrainingGUI\getLocalDataPosttrainingGUI.m		
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_2\getLocalFileTests.m		
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\getSubjectMotorPositionLocal.m		
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_double_valve_local.m		
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_puffs_local.m		
-- ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_rig_io_subject_status_local.m		
-- ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_subject_already_trained_status_local.m		
-- ViRMEn\experiments\utility\find_remote_name_from_local_name.m		
-- ViRMEn\experiments\utility\get_if_rig_double_valve_local.m		
-- ViRMEn\notifications\error_training_notification_slack_local.m		
+- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\createNewRemoteBehaviorFilenameLocal.m
+- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadScheduleLocal.m
+- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadTrainingProfileLocal.m
+- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadWaterAllocLocal.m
+- ViRMEn\experiments\utility\Test_VRrigs\@PostTrainingGUI\getLocalDataPosttrainingGUI.m
+- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_2\getLocalFileTests.m
+- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\getSubjectMotorPositionLocal.m
+- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_double_valve_local.m
+- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_puffs_local.m
+- ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_rig_io_subject_status_local.m
+- ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_subject_already_trained_status_local.m
+- ViRMEn\experiments\utility\find_remote_name_from_local_name.m
+- ViRMEn\experiments\utility\get_if_rig_double_valve_local.m
+- ViRMEn\notifications\error_training_notification_slack_local.m
 
 ## Select Maze for each experiment
 
@@ -223,7 +223,7 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
   - The filepath is given by the <a href='https://braincogs.github.io/software/virmen_guide.html#program-wrapper-file'> Program wrapper file </a>, where the **dataPath**, **experName**, and **cohortName** variables are defined following this convention:
 
   ```matlab
-  behaviorfilepath = [ dataPath, filesep, strrep(experName,' ',''), '_', cohortName '_', RigParameters.rig, '.mat' ] 
+  behaviorfilepath = [ dataPath, filesep, strrep(experName,' ',''), '_', cohortName '_', RigParameters.rig, '.mat' ]
   ```
   - Example behaviorfilepath: **C:\Data\josh\data\jjulian_jj077\josh_context_josh_poisson_blocks_context_165I-Rig4-T_jjulian_jj077_T_20230324_1.mat**
 
@@ -722,26 +722,26 @@ The list below covers the most common errors and a way to fix each one.
 
 #### CopyNODBFiles.xml
  - **Description:** Copies the **braininit/Shared/NoDBVirmenBackup** CSV files to the **C:/Experiments/ViRMEn/extras** directory. These files act as a DB replacement so training can continue during a DB outage.
- - **Script Run:** C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_noDB_files 
- - **Schedule:** Daily at 5:55 am 
+ - **Script Run:** C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_noDB_files
+ - **Schedule:** Daily at 5:55 am
  - **Which Rigs:** All rigs
 
 #### new_data_backup.xml
  - **Description:** Copies local behavior files to the **braininit/Data/Raw/behavior** directory.
- - **Script Run:** C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_behavior_files 
- - **Schedule:** Daily at 11:00 pm 
+ - **Script Run:** C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_behavior_files
+ - **Schedule:** Daily at 11:00 pm
  - **Which Rigs:** All rigs
 
  #### video_backup.xml
  - **Description:** Copies local video files to the **braininit/Data/Raw/video_pupillometry** directory.
  - **Script Run:** C:\Experiments\U19-pipeline-matlab\scripts\cmd_copy_video_files
- - **Schedule:** Daily at 11:55 am 
+ - **Schedule:** Daily at 11:55 am
  - **Which Rigs:** All rigs
 
  #### RestartComputer.xml
  - **Description:** Restarts the computer automatically.
  - **Script Run:** shutdown  /r /f /t 0
- - **Schedule:** Daily at 7:00 am 
+ - **Schedule:** Daily at 7:00 am
  - **Which Rigs:** "165" Rigs
 
  #### start_matlab.xml

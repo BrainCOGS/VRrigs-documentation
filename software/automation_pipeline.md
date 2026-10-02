@@ -201,7 +201,7 @@ To process recordings with non-default parameters, you need at least one of the 
 
 - Check the "define new proc. param method ?" checkbox.
 - Write the new processing method name in the "New Proc. Param. method" field.
-- Check the <a href='https://braincogs.github.io/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code. 
+- Check the <a href='https://braincogs.github.io/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code.
 
 
 
@@ -229,7 +229,7 @@ To process recordings with non-default parameters, you need at least one of the 
 
 - Check the "define new prerproc.-param method ?" checkbox.
 - Write the new preprocessing method name in the "New Preproc.-Param method" field.
-- Check the <a href='https://braincogs.github.io/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code. 
+- Check the <a href='https://braincogs.github.io/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code.
 
 5. In the "Preproc.-Param Set Description" field, write a short description for the new parameters.
 6. Click the "Upload Preproc.-Parm Set json file" button and browse for/load your JSON file with parameters. You can review your parameters in the text area on the right.
