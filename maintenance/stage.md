@@ -107,7 +107,7 @@ Troubleshooting should be done from cleaning the 3D cup and window first, making
 If the arduino is not recognized by the rig tester arduino detection button follow the next steps:
 
 1. First check if the arduino is being detected by the CPU by opening the device manager windows (typing device manager in the search bar) and clicking on the Ports (COM&LPT) label to display the list of devices connected.
-  
+
     * If the Arduino is listed there, then the COM port might have changed. Make sure the COM port listed in the device manager matches the `arduinoPort` variable in the rig parameters file. Restart Matlab and try again.
 
 2. If the Arduino is not listed on the device manager window it could be either a faulty cable or a broken Arduino. Start by troubleshooting the Arduino (cables might be harder to check since many times they have intricate paths behind the rig).
@@ -117,7 +117,7 @@ If the arduino is not recognized by the rig tester arduino detection button foll
     You can perform a quick check before removing the arduino from the box to discard that the cable is faulty. Unplug the arduino USB cable from the black box on the DIN rail and connect a new arduino, if this one is recognized in the device manager window, then proceed to the following steps, otherwise go ahead and change the cable.
 
     :::
-    
+
     * Disconnect both the cable and the connector of the black box holding the arduino and take it out of the DIN rail (by slightly pushing it downwards and pulling the bottom part towards you).
 
     * Open the box by unscrewing the 4 screws holding the cover and the 2 screws holding the arduino to the 3D printed box.

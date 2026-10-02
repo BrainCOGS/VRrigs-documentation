@@ -10,9 +10,9 @@ lang: en-US
  ## Projection calibration
 
  The projection system use a spherical mirror to project into the dome. The image transformation is based on a [hemispherical dome projection principle](http://www.domerama.com/general/geodesic-dome-projection/hemispherical-dome-projection/).
- 
- Creating correctly warped images given a particular projector, mirror, and dome arrangement requires finding the point on the projector frustum for any point on the dome. The problem is three-dimensional but can be turned into a simpler two dimensional problem by firstly translating the geometry so the spherical mirror is at the origin and then rotating the geometry so that the point on the mirror, dome, and projector lies in a single plane. 
- 
+
+ Creating correctly warped images given a particular projector, mirror, and dome arrangement requires finding the point on the projector frustum for any point on the dome. The problem is three-dimensional but can be turned into a simpler two dimensional problem by firstly translating the geometry so the spherical mirror is at the origin and then rotating the geometry so that the point on the mirror, dome, and projector lies in a single plane.
+
  The projector is located at P1, the mirror is of radius r, and the position on the dome is P2. The path length from the projector to the mirror is L1, the path length from the dome to the mirror is L2. In the case of a spherical mirror: the line at mid-angle between the vectors OP1 and OP2 and its intersection with the surface of the mirror defines the reflection point.
 
  Fermat’s principle states that light travels by the shortest route, so the reflection point on the mirror can be found by minimising the total light path length from the projector to the position on the dome, namely minimising (L1^2 + L2^2)^1/2. It is quite simple in the case of a spherical mirror: the line at mid-angle between the vectors OP1 and OP2 and its intersection with the surface of the mirror defines the reflection point.
@@ -41,7 +41,7 @@ proj_param_ysm          =    0;
 proj_param_zsm          =    0.47;
 
 % Mirror position relative to the animal eyes
-% Mirror position measurement is facilitated knowing that the center of 
+% Mirror position measurement is facilitated knowing that the center of
 %spherical mirror is (43.8-24.2=)19.6mm (0.77in) behind the back surface.
 proj_param_xOm          =   5.582;
 proj_param_yOm          =   0;

@@ -99,7 +99,7 @@ end
 ```matlab
 key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
 pupillometry_data = fetch(pupillometry.PupillometrySessionModelData * pupillometry.PupillometrySyncBehavior & key, '*')
-pupillometry_data = 
+pupillometry_data =
 
   struct with fields:
 
@@ -129,20 +129,20 @@ If processing fails again, contact the Software Developer and check the `#automa
 ```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 all_sessions_table = psmd.check_status_pupillometry_jobs()
-```    
+```  
 
 + Check the status for a specific session (or sessions):
 ```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 key = struct('subject_fullname', 'efonseca_ef317_act116', 'session_date', '2024-02-21')
 session_status = psmd.check_status_pupillometry_jobs(key)
-```    
+```  
 
 + Get all successfully processed sessions:
 ```matlab
 psmd = pupillometry.PupillometrySessionModelData()
 pupillometry_finished_sessions = psmd.get_finished_jobs_pupillometry()
-```    
+```  
 
 ## Add a new video model to the pipeline
 
@@ -171,10 +171,10 @@ insert(pupillometry.PupillometryModels,new_model_key)
 ```matlab
 >> pupillometry.PupillometryModels
 
-ans = 
+ans =
 Object pupillometry.PupillometryModels
  :: Table to store reference for each model ::
-    MODEL_ID      model_description                        model_path                  
+    MODEL_ID      model_description                        model_path  
     ________    _____________________    ______________________________________________
 
        1        {'Pupillometry_2022'}    {'video_models/Pupillometry2-Ryan-2022-04-07'}
