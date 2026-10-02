@@ -1,0 +1,39 @@
+# Run with prek (`uvx prek run --all-files`) or pre-commit.
+# Binary assets, the lockfile and generated files are excluded from the
+# whitespace/EOF fixers so they are never rewritten.
+exclude: |
+  (?x)^(
+    \.vuepress/dist/.*|
+    \.vuepress/\.(cache|temp)/.*|
+    \.vuepress/public/.*|
+    \.vuepress/config\.ts\..*\.mjs|
+    yarn\.lock|
+    yarn-error\.log|
+    .*\.(png|jpe?g|gif|pdf|zip|step|ipt|iam|idw|dwg|stl|stp|stl)
+  )$
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      - id: trailing-whitespace
+        # Two trailing spaces are a Markdown hard line break; keep them.
+        args: [--markdown-linebreak-ext=md]
+
+  - repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+
+  - repo: https://github.com/zizmorcore/zizmor-pre-commit
+    rev: v1.30.1
+    hooks:
+      - id: zizmor

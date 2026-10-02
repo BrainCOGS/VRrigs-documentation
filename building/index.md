@@ -20,7 +20,7 @@ If you need any other file, any other format, need help or just wanted to reach 
 ## Recommended steps to assembly.
 
 1. Begin with the assembly of the bottom part of the cabinet (steps 1-6 of [cabinet assembly](/building/cabinet.html#cabinet-assembly)). In parallel, you can start with the construction of the [screen](/building/projection.html#screen-building).
-2. Follow the intructions to assemble the [stage](/building/stage.html) and [install](/building/stage.html#stage-installation) it in the cabinet. 
+2. Follow the intructions to assemble the [stage](/building/stage.html) and [install](/building/stage.html#stage-installation) it in the cabinet.
 3. Screw the [mirror](/building/projection.html#mirror) and the [pillars](/building/projection.html#screen-assembly), but not the top plates that will hold the screen.
 4. Install the [air supply hose adapter](/building/air-supply.html#air-flow-adapter) on the side panel and make the holes on the panel if necessary, install the side panels on the cabinet (step 8 of [cabinet assembly](/building/cabinet.html#cabinet-assembly)).
 5. Make the hole on the back panel for the projector if necessary, install the back panel and slide down the frame (step 7 of [cabinet assembly](/building/cabinet.html#cabinet-assembly)) and insert the joining strip along the out edges of the panels.

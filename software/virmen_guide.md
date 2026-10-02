@@ -86,7 +86,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
  | warmupMaze       | Index of Virmen world in vr.worlds for the warmup maze for that particular main maze, which occurs at the start of a given session | Index of virmen world ([1-N], where N is the max number of worlds) |
  | warmupPerform    | Minimum performance allowed during warmup to advance to mainMaze                                                                   | Real number ([0-1])                                                |
  | warmupBias       | Max allowed side bias allowed during warmup to advance to main maze                                                                | Real number ([0-1])                                                |
- | warmupMotor      | Max percentage of trials to have "bad" motor quality. (Too much travel distance inside the maze)                                   | Real number ([0-1])                                                                                                                           |                                                      
+ | warmupMotor      | Max percentage of trials to have "bad" motor quality. (Too much travel distance inside the maze)                                   | Real number ([0-1])                                                                                                                           |  
  | easyBlock        | Index of Virmen world in vr.worlds for the easy block maze for that particular main maze                                           | Index of virmen world ([1-N], where N is the max number of worlds) |
  | easyBlockNTrials | Number of trials in an easy block                                                                                                  | Natural number                                                     |
  | numBlockTrials   | Number of trials within a block used to assess performance for demotion to an easy block                                           | Natural number                                                     |
@@ -399,7 +399,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
  2. In MATLAB, enter the following (replace the code in brackets with the corresponding info for the subject):
   ```matlab
   new_record = struct
-  new_record.subject_fullname = ['efonseca_ef481_actpg004']; # Subject fullname 
+  new_record.subject_fullname = ['efonseca_ef481_actpg004']; # Subject fullname
   new_record.ml_position = [17.5]   # ml position in mm (motor axis#1 position in GUI)
   new_record.ap_position = [10]     # ap position in mm (motor axis#2 position in GUI)
   new_record.dv_position = [15.3]    # dv position in mm (motor axis#3 position in GUI)
