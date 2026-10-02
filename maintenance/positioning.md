@@ -9,11 +9,11 @@ lang: en-US
 
 The automated positioning system maintenance conssist of checking the motors and making sure everything is properly tighten (use loctite if necessary, altough it is recommended). Troubleshooting is mostly related to the motors driver.
 
-## Calibrating 
+## Calibrating
 
 If the motors don't respond correctly, open the Zaber software. Select the 'Basic Movements' option and click on the home button. This action will take the motors to their absolute zero position.
 
-## Restore 
+## Restore
 If sending the motors home doesn't work, the next step is to restore the affected motor. In the basic options, select the motor experiencing the issue, click on the settings icon, and choose 'Restore'.
 
 ### Recomendation
