@@ -57,7 +57,12 @@ export default defineUserConfig({
       '/building/': getBuildingSidebar(),
       '/maintenance/': getMaintenanceSidebar(),
       '/software/': getSoftwareSidebar(),
-    }
+    },
+    themePlugins: {
+      // Dead Markdown links fail `vuepress build` instead of only warning.
+      // Raw-HTML links and downloads are covered by `pnpm run test:links`.
+      linksCheck: { build: 'error' },
+    },
   }),
 
   /**
