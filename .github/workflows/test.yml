@@ -40,6 +40,12 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
+      # Every package except vue is a devDependency (it is a static site, so
+      # the build toolchain *is* the supply chain), so audit the whole tree
+      # rather than `--prod`. Fails on high or critical advisories.
+      - name: Audit dependencies
+        run: pnpm run audit
+
       - name: Install Playwright browsers
         run: pnpm exec playwright install --with-deps chromium
 

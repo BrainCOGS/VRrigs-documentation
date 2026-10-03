@@ -21,7 +21,8 @@
     "test:dist": "pnpm run test:css-bom && pnpm run test:links && pnpm run test:visual-homepage",
     "test:css-bom": "node .vuepress/scripts/test-css-bom.js",
     "test:links": "node .vuepress/scripts/test-links.js",
-    "test:visual-homepage": "node .vuepress/scripts/test-visual-homepage.js"
+    "test:visual-homepage": "node .vuepress/scripts/test-visual-homepage.js",
+    "audit": "pnpm audit --audit-level high"
   },
   "devDependencies": {
     "@vuepress/bundler-vite": "^2.0.0-rc.31",
