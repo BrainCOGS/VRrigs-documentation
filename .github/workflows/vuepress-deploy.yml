@@ -49,7 +49,7 @@ jobs:
         run: pnpm run build
 
       - name: Run regression tests
-        run: pnpm test
+        run: pnpm run test:dist
 
       - name: Deploy to GitHub Pages
         uses: crazy-max/ghaction-github-pages@1d6ee9b181a81033a16bd707a1401afa978daab4 # v5.0.0

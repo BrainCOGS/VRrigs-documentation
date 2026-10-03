@@ -7,14 +7,16 @@
 // site rendered unstyled even though `vuepress dev` looked fine (dev never
 // concatenates CSS into a single file, so the bug never showed up locally).
 //
-// This script builds the site, then asserts the built CSS is free of
-// embedded BOMs and that the critical :root rule survives intact.
+// The Vite bundler does not reproduce the bug (it strips the BOM while
+// processing CSS), so the old postbuild BOM-strip step is gone. This test
+// stays as the guard: it inspects an existing build (`pnpm run build` first)
+// and asserts the built CSS is free of embedded BOMs and that the theme's
+// :root rule survives intact.
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
 
 const repoRoot = path.join(__dirname, '..', '..');
-const cssDir = path.join(repoRoot, '.vuepress', 'dist', 'assets', 'css');
+const distDir = path.join(repoRoot, '.vuepress', 'dist');
 const BOM = Buffer.from([0xef, 0xbb, 0xbf]);
 
 function fail(message) {
@@ -22,25 +24,24 @@ function fail(message) {
   process.exitCode = 1;
 }
 
-console.log('Building site...');
-execFileSync('pnpm', ['run', 'build'], { cwd: repoRoot, stdio: 'inherit' });
-
-if (!fs.existsSync(cssDir)) {
-  fail(`expected build output at ${cssDir}, but it does not exist`);
+if (!fs.existsSync(distDir)) {
+  fail(`expected build output at ${distDir}; run \`pnpm run build\` first`);
   process.exit(1);
 }
 
-const cssFiles = fs.readdirSync(cssDir).filter((f) => f.endsWith('.css'));
+const cssFiles = fs
+  .readdirSync(distDir, { recursive: true })
+  .filter((f) => f.endsWith('.css'));
 
 if (cssFiles.length === 0) {
-  fail(`no CSS files found in ${cssDir}`);
+  fail(`no CSS files found in ${distDir}`);
   process.exit(1);
 }
 
-let sawRootBrandRule = false;
+let sawRootAccentRule = false;
 
 for (const file of cssFiles) {
-  const filePath = path.join(cssDir, file);
+  const filePath = path.join(distDir, file);
   const data = fs.readFileSync(filePath);
 
   const bomIndex = data.indexOf(BOM);
@@ -49,11 +50,11 @@ for (const file of cssFiles) {
   }
 
   const text = data.toString('utf8');
-  if (text.includes('--c-brand')) {
-    sawRootBrandRule = true;
+  if (/--vp-c-accent\s*:/.test(text)) {
+    sawRootAccentRule = true;
 
-    if (!/(^|[};])\s*:root\s*\{[^}]*--c-brand/.test(text)) {
-      fail(`${file} defines --c-brand but not inside a clean, unprefixed ":root {...}" rule`);
+    if (!/(^|[};])\s*:root\s*\{[^}]*--vp-c-accent\s*:/.test(text)) {
+      fail(`${file} defines --vp-c-accent but not inside a clean, unprefixed ":root {...}" rule`);
     }
 
     if (!/:root\s*\{[^}]*--navbar-height/.test(text)) {
@@ -62,8 +63,8 @@ for (const file of cssFiles) {
   }
 }
 
-if (!sawRootBrandRule) {
-  fail('none of the built CSS files defined --c-brand — theme vars may not have been bundled at all');
+if (!sawRootAccentRule) {
+  fail('none of the built CSS files defined --vp-c-accent — theme vars may not have been bundled at all');
 }
 
 if (process.exitCode) {
