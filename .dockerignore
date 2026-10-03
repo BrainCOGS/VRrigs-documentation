@@ -23,6 +23,7 @@ basement_dist
 # Ignore configuration files specific to local development
 config.local.js
 
-# Ignore non-standard lock files
-yarn*.lock
-!yarn.lock
+# pnpm is the package manager; keep other lockfiles out
+yarn.lock
+package-lock.json
+yarn-error.log
