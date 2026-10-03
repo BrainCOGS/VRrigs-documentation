@@ -16,3 +16,5 @@ basement_dist
 yarn.lock
 package-lock.json
 yarn-error.log
+# Temp bundles VuePress writes while loading config.ts
+.vuepress/config.ts.*.mjs
