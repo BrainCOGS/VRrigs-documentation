@@ -6,8 +6,10 @@
 # Every ecosystem has a 7-day cooldown so brand-new releases are not proposed
 # right away. Version and security updates are grouped independently.
 #
-# npm: the repo uses yarn classic (yarn.lock v1). Dependabot handles it under
-# the `npm` ecosystem.
+# npm: the repo uses pnpm 10 (pnpm-lock.yaml). Dependabot handles it under
+# the `npm` ecosystem. Stay on pnpm 10 until Dependabot supports pnpm 11
+# (dependabot/dependabot-core#14794). pnpm's own `minimumReleaseAge` in
+# pnpm-workspace.yaml enforces the same 7-day quarantine locally and in CI.
 
 version: 2
 
@@ -73,6 +75,13 @@ updates:
     commit-message:
       prefix: "docker"
 
+    # The image tracks the Node LTS line pinned in package.json `engines.node`
+    # and the workflows. Move majors deliberately, together, when the next
+    # LTS lands, not whenever a new (odd or pre-LTS) major is tagged.
+    ignore:
+      - dependency-name: "node"
+        update-types: ["version-update:semver-major"]
+
     rebase-strategy: "auto"
 
     # A group without `applies-to` only batches scheduled version updates.
@@ -89,7 +98,7 @@ updates:
           - "*"
 
   #
-  # npm / yarn
+  # npm (pnpm lockfile)
   #
   - package-ecosystem: "npm"
     directory: "/"

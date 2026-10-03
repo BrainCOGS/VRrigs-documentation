@@ -23,7 +23,7 @@ function fail(message) {
 }
 
 console.log('Building site...');
-execFileSync('yarn', ['build'], { cwd: repoRoot, stdio: 'inherit' });
+execFileSync('pnpm', ['run', 'build'], { cwd: repoRoot, stdio: 'inherit' });
 
 if (!fs.existsSync(cssDir)) {
   fail(`expected build output at ${cssDir}, but it does not exist`);

@@ -67,7 +67,7 @@ function serveDist() {
 
 async function main() {
   console.log('Building site...');
-  execFileSync('yarn', ['build'], { cwd: repoRoot, stdio: 'inherit' });
+  execFileSync('pnpm', ['run', 'build'], { cwd: repoRoot, stdio: 'inherit' });
 
   const server = await serveDist();
   const browser = await chromium.launch();

@@ -10,4 +10,4 @@ services:
       - /app/node_modules # Exclude node_modules from the host to avoid conflicts
     environment:
       - NODE_ENV=development # Set the environment variable
-    command: yarn dev # Run the development server when the container starts
+    command: pnpm dev # Run the development server when the container starts

@@ -8,16 +8,20 @@
     "email": "juanlopez@princeton.edu"
   },
   "repository": "/VR_rigs_docs",
+  "license": "MIT",
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "packageManager": "pnpm@10.34.5",
   "scripts": {
     "clean": "rm -rf .vuepress/.temp node_modules node_modules/.cache",
     "dev": "vuepress dev",
     "build": "vuepress build",
     "postbuild": "node .vuepress/scripts/strip-css-bom.js",
-    "test": "yarn test:css-bom && yarn test:visual-homepage",
+    "test": "pnpm run test:css-bom && pnpm run test:visual-homepage",
     "test:css-bom": "node .vuepress/scripts/test-css-bom.js",
     "test:visual-homepage": "node .vuepress/scripts/test-visual-homepage.js"
   },
-  "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.29.6",
     "@babel/preset-env": "^7.26.0",
@@ -39,33 +43,35 @@
     "highlight.js": "^11.11.1",
     "vue": "^3.2.0"
   },
-  "resolutions": {
-    "esbuild": "^0.25.0",
-    "prismjs": "^1.30.0",
-    "fast-uri": "^3.1.7",
-    "nanoid": "^3.3.16",
-    "postcss": "^8.5.23",
-    "**/gray-matter/js-yaml": "^3.15.1",
-    "js-yaml": "^4.3.1",
-    "undici": "^6.29.0",
-    "webpack-dev-server": "^5.2.6",
-    "shell-quote": "^1.9.0",
-    "svgo": "^3.3.5",
-    "linkify-it": "^5.0.2",
-    "immutable": "^5.1.8",
-    "websocket-driver": "^0.7.5",
-    "@babel/plugin-transform-modules-systemjs": "^7.29.4",
-    "follow-redirects": "^1.16.0",
-    "http-proxy-middleware": "^2.0.10",
-    "launch-editor": "^2.14.1",
-    "lodash": "^4.18.0",
-    "markdown-it": "^14.2.0",
-    "on-headers": "^1.1.0",
-    "picomatch": "^2.3.2",
-    "qs": "^6.15.2",
-    "serialize-javascript": "^7.0.5",
-    "uuid": "^11.1.1",
-    "webpack": "^5.104.1",
-    "ws": "^8.21.0"
+  "pnpm": {
+    "overrides": {
+      "esbuild": "^0.25.0",
+      "prismjs": "^1.30.0",
+      "fast-uri": "^3.1.7",
+      "nanoid": "^3.3.16",
+      "postcss": "^8.5.23",
+      "gray-matter>js-yaml": "^3.15.1",
+      "js-yaml": "^4.3.1",
+      "undici": "^6.29.0",
+      "webpack-dev-server": "^5.2.6",
+      "shell-quote": "^1.9.0",
+      "svgo": "^3.3.5",
+      "linkify-it": "^5.0.2",
+      "immutable": "^5.1.8",
+      "websocket-driver": "^0.7.5",
+      "@babel/plugin-transform-modules-systemjs": "^7.29.4",
+      "follow-redirects": "^1.16.0",
+      "http-proxy-middleware": "^2.0.10",
+      "launch-editor": "^2.14.1",
+      "lodash": "^4.18.0",
+      "markdown-it": "^14.2.0",
+      "on-headers": "^1.1.0",
+      "picomatch": "^2.3.2",
+      "qs": "^6.15.2",
+      "serialize-javascript": "^7.0.5",
+      "uuid": "^11.1.1",
+      "webpack": "^5.104.1",
+      "ws": "^8.21.0"
+    }
   }
 }

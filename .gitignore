@@ -12,6 +12,7 @@ basement_dist
 .vuepress/.cache
 .vuepress/.temp
 .vuepress/dist
-# Rule to prevent non-standard lock files
-yarn*.lock
-!yarn.lock
+# pnpm is the package manager; keep other lockfiles out
+yarn.lock
+package-lock.json
+yarn-error.log
