@@ -18,7 +18,7 @@ lang: en-US
 
 #### Install MATLAB 2020a or higher
 
-#### Download and install NiDAQmx from <a href="ni.com/r/downloaddaqmx">National Instruments website </a>
+#### Download and install NiDAQmx from <a href="https://ni.com/r/downloaddaqmx">National Instruments website </a>
 
 #### Download and install Microsoft Visual Studio Community.
   1. Select a version compatible with the installed MATLAB version. This typically means the VS Community year should be older than the MATLAB year (e.g., VS Community 2022 for MATLAB R2024a).
