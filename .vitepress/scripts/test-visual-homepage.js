@@ -172,6 +172,28 @@ async function main() {
     }
     await contentPage.close();
 
+    // Most content images are transparent PNGs of black line drawings (CAD
+    // renders, diagrams). On the dark theme background they all but vanish
+    // unless they sit on a light backdrop (.vitepress/theme/custom.css).
+    const figureBackdrop = async (colorScheme) => {
+      const p = await browser.newPage({ viewport: { width: 1280, height: 800 }, colorScheme });
+      await p.goto(`http://localhost:${PORT}/building/cabinet.html`, { waitUntil: 'networkidle' });
+      const bg = await p
+        .locator('.vp-doc img')
+        .first()
+        .evaluate((el) => getComputedStyle(el).backgroundColor);
+      await p.close();
+      return bg;
+    };
+    const darkBg = await figureBackdrop('dark');
+    if (darkBg !== 'rgb(255, 255, 255)') {
+      fail(`content images have background "${darkBg}" in dark mode; transparent drawings need a white backdrop`);
+    }
+    const lightBg = await figureBackdrop('light');
+    if (lightBg !== 'rgba(0, 0, 0, 0)') {
+      fail(`content images have background "${lightBg}" in light mode; expected none`);
+    }
+
     // Every page must hydrate cleanly. A mismatch means the static HTML
     // differs from what the browser renders, e.g. raw-HTML tags Vue does not
     // know (<center>) compiled as components and dropped from the static
