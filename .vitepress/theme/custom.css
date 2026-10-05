@@ -16,3 +16,13 @@
   --vp-c-brand-3: #2f9467;
   --vp-c-brand-soft: rgba(62, 175, 124, 0.16);
 }
+
+/*
+ * Most content images are transparent PNGs of black line drawings (CAD
+ * renders, wiring diagrams) that vanish on the dark background. Give
+ * content images a white backdrop in dark mode. Opaque photos and
+ * screenshots cover it, so they look the same.
+ */
+.dark .vp-doc img {
+  background-color: #fff;
+}
