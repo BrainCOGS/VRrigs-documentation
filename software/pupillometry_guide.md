@@ -67,10 +67,7 @@ end
 
 + See <a href="https://braincogs.github.io/software/db_organization.html#_9-u19-pupillometry"> DB Organization (pupillometry) </a> for a description of each pupillometry table.
 
- <figure>
-  <img src='./assets/images/pupillometry_guide/pupillometry_DB_erd.png'>
-  <center><figcaption>Pupillometry pipeline DB schema</figcaption></center>
- </figure>
+ ![Pupillometry pipeline DB schema](./assets/images/pupillometry_guide/pupillometry_DB_erd.png)
 
 ## Steps executed in Pupillometry pipeline
 
@@ -183,10 +180,7 @@ Object pupillometry.PupillometryModels
 
 `fetch(pupillometry.PupillometryModels,'*')`
 
- <figure>
-  <img src='./assets/images/pupillometry_guide/pupillometry_model_selection.png'>
-  <center><figcaption>Pupillometry model_id selection</figcaption></center>
- </figure>
+ ![Pupillometry model_id selection](./assets/images/pupillometry_guide/pupillometry_model_selection.png)
 
 6. Insert the sessions to be processed with the new model into `u19_pupillometry.PupillometrySessionModel`:
 

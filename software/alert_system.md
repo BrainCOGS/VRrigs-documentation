@@ -20,15 +20,9 @@ lang: en-US
 + All columns of the DataFrame are included in the alert. (Don't add too many!)
 + DataFrame example with a Slack notification message:
 
-<figure>
-<img src='./assets/images/alert_system/Alert_dataframe_example.png'>
-<center><figcaption>Example Dataframe for notification </figcaption></center>
-</figure>
+![Example Dataframe for notification](./assets/images/alert_system/Alert_dataframe_example.png)
 
-<figure>
-<img src='./assets/images/alert_system/Alert_message_example.png'>
-<center><figcaption>Example Notification from previous DataFrame</figcaption></center>
-</figure>
+![Example Notification from previous DataFrame](./assets/images/alert_system/Alert_message_example.png)
 
 + You can check examples of some alerts in the u19_pipeline/alert_system/custom_alerts directory.
 

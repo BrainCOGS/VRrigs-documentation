@@ -5,9 +5,7 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-<figure>
-  <img src='./assets/images/training-mini-vr.png'>
-</figure>
+![](./assets/images/training-mini-vr.png)
 
 ## Introduction
 

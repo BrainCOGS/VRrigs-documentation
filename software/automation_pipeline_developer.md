@@ -45,10 +45,7 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 ### Automation GUI main screen
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/GUI_tab1_table_connection.png'>
-<center><figcaption>Automation GUI main screen fill values</figcaption></center>
-</figure>
+![Automation GUI main screen fill values](./assets/images/automation_pipeline_developer/GUI_tab1_table_connection.png)
 
 ### Ephys Preprocessing (precluster) parameters organization
 
@@ -58,10 +55,7 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
   + **u19_pipeline_ephys_element.pre_cluster_param_steps** (Ephys) Reference to a set of steps to perform in ephys preprocessing.
   + **u19_pipeline_ephys_element.pre_cluster_param_steps__step** These records indicate which sets of parameters for given preprocessing methods will be executed (and in which order).
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/precluster_params_example.png'>
-<center><figcaption>Precluster tables record examples </figcaption></center>
-</figure>
+![Precluster tables record examples](./assets/images/automation_pipeline_developer/precluster_params_example.png)
 
 + Depicted in the above image:
  1. Suppose **precluster_param_steps_name** = new_preprocessing_steps_1 (precluster_param_steps_id = 10) is selected for preprocessing.
@@ -78,10 +72,7 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 + This structure is simpler than preprocessing (there are no multiple steps involved): two tables organize the ephys processing parameters.
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/cluster_params_example.png'>
-<center><figcaption>Cluster tables record examples </figcaption></center>
-</figure>
+![Cluster tables record examples](./assets/images/automation_pipeline_developer/cluster_params_example.png)
 
 #### Main tables
   + **u19_pipeline_ephys_element.#clustering_method** List of methods (or algorithms) supported for ephys processing.
@@ -94,10 +85,7 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 + As seen in the Automation GUI main screen, **u19_recording.#modality** stores default parameters for each modality.
 + As a developer, **manually update the default parameters** for all modalities when the project requires it.
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/default_parameters_main.png'>
-<center><figcaption>From which tables default parameters are taken </figcaption></center>
-</figure>
+![From which tables default parameters are taken](./assets/images/automation_pipeline_developer/default_parameters_main.png)
 
 + The **u19_recording.#modality** table stores a reference to the default parameters most commonly used for processing ephys and imaging.
 + Main table to store preprocessing parameters:
@@ -109,19 +97,13 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 ### Imaging equivalence parameter tables:
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/imaging_equivalence_parameter_tables.png'>
-<center><figcaption>Imaging equivalence parameter tables </figcaption></center>
-</figure>
+![Imaging equivalence parameter tables](./assets/images/automation_pipeline_developer/imaging_equivalence_parameter_tables.png)
 
 + Everything described for the ephys preprocessing and processing tables applies to the imaging counterparts.
 
 ### Tables written when recording is registered:
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/new_default_recording_records.png'>
-<center><figcaption>Tables written when new recording is registered </figcaption></center>
-</figure>
+![Tables written when new recording is registered](./assets/images/automation_pipeline_developer/new_default_recording_records.png)
 
 + When a new recording is created, three tables are written:
     1. **u19_recording.recording**: Main table for recordings. The recording_id created here identifies the recording throughout the entire process.
@@ -161,10 +143,7 @@ Workflow management is composed mainly of two classes that handle recordings and
 
 The class that manages workflow at the recording level is (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>)
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/workflow_manager_recordings.png'>
-<center><figcaption>Workflow manager diagam at the recording level</figcaption></center>
-</figure>
+![Workflow manager diagam at the recording level](./assets/images/automation_pipeline_developer/workflow_manager_recordings.png)
 
 ### Main functions and variables in recording workflow manager
 
@@ -184,10 +163,7 @@ The class that manages workflow at the recording level is (<a href="https://gith
   2. **u19_imaging_pipeline.SyncImagingBehavior**: Finds the correspondence between the virtual reality frame in the behavior experiment and the calcium imaging frame in the recording.
   (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/schemas/%2Bimaging_pipeline/SyncImagingBehavior.m">Code here</a>). Since most users use MATLAB to read sync data, this table is populated in the general **populate tables** cronjob script.  (<a href="https://braincogs.github.io/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob">populate tables script description</a>).
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/imaging_pipeline_basic_ERD.png'>
-<center><figcaption>ERD for imaging pipeline at the recording level</figcaption></center>
-</figure>
+![ERD for imaging pipeline at the recording level](./assets/images/automation_pipeline_developer/imaging_pipeline_basic_ERD.png)
 
 #### Ephys preingestion main steps:
 
@@ -199,10 +175,7 @@ The class that manages workflow at the recording level is (<a href="https://gith
 5. For each probe (insertion_number) in the EphysSession, insert a Processing (job) in **u19_recording_process.Processing**.
 
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/ephys_pipeline_basic_ERD.png'>
-<center><figcaption>ERD for ephys pipeline at the recording level</figcaption></center>
-</figure>
+![ERD for ephys pipeline at the recording level](./assets/images/automation_pipeline_developer/ephys_pipeline_basic_ERD.png)
 
 ### Main functions and variables in recording_process workflow manager
 
@@ -216,16 +189,10 @@ The class that manages workflow at the recording level is (<a href="https://gith
 +  **populate_element** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_process_handler.py">slurm_job_queue</a>): After processing jobs, populates the imaging or ephys element tables downstream from the results file.
 
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/workflow_manager_jobs.png'>
-<center><figcaption>Workflow manager diagam at the recording process level</figcaption></center>
-</figure>
+![Workflow manager diagam at the recording process level](./assets/images/automation_pipeline_developer/workflow_manager_jobs.png)
 
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/u19_automation_ERD.png'>
-<center><figcaption>ERD from behavior session to recording process tables</figcaption></center>
-</figure>
+![ERD from behavior session to recording process tables](./assets/images/automation_pipeline_developer/u19_automation_ERD.png)
 
 ## Collab repositories to handle Ephys/Imaging Processing
 

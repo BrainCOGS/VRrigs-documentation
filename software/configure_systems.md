@@ -45,17 +45,11 @@ lang: en-US
 2. Open [github](https://github.com/login)
 3. Log in with the vrrigs user (ask your Lab Manager for the password)
 
- <figure>
-  <img src='./assets/images/configure_systems/vrrigs_login.png'>
-  <center><figcaption>Vrrigs GitHub login</figcaption></center>
- </figure>
+ ![Vrrigs GitHub login](./assets/images/configure_systems/vrrigs_login.png)
 
 4. Go to Settings -> SSH and GPG Keys
 
- <figure>
-  <img src='./assets/images/configure_systems/vrrigs_ssh_keys.png'>
-  <center><figcaption>Vrrigs ssh keys section</figcaption></center>
- </figure>
+ ![Vrrigs ssh keys section](./assets/images/configure_systems/vrrigs_ssh_keys.png)
 
 5. Click the `New SSH Key` button
 6. Add a meaningful title for the key and paste the public key from the clipboard into the "Key" text area.
@@ -98,10 +92,7 @@ lang: en-US
 11. Create a MATLAB shortcut and set **Start in** to `C:\Experiments\ViRMEn`.
 12. Add this shortcut to the Windows taskbar at the bottom.
 
- <figure>
-  <img src='./assets/images/configure_systems/Matlab_shorcut.png'>
-  <center><figcaption>MATLAB Shortcut example</figcaption></center>
- </figure>
+ ![MATLAB Shortcut example](./assets/images/configure_systems/Matlab_shorcut.png)
 
 ### MATLAB Add-Ons
 If not all toolboxes were installed during MATLAB installation, make sure these Add-Ons are added to MATLAB:
@@ -135,20 +126,14 @@ To prevent the screen from turning off while the subjects are training:
 4. Run `Desktop\AutomationGUI_update\firstTimeAutomationGUI.BAT`
   + Install Git Bash and Anaconda from it.
 
- <figure>
-  <img src='./assets/images/configure_systems/anaconda_add_PATH.png'>
-  <center><figcaption>Anaconda avanced options step</figcaption></center>
- </figure>
+ ![Anaconda avanced options step](./assets/images/configure_systems/anaconda_add_PATH.png)
 
 
   + On the Anaconda advanced options step, check the **"Add Anaconda3 to my PATH environment variable"** checkbox.
 5. Run `Desktop\AutomationGUI_update\update_AutomationGUI.BAT`
 6. Follow the instructions to install the Recording Automation GUI (also called the Workflow Console GUI).
 
- <figure>
-  <img src='./assets/images/configure_systems/recording_automation_GUI_installer.png'>
-  <center><figcaption>Recording Automation GUI installer</figcaption></center>
- </figure>
+ ![Recording Automation GUI installer](./assets/images/configure_systems/recording_automation_GUI_installer.png)
 
 ### Register recording system
 

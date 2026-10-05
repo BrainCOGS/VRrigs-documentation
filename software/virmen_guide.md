@@ -25,10 +25,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
  3. Change the experiment code logic.
  4. See  <a href="https://braincogs.github.io/software/virmen_guide.html#tips-and-tricks-experiment-code"> Tips and Tricks Experiment Code </a> below for detailed tips.
 
- <figure>
-  <img src='./assets/images/virmen_guide/experiment_code.png'>
-  <center><figcaption>ViRMEn Experiment Code</figcaption></center>
- </figure>
+ ![ViRMEn Experiment Code](./assets/images/virmen_guide/experiment_code.png)
 
 ### World file
 + Located in the **ViRMEn\experiments** directory.
@@ -41,20 +38,14 @@ This guide walks the researcher through every step, along with tips and tricks, 
  3. Run ```virmen``` in MATLAB and open the world (Experiment -> Open).
  4. If no object is going to change, just set the **Experiment code** dropdown (bottom-left corner) to match your experiment code filename.
 
- <figure>
-  <img src='./assets/images/virmen_guide/virmen_gui.png'>
-  <center><figcaption>ViRMEn GUI: to modify world files</figcaption></center>
- </figure>
+ ![ViRMEn GUI: to modify world files](./assets/images/virmen_guide/virmen_gui.png)
 
 ### Protocol file
 + Located in the **ViRMEn\experiments\protocols** directory.
 + Declares the number of levels, maze settings, and the criteria that decide when to advance a subject to the next level.
 + Original file: ```C:\Experiments\ViRMEn\experiments\protocols\PoissonBlocksCondensed3m.m```
 
- <figure>
-  <img src='./assets/images/virmen_guide/protocol_code.png'>
-  <center><figcaption>Protocol file Code</figcaption></center>
- </figure>
+ ![Protocol file Code](./assets/images/virmen_guide/protocol_code.png)
 
 + The structures and variables in the protocol file are defined below.
  1. Maze structure:
@@ -134,10 +125,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 + ```hasDAQ: = false```
 + This lets you run simulations on any Windows computer and use the keyboard to simulate mouse movement.
 
- <figure>
-  <img src='./assets/images/virmen_guide/rigparameters_file.png'>
-  <center><figcaption>RigParameters File</figcaption></center>
- </figure>
+ ![RigParameters File](./assets/images/virmen_guide/rigparameters_file.png)
 
 ## New Training GUI
 
@@ -147,19 +135,13 @@ This guide walks the researcher through every step, along with tips and tricks, 
 
 ### Define Training Profile (WebGUI)
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_profile_management.png'>
-  <center><figcaption>Training Profile Management Site</figcaption></center>
- </figure>
+ ![Training Profile Management Site](./assets/images/virmen_guide/training_profile_management.png)
 
 
 
 ### Rig Schedule (WebGUI)
 
- <figure>
-  <img src='./assets/images/virmen_guide/rig_schedule.png'>
-  <center><figcaption>Rig Schedule Site</figcaption></center>
- </figure>
+ ![Rig Schedule Site](./assets/images/virmen_guide/rig_schedule.png)
 
 
 
@@ -169,10 +151,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 - From here on, all steps in the following sections are performed on the rig machine.
 - MATLAB should already be open and the Rig Tester GUI should be visible. If not, type ```TrainingToday``` to start the training process.
 
- <figure>
-  <img src='./assets/images/virmen_guide/rig_tester.png'>
-  <center><figcaption>Rig Tester GUI</figcaption></center>
- </figure>
+ ![Rig Tester GUI](./assets/images/virmen_guide/rig_tester.png)
 
 
 + Below is a description of every part of the Rig Tester GUI. Note that some buttons may not be shown (and some extra buttons may appear) compared to the example image.
@@ -188,17 +167,11 @@ This guide walks the researcher through every step, along with tips and tricks, 
  6. **Ready Button:** If all tests pass, proceed to the Training Flow GUI screen.
  7. **Report & Comment Button:** If at least one IO test does not pass and the report checkboxes are marked, a report screen appears where you can add comments for the Lab Manager (see below). A Slack message is sent to the **#rig_issues_and_troubleshooting** channel when a report is sent.
 
-  <figure>
-  <img src='./assets/images/virmen_guide/rig_tester_report.png'>
-  <center><figcaption>Rig Tester Report Dialog</figcaption></center>
- </figure>
+  ![Rig Tester Report Dialog](./assets/images/virmen_guide/rig_tester_report.png)
 
 - If a rig parameter is missing from the RigParameters.m file for the configured IOs, a dialog like the one below appears. Add the parameters to the RigParameters.m file and see the <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> ViRMEn developer Rig Tester section </a> for more information.
 
- <figure>
-  <img src='./assets/images/virmen_guide/missing_rig_parameters.png'>
-  <center><figcaption>Missing Rig Parameters Dialog</figcaption></center>
- </figure>
+ ![Missing Rig Parameters Dialog](./assets/images/virmen_guide/missing_rig_parameters.png)
 
 
 ### Training Flow GUI
@@ -210,20 +183,14 @@ This guide walks the researcher through every step, along with tips and tricks, 
     - Verify the training profile for each subject
     - Add test subjects to train, to check experiment code
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_flow_gui.png'>
-  <center><figcaption>Training Flow GUI</figcaption></center>
- </figure>
+ ![Training Flow GUI](./assets/images/virmen_guide/training_flow_gui.png)
 
 
 + Below is a description of every part of the Training Flow GUI.
  1. **Slot # Labels:** Informative label showing the training order for the day.
  2. **Training Status Icon:** Icon showing the current status of the corresponding subject. See the image below for all possible icon statuses:
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_flow_gui_icons.png'>
-  <center><figcaption>Training Flow GUI Icons</figcaption></center>
- </figure>
+ ![Training Flow GUI Icons](./assets/images/virmen_guide/training_flow_gui_icons.png)
 
  3. **Train Button:** Starts the selected subject's training process. The Training Setup GUI opens.
  4. **Tech instructions Area:** General instructions provided by the researcher to complete before starting training.
@@ -232,10 +199,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
  7. **Past performance Plot:** Plot showing the main training performance stats (# trials, session performance, and level) for the corresponding subject's last 50 sessions.
  8. **Check Training Profile Button:** Opens a dialog (shown below) to verify all training profile variables for the experiment. See the <a href="https://braincogs.github.io/software/virmen_guide.html#define-training-profile-webgui"> Define Training Profile Web GUI section </a> for more information.
 
- <figure>
-  <img src='./assets/images/virmen_guide/check_training_profile.png'>
-  <center><figcaption>Review Training Profile Dialog</figcaption></center>
- </figure>
+ ![Review Training Profile Dialog](./assets/images/virmen_guide/check_training_profile.png)
 
 * a. **Verify DB & Network Drive:** Labels showing whether the Database and Network drive are working correctly. If the DB is not connected, <a href="https://braincogs.github.io/software/virmen_developer.html#virmen-offline"> ViRMEn Offline </a> is used to continue training.
 * b. **Add Test Training Slot Button:** Click this to verify experiment code without creating a "real" session. The "Add test training" dialog appears; it is shown and described below.
@@ -244,10 +208,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 
 #### Add test training Dialog
 
-  <figure>
-  <img src='./assets/images/virmen_guide/add_test_training_slot.png'>
-  <center><figcaption>Add test training Dialog</figcaption></center>
- </figure>
+  ![Add test training Dialog](./assets/images/virmen_guide/add_test_training_slot.png)
 
 + Below is a description of every part of the Add Test Training dialog.
  1. **Copy Training Vars from scheduled Checkbox:** Check this to create a test subject with the same configuration as one of the subjects scheduled for the day.
@@ -261,10 +222,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 
 ### Training Setup GUI
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_setup_gui.png'>
-  <center><figcaption>Training Setup GUI</figcaption></center>
- </figure>
+ ![Training Setup GUI](./assets/images/virmen_guide/training_setup_gui.png)
 
 - After you click the Train button on the Training Flow GUI, the Training Setup GUI appears. Here you can make final adjustments before the experiment starts.
 
@@ -293,10 +251,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 - After you click the Start training subject button, the ViRMEn experiment starts and the ViRMEn Experiment Stats GUI appears. This GUI monitors the subject's current performance throughout the session.
 
 
- <figure>
-  <img src='./assets/images/virmen_guide/virmen_experiment_stats.png'>
-  <center><figcaption>Virmen Experiment Stats GUI</figcaption></center>
- </figure>
+ ![Virmen Experiment Stats GUI](./assets/images/virmen_guide/virmen_experiment_stats.png)
 
 
 + Below is a description of every part of the ViRMEn Experiment Stats GUI.
@@ -308,19 +263,13 @@ This guide walks the researcher through every step, along with tips and tricks, 
 
 - In addition to the Experiment Stats GUI, the virtual reality world is displayed on the rig projector. It may look something like the image below:
 
- <figure>
-  <img src='./assets/images/virmen_guide/virmen_maze.png'>
-  <center><figcaption>ViRMEn Maze Projection</figcaption></center>
- </figure>
+ ![ViRMEn Maze Projection](./assets/images/virmen_guide/virmen_maze.png)
 
 ### Post Training GUI
 
 - Once the subject's session is over, the Post Training GUI appears. This GUI monitors overall performance and verifies that no code error occurred during the experiment.
 
- <figure>
-  <img src='./assets/images/virmen_guide/post_training_gui.png'>
-  <center><figcaption>Post Training GUI</figcaption></center>
- </figure>
+ ![Post Training GUI](./assets/images/virmen_guide/post_training_gui.png)
 
 + Below is a description of every part of the Post Training GUI.
  1. **Session Stats Panel:** The most common performance stats for the session. If session data is shown in red, an error or something abnormal most likely occurred during the session.
@@ -348,10 +297,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
    + **cohortName:** should be a string that identifies the cohort.
   * **experName** and **cohortName** are appended to behavior files.
 
- <figure>
-  <img src='./assets/images/virmen_guide/program_wrapper_file.png'>
-  <center><figcaption>Program Wrapper File</figcaption></center>
- </figure>
+ ![Program Wrapper File](./assets/images/virmen_guide/program_wrapper_file.png)
 
 
 
@@ -361,18 +307,12 @@ This guide walks the researcher through every step, along with tips and tricks, 
  2. Run your **program wrapper file** (e.g. ```trainPoissonBlocks_lp_cohort1()```).
  3. The training GUI appears:
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_GUI_main.png'>
-  <center><figcaption>Main screen training GUI</figcaption></center>
- </figure>
+ ![Main screen training GUI](./assets/images/virmen_guide/training_GUI_main.png)
 
  4. Click the **Connect to Database** button.
  5. Click the **Add animal** button.
 
- <figure>
-  <img src='./assets/images/virmen_guide/add_animal_section.png'>
-  <center><figcaption>Add animal dialog</figcaption></center>
- </figure>
+ ![Add animal dialog](./assets/images/virmen_guide/add_animal_section.png)
 
  6. Fill in the corresponding information for the animal to train (see the next section).
  7. Click the **Submit** button.
@@ -381,20 +321,14 @@ This guide walks the researcher through every step, along with tips and tricks, 
  10. Click the **"Empty area" section** where the subject you want to train is shown.
  11. Click the **TRAIN "SubjectFullname"** button.
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_GUI_main2.png'>
-  <center><figcaption>Main screen training GUI with subject</figcaption></center>
- </figure>
+ ![Main screen training GUI with subject](./assets/images/virmen_guide/training_GUI_main2.png)
 
 ### Set up motor positioning
 + If the rig where training happens has a motor positioning system (ask the Lab Manager about it), you need to set up the initial coordinates for each subject trained on that rig.
 
  1. Adjust the subject's positioning for the first time on the rig using the motor GUI (installed on the rig computer).
 
- <figure>
-  <img src='./assets/images/virmen_guide/motor_GUI.png'>
-  <center><figcaption>Motor GUI</figcaption></center>
- </figure>
+ ![Motor GUI](./assets/images/virmen_guide/motor_GUI.png)
 
  2. In MATLAB, enter the following (replace the code in brackets with the corresponding info for the subject):
   ```matlab
@@ -410,10 +344,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 
  This section describes all the elements of the training GUI.
 
- <figure>
-  <img src='./assets/images/virmen_guide/training_GUI_description.png'>
-  <center><figcaption>Training GUI main screen parts</figcaption></center>
- </figure>
+ ![Training GUI main screen parts](./assets/images/virmen_guide/training_GUI_description.png)
 
 + On the main screen, the elements are grouped into three categories (<span style="color:red">*red* = rarely used or not used at all; </span><span style="color:rgb(184, 146, 68);">*yellow* = used in specific situations; </span><span style="color:green">*green* = widely used</span>).
  1. **Branch information section:** For git users, shows which branch is currently checked out and whether the current code has uncommitted changes. Most of the time it should read "master" and "synced". If not, see the pulling/pushing code section.
@@ -433,10 +364,7 @@ This guide walks the researcher through every step, along with tips and tricks, 
 
 ### Add animal dialog detailed description
 
- <figure>
-  <img src='./assets/images/virmen_guide/add_animal_dialog_description.png'>
-  <center><figcaption>Add subject Dialog</figcaption></center>
- </figure>
+ ![Add subject Dialog](./assets/images/virmen_guide/add_animal_dialog_description.png)
 
 + In the Add animal dialog, the elements are grouped into three categories (<span style="color:red">*red* = rarely used or not used at all; </span><span style="color:rgb(184, 146, 68);">*yellow* = used in specific situations; </span><span style="color:green">*green* = widely used</span>). Elements that are not described are not used.
  1. **Subject selection:** Dropdown list of all subjects in BRAINCoGS available for training.

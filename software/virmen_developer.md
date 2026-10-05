@@ -783,10 +783,7 @@ The list below covers the most common errors and a way to fix each one.
 + Weighing GUI code:
   <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/WeighingGUI'> Code here </a>
 
- <figure>
-  <img src='./assets/images/virmen_developer/WeighingGUI.png'>
-  <center><figcaption>Weighing GUI</figcaption></center>
- </figure>
+ ![Weighing GUI](./assets/images/virmen_developer/WeighingGUI.png)
 
 ## Water Pubs GUI
 
@@ -803,10 +800,7 @@ The list below covers the most common errors and a way to fix each one.
 + Water Pubs GUI repository:
   <a href='https://github.com/BrainCOGS/WaterPubsGUI'> Code here </a>
 
- <figure>
-  <img src='./assets/images/virmen_developer/WaterPubGUI.png'>
-  <center><figcaption>Water Pubs GUI</figcaption></center>
- </figure>
+ ![Water Pubs GUI](./assets/images/virmen_developer/WaterPubGUI.png)
 
 
 ## Test Laser GUI
@@ -821,10 +815,7 @@ The list below covers the most common errors and a way to fix each one.
 + Test Laser GUI code in Virmen Repository:
   <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/Test_VRrigs/%40TestLaserGUI'> Code here </a>
 
- <figure>
-  <img src='./assets/images/virmen_developer/TestLaserGUI.png'>
-  <center><figcaption>Water Pubs GUI</figcaption></center>
- </figure>
+ ![Water Pubs GUI](./assets/images/virmen_developer/TestLaserGUI.png)
 
 ## Known fixes to update to MATLAB >= 2025
 
@@ -853,7 +844,4 @@ run_live_calibration
 
 - You should see something similar to this image on the rig projector:
 
- <figure>
-  <img src='./assets/images/virmen_developer/virmen_calibration_image.png'>
-  <center><figcaption>Virmen Calibration Projection</figcaption></center>
- </figure>
+ ![Virmen Calibration Projection](./assets/images/virmen_developer/virmen_calibration_image.png)

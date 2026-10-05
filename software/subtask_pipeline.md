@@ -32,10 +32,7 @@ lang: en-US
 + This creates the table code templates for the subtask — **(Subtask)Session.m, (Subtask)Block.m & (Subtask)Trial.m** — in the `U19-pipeline-matlab/schemas/+behavior_subtask` directory.
 + (We will use the **"Twolickspouts" subtask** for this example.)
 
- <figure>
-  <img src='./assets/images/subtask_pipeline/Twolickspouts_subtask_files.png'>
-  <center><figcaption>Files created for Twolickspouts subtask on U19-pipeline-matlab/schemas/+behavior_subtask directory</figcaption></center>
- </figure>
+ ![Files created for Twolickspouts subtask on U19-pipeline-matlab/schemas/+behavior_subtask directory](./assets/images/subtask_pipeline/Twolickspouts_subtask_files.png)
 
 ## Table description
 
@@ -150,10 +147,7 @@ trial_params              : blob                          # maze features of cur
 
 + Once all the code for the new subtask has been set up and the tables have been created, the researcher can select a specific subtask to associate with the schedule for a given animal. Subsequent behavior sessions will correspond to that selection.
 
- <figure>
-  <img src='./assets/images/subtask_pipeline/subtask_trainingGUI.png'>
-  <center><figcaption>Subtask selection for a training schedule of a subject.</figcaption></center>
- </figure>
+ ![Subtask selection for a training schedule of a subject.](./assets/images/subtask_pipeline/subtask_trainingGUI.png)
 
 ### Fetching Data
 

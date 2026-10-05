@@ -17,9 +17,7 @@ The module was designed this way to enable a specific task that require the use 
 
 Have the PCB fabricated [here](https://www.pcbway.com/project/shareproject/Two_spouts_lick_detector_059c7e07.html) (or download the GERBER files and have it made elsewhere). The step by step instructions to solder the components on the solenoid valve driver from the [control module](/building/control.html#solenoid-valve-driver-assembly) can be used as well for this module, making sure to use the appropiate components and placing them as labeled in the PCB.
 
-<figure>
-  <img src='./assets/images/lick-detection/lick-detection-1.png'>
-</figure>
+![](./assets/images/lick-detection/lick-detection-1.png)
 
 | Label | Part No. | Description |
 | ----------- | ----------- | ----------- |
@@ -36,9 +34,7 @@ Have the PCB fabricated [here](https://www.pcbway.com/project/shareproject/Two_s
 
 After assemblying the module, place the labels as shown in the picture below.
 
-<figure>
-  <img src='./assets/images/lick-detection/lick-detection-2.png'>
-</figure>
+![](./assets/images/lick-detection/lick-detection-2.png)
 
 The description of each pin of the lick detector module can be found in the table below.
 

@@ -99,10 +99,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  analyze_iteration_time(key)
 ```
 
- <figure>
-  <img src='./assets/images/db_analysis/plot_frequency_sessions1.png'>
-  <center><figcaption>Framerate trial by trial sessions</figcaption></center>
- </figure>
+ ![Framerate trial by trial sessions](./assets/images/db_analysis/plot_frequency_sessions1.png)
 
 ### plot framerate frequency levels and rigs
 
@@ -112,10 +109,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  analyze_iteration_time_level_rig(key)
 ```
 
- <figure>
-  <img src='./assets/images/db_analysis/plot_frequency_sessions2.png'>
-  <center><figcaption>Mean framerate by level and rig </figcaption></center>
- </figure>
+ ![Mean framerate by level and rig](./assets/images/db_analysis/plot_frequency_sessions2.png)
 
 ### plot velocity sessions
 
@@ -125,10 +119,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  plot_velocity_session(key)
 ```
 
- <figure>
-  <img src='./assets/images/db_analysis/velocity_subject.png'>
-  <center><figcaption>Velocity plot for multiple sessions</figcaption></center>
- </figure>
+ ![Velocity plot for multiple sessions](./assets/images/db_analysis/velocity_subject.png)
 
 ### get path table
 
@@ -138,10 +129,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  baseDir = fetch1(acquisition.SessionStarted & key, 'new_remote_path_behavior_file');
  [bucket_path, local_path] =  lab.utils.get_path_from_official_dir(baseDir)
 ```
- <figure>
-  <img src='./assets/images/db_analysis/path_table.png'>
-  <center><figcaption>Path table data</figcaption></center>
- </figure>
+ ![Path table data](./assets/images/db_analysis/path_table.png)
 
 ### Common errors and troubleshooting
 

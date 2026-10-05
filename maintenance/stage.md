@@ -29,9 +29,7 @@ The image quality from the optical sensor should be maximized in order for it to
 
 The ADNS-3080 chip reports a SQUAL value that can be read out using software as explained below. This value needs to be at least 30 if the velocities to be measured are around 100cm/s-150cm/s. For lower values of SQUAL, the sensor tends to under-measure the actual displacement, with the size of the effect increasing with higher surface velocities. The following are examples of images of a Styrofoam ball at various SQUAL values ranging from unusable to ideal (for velocities not far exceeding 100cm/s).
 
-<figure>
-  <img src='./assets/images/stage/stage-1.png'>
-</figure>
+![](./assets/images/stage/stage-1.png)
 
 Follow the procedure below to adjust the focus of the optical flow sensor lens.
 
@@ -43,9 +41,7 @@ Follow the procedure below to adjust the focus of the optical flow sensor lens.
 
 4. Print the left side of the following image (an optical spoke target) using a laser printer. The spoke target consists of lines of vanishing size towards the center, therefore allowing you to probe the single pixel limit of the optical sensor as shown in the calibrated image (from the sensor) in the right:
 
-<figure>
-  <img src='./assets/images/stage/stage-2.png'>
-</figure>
+![](./assets/images/stage/stage-2.png)
 
 5. Find some way of placing the spoke target in front of the optical sensor at the same location and orientation as the actual surface to be measured. For example for the mouse virtual reality rig it can be taped onto a Styrofoam ball and the ball can be suspended at the height it would usually be at during experiments.
 
@@ -72,9 +68,7 @@ Follow the procedure below to calibrate the lenght scale of the optical flow sen
 
 3. Suspend a Styrofoam ball on an axle, or a cylindrical Styrofoam wheel, at the position it would be in relative to the optical sensor in a real experiment. Mark a reference position on the ball, e.g. with a piece of black tape as shown in the mouse VR calibration photo below.
 
-<figure>
-  <img src='./assets/images/stage/stage-3.png'>
-</figure>
+![](./assets/images/stage/stage-3.png)
 
 4. Ensure that Matlab Code\Calibration\calibrateBall.m is either in the current folder in the Matlab console, or otherwise in the Matlab path, before continuing the rest of this procedure.
 
@@ -130,9 +124,7 @@ If the arduino is not recognized by the rig tester arduino detection button foll
 
 ### Timed out while waiting for a reply.
 
-<figure>
-  <img src='./assets/images/stage/stage-4.png'>
-</figure>
+![](./assets/images/stage/stage-4.png)
 
 This error could be caused by a corrupted firmware in the Arduino. To solve follow the steps on [instructions](/building/control.html#programming-the-arduino) to program the arduino again.
 

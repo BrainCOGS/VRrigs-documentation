@@ -17,9 +17,7 @@ lang: en-US
 
  Fermat’s principle states that light travels by the shortest route, so the reflection point on the mirror can be found by minimising the total light path length from the projector to the position on the dome, namely minimising (L1^2 + L2^2)^1/2. It is quite simple in the case of a spherical mirror: the line at mid-angle between the vectors OP1 and OP2 and its intersection with the surface of the mirror defines the reflection point.
 
-<figure>
-  <img src='./assets/images/projection/projection-1.png'>
-</figure>
+![](./assets/images/projection/projection-1.png)
 
 The projection calibration will align the projection within certain boundaries, specifically the horizon, the center and the left and right side will be aligned to the physical position of the dome. This method has a trade-off in the time that has to be inverted to perform the alignment vs the accuracy of the rendered projection, since the height of the towers might be different across systems.
 
@@ -85,10 +83,7 @@ The goal of doing this physically instead of modifying the projection transforma
 * The **hrescaling** and the **vrescaling** should be the same, otherwise it will modify elongate or contract the projection, and there will be significant differences across sytems.
 * The **hshift** and **vshift** will move the entire projection up, down, left or right. Ideally the **hshift** should be 0 if the projection is calibrated manually, but it can be modified if necessary since it shouldn't affect significatly the projection across differente systems.
 
-<figure>
-  <img src='./assets/images/projection/projection-2.png'>
-  <center><figcaption><small>Projection calibration. Due to the principle of the spherical mirror projection, the lateral towers will be slightly curved, the projection should be fine as long as they are equidistant and centered at the top (or the bottom, just make sure to keep the same policy across rigs).</small></figcaption></center>
-</figure>
+![Projection calibration. Due to the principle of the spherical mirror projection, the lateral towers will be slightly curved, the projection should be fine as long as they are equidistant and centered at the top (or the bottom, just make sure to keep the same policy across rigs).](./assets/images/projection/projection-2.png)
 
  ## Projector bulb replacement.
 

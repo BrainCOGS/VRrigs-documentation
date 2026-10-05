@@ -27,14 +27,9 @@ lang: en-US
 + This creates a new schema "base" code in the `U19-pipeline-matlab/schemas` directory.
 + (We will use the “thermal” manipulation for this example.)
 
- <figure>
-  <img src='./assets/images/manipulation_pipeline/Thermal_schema_files.png'>
- </figure>
+ ![](./assets/images/manipulation_pipeline/Thermal_schema_files.png)
 
- <figure>
-  <img src='./assets/images/manipulation_pipeline/Thermal_pipeline_ERD.png'>
-  <center><figcaption>Thermal manipulation file creation & Entity-Relationship diagram on the BRAINCoGS DB</figcaption></center>
- </figure>
+ ![Thermal manipulation file creation & Entity-Relationship diagram on the BRAINCoGS DB](./assets/images/manipulation_pipeline/Thermal_pipeline_ERD.png)
 
 ## Table description
 
@@ -65,10 +60,7 @@ lang: en-US
 + For each of these features, we need to create a new table that holds the information needed for that feature. We call all these extra tables protocol “feature” tables.
 + For a guide on how to define DJ tables, see <a href="https://docs.datajoint.org/matlab/definition/02-Creating-Tables.html">this link</a>.
 
- <figure>
-  <img src='./assets/images/manipulation_pipeline/Optogenetics_pipeline.png'>
-  <center><figcaption>Tables that define an optogenetic protocol for a session.</figcaption></center>
- </figure>
+ ![Tables that define an optogenetic protocol for a session.](./assets/images/manipulation_pipeline/Optogenetics_pipeline.png)
 
 + For this guide, we show only the OptogeneticsStimulationParameters definition as an example:
 
@@ -207,10 +199,7 @@ for itrial = 1:nTrials
 
 + Once all the code for the new manipulation has been set up, the researcher can select a specific manipulation type, protocol, and software parameters to associate with the schedule for a given animal. Subsequent behavior sessions will correspond to that selection.
 
-<figure>
- <img src='./assets/images/manipulation_pipeline/manipulation_trainingGUI.png'>
- <center><figcaption>Parameter selection (manipulation, protocol & software Parameter) for a training schedule of a subject.</figcaption></center>
-</figure>
+![Parameter selection (manipulation, protocol & software Parameter) for a training schedule of a subject.](./assets/images/manipulation_pipeline/manipulation_trainingGUI.png)
 
 ### Fetching Data
 
