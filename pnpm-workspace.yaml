@@ -3,8 +3,3 @@
 # Org-wide 7-day dependency quarantine: never resolve a version published
 # less than 7 days (10080 minutes) ago. Matches the Dependabot cooldown.
 minimumReleaseAge: 10080
-
-# No dependency needs to run install scripts. @parcel/watcher (pulled in by
-# sass) ships prebuilt binaries and only powers `sass --watch`.
-ignoredBuiltDependencies:
-  - '@parcel/watcher'

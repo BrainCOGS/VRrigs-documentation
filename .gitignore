@@ -9,12 +9,9 @@ run
 .basement
 config.local.js
 basement_dist
-.vuepress/.cache
-.vuepress/.temp
-.vuepress/dist
+.vitepress/cache
+.vitepress/dist
 # pnpm is the package manager; keep other lockfiles out
 yarn.lock
 package-lock.json
 yarn-error.log
-# Temp bundles VuePress writes while loading config.ts
-.vuepress/config.ts.*.mjs

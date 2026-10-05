@@ -19,7 +19,7 @@ const http = require('http');
 const { chromium } = require('playwright');
 
 const repoRoot = path.join(__dirname, '..', '..');
-const distDir = path.join(repoRoot, '.vuepress', 'dist');
+const distDir = path.join(repoRoot, '.vitepress', 'dist');
 const PORT = 4173;
 
 const MIME_TYPES = {
@@ -90,28 +90,28 @@ async function main() {
       fail(`unexpected page title: "${title}"`);
     }
 
-    // Regression check for #27: --navbar-height (and friends) are set in
+    // Regression check for #27: --vp-nav-height (and friends) are set in
     // the theme's :root rule. If a corrupted selector drops that rule,
     // this resolves to an empty string.
-    const navbarHeight = await page.evaluate(
-      () => getComputedStyle(document.documentElement).getPropertyValue('--navbar-height').trim()
-    );
-    if (!navbarHeight) {
-      fail('--navbar-height CSS custom property is not set — theme :root rule may not have applied');
+    const rootVar = (name) =>
+      page.evaluate((n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim(), name);
+
+    if (!(await rootVar('--vp-nav-height'))) {
+      fail('--vp-nav-height CSS custom property is not set — theme :root rule may not have applied');
     }
 
-    const accentColor = await page.evaluate(
-      () => getComputedStyle(document.documentElement).getPropertyValue('--vp-c-accent').trim()
-    );
-    if (!accentColor) {
-      fail('--vp-c-accent CSS custom property is not set — theme :root rule may not have applied');
+    // The site keeps its green brand (.vitepress/theme/custom.css) rather
+    // than VitePress's default indigo.
+    const brand = (await rootVar('--vp-c-brand-1')).toLowerCase();
+    if (brand !== '#2f9467') {
+      fail(`--vp-c-brand-1 is "${brand}", expected the site green #2f9467`);
     }
 
     // The navbar must exist, be visible, and be fixed to the top — not
     // collapsed/inline the way it renders with no CSS applied.
-    const navbar = page.locator('.vp-navbar');
+    const navbar = page.locator('.VPNav');
     if ((await navbar.count()) === 0) {
-      fail('.vp-navbar element not found on homepage');
+      fail('.VPNav element not found on homepage');
     } else {
       const box = await navbar.boundingBox();
       const position = await navbar.evaluate((el) => getComputedStyle(el).position);
@@ -128,7 +128,9 @@ async function main() {
     // exactly the symptom from #27 — the site title and page heading
     // rendered stacked on top of each other because the navbar's fixed
     // positioning + the page's compensating top padding never applied).
-    const heroBox = await page.locator('.vp-hero').boundingBox();
+    // Measure the heading itself: the VitePress hero background is meant to
+    // sit under the transparent nav.
+    const heroBox = await page.locator('.VPHero h1').boundingBox();
     const navbarBox = await navbar.boundingBox();
     if (heroBox && navbarBox && heroBox.y < navbarBox.y + navbarBox.height - 5) {
       fail(
@@ -136,15 +138,15 @@ async function main() {
       );
     }
 
-    const heroTitle = await page.locator('.vp-hero h1').innerText();
+    const heroTitle = await page.locator('.VPHero h1').innerText();
     if (!heroTitle.trim()) {
-      fail('.vp-hero h1 is empty — homepage heading did not render');
+      fail('.VPHero h1 is empty — homepage heading did not render');
     }
 
     // A handful of nav links and the hero action button should be present
     // and actually clickable-sized, confirming the page isn't a bare
     // unstyled HTML dump.
-    const navLinks = await page.locator('.vp-navbar .vp-navbar-item').count();
+    const navLinks = await page.locator('.VPNav .VPNavBarMenuLink').count();
     if (navLinks === 0) {
       fail('no navbar links found on homepage');
     }
@@ -152,6 +154,23 @@ async function main() {
     if (consoleErrors.length > 0) {
       fail(`browser console reported errors:\n  ${consoleErrors.join('\n  ')}`);
     }
+
+    // Sidebar labels come from each page's frontmatter title
+    // (`page()` in config.mts); an empty label means that lookup broke.
+    const contentPage = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await contentPage.goto(`http://localhost:${PORT}/building/cabinet.html`, { waitUntil: 'networkidle' });
+    const sidebarLabels = await contentPage
+      .locator('.VPSidebar .VPSidebarItem.level-1 .text')
+      .allInnerTexts();
+    if (sidebarLabels.length !== 10) {
+      fail(`expected 10 building sidebar entries, found ${sidebarLabels.length}`);
+    }
+    const blank = sidebarLabels.filter((t) => !t.trim()).length;
+    if (blank > 0) {
+      fail(`${blank} sidebar entries have no label`);
+    }
+    await contentPage.close();
+
   } finally {
     await browser.close();
     server.close();

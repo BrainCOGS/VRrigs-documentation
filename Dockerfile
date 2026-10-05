@@ -20,8 +20,8 @@ RUN pnpm install --frozen-lockfile
 # Copy the rest of the application code
 COPY . .
 
-# Expose the default VuePress dev server port
+# Expose the VitePress dev server port (`pnpm dev` runs on 8080)
 EXPOSE 8080
 
-# Start the VuePress dev server
-CMD ["pnpm", "dev"]
+# Start the VitePress dev server, reachable from outside the container
+CMD ["pnpm", "dev", "--host", "0.0.0.0"]

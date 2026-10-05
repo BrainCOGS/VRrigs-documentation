@@ -1,5 +1,5 @@
 services:
-  vuepress:
+  docs:
     build:
       context: . # The directory containing your Dockerfile
       dockerfile: Dockerfile # Explicitly specify the Dockerfile
@@ -10,4 +10,4 @@ services:
       - /app/node_modules # Exclude node_modules from the host to avoid conflicts
     environment:
       - NODE_ENV=development # Set the environment variable
-    command: pnpm dev # Run the development server when the container starts
+    command: pnpm dev --host 0.0.0.0 # Run the development server when the container starts

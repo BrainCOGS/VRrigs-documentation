@@ -1,13 +1,14 @@
 #!/usr/bin/env node
 // Broken-link check over the built site (run `pnpm run build` first).
 //
-// The theme's links-check plugin (set to fail the build in config.ts) only
-// sees Markdown links. Most downloads and images on this site are raw HTML
+// VitePress's own dead-link check (which fails `vitepress build`) only sees
+// Markdown links. Most downloads and images on this site are raw HTML
 // (`<a href='./assets/...zip'>`, `<img src=...>`), which it never checks, so
 // this script walks every built HTML page instead and verifies that each
 // same-site href/src resolves to a file in dist, and that each #fragment
 // points at an element id on the target page. External URLs are not
 // fetched: they are not ours to fix and would make CI flaky.
+
 const fs = require('fs');
 const path = require('path');
 
