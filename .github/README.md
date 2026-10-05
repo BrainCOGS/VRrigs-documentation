@@ -39,10 +39,11 @@ We have a docker development environment set up. To install, follow the instruct
 
 ### Without Docker
 
-The toolchain is pinned in `package.json`: Node 24 LTS (`engines.node`) and
-pnpm (`packageManager`, installed by `corepack enable pnpm`). pnpm refuses
-packages published less than 7 days ago (`minimumReleaseAge` in
-`pnpm-workspace.yaml`).
+The site is built with [VitePress](https://vitepress.dev). Use the current
+Node LTS (CI and Docker track it via `lts/*` / `node:lts`; `engines.node` in
+`package.json` is the minimum) and the pnpm version in `packageManager`
+(`npm install -g pnpm@<version>`). pnpm refuses packages published less than
+7 days ago (`minimumReleaseAge` in `pnpm-workspace.yaml`).
 
 ```bash
 pnpm install --frozen-lockfile
@@ -52,11 +53,11 @@ pnpm run audit                           # high/critical advisories in the depen
 ```
 
 `pnpm test` builds the site (dead Markdown links fail the build) and then runs
-`test:dist` on `.vuepress/dist`:
+`test:dist` on `.vitepress/dist`:
 
-- `test:css-bom`: the built CSS has no embedded UTF-8 BOM and the theme `:root` rule is intact.
-- `test:links`: every same-site link, image and download resolves, including `#anchors`.
-- `test:visual-homepage`: the homepage renders with the theme applied (needs `pnpm exec playwright install chromium` once).
+- `test:css-bom`: the built CSS has no embedded UTF-8 BOM, the theme `:root` rule is intact and the green brand color is bundled.
+- `test:links`: every same-site link, image and download resolves, including `#anchors`, and no link is nested in another.
+- `test:visual-homepage`: the homepage renders with the theme applied, the sidebar has labels, and every page hydrates without errors (needs `pnpm exec playwright install chromium` once).
 
 ---
 
@@ -64,10 +65,11 @@ pnpm run audit                           # high/critical advisories in the depen
 
 The documentation follows this structure:
 ```
-.vuepress/
-  config.ts         # VuePress configuration (navbar, sidebar, plugins)
-  public/           # Files served as-is at the same path (downloads, logo)
+.vitepress/
+  config.mts        # VitePress configuration (nav, sidebar, search)
+  theme/            # Default theme + the site's brand colors
   scripts/          # Regression tests run by `pnpm test`
+public/             # Files served as-is at the same path (downloads, logo)
 building/           # Documentation for building VR rigs
 maintenance/        # Documentation for maintenance
 software/           # Software documentation
@@ -84,11 +86,13 @@ index.md            # Homepage
 
 ### b) Adding a New Page
 1. Create a new `.md` file in the appropriate directory (e.g., `software/new-feature.md`).
-2. Add the new page to the sidebar in `.vuepress/config.ts`.
+2. Give it a `title:` in its frontmatter and add it to the sidebar in
+   `.vitepress/config.mts` with `page('/software/new-feature')`. The sidebar
+   label is read from the frontmatter title.
 3. Test your changes locally as described above (`pnpm test`).
 
 Files linked with raw HTML (`<a href=...>`) are not bundled. Put downloads
-under `.vuepress/public/` at the path the link uses, or `pnpm test` will flag
+under `public/` at the path the link uses, or `pnpm test` will flag
 the link as broken.
 
 ---
@@ -99,5 +103,5 @@ the link as broken.
    `prek` (lint) and `test` checks must pass.
 
 2. When the PR is merged, the `Build and Deploy` workflow builds the site, runs
-   the checks and publishes `.vuepress/dist` to the `gh-pages` branch of
+   the checks and publishes `.vitepress/dist` to the `gh-pages` branch of
    `BRAINCOGS/braincogs.github.io`.
