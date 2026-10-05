@@ -10,29 +10,23 @@
   "repository": "/VR_rigs_docs",
   "license": "MIT",
   "engines": {
-    "node": ">=24 <25"
+    "node": ">=24"
   },
   "packageManager": "pnpm@10.34.5",
   "scripts": {
-    "clean": "rm -rf .vuepress/.temp .vuepress/.cache .vuepress/dist node_modules",
-    "dev": "vuepress dev",
-    "build": "vuepress build",
+    "clean": "rm -rf .vitepress/cache .vitepress/dist node_modules",
+    "dev": "vitepress dev --port 8080",
+    "build": "vitepress build",
+    "preview": "vitepress preview --port 8080",
     "test": "pnpm run build && pnpm run test:dist",
     "test:dist": "pnpm run test:css-bom && pnpm run test:links && pnpm run test:visual-homepage",
-    "test:css-bom": "node .vuepress/scripts/test-css-bom.js",
-    "test:links": "node .vuepress/scripts/test-links.js",
-    "test:visual-homepage": "node .vuepress/scripts/test-visual-homepage.js",
+    "test:css-bom": "node .vitepress/scripts/test-css-bom.js",
+    "test:links": "node .vitepress/scripts/test-links.js",
+    "test:visual-homepage": "node .vitepress/scripts/test-visual-homepage.js",
     "audit": "pnpm audit --audit-level high"
   },
   "devDependencies": {
-    "@vuepress/bundler-vite": "^2.0.0-rc.31",
-    "@vuepress/plugin-search": "^2.0.0-rc.135",
-    "@vuepress/theme-default": "^2.0.0-rc.136",
     "playwright": "^1.63.0",
-    "sass-embedded": "^1.105.0",
-    "vuepress": "^2.0.0-rc.31"
-  },
-  "dependencies": {
-    "vue": "^3.5.43"
+    "vitepress": "^2.0.0-alpha.20"
   }
 }

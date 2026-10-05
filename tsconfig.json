@@ -1,11 +1,14 @@
 {
-    "compilerOptions": {
-      "module": "ESNext",
-      "target": "ES2020",
-      "moduleResolution": "Node",
-      "resolveJsonModule": true,
-      "esModuleInterop": true,
-      "allowSyntheticDefaultImports": true,
-      "strict": true
-    }
-  }
+  "compilerOptions": {
+    "module": "ESNext",
+    "target": "ES2023",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true
+  },
+  "include": [".vitepress/**/*.mts", ".vitepress/**/*.ts"]
+}

@@ -16,9 +16,9 @@ basement_dist
 # Ignore system-specific files
 .DS_Store
 
-# Ignore VuePress temporary files
-.vuepress/.cache
-.vuepress/.temp
+# Ignore VitePress cache and build output
+.vitepress/cache
+.vitepress/dist
 
 # Ignore configuration files specific to local development
 config.local.js

@@ -19,7 +19,7 @@ const http = require('http');
 const { chromium } = require('playwright');
 
 const repoRoot = path.join(__dirname, '..', '..');
-const distDir = path.join(repoRoot, '.vuepress', 'dist');
+const distDir = path.join(repoRoot, '.vitepress', 'dist');
 const PORT = 4173;
 
 const MIME_TYPES = {
@@ -71,6 +71,7 @@ async function main() {
   }
 
   const server = await serveDist();
+  let hydratedPages = 0;
   const browser = await chromium.launch();
 
   try {
@@ -90,28 +91,28 @@ async function main() {
       fail(`unexpected page title: "${title}"`);
     }
 
-    // Regression check for #27: --navbar-height (and friends) are set in
+    // Regression check for #27: --vp-nav-height (and friends) are set in
     // the theme's :root rule. If a corrupted selector drops that rule,
     // this resolves to an empty string.
-    const navbarHeight = await page.evaluate(
-      () => getComputedStyle(document.documentElement).getPropertyValue('--navbar-height').trim()
-    );
-    if (!navbarHeight) {
-      fail('--navbar-height CSS custom property is not set — theme :root rule may not have applied');
+    const rootVar = (name) =>
+      page.evaluate((n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim(), name);
+
+    if (!(await rootVar('--vp-nav-height'))) {
+      fail('--vp-nav-height CSS custom property is not set — theme :root rule may not have applied');
     }
 
-    const accentColor = await page.evaluate(
-      () => getComputedStyle(document.documentElement).getPropertyValue('--vp-c-accent').trim()
-    );
-    if (!accentColor) {
-      fail('--vp-c-accent CSS custom property is not set — theme :root rule may not have applied');
+    // The site keeps its green brand (.vitepress/theme/custom.css) rather
+    // than VitePress's default indigo.
+    const brand = (await rootVar('--vp-c-brand-1')).toLowerCase();
+    if (brand !== '#2f9467') {
+      fail(`--vp-c-brand-1 is "${brand}", expected the site green #2f9467`);
     }
 
     // The navbar must exist, be visible, and be fixed to the top — not
     // collapsed/inline the way it renders with no CSS applied.
-    const navbar = page.locator('.vp-navbar');
+    const navbar = page.locator('.VPNav');
     if ((await navbar.count()) === 0) {
-      fail('.vp-navbar element not found on homepage');
+      fail('.VPNav element not found on homepage');
     } else {
       const box = await navbar.boundingBox();
       const position = await navbar.evaluate((el) => getComputedStyle(el).position);
@@ -128,7 +129,9 @@ async function main() {
     // exactly the symptom from #27 — the site title and page heading
     // rendered stacked on top of each other because the navbar's fixed
     // positioning + the page's compensating top padding never applied).
-    const heroBox = await page.locator('.vp-hero').boundingBox();
+    // Measure the heading itself: the VitePress hero background is meant to
+    // sit under the transparent nav.
+    const heroBox = await page.locator('.VPHero h1').boundingBox();
     const navbarBox = await navbar.boundingBox();
     if (heroBox && navbarBox && heroBox.y < navbarBox.y + navbarBox.height - 5) {
       fail(
@@ -136,21 +139,82 @@ async function main() {
       );
     }
 
-    const heroTitle = await page.locator('.vp-hero h1').innerText();
+    const heroTitle = await page.locator('.VPHero h1').innerText();
     if (!heroTitle.trim()) {
-      fail('.vp-hero h1 is empty — homepage heading did not render');
+      fail('.VPHero h1 is empty — homepage heading did not render');
     }
 
     // A handful of nav links and the hero action button should be present
     // and actually clickable-sized, confirming the page isn't a bare
     // unstyled HTML dump.
-    const navLinks = await page.locator('.vp-navbar .vp-navbar-item').count();
+    const navLinks = await page.locator('.VPNav .VPNavBarMenuLink').count();
     if (navLinks === 0) {
       fail('no navbar links found on homepage');
     }
 
     if (consoleErrors.length > 0) {
       fail(`browser console reported errors:\n  ${consoleErrors.join('\n  ')}`);
+    }
+
+    // Sidebar labels come from each page's frontmatter title
+    // (`page()` in config.mts); an empty label means that lookup broke.
+    const contentPage = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    await contentPage.goto(`http://localhost:${PORT}/building/cabinet.html`, { waitUntil: 'networkidle' });
+    const sidebarLabels = await contentPage
+      .locator('.VPSidebar .VPSidebarItem.level-1 .text')
+      .allInnerTexts();
+    if (sidebarLabels.length !== 10) {
+      fail(`expected 10 building sidebar entries, found ${sidebarLabels.length}`);
+    }
+    const blank = sidebarLabels.filter((t) => !t.trim()).length;
+    if (blank > 0) {
+      fail(`${blank} sidebar entries have no label`);
+    }
+    await contentPage.close();
+
+    // Most content images are transparent PNGs of black line drawings (CAD
+    // renders, diagrams). On the dark theme background they all but vanish
+    // unless they sit on a light backdrop (.vitepress/theme/custom.css).
+    const figureBackdrop = async (colorScheme) => {
+      const p = await browser.newPage({ viewport: { width: 1280, height: 800 }, colorScheme });
+      await p.goto(`http://localhost:${PORT}/building/cabinet.html`, { waitUntil: 'networkidle' });
+      const bg = await p
+        .locator('.vp-doc img')
+        .first()
+        .evaluate((el) => getComputedStyle(el).backgroundColor);
+      await p.close();
+      return bg;
+    };
+    const darkBg = await figureBackdrop('dark');
+    if (darkBg !== 'rgb(255, 255, 255)') {
+      fail(`content images have background "${darkBg}" in dark mode; transparent drawings need a white backdrop`);
+    }
+    const lightBg = await figureBackdrop('light');
+    if (lightBg !== 'rgba(0, 0, 0, 0)') {
+      fail(`content images have background "${lightBg}" in light mode; expected none`);
+    }
+
+    // Every page must hydrate cleanly. A mismatch means the static HTML
+    // differs from what the browser renders, e.g. raw-HTML tags Vue does not
+    // know (<center>) compiled as components and dropped from the static
+    // HTML, which took the image captions with them.
+    const pages = fs
+      .readdirSync(distDir, { recursive: true })
+      .filter((f) => f.endsWith('.html') && f !== '404.html')
+      .map((f) => '/' + f.split(path.sep).join('/'));
+    hydratedPages = pages.length;
+    for (const url of pages) {
+      const p = await browser.newPage();
+      const errors = [];
+      p.on('console', (msg) => {
+        if (msg.type() === 'error') errors.push(msg.text());
+      });
+      p.on('pageerror', (err) => errors.push(String(err)));
+      await p.goto(`http://localhost:${PORT}${url}`, { waitUntil: 'networkidle' });
+      if (errors.length > 0) {
+        fail(`${url}: ${errors.join('; ')}`);
+      }
+      await p.close();
     }
   } finally {
     await browser.close();
@@ -161,7 +225,7 @@ async function main() {
     process.exit(process.exitCode);
   }
 
-  console.log('OK: homepage renders with theme CSS applied and no layout collapse.');
+  console.log(`OK: homepage renders with theme CSS applied and no layout collapse; ${hydratedPages} pages hydrate cleanly.`);
 }
 
 main().catch((err) => {

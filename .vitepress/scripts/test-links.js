@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 // Broken-link check over the built site (run `pnpm run build` first).
 //
-// The theme's links-check plugin (set to fail the build in config.ts) only
-// sees Markdown links. Most downloads and images on this site are raw HTML
+// VitePress's own dead-link check (which fails `vitepress build`) only sees
+// Markdown links. Most downloads and images on this site are raw HTML
 // (`<a href='./assets/...zip'>`, `<img src=...>`), which it never checks, so
 // this script walks every built HTML page instead and verifies that each
 // same-site href/src resolves to a file in dist, and that each #fragment
 // points at an element id on the target page. External URLs are not
 // fetched: they are not ours to fix and would make CI flaky.
+//
+// It also rejects nested <a> elements. Markdown linkify used to wrap the
+// URL text of raw-HTML links in a second <a>, which is invalid HTML.
 const fs = require('fs');
 const path = require('path');
 
@@ -57,6 +60,15 @@ let checked = 0;
 for (const page of htmlFiles) {
   const html = fs.readFileSync(path.join(distDir, page), 'utf8');
   const pageUrl = new URL(page, 'http://site.invalid/');
+
+  let anchorDepth = 0;
+  for (const m of html.matchAll(/<(\/?)a(?=[\s>])[^>]*>/gi)) {
+    if (m[1]) {
+      anchorDepth = Math.max(0, anchorDepth - 1);
+    } else if (++anchorDepth > 1) {
+      broken.push(`${page}: nested <a> element at "${html.slice(m.index, m.index + 80)}"`);
+    }
+  }
 
   for (const m of html.matchAll(/\s(href|src)=(["'])(.*?)\2/g)) {
     const raw = m[3].trim();

@@ -3,9 +3,8 @@
 # whitespace/EOF fixers so they are never rewritten.
 exclude: |
   (?x)^(
-    \.vuepress/dist/.*|
-    \.vuepress/\.(cache|temp)/.*|
-    \.vuepress/public/.*|
+    \.vitepress/(dist|cache)/.*|
+    public/.*|
     pnpm-lock\.yaml|
     .*\.(png|jpe?g|gif|pdf|zip|step|ipt|iam|idw|dwg|stl|stp|stl)
   )$
