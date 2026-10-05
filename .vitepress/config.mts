@@ -40,6 +40,25 @@ export default defineConfig({
   // Pages stay at /<section>/<page>.html, as they were under VuePress.
   cleanUrls: false,
 
+  markdown: {
+    // Bare URLs stay plain text, as under VuePress. With linkify on, the URL
+    // text of raw-HTML links (`<a href="https://x">https://x</a>`) was wrapped
+    // in a second, nested <a>.
+    linkify: false,
+  },
+
+  vue: {
+    template: {
+      compilerOptions: {
+        // The pages wrap image captions in the obsolete <center> tag, which
+        // Vue does not know. Without this it compiles <center> as an
+        // unresolved component: the captions vanish from the static HTML and
+        // every such page has a hydration mismatch.
+        isCustomElement: (tag) => tag === 'center',
+      },
+    },
+  },
+
   // Dead links already fail `vitepress build` by default (ignoreDeadLinks is
   // false). Raw-HTML links and downloads are covered by `pnpm run test:links`.
 
