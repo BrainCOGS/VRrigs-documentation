@@ -39,3 +39,36 @@
   font-size: 80%;
   line-height: 24px;
 }
+
+/*
+ * Home page hero: the site name in a green gradient and a soft green glow
+ * behind the logo, using the hooks the default theme provides.
+ * Ref: https://vitepress.dev/reference/default-theme-home-page
+ */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3eaf7c 30%, #2c7fb8);
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, rgba(62, 175, 124, 0.45) 50%, rgba(44, 127, 184, 0.35) 50%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --vp-home-hero-image-filter: blur(56px);
+  }
+}
+
+@media (min-width: 960px) {
+  :root {
+    --vp-home-hero-image-filter: blur(68px);
+  }
+}
+
+/*
+ * The logo is dark grey line art on a transparent background, which all but
+ * disappears on the dark theme. Brighten it there (invert would also flip
+ * the colors of the microscopy images inside the letters).
+ */
+.dark .VPHero .image-src {
+  filter: brightness(1.9);
+}

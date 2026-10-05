@@ -1,5 +1,5 @@
 ---
-title: Maintenance of a mini VR rig
+title: Maintaining a Mini VR Rig
 lang: en-US
 ---
 

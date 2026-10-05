@@ -1,5 +1,5 @@
 ---
-title: Building a mini VR rig
+title: Building a Mini VR Rig
 lang: en-US
 ---
 

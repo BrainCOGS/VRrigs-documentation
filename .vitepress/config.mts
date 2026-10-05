@@ -22,7 +22,7 @@ export default defineConfig({
    * Site Title
    * Ref: https://vitepress.dev/reference/site-config#title
    */
-  title: 'BRAIN CoGS mini VR rigs',
+  title: 'BRAIN CoGS Mini VR Rigs',
   description: 'Documentation for virtual reality rigs at Princeton BRAIN CoGS project',
 
   /**
