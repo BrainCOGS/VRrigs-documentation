@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { figure } from '@mdit/plugin-figure'
 import { defineConfig, type DefaultTheme } from 'vitepress'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
@@ -45,6 +46,20 @@ export default defineConfig({
     // text of raw-HTML links (`<a href="https://x">https://x</a>`) was wrapped
     // in a second, nested <a>.
     linkify: false,
+
+    // Images get `loading="lazy"`; pages here carry dozens of large PNGs.
+    // Only applies to Markdown images, not raw-HTML <img>. (VitePress 2 names
+    // this `lazyLoad`; VitePress 1 called it `lazyLoading`.)
+    image: { lazyLoad: true },
+
+    // An image alone in its paragraph becomes a <figure>, and its alt text
+    // (`![Caption](./assets/x.png)`) becomes the <figcaption>. Links in the
+    // alt text stay links in the caption. `focusable: false` leaves out the
+    // plugin's default tabindex="0" on every image, which would add ~200
+    // extra tab stops with nothing to activate.
+    config: (md) => {
+      md.use(figure, { focusable: false })
+    },
   },
 
   vue: {
