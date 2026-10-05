@@ -71,6 +71,7 @@ async function main() {
   }
 
   const server = await serveDist();
+  let hydratedPages = 0;
   const browser = await chromium.launch();
 
   try {
@@ -171,6 +172,28 @@ async function main() {
     }
     await contentPage.close();
 
+    // Every page must hydrate cleanly. A mismatch means the static HTML
+    // differs from what the browser renders, e.g. raw-HTML tags Vue does not
+    // know (<center>) compiled as components and dropped from the static
+    // HTML, which took the image captions with them.
+    const pages = fs
+      .readdirSync(distDir, { recursive: true })
+      .filter((f) => f.endsWith('.html') && f !== '404.html')
+      .map((f) => '/' + f.split(path.sep).join('/'));
+    hydratedPages = pages.length;
+    for (const url of pages) {
+      const p = await browser.newPage();
+      const errors = [];
+      p.on('console', (msg) => {
+        if (msg.type() === 'error') errors.push(msg.text());
+      });
+      p.on('pageerror', (err) => errors.push(String(err)));
+      await p.goto(`http://localhost:${PORT}${url}`, { waitUntil: 'networkidle' });
+      if (errors.length > 0) {
+        fail(`${url}: ${errors.join('; ')}`);
+      }
+      await p.close();
+    }
   } finally {
     await browser.close();
     server.close();
@@ -180,7 +203,7 @@ async function main() {
     process.exit(process.exitCode);
   }
 
-  console.log('OK: homepage renders with theme CSS applied and no layout collapse.');
+  console.log(`OK: homepage renders with theme CSS applied and no layout collapse; ${hydratedPages} pages hydrate cleanly.`);
 }
 
 main().catch((err) => {
