@@ -5,41 +5,41 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
- The projection module consist on the screen assembly inside the cabinet, a projector is positioned at the back of the exterior part of the cabinet and it throws the image towards an spherical mirror attached to the cabinet positioned in the bottom part of the screen. The spherical mirror reflects the image onto the dome screen.
+ The projection module consists of the screen assembly inside the cabinet and a projector mounted on the outside of the cabinet, at the back. The projector throws the image onto a spherical mirror attached to the cabinet below the screen, which reflects the image onto the dome screen.
 
-![Projection assembly. The projector is for display purposes only and it is not the same model than the actual one.](./assets/images/projection/projection-1.png)
+![Projection assembly. The projector shown is for illustration only and is not the model we use.](./assets/images/projection/projection-1.png)
 
  ## Mirror
 
-The spherical mirror is custom made from Thorlabs with the item number LA1740-P01-SP, be sure to contact them for a quote before polaceing the order and ask for the price breaks if you're planning to build more than 5 training rigs (it could go down up to 50% from 5 to 10 pieces).
+The spherical mirror is custom made by Thorlabs (item number LA1740-P01-SP). Contact them for a quote before placing the order, and ask about price breaks if you're planning to build more than 5 training rigs (the price can drop by up to 50% for 5 to 10 pieces).
 
-We place the spherical mirror on an aluminum custom made base that is sent to a machine shop. The instruction for the assembly are descripted below.
+We mount the spherical mirror on a custom aluminum base made by a machine shop. The assembly instructions are below.
 
-1. Start by assembling the mirror holder, which is composed of the custom made holder, one 1" diameter 2" long post (RS1), one 1" diameter 1.5" long post (RS2) and a BA2 post base from Thorlabs. Use a screwdriver thin enough to pass through the hole at the center of the post and apply enough force to properly screw each piece onto each other.
+1. Start by assembling the mirror holder, which consists of the custom holder, one 1" diameter 2" long post (RS1), one 1" diameter 1.5" long post (RS2) and a BA2 post base from Thorlabs. Use a screwdriver thin enough to pass through the hole at the center of the post, and apply enough force to screw the pieces together properly.
 
 ![](./assets/images/projection/mirror-assembly-1.png)
 
-2. To align the pieces, screw the base but not all the way. Then, place the pieces on a flat surface and make sure that both the mirror base and the BA2 post base lie completely flat on the surface, apply some force with one of your hands to make sure they stay that way and with the other hand tight screw the base.
+2. To align the pieces, screw on the base, but not all the way. Then, place the pieces on a flat surface and make sure that both the mirror base and the BA2 post base lie completely flat on it. Hold them down with one hand so they stay that way, and tighten the base screw with the other.
 
 ![](./assets/images/projection/mirror-assembly-2.png)
 
-3. Use a file to scratch the surface that will hold the mirror, then clean it with ethanol. Use estructural epoxy, follow the instruction on your specific type, and apply to the aluminum base. Make sure to use a nitrile gloves to carefully place the mirror on top of the base and apply some pressure to let it sit flat on the base surface, wait and clean apoxy leakage if any. Let the epoxy dry for 24 hrs.
+3. Use a file to roughen the surface that will hold the mirror, then clean it with ethanol. Apply structural epoxy to the aluminum base, following the instructions for your specific type. Wearing nitrile gloves, carefully place the mirror on top of the base and apply some pressure so it sits flat on the base surface, then clean up any epoxy that leaks out. Let the epoxy cure for 24 hours.
 
 ::: tip
-  Apply just a sufficient ammount of epoxy in the middle of the aluminum base, don't spread it all over since it could leak once you place the mirror and apply pressure on it.
+  Apply just enough epoxy in the middle of the aluminum base. Don't spread it all over, since it could leak out once you place the mirror and press on it.
 :::
 
 ![](./assets/images/projection/mirror-assembly-3.png)
 
 ![](./assets/images/projection/mirror-assembly-4.png)
 
-4. Screw the mirror and the base to the cabinet bottom plate using 1/4-20 screws, make sure to place the base as far as it can get from the stage (push it all the ways toward the projector, then screw it), as shown below.
+4. Screw the mirror and its base to the cabinet bottom plate with 1/4"-20 screws, placing the base as far from the stage as it can go (push it all the way toward the projector, then screw it down), as shown below.
 
 ![](./assets/images/projection/mirror-assembly-5.png)
 
  ## Projector
 
- The projector is installed at the back of the cabinet, at the top of a T-slotted frame structure. To assembly, use a couple of T-slot fasteners and place them on the frame at the back of the cabinet. Then, loosely screw the projector aluminum plate, measure 1 and 1/4 inches from the edge of the plate to the intersection of the frames as shown in the pictures below and tighten the screws. Finally, screw the projector to the aluminum plate.
+ The projector is installed at the back of the cabinet, on top of a T-slotted frame structure. To assemble it, place a couple of T-slot fasteners on the frame at the back of the cabinet. Then, loosely screw on the projector's aluminum plate, set it 1 1/4" from the edge of the plate to the intersection of the frames as shown in the pictures below, and tighten the screws. Finally, screw the projector to the aluminum plate.
 
 ![](./assets/images/projection/projector-assembly-1.png)
 
@@ -49,61 +49,61 @@ We place the spherical mirror on an aluminum custom made base that is sent to a 
 
  ## Screen building
 
- The whole process of screen building can take up to 5 days. We describe the whole process in steps, adding which steps we make in a day and the time it took for us to follow the steps. We recommend to do it this way to allow the materials to properly dry. You could use the time it takes to dry to parallelize the work and assembly other modules in the meantime.
+ Building the screen can take up to 5 days. We describe the process step by step, grouped by the day we did them and with the time each day took us. We recommend following this schedule so the materials can dry properly; you can use the drying time to assemble other modules in parallel.
 
- The first step for building the projection module consist on the fabrication of the dome screen. A styrofoam ball of 18" outer diameter and 16" inner diameter is being fabricated by an external provider. For ease of transportation the screens were sent as half spheres.
+ The first step in building the projection module is making the dome screen. A Styrofoam ball with an 18" outer diameter and a 16" inner diameter is made by an external supplier. For ease of transport, the screens were shipped as half spheres.
 
  ### Day 1 [time: ~3 hours].
 
- 1. If the balls are shipped in halfs, first mark the equator in each of the half spheres. Use a thread to measure the outer diameter of the screen (should be around 18") and place a mark at the middle (or around 9"), place the thread at the bottom of the half sphere and mark at the sphere the joint of the thread and the middle (9") mark. We use a laser level to project a straight line through both marks and draw a line with a sharpie.
+ 1. If the balls are shipped in halves, first mark the equator on each half sphere. Use a thread to measure the outer diameter of the screen (it should be around 18") and mark its middle (around 9"). Hold the thread at the bottom of the half sphere and mark the sphere where the thread's middle (9") mark falls. We use a laser level to project a straight line through both marks and draw the line with a Sharpie.
 
  ![](./assets/images/projection/screen-building-1.png)
 
- 2. Use 3M Foam Fast 74 CA spray adhesive to glue both half spheres. Spray from 3 to 5 inches away both surfaces and wait for 1 minute, then attach both half spheres making sure to match the equator drawed lines, apply pressure on the union and leave it to dry and harden for at least 15 min.
+ 2. Use 3M Foam Fast 74 CA spray adhesive to glue the half spheres together. Spray both surfaces from 3 to 5 inches away and wait 1 minute, then join the half spheres, making sure the drawn equator lines match. Apply pressure to the joint and leave it to dry and harden for at least 15 minutes.
 
  ![](./assets/images/projection/screen-building-2.png)
 
- 3. Use lightweight joint compound to fill the line and the holes the adhesive might have caused, use a hand applicator to spread even on the surface trying to keep it as as smooth as possible. Let the joint compound dry from 30 min to 1 hour.
+ 3. Use lightweight joint compound to fill the seam and any holes the adhesive might have caused. Spread it evenly with a hand applicator, keeping the surface as smooth as possible. Let the joint compound dry for 30 minutes to 1 hour.
 
  ![](./assets/images/projection/screen-building-3.png)
 
- 4. Place the aluminum plate in a flat surface making sure is hanging with enough space to fit the screen. Use a sharpie to mark a straigth line by joining the marks in the aluminum plate (placed at the middle of the circle) as seen in the pictures. Place the screen in the plate, making sure to align the equator with the plate and the meridian (the mark where the half spheres where joined) with the plate marked line.
+ 4. Place the aluminum plate on a flat surface, raised with enough space underneath to fit the screen. Use a Sharpie to draw a straight line joining the marks on the aluminum plate (at the middle of the circle), as seen in the pictures. Place the screen in the plate, aligning the equator with the plate and the meridian (the seam where the half spheres were joined) with the line marked on the plate.
 
     ::: tip
-    Sometimes the diameter of the balls is different from the plate, you can use some paper or carboard and tape it to fill the space between the screen and the plate for it to hang properly.
+    Sometimes the diameter of the ball doesn't match the plate. You can tape some paper or cardboard to fill the gap between the screen and the plate so it hangs properly.
     :::
 
  ![](./assets/images/projection/screen-building-4.png)
 
- 5. Glue about 5 inches of the sides and the back of the ball with an electric glue gun and wit for it to harden. Once cold, remove taped paper/cardboard and turn the plate around and glue the whole screen to the aluminum plate, wait for it to harden; turn once more time the plate and finish gluing the top part of the screen to the plate.
+ 5. Glue about 5 inches of the sides and the back of the ball with an electric glue gun and wait for it to harden. Once it has cooled, remove the taped paper/cardboard, turn the plate over and glue the whole screen to the aluminum plate, then wait for it to harden. Turn the plate over once more and finish gluing the top part of the screen to the plate.
 
  ![](./assets/images/projection/screen-building-5.png)
 
  ### Day 2 [time: ~3 hours]
 
- 1. Place the screen with the plate on a flat surface. We use a couple 14" (1 inch diameter) pillars, other stuff could potentially be used just making sure the ball is freely hanguing from the plate and have enough space (at least ~6 inches) from the bottom of the screen to the flat surface. We place the pillars diagonally for stability.
+ 1. Place the screen with the plate on a flat surface. We use a couple of 14" long (1" diameter) pillars; other supports work too, as long as the ball hangs freely from the plate with enough space (at least ~6") between the bottom of the screen and the surface. We place the pillars diagonally for stability.
 
-    Mark a line below 4.75" from the equator of the screen. We use a set of Thorlabs BA2 and 1/2" post (with a post holder) with a 90 degrees 1/2" post holder to insert a sharpie marker as a tool to mark the line. We set the height of the post at 4.75" below the equator and then mark the screen by moving the shapie along making sure the tool is flat on the surface.
+    Mark a line 4.75" below the equator of the screen. As a marking tool, we use a Thorlabs BA2 base and 1/2" post (with a post holder) plus a 90 degree 1/2" post holder that holds a Sharpie. We set the height of the post to 4.75" below the equator and mark the screen by sliding the tool around, keeping it flat on the surface.
 
  ![](./assets/images/projection/screen-building-6.png)
 
- 2. Place a mark at the half of the scren across the meridian using the same tool as step 1 in day 1. The place the laser level in the flat surface facing the screen, use the vertical laser to throw a projection and align both marks at the half of the screen across the meridian. Mark a line from the top to the bottom of the screen (at least at the bottom line).
+ 2. Mark the middle of the screen across the meridian, using the same method as in step 1 of day 1. Then place the laser level on the flat surface facing the screen, project the vertical laser line and align it with both midpoint marks across the meridian. Draw a line from the top to the bottom of the screen (at least down to the bottom line).
 
  ![](./assets/images/projection/screen-building-7.png)
 
- 3. Measure from the joint of the two half spheres 4" to the top and 4.75" to the sides, place a mark and draw by hand a half circle using those 3 points.
+ 3. From the seam between the two half spheres, measure 4" toward the top and 4.75" to each side, mark those points, and draw a half circle through the 3 points by hand.
 
  ![](./assets/images/projection/screen-building-8.png)
 
- 4. Place a mark at 4.75" and at 6" from the midline along the joint of the spheres (at the top) and along the equator. Use the laser level to project a line from the top marks to the marks on the equator and draw with a marker a pointed line.
+ 4. Mark points 4.75" and 6" from the midline, along the seam of the spheres (at the top) and along the equator. Use the laser level to project a line from the top marks to the marks on the equator, and draw a dotted line along it with a marker.
 
  ![](./assets/images/projection/screen-building-9.png)
 
- 5. Place a mark at 2.5" from the equator to the top of the ball along the 4.75" and 6" lines.
+ 5. Mark points 2.5" above the equator along the 4.75" and 6" lines.
 
  ![](./assets/images/projection/screen-building-10.png)
 
- 6. Join with a marker (we used a different color to make it noticeable) the intersections between the pointed lines as shown in the pictures below.
+ 6. With a marker (we used a different color to make them stand out), join the following intersections of the dotted lines, as shown in the pictures below.
 
       - (A & I) The intersection between the bottom 4.75" line from the equator and the 6" line from the meridian.
       - (B & H) The intersection between the top 2.5" line from the equator and the 6" line from the meridian.
@@ -113,62 +113,62 @@ We place the spherical mirror on an aluminum custom made base that is sent to a 
 
       ![](./assets/images/projection/screen-building-11.png)
 
- 7. Use a styrofoam cutter (we use the *200 W Pro Electric Hot Knife from RoMech Foam Cutter*) to cut the sphere though the marked lines. We recommend to use a bench vise or C-clamps to hold the sphere through the aluminum plate follow the next steps:
+ 7. Use a Styrofoam cutter (we use the *RoMech 200 W Pro Electric Hot Knife foam cutter*) to cut the sphere along the marked lines. We recommend holding the sphere by its aluminum plate with a bench vise or C-clamps. Follow these steps:
 
      - Cut the bottom part of the sphere following the line marked at 4.75" below the equator.
-     - Cut the line through intersections (B) toward (A).
-     - Cut the line through the instersection (D) toward (C).
-     - Cut the line through the intersection (B) toward (C).
+     - Cut the line from intersection (B) toward (A).
+     - Cut the line from intersection (D) toward (C).
+     - Cut the line from intersection (B) toward (C).
      - Repeat the steps for the other side.
 
       ![](./assets/images/projection/screen-building-12.png)
 
-     - Cut the line through the intersection (D) toward (F).
-     - Remove cutted styrofoam part as shown in the picture below.
+     - Cut the line from intersection (D) toward (F).
+     - Remove the cut-out Styrofoam piece as shown in the picture below.
 
       ![](./assets/images/projection/screen-building-13.png)
 
      - Cut a line from the mark (E) toward the bottom of the sphere.
-     - Cut a line through the intersection (D) toward (E) and remove the cutted styrofoam part.
-     - Cut a line through the intersection (F) toward (E) and remove the cutted styrofoam part.
+     - Cut a line from intersection (D) toward (E) and remove the cut-out Styrofoam piece.
+     - Cut a line from intersection (F) toward (E) and remove the cut-out Styrofoam piece.
 
       ![](./assets/images/projection/screen-building-14.png)
 
- 8. Apply joint compound to the crack on the half spheres intersection from the inside of the screen using a curved rubber wipe down knife. Let it dry overnight and apply a second hand if necessary to have a smooth surface.
+ 8. From the inside of the screen, apply joint compound to the seam between the half spheres using a curved rubber wipe-down knife. Let it dry overnight and apply a second coat if necessary for a smooth surface.
 
  ![](./assets/images/projection/screen-building-15.png)
 
  ### Day 3 [time: ~1 hour]
 
- 1. Apply All purpose foam coat + Bounce from Hot Wire Factory following the instructions for mixing (just make sure the mix is thin enough to handle but thick enough to work as a protective layer). Apply one coat to the exterior part of the sphere, if you find the layer to thin you can apply 2 layers. We recommend to first apply to the top part of the sphere from the aluminum plate, then the bottom part and finally the cutted edges of the sphere (everything but the inner surface of the sphere). Let it dry for 24 hrs.
+ 1. Apply All Purpose FoamCoat + Bounce from Hot Wire Foam Factory, following the mixing instructions (make sure the mix is thin enough to work with but thick enough to act as a protective layer). Apply one coat to the outside of the sphere; if the layer seems too thin, apply a second one. We recommend coating the top part of the sphere above the aluminum plate first, then the bottom part, and finally the cut edges (everything except the inner surface of the sphere). Let it dry for 24 hours.
 
  ![](./assets/images/projection/screen-building-16.png)
 
  ### Day 4 [time: ~1/2 hour each layer plus drying time]
 
- 1. Apply white lightweight spackling to the inner surface of the sphere using a curved rubber wipe down knife, making sure cover the imperfections on the surface as much as you can. Let it dry for ~3 hours (or more depending on ambient temperature and humidity), you can touch the surface and it shouldn't stick to your hand. Sand the surface and apply another layer. Repeat the process from 2 to 3 times until you get a smooth surface on the screen.
+ 1. Apply white lightweight spackling to the inner surface of the sphere with a curved rubber wipe-down knife, covering the surface imperfections as much as you can. Let it dry for ~3 hours (or more, depending on ambient temperature and humidity); when it is dry, it shouldn't stick to your hand. Sand the surface and apply another layer. Repeat 2 to 3 times until the screen surface is smooth.
 
  ![](./assets/images/projection/screen-building-17.png)
 
  ### Day 5 [time: ~1/2 hour each layer plus drying time]
 
- 1. Paint the outer part of the screen with a black matte paint (we recommend the black paint on screen wall and ceiling ambien light rejectting acoustic dampening) using a 3" or 4" brush. Do not paint the edges of the screen yet. Apply 2 layers of paint to the outer part.
+ 1. Paint the outside of the screen with black matte paint (we recommend Paint On Screen's black Wall and Ceiling Ambient Light Rejecting Acoustic Dampening paint) using a 3" or 4" brush. Do not paint the edges of the screen yet. Apply 2 coats of paint to the outside.
 
- 2. Use a roller to paint the inner part of the screen. Apply 1 layer of primer (we recommend to use the paint on screen leveling primer) and 2 to 3 layers of silver paint (we use the paint on screen S1 Screen Plus).
+ 2. Use a roller to paint the inside of the screen. Apply 1 coat of primer (we recommend Paint On Screen's Leveling Primer) and 2 to 3 coats of silver paint (we use Paint On Screen's S1 Screen Plus).
 
- 3. Using a 1" brush paint the edges of the sphere with black matte paint.
+ 3. Using a 1" brush, paint the edges of the sphere with black matte paint.
 
  ![](./assets/images/projection/screen-building-18.png)
 
   ## Screen assembly
 
-Once the screen is built, follow the isntructions to install them in the cabinet.
+Once the screen is built, follow these instructions to install it in the cabinet.
 
-1. Assemble the 1.5" diameter 10" long posts (P10) by screwing a pair of mounting bases (BA2) from Thorlabs at the bottom. Then install the posts to the cabinet bottom plate using 1/4-20 screws at at the closest position to the projector as shown in the picture below.
+1. Assemble the 1.5" diameter, 10" long posts (P10) by screwing a Thorlabs mounting base (BA2) to the bottom of each. Then install the posts on the cabinet bottom plate with 1/4"-20 screws, at the position closest to the projector, as shown in the picture below.
 
  ![](./assets/images/projection/screen-assembly-1.png)
 
-2. Have the custom made aluminum screen plate to post adapter in a machine shop, then screw it to the screen plate and place it over the posts. Tight screw the screen to the posts.
+2. Have a machine shop make the custom aluminum screen-plate-to-post adapters, then screw them to the screen plate and place it over the posts. Screw the screen tightly to the posts.
 
  ![](./assets/images/projection/screen-assembly-2.png)
 
