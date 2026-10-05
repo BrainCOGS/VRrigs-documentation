@@ -10,7 +10,7 @@
   "repository": "/VR_rigs_docs",
   "license": "MIT",
   "engines": {
-    "node": ">=24 <25"
+    "node": ">=24"
   },
   "packageManager": "pnpm@10.34.5",
   "scripts": {

@@ -75,12 +75,8 @@ updates:
     commit-message:
       prefix: "docker"
 
-    # The image tracks the Node LTS line pinned in package.json `engines.node`
-    # and the workflows. Move majors deliberately, together, when the next
-    # LTS lands, not whenever a new (odd or pre-LTS) major is tagged.
-    ignore:
-      - dependency-name: "node"
-        update-types: ["version-update:semver-major"]
+    # The Dockerfile uses the floating `node:lts` tag (same line as the
+    # workflows' `lts/*`), so there is no node version here to bump.
 
     rebase-strategy: "auto"
 
