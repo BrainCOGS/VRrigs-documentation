@@ -16,7 +16,6 @@
 const fs = require('fs');
 const path = require('path');
 const http = require('http');
-const { execFileSync } = require('child_process');
 const { chromium } = require('playwright');
 
 const repoRoot = path.join(__dirname, '..', '..');
@@ -66,8 +65,10 @@ function serveDist() {
 }
 
 async function main() {
-  console.log('Building site...');
-  execFileSync('yarn', ['build'], { cwd: repoRoot, stdio: 'inherit' });
+  if (!fs.existsSync(path.join(distDir, 'index.html'))) {
+    fail(`no build at ${distDir}; run \`pnpm run build\` first`);
+    process.exit(1);
+  }
 
   const server = await serveDist();
   const browser = await chromium.launch();
@@ -99,18 +100,18 @@ async function main() {
       fail('--navbar-height CSS custom property is not set — theme :root rule may not have applied');
     }
 
-    const brandColor = await page.evaluate(
-      () => getComputedStyle(document.documentElement).getPropertyValue('--c-brand').trim()
+    const accentColor = await page.evaluate(
+      () => getComputedStyle(document.documentElement).getPropertyValue('--vp-c-accent').trim()
     );
-    if (!brandColor) {
-      fail('--c-brand CSS custom property is not set — theme :root rule may not have applied');
+    if (!accentColor) {
+      fail('--vp-c-accent CSS custom property is not set — theme :root rule may not have applied');
     }
 
     // The navbar must exist, be visible, and be fixed to the top — not
     // collapsed/inline the way it renders with no CSS applied.
-    const navbar = page.locator('.navbar');
+    const navbar = page.locator('.vp-navbar');
     if ((await navbar.count()) === 0) {
-      fail('.navbar element not found on homepage');
+      fail('.vp-navbar element not found on homepage');
     } else {
       const box = await navbar.boundingBox();
       const position = await navbar.evaluate((el) => getComputedStyle(el).position);
@@ -127,7 +128,7 @@ async function main() {
     // exactly the symptom from #27 — the site title and page heading
     // rendered stacked on top of each other because the navbar's fixed
     // positioning + the page's compensating top padding never applied).
-    const heroBox = await page.locator('.hero').boundingBox();
+    const heroBox = await page.locator('.vp-hero').boundingBox();
     const navbarBox = await navbar.boundingBox();
     if (heroBox && navbarBox && heroBox.y < navbarBox.y + navbarBox.height - 5) {
       fail(
@@ -135,15 +136,15 @@ async function main() {
       );
     }
 
-    const heroTitle = await page.locator('.hero h1').innerText();
+    const heroTitle = await page.locator('.vp-hero h1').innerText();
     if (!heroTitle.trim()) {
-      fail('.hero h1 is empty — homepage heading did not render');
+      fail('.vp-hero h1 is empty — homepage heading did not render');
     }
 
     // A handful of nav links and the hero action button should be present
     // and actually clickable-sized, confirming the page isn't a bare
     // unstyled HTML dump.
-    const navLinks = await page.locator('.navbar .navbar-item').count();
+    const navLinks = await page.locator('.vp-navbar .vp-navbar-item').count();
     if (navLinks === 0) {
       fail('no navbar links found on homepage');
     }

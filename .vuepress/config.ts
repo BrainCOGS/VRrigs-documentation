@@ -1,7 +1,7 @@
 import { defineUserConfig } from 'vuepress'
 import { defaultTheme } from '@vuepress/theme-default'
 import { description } from '../package.json'
-import { webpackBundler } from '@vuepress/bundler-webpack'
+import { viteBundler } from '@vuepress/bundler-vite'
 import { searchPlugin } from '@vuepress/plugin-search';
 
 const siteDescription = typeof description === 'string' ? description : 'Default site description';
@@ -40,6 +40,14 @@ export default defineUserConfig({
     docsDir: '',
     editLinkText: '',
     lastUpdated: false, // This is correct for VuePress 2.x
+    locales: {
+      '/': {
+        // Keep the container titles the site has always shown (newer theme
+        // releases default to "Tips"/"Warning").
+        tip: 'TIP',
+        warning: 'WARNING',
+      },
+    },
     navbar: [
       { text: 'Building', link: '/building/' },
       { text: 'Maintenance', link: '/maintenance/' },
@@ -49,7 +57,12 @@ export default defineUserConfig({
       '/building/': getBuildingSidebar(),
       '/maintenance/': getMaintenanceSidebar(),
       '/software/': getSoftwareSidebar(),
-    }
+    },
+    themePlugins: {
+      // Dead Markdown links fail `vuepress build` instead of only warning.
+      // Raw-HTML links and downloads are covered by `pnpm run test:links`.
+      linksCheck: { build: 'error' },
+    },
   }),
 
   /**
@@ -70,73 +83,10 @@ export default defineUserConfig({
   ],
 
   /**
-   * Webpack Configuration
-   * Ref: https://v2.vuepress.vuejs.org/reference/bundler-webpack/config.html
+   * Bundler
+   * Ref: https://vuepress.vuejs.org/reference/bundler/vite.html
    */
-  bundler: webpackBundler({
-    configureWebpack: (config) => {
-      // Temporarly supress warnings while vuepress 2.0 fix bugs
-      const sassLoaderRule = config.module.rules.find((rule) => {
-        return rule.use && rule.use.some((loader) => loader.loader.includes('sass-loader'));
-      });
-
-      if (sassLoaderRule) {
-        sassLoaderRule.use = sassLoaderRule.use.map((loader) => {
-          if (loader.loader.includes('sass-loader')) {
-            loader.options = {
-              ...loader.options,
-              sassOptions: {
-                quietDeps: true,
-                logger: {
-                  warn: () => {}, // Suppresses warnings entirely
-                },
-              },
-            };
-          }
-          return loader;
-        });
-      }
-
-      // config.module.rules.push({
-      //   test: /\.js$/,
-      //   exclude: /node_modules/,
-      //   use: {
-      //     loader: 'babel-loader',
-      //     options: {
-      //       presets: ['@babel/preset-env'],
-      //     },
-      //   },
-      // });
-    }
-  }),
-
-  /**
-   * Custom webpack chain
-   */
-  chainWebpack: (config, _isServer) => {
-    config.module
-      .rule('files')
-      .test(/\.(pdf|zip|ait|log|txt|stp)$/)
-      .use('file-loader')
-      .loader('file-loader')
-      .options({
-        name: `[path][name].[ext]`
-      });
-
-    config.module
-      .rule('vue')
-      .use('vue-loader')
-      .tap((options) => {
-        options.transformAssetUrls = {
-          video: ['src', 'poster'],
-          source: 'src',
-          img: 'src',
-          image: ['xlink:href', 'href'],
-          a: 'href'
-        }
-        return options
-      });
-  }
+  bundler: viteBundler(),
 })
 
 /**

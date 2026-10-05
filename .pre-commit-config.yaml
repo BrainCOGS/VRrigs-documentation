@@ -6,9 +6,7 @@ exclude: |
     \.vuepress/dist/.*|
     \.vuepress/\.(cache|temp)/.*|
     \.vuepress/public/.*|
-    \.vuepress/config\.ts\..*\.mjs|
-    yarn\.lock|
-    yarn-error\.log|
+    pnpm-lock\.yaml|
     .*\.(png|jpe?g|gif|pdf|zip|step|ipt|iam|idw|dwg|stl|stp|stl)
   )$
 

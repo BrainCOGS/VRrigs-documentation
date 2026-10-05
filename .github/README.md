@@ -37,21 +37,41 @@ We have a docker development environment set up. To install, follow the instruct
 
 4. Do the modifications to the documentation files and watch them update in the local site.
 
+### Without Docker
+
+The toolchain is pinned in `package.json`: Node 24 LTS (`engines.node`) and
+pnpm (`packageManager`, installed by `corepack enable pnpm`). pnpm refuses
+packages published less than 7 days ago (`minimumReleaseAge` in
+`pnpm-workspace.yaml`).
+
+```bash
+pnpm install --frozen-lockfile
+pnpm dev                                 # dev server on http://localhost:8080
+pnpm test                                # build, then all checks below
+pnpm run audit                           # high/critical advisories in the dependency tree
+```
+
+`pnpm test` builds the site (dead Markdown links fail the build) and then runs
+`test:dist` on `.vuepress/dist`:
+
+- `test:css-bom`: the built CSS has no embedded UTF-8 BOM and the theme `:root` rule is intact.
+- `test:links`: every same-site link, image and download resolves, including `#anchors`.
+- `test:visual-homepage`: the homepage renders with the theme applied (needs `pnpm exec playwright install chromium` once).
+
 ---
 
 ## **Directory Structure**
 
 The documentation follows this structure:
 ```
-src/
-  .vuepress/
-    config.ts       # VuePress configuration
-    components/     # Custom Vue components
-    public/         # Static assets
-    styles/         # Custom styles
-  building/         # Documentation for building VR rigs
-  maintenance/      # Documentation for maintenance
-  software/         # Software documentation
+.vuepress/
+  config.ts         # VuePress configuration (navbar, sidebar, plugins)
+  public/           # Files served as-is at the same path (downloads, logo)
+  scripts/          # Regression tests run by `pnpm test`
+building/           # Documentation for building VR rigs
+maintenance/        # Documentation for maintenance
+software/           # Software documentation
+index.md            # Homepage
 ```
 
 ---
@@ -59,23 +79,25 @@ src/
 ## **Making Changes to the Documentation**
 
 ### a) Modifying Existing Documentation
-1. Open the desired `.md` file in the respective directory (e.g., `src/building/stage.md`).
+1. Open the desired `.md` file in the respective directory (e.g., `building/stage.md`).
 2. Make your changes and save the file. If the dev env is up, you should see the changes immediatly after saving them.
 
 ### b) Adding a New Page
-1. Create a new `.md` file in the appropriate directory (e.g., `src/software/new-feature.md`).
+1. Create a new `.md` file in the appropriate directory (e.g., `software/new-feature.md`).
 2. Add the new page to the sidebar in `.vuepress/config.ts`.
-3. Test your changes locally as described above.
+3. Test your changes locally as described above (`pnpm test`).
+
+Files linked with raw HTML (`<a href=...>`) are not bundled. Put downloads
+under `.vuepress/public/` at the path the link uses, or `pnpm test` will flag
+the link as broken.
 
 ---
 
 ## **Deployment**
 
-1. Push your changes to the GitHub repository:
-   ```bash
-   git add .
-   git commit -m "Update documentation"
-   git push
-   ```
+1. Open a pull request against `master` (direct pushes are blocked). The
+   `prek` (lint) and `test` checks must pass.
 
-2. The GitHub Actions workflow will automatically deploy the site to GitHub Pages.
+2. When the PR is merged, the `Build and Deploy` workflow builds the site, runs
+   the checks and publishes `.vuepress/dist` to the `gh-pages` branch of
+   `BRAINCOGS/braincogs.github.io`.
