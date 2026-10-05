@@ -7,7 +7,7 @@ lang: en-US
 
 ## Data Folders
 
-The following data folder structures are used for the Ephys and Imaging pipeline:
+The ephys and imaging pipelines use the following data folder structures:
 
 - **Raw Data Directory Imaging:** braininit/Data/Raw/imaging/(user)/(subject)/(session_date)_g(session#)/(user_defined_dir)
 - **Processed Data Directory Imaging:** braininit/Data/Processed/imaging/(user)/(subject)/(session_date)_g(session#)/(user_defined_dir)/job_id_(jobid)/suite2p_output/suite2p
@@ -38,17 +38,17 @@ If something was configured incorrectly, you can repeat the entire process.
 
 ## Automation GUI "regular use" Manual
 
-- The automation GUI is located on the desktop of every microscope/ephys recording system across BRAINCoGS. You can identify it by the BRAINCoGS desktop icon called "Recording_Automation_GUI".
-- We encourage you to register and process every recording with the Automation GUI as soon as recording ends.
+- The automation GUI is located on the desktop of every microscope/ephys recording system across BRAIN CoGS. You can identify it by the BRAIN CoGS desktop icon called "Recording_Automation_GUI".
+- We encourage you to register and process every recording with the Automation GUI as soon as the recording ends.
 
 ### Default use case
 
-1. Open the GUI as soon as recording ends.
+1. Open the GUI as soon as the recording ends.
 2. Select the recording directory from the dropdown list in section 1.
-   - If no behavior is associated with this recording, uncheck **Is there behavior Session for Recording Checkbox**
+   - If no behavior is associated with this recording, uncheck the **Is there behavior Session for Recording** checkbox.
 3. Check the "Add surgery & insertion device if missing" checkbox if you want to add electrode/microscope/optic fiber insertion coordinates.
 4. Select the behavior session corresponding to the recording from the dropdown list in section 2.
-5. Click the Register Recording button.
+5. Click the **Register Recording** button.
 
   ![Automation GUI main screen](./assets/images/automation_gui/Automation_GUI_main_screen.png)
 
@@ -89,7 +89,7 @@ If something was configured incorrectly, you can repeat the entire process.
 
   ![Parameter selection main screen](./assets/images/automation_gui/Select_parameters.png)
 
-4. On the **"Select parameters"** tab (assume all probes/fovs will be processed with the same parameters):
+4. On the **"Select parameters"** tab (assuming all probes/FOVs will be processed with the same parameters):
 
 ### On section 1:
 
@@ -99,8 +99,8 @@ If something was configured incorrectly, you can repeat the entire process.
 
 ### On section 2:
 
-6. In the **Processing Params** dropdown, select a processing parameter suited to the recording.
-   - Selecting a processing parameter from the dropdown shows its specific parameters in the text area on the right.
+6. In the **Processing Params** dropdown, select a processing parameter set suited to the recording.
+   - Selecting a processing parameter set from the dropdown shows its specific parameters in the text area on the right.
 7. Click the **Register Recording** button.
 
 The next steps are identical to the **"Default use"** case.
@@ -119,12 +119,12 @@ The next steps are identical to the **"Default use"** case.
 
 - The job status history is shown for the selected job.
 
-#### If status of job is in error status (-1, -2; "Error in recording process"):
+#### If the job is in an error status (-1, -2; "Error in recording process"): {#if-status-of-job-is-in-error-status-1-2-error-in-recording-process}
 
 - Open the error log file in the bottom-right corner by clicking the **"Open Error Log File"** button.
 - If you believe the cause of the error is now resolved, rerun the job by clicking the **"Rerun job"** button.
 
-#### If status of job is in finished status (7, 8; "Data in element DB"):
+#### If the job is in a finished status (7, 8; "Data in element DB"): {#if-status-of-job-is-in-finished-status-7-8-data-in-element-db}
 
 - Open the output log file in the bottom-right corner by clicking the **"Open Output Log File"** button.
 - Visualize processing results by clicking the bottom-right buttons: **Open Phy** and **Open IBL Atlas** for ephys, **Open Suite2p-GUI** for imaging.
@@ -134,21 +134,21 @@ The next steps are identical to the **"Default use"** case.
 #### Rerun jobs
 
 - You can rerun a job with different parameters by clicking the **New Job With different Parameters** button.
-- Follow the <a href='https://braincogs.github.io/software/automation_pipeline.html#advanced-select-parameters-use-case'> "Advanced" (select parameters) use case </a>.
+- Follow the <a href='/software/automation_pipeline.html#advanced-select-parameters-use-case'> "Advanced" (select parameters) use case </a>.
 
 ## Create new sets of processing parameters for recordings
 
 To process recordings with non-default parameters, you need at least one of the following:
 
-1. A new set of processing parameters (parameters for the algorithm that processes the data, e.g. kilosort, suite2p).
-2. A list of preprocessing steps made up of a set of preprocessing params (e.g. run catgt + tprime before kilosort).
+1. A new set of processing parameters (parameters for the algorithm that processes the data, e.g. Kilosort, Suite2p).
+2. A list of preprocessing steps, each with its own set of preprocessing parameters (e.g. run CatGT + TPrime before Kilosort).
 
   ![Create parameters screen](./assets/images/automation_gui/Create_parameters_screen.png)
 
 ### Create new Processing parameters (algorithm params)
 
 - Note: You need a JSON file with all parameters ready before starting this process.
-- <a href='./assets/files/automation_gui/kilosort_parameters_example.json.zip'>Here</a> is an example of a kilosort parameter JSON file that you can use as a template for creating your own:
+- <a href='./assets/files/automation_gui/kilosort_parameters_example.json.zip'>Here</a> is an example Kilosort parameter JSON file that you can use as a template for your own.
 
 1. Switch to the "Create Parameters" tab.
 
@@ -165,7 +165,7 @@ To process recordings with non-default parameters, you need at least one of the 
 
 - Check the "define new proc. param method ?" checkbox.
 - Write the new processing method name in the "New Proc. Param. method" field.
-- Check the <a href='https://braincogs.github.io/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code.
+- Check the <a href='/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code.
 
 
 
@@ -176,7 +176,7 @@ To process recordings with non-default parameters, you need at least one of the 
 ### Create new preprocessing parameters (a single step on preprocessing list)
 
 - Note: You need a JSON file with all parameters ready before starting this process.
-- <a href='./assets/files/automation_gui/catgt_parameters_example.json.zip'>Here</a> is an example of a catgt parameter JSON file that you can use as a template for creating your own:
+- <a href='./assets/files/automation_gui/catgt_parameters_example.json.zip'>Here</a> is an example CatGT parameter JSON file that you can use as a template for your own.
 
 1. Switch to the "Create Parameters" tab.
 
@@ -193,7 +193,7 @@ To process recordings with non-default parameters, you need at least one of the 
 
 - Check the "define new prerproc.-param method ?" checkbox.
 - Write the new preprocessing method name in the "New Preproc.-Param method" field.
-- Check the <a href='https://braincogs.github.io/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code.
+- Check the <a href='/software/automation_pipeline_developer.html#collab-repositories-to-handle-ephys-imaging-processing'>automation pipeline developer guide</a> to add the corresponding processing code.
 
 5. In the "Preproc.-Param Set Description" field, write a short description for the new parameters.
 6. Click the "Upload Preproc.-Parm Set json file" button and browse for/load your JSON file with parameters. You can review your parameters in the text area on the right.
@@ -212,7 +212,7 @@ To process recordings with non-default parameters, you need at least one of the 
 
 ### On section 1c:
 
-4. In the "Pre-Params List Name" dropdown, write a suitable name for the list.
+4. In the "Pre-Params List Name" field, enter a suitable name for the list.
 5. In the "Pre.-Param List Description" field, write a short description for the new list.
 6. From the "Pre.-Params steps" dropdown, select the desired preprocessing step to add to the list.
 7. Click the "Add Preparam Steps" button.

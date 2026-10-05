@@ -5,10 +5,10 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-+ This documentation guides the researcher through the process of creating a new manipulation pipeline.
-+ At BRAINCoGS, optogenetics and thermal manipulation are currently supported.
++ This guide walks researchers through creating a new manipulation pipeline.
++ At BRAIN CoGS, optogenetic and thermal manipulations are currently supported.
 
-## What does the “manipulation” pipeline include:
+## What does the “manipulation” pipeline include? {#what-does-the-manipulation-pipeline-include}
 
 + A minimal data framework for storing all relevant data from a specific manipulation in a DB.
 + Behavior integration: the training system includes the manipulation as an option that can be selected for a behavior session.
@@ -16,29 +16,29 @@ lang: en-US
 
 ## Prerequisites
 
-+ To create a new manipulation, it is assumed that:
-+ The researcher can connect to the <a href="https://braincogs.github.io/software/db_access.html#db-access-for-matlab-repository">datajoint00.pni.princeton.edu DB</a>.
-+ The latest version of the u19_pipeline_matlab repository is installed.
++ To create a new manipulation, you need to:
+  + be able to connect to the <a href="/software/db_access.html#db-access-for-matlab-repository">datajoint00.pni.princeton.edu DB</a>, and
+  + have the latest version of the U19-pipeline-matlab repository installed.
 
-## Initial set-up
+## Initial setup {#initial-set-up}
 
-+ Connect to the database: ```connect_datajoint00```
-+ Create the new manipulation schema (substitute manipulation_name with the real name of the manipulation): ```create_new_manipulation_schema('(manipulation_name)', 1)```
-+ This creates a new schema "base" code in the `U19-pipeline-matlab/schemas` directory.
-+ (We will use the “thermal” manipulation for this example.)
++ Connect to the database: `connect_datajoint00`
++ Create the new manipulation schema (replace `manipulation_name` with the actual manipulation name): `create_new_manipulation_schema('(manipulation_name)', 1)`
++ This creates the "base" code for the new schema in the `U19-pipeline-matlab/schemas` directory.
++ (We use the “thermal” manipulation as the example.)
 
  ![](./assets/images/manipulation_pipeline/Thermal_schema_files.png)
 
- ![Thermal manipulation file creation & Entity-Relationship diagram on the BRAINCoGS DB](./assets/images/manipulation_pipeline/Thermal_pipeline_ERD.png)
+ ![Thermal manipulation file creation & Entity-Relationship diagram on the BRAIN CoGS DB](./assets/images/manipulation_pipeline/Thermal_pipeline_ERD.png)
 
 ## Table description
 
-+ Throughout this table description section, we give an example based on an already working manipulation pipeline (Optogenetics).
++ Throughout this section, we use an existing, working manipulation pipeline (optogenetics) as the example.
 
 ### "Manipulation" Protocol table
 
   + The Protocol table stores information that defines the current manipulation “type” to be used in a behavior session.
-  + Below is the minimum table definition for a manipulation protocol table. It is made up of an id to identify the protocol and a description field.
+  + Below is the minimal definition of a manipulation protocol table: an id that identifies the protocol, and a description field.
 
   + Generic **"Manipulation" Protocol.m**
   ```matlab
@@ -129,8 +129,7 @@ lang: en-US
 ### "Manipulation" SoftwareParameters table
 
 + The SoftwareParameters table stores a set of parameters (a MATLAB struct or a Python dictionary) that the code handling the behavior uses during the session.
-+ We will show how to insert new software parameters.
-+ This is for the **optogenetics.OptogeneticSoftwareParameter** table.
++ Below is how to insert new software parameters into the **optogenetics.OptogeneticSoftwareParameter** table.
 
  ```matlab
  param_struct = struct();
@@ -146,10 +145,9 @@ lang: en-US
  ```
 
 + See the <a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/scripts/insert_software_parameters/insert_optogenetic_software_parameter.m">insert_optogenetic_software_parameter</a> script to use as an example.
-+ How to read software parameters in the experiment code (ViRMEn):
-+ Example to get the software parameters in the initializationCodeFun in ViRMEn:
++ To read the software parameters in the ViRMEn experiment code, for example in `initializationCodeFun`:
 
- ```
+ ```matlab
  function vr = initializationCodeFun(vr)
 
  vr.software_params     = vr.exper.userdata.trainee.softwareParams.software_parameters;
@@ -159,8 +157,8 @@ lang: en-US
 
 ### "Manipulation" Session table
 
-+ This table stores manipulation data for a specific behavior session. It “links” a manipulationProtocol and manipulationSoftwareParameters with a behavior Session.
-+ This table does not need any additional code (unless extra fields from the behavior file need to be stored). **The researcher should contact the DB designer if that is their intention.**
++ This table stores manipulation data for a specific behavior session. It “links” a manipulation protocol and manipulation software parameters to a behavior session.
++ This table does not need any additional code (unless extra fields from the behavior file need to be stored). **If you need that, contact the DB designer.**
 
  ```matlab
  OptogeneticSession.m
@@ -177,7 +175,7 @@ lang: en-US
 ### "Manipulation" SessionTrial table
 
 + This table stores data, on a trial-by-trial basis, corresponding to the manipulation performed during the behavior session.
-+ In any "Manipulation" SessionTrial class, there is a section in the get_manipulation_trial_data function code where the researcher has to add lines to fetch specific trial manipulation data:
++ Every "Manipulation" SessionTrial class has a section in its `get_manipulation_trial_data` function where the researcher adds the lines that fetch the manipulation data for each trial:
 
 Code extract from the **OptogeneticSessionTrial** table:
 
@@ -195,16 +193,16 @@ for itrial = 1:nTrials
   trial_structure(total_trials) = trial_data;
 ```
 
-### Training with new manipulation
+### Training with a new manipulation {#training-with-new-manipulation}
 
-+ Once all the code for the new manipulation has been set up, the researcher can select a specific manipulation type, protocol, and software parameters to associate with the schedule for a given animal. Subsequent behavior sessions will correspond to that selection.
++ Once all the code for the new manipulation has been set up, the researcher can select the manipulation type, protocol and software parameters in an animal's training schedule, and subsequent behavior sessions will use them.
 
-![Parameter selection (manipulation, protocol & software Parameter) for a training schedule of a subject.](./assets/images/manipulation_pipeline/manipulation_trainingGUI.png)
+![Parameter selection (manipulation, protocol & software parameters) for a training schedule of a subject.](./assets/images/manipulation_pipeline/manipulation_trainingGUI.png)
 
-### Fetching Data
+### Fetching data {#fetching-data}
 
-+ After training, all relevant data is accessible in the corresponding tables of the database.
-+ <a href="https://docs.datajoint.org/matlab/queries/03-Fetch.html">Datajoint fetch guide</a>
++ After training, all relevant data is available in the corresponding tables of the database.
++ <a href="https://docs.datajoint.org/matlab/queries/03-Fetch.html">DataJoint fetch guide</a>
 
 ```matlab
 key = struct('subject_fullname', 'sbolkan_a2a_492', 'session_date', '2022-06-27')
