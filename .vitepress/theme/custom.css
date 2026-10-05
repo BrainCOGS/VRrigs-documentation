@@ -26,3 +26,16 @@
 .dark .vp-doc img {
   background-color: #fff;
 }
+
+/*
+ * Figure captions (the alt text of `![Caption](./assets/x.png)`, rendered
+ * by @mdit/plugin-figure) are centered under the image and set small, the
+ * look the pages used to get from <center> and <small> markup. 80% is the
+ * size the VitePress theme gives <small>; the 24px line height is the body
+ * text's, which those <small> captions sat in.
+ */
+.vp-doc figcaption {
+  text-align: center;
+  font-size: 80%;
+  line-height: 24px;
+}

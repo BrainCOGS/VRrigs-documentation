@@ -62,18 +62,6 @@ export default defineConfig({
     },
   },
 
-  vue: {
-    template: {
-      compilerOptions: {
-        // The pages wrap image captions in the obsolete <center> tag, which
-        // Vue does not know. Without this it compiles <center> as an
-        // unresolved component: the captions vanish from the static HTML and
-        // every such page has a hydration mismatch.
-        isCustomElement: (tag) => tag === 'center',
-      },
-    },
-  },
-
   // Dead links already fail `vitepress build` by default (ignoreDeadLinks is
   // false). Raw-HTML links and downloads are covered by `pnpm run test:links`.
 
