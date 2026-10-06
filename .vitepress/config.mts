@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import { figure } from '@mdit/plugin-figure'
 import { defineConfig, type DefaultTheme } from 'vitepress'
 
 const root = fileURLToPath(new URL('..', import.meta.url))
@@ -21,7 +22,7 @@ export default defineConfig({
    * Site Title
    * Ref: https://vitepress.dev/reference/site-config#title
    */
-  title: 'BRAIN CoGS mini VR rigs',
+  title: 'BRAIN CoGS Mini VR Rigs',
   description: 'Documentation for virtual reality rigs at Princeton BRAIN CoGS project',
 
   /**
@@ -45,17 +46,19 @@ export default defineConfig({
     // text of raw-HTML links (`<a href="https://x">https://x</a>`) was wrapped
     // in a second, nested <a>.
     linkify: false,
-  },
 
-  vue: {
-    template: {
-      compilerOptions: {
-        // The pages wrap image captions in the obsolete <center> tag, which
-        // Vue does not know. Without this it compiles <center> as an
-        // unresolved component: the captions vanish from the static HTML and
-        // every such page has a hydration mismatch.
-        isCustomElement: (tag) => tag === 'center',
-      },
+    // Images get `loading="lazy"`; pages here carry dozens of large PNGs.
+    // Only applies to Markdown images, not raw-HTML <img>. (VitePress 2 names
+    // this `lazyLoad`; VitePress 1 called it `lazyLoading`.)
+    image: { lazyLoad: true },
+
+    // An image alone in its paragraph becomes a <figure>, and its alt text
+    // (`![Caption](./assets/x.png)`) becomes the <figcaption>. Links in the
+    // alt text stay links in the caption. `focusable: false` leaves out the
+    // plugin's default tabindex="0" on every image, which would add ~200
+    // extra tab stops with nothing to activate.
+    config: (md) => {
+      md.use(figure, { focusable: false })
     },
   },
 

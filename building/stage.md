@@ -5,152 +5,112 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-The stage holds a 3D printed cup where the optical flow sensor is placed at the bottom and a hose is connected to deliver a constant air flow to make a styrofoam ball float at the top. The mice is head fixed on top of the ball, allowing it to run, while the optical flow sensor update the virtual world projected on the screen.
+The stage holds a 3D printed cup with the optical flow sensor at the bottom and a hose connected to it that delivers a constant air flow, making a Styrofoam ball float on top. The mouse is head-fixed on top of the ball and can run on it, while the optical flow sensor updates the virtual world projected on the screen.
 
-<figure>
-  <img src='./assets/images/stage/stage.png'>
-  <center><figcaption><small>Stage assembly with 3D printed cup.</small></figcaption></center>
-</figure>
+![Stage assembly with 3D printed cup.](./assets/images/stage/stage.png)
 
-The stage consist on a pair of optical breadboards attached by a set of posts. The posts lenght is calculated so that the stage has the proper height at which the mice will be positioned and the projection will be calibrated. The top optical breadboard is modified to insert the cup that will direct the constant air flow to the bottom of the styrofoam ball and will make it float, allowing the mice to freely move and run.
+The stage consists of a pair of optical breadboards joined by a set of posts. The length of the posts is chosen so that the stage is at the height for which the mouse position and the projection are calibrated. The top optical breadboard is modified to fit the cup, which directs the constant air flow to the bottom of the Styrofoam ball and makes it float, so the mouse can move and run freely.
 
-We send the optical breadboard to be modified at a machine shop. To assemble the stage you have to first screw the 4 posts by attaching a 1" diameter 1" long post to a 1" diamater 2" long post using a 1/4" set screw (alternatively, you can use a 1" diamater 3" long post). Then attach both the top plate and the bottom plate to each end of the 4 posts using 1/4" screws.
+We have the optical breadboard modified at a machine shop. To assemble the stage, first build the 4 posts by attaching a 1" diameter, 1" long post to a 1" diameter, 2" long post with a 1/4" set screw (alternatively, you can use a 1" diameter, 3" long post). Then attach the top plate and the bottom plate to the ends of the 4 posts with 1/4" screws.
 
-<figure>
-  <img src='./assets/images/stage/stage-assembly-1.png'>
-</figure>
+![](./assets/images/stage/stage-assembly-1.png)
 
-Send the adapter to be made at a machine shop, then attach the latch holder to the adapter using a pair of M4 x 0.7mm, 8mm long screws. Attach the adapter to the bottom part of the bottom plate, in the intersection of the middle columns and the second row as shown in the picture below.
+Have the adapter made at a machine shop, then attach the latch holder to the adapter with a pair of M4 x 0.7 mm, 8 mm long screws. Attach the adapter to the underside of the bottom plate, at the intersection of the middle columns and the second row, as shown in the picture below.
 
-<figure>
-  <img src='./assets/images/stage/stage-assembly-2.png'>
-</figure>
+![](./assets/images/stage/stage-assembly-2.png)
 
 ## Stage installation
 
-Install the stage into the cabinet using 1/4"-20 1/2" long low profile socket head screws from the bottom of the drawer slider into the breadboard (the stage can be installed in the cabinet before or after placing the 3D printed cup). Extend the drawer all the way out and place the stage on top of it, align it according to the image below.
+Install the stage in the cabinet with 1/4"-20, 1/2" long low-profile socket head screws, driven from the bottom of the drawer slider into the breadboard (the stage can be installed before or after the 3D printed cup). Extend the drawer all the way out, place the stage on top of it and align it as shown in the image below.
 
-<figure>
-  <img src='./assets/images/stage/stage-assembly-3.png'>
-</figure>
+![](./assets/images/stage/stage-assembly-3.png)
 
 ## Cup with optical flow sensor
 
-The cup has 2 main components, the cup itself that includes a circular arm through which a constant air flow will be introduced to the inner part and a connector that will transmit the power and data from the sensor to the arduino that is part of the control module of the training mini VR. The second main component is the bottom plate, that has attached the optical flow sensor, a mirror, and a LED printed circuit board (PCB).
+The cup has 2 main components. The first is the cup itself, which includes a circular arm that brings a constant air flow into it, and a connector that carries power and data between the sensor and the Arduino in the rig's control module. The second is the bottom plate, which holds the optical flow sensor, a mirror and an LED printed circuit board (PCB).
 
-<figure>
-  <img src='./assets/images/stage/cup-with-optical-flow-sensor.png'>
-  <center><figcaption><small>Cup with optical flow sensor.</small></figcaption></center>
-</figure>
+![Cup with optical flow sensor.](./assets/images/stage/cup-with-optical-flow-sensor.png)
 
 ### Cup assembly
 
-We use a 3D printing external service to manufacture the cup, Nylon 12 works fine and ideally the top curved surface of the cup should be smooth (smoothing it manually with fine sandpaper does the work).
+We use an external 3D printing service to make the cup. Nylon 12 works fine, and ideally the top curved surface of the cup should be smooth (sanding it by hand with fine sandpaper does the job).
 
-1. Use a transparent epoxy to place a small ammount aroung the circular hole in the middle of the cup from the bottom up and place the 30 mm gorilla glass window, gently press the window making sure the epoxy covers the edges to avoid air leakage but making sure it doesn't spread into the middle of the mirror.
+1. Working from the bottom of the cup, apply a small amount of transparent epoxy around the circular hole in the middle and place the 30 mm Gorilla Glass window. Press the window gently so the epoxy seals the edges against air leaks, without letting it spread into the middle of the window.
 
-<figure>
-  <img src='./assets/images/stage/cup-assembly-1.png'>
-</figure>
+![](./assets/images/stage/cup-assembly-1.png)
 
-<figure>
-  <img src='./assets/images/stage/cup-assembly-2.png'>
-</figure>
+![](./assets/images/stage/cup-assembly-2.png)
 
-2. Cut the cables from the 8 pin connector to 4 inches and remove the tip of the plastic protective cover, also remove the unused lead (in this case the dark purple/ brown cable), cut the black and red 26 AWG cables at 3 inches and remove the plastic cover from the tips as well. Place a female crimp pin in each cable one at the time and use the crimping tool following the instructions [here](https://www.pololu.com/product/1928). For the grey and red cables, crimp the black and red 26 AWG cables with them respectively; as shown in the picture below.
+2. Cut the wires of the 8-pin connector to 4 inches and strip the insulation from the tips. Also remove the unused lead (in this case the dark purple/brown wire). Cut the black and red 26 AWG wires to 3 inches and strip their tips as well. Crimp a female crimp pin onto each wire, one at a time, following the instructions [here](https://www.pololu.com/product/1928). Crimp the black and red 26 AWG wires together with the grey and red wires respectively, as shown in the picture below.
 
     ::: warning
-    Leads colors might change depending on the connector used, just make sure to follow the same color code across the circuit.
+    Lead colors might differ depending on the connector used; just make sure to follow the same color code across the circuit.
     :::
 
-<figure>
-  <img src='./assets/images/stage/cup-assembly-3.png'>
-</figure>
+![](./assets/images/stage/cup-assembly-3.png)
 
- 3. Insert each crimped cable into the housing with the correct position, according to the following picture.
+ 3. Insert each crimped wire into the housing in the correct position, according to the following picture.
 
     ::: tip
-    The strain relief barrel sometimes ends up a little overly flattened, making it too wide to fit comfortably into the crimp pin housing. In such situations, you can use a pair of pliers to gently squeeze the wider axis of the barrel into a more cylindrical shape that will slide easily into the housing. This tip is taken directly from the [source](https://www.pololu.com/product/1928)
+    The strain relief barrel sometimes ends up a little overly flattened, making it too wide to fit comfortably into the crimp pin housing. In such situations, you can use a pair of pliers to gently squeeze the wider axis of the barrel into a more cylindrical shape that will slide easily into the housing. This tip is taken directly from the [source](https://www.pololu.com/product/1928).
     :::
 
- <figure>
-  <img src='./assets/images/stage/cup-assembly-4.png'>
- </figure>
+ ![](./assets/images/stage/cup-assembly-4.png)
 
-4. Insert the connector into the cup hole and screw.
+4. Insert the connector into the hole in the cup and screw it in.
 
- <figure>
-  <img src='./assets/images/stage/cup-assembly-5.png'>
- </figure>
+ ![](./assets/images/stage/cup-assembly-5.png)
 
 ### Bottom plate assembly
 
-The bottom plate design is sent to a machine shop to be made in aluminum. The bottom plate will hold the optical flow sensor which, due to space constrains, is place horizontally in the front part of the plate (toward the mice and the back to the screen) facing a 45 degrees mirror right below the gorilla glass window, instead of being placed directly at the bottom of the styrofoam ball. We also add a printed circuit board with a resistance and an IR LED to illuminate the bottom part of the ball.
+We have the bottom plate made in aluminum at a machine shop. It holds the optical flow sensor, which, due to space constraints, is mounted horizontally at the front of the plate (toward the mouse, with its back to the screen), facing a 45 degree mirror right below the Gorilla Glass window, instead of directly below the Styrofoam ball. We also add a printed circuit board with a resistor and an IR LED to illuminate the bottom of the ball.
 
-1. We send the sensor holder to be made at a machine shop in aluminum, but i could also be 3D printed. Solder the 90 degrees angled pins to the optical flow sensor, then use a pair of 4-40 1/4" long screws to screw the sensor to the sensor holder (one at the top left and one at the bottom right is enough).
+1. We have the sensor holder made in aluminum at a machine shop, but it could also be 3D printed. Solder the right-angle (90 degree) pins to the optical flow sensor, then screw the sensor to the sensor holder with a pair of 4-40, 1/4" long screws (one at the top left and one at the bottom right is enough).
 
-2. We use an external service to make our PCBs using the GERBER files, some options are PCBway or OSH park. Add some solder to the pads, then place the IR LED on top, making sure the pin ID matches the PCB ID mark as seen in the picture below (the ID pin is a small dent on one of the square corners of the LED, you might need a magnifying glass for this) and use a fine tip to solder it to the PCB. Repeat the process with the resistance and finally solder the pins.
+2. We use an external service to make our PCBs from the Gerber files; options include PCBWay and OSH Park. Add some solder to the pads, then place the IR LED on top, making sure its pin 1 marker matches the ID mark on the PCB, as seen in the picture below (the marker is a small notch on one of the square corners of the LED; you might need a magnifying glass to see it), and solder it to the PCB with a fine tip. Repeat with the resistor, and finally solder the pins.
 
- <figure>
-  <img src='./assets/images/stage/bottom-plate-assembly-1.png'>
- </figure>
+ ![](./assets/images/stage/bottom-plate-assembly-1.png)
 
-3. Use the heat insert installation tool to install a 4-40 x 0.17" long heat insert in the mirror and IR LED printed holder. Insert the correct tip into the soldering iron, then place the insert in the tip and connect it to a wall outlet; wait for a few seconds until it is hot and place it in the holes of the mirror holder. Press until the whole insert is inside and the surface is flat.
+3. Use the heat-set insert installation tool to install a 4-40 x 0.17" long heat-set insert in the printed mirror and IR LED holder. Fit the correct tip to the soldering iron, put the insert on the tip and plug the iron in; wait a few seconds until it is hot, then place the insert in the hole of the mirror holder. Press until the whole insert is inside and flush with the surface.
 
- <figure>
-  <img src='./assets/images/stage/bottom-plate-assembly-2.png'>
- </figure>
+ ![](./assets/images/stage/bottom-plate-assembly-2.png)
 
-4. Cut a first surface mirror in a 1" x 0.75" square. Use a strong 2 side tape and cut some squares to fill both of the surfaces of the mirror and IR LED holder. Paste both the mirror and the PCB.
+4. Cut a first-surface mirror to a 1" x 0.75" rectangle. Cut pieces of strong double-sided tape to cover both mounting surfaces of the mirror and IR LED holder, then stick on the mirror and the PCB.
 
- <figure>
-  <img src='./assets/images/stage/bottom-plate-assembly-3.png'>
- </figure>
+ ![](./assets/images/stage/bottom-plate-assembly-3.png)
 
 5. Screw the sensor and the mirror to the aluminum bottom plate.
 
 ### Assembly
 
-1. Laser cut a rubber gasket to be placed between the aluminum plate and the cup. Connect the cables from the connector to the optical flow sensor, making sure the ground cable (grey) is at the bottom pin of the sensor (the one closer to the bottom plate). Use the thin red and black cables to connect to the IR LED PCB to the positive and negative pin respectively.
+1. Laser cut a rubber gasket to go between the aluminum plate and the cup. Connect the wires from the connector to the optical flow sensor, making sure the ground wire (grey) goes to the bottom pin of the sensor (the one closest to the bottom plate). Connect the thin red and black wires to the positive and negative pins of the IR LED PCB, respectively.
 
- <figure>
-  <img src='./assets/images/stage/assembly-1.png'>
- </figure>
+ ![](./assets/images/stage/assembly-1.png)
 
-2. Place the rubber gasket between the bottom plate and the 3D printed cup and screw the bottom plate. Make sure that the optical flow sensor is between the cables connector and the air hose connector as shown in the figure below.
+2. Place the rubber gasket between the bottom plate and the 3D printed cup. Make sure the optical flow sensor sits between the cable connector and the air hose connector, as shown in the figure below.
 
- <figure>
-  <img src='./assets/images/stage/assembly-2.png'>
- </figure>
+ ![](./assets/images/stage/assembly-2.png)
 
-3. Screw the bottom plate to the cup and screw the cup to the top plate of the stage, the air hose connector should be facing the upper right part of the top optical breadboard, so that the optical flow sensor is directed toward facing the mice.
+3. Screw the bottom plate to the cup and the cup to the top plate of the stage. The air hose connector should face the upper right part of the top optical breadboard, so that the optical flow sensor faces the mouse.
 
- <figure>
-  <img src='./assets/images/stage/assembly-3.png'>
- </figure>
+ ![](./assets/images/stage/assembly-3.png)
 
 ## Cable and hose carrier (optional)
 
-We place a cable and hose carrier to avoid them to be crushed or damaged while the stage is taken in and out. It is also useful to keep the working space clean and neat. Follow the next steps for assembly.
+We install a cable and hose carrier so that the cables and hoses don't get crushed or damaged when the stage slides in and out. It also keeps the workspace clean and tidy. Follow these steps to assemble it.
 
-1. Print the carrier to breadboard adapter and install it in the bottom part of the top breadboard (it is easier to screw it before the posts, but you can always take the top breadboard apart or screw brom the bottom). Place the M6 x 1mm square nuts on the square hole in the bottom part of the adapter and use a pair of M6 x 1mm, 10 mm long to screw the carrier mounting bracket to it.
+1. Print the carrier-to-breadboard adapter and install it on the underside of the top breadboard (it is easier to screw it on before the posts, but you can always take the top breadboard off or screw it from the bottom). Put the M6 x 1 mm square nuts in the square holes on the bottom of the adapter and screw the carrier mounting bracket to it with a pair of M6 x 1 mm, 10 mm long screws.
 
- <figure>
-  <img src='./assets/images/stage/carrier-assembly-1.png'>
- </figure>
+ ![](./assets/images/stage/carrier-assembly-1.png)
 
-2. Place the second mounting bracket for the carrier on the 2 holes at the bottom left part of the aluminum bottom plate in the cabinet.
+2. Attach the carrier's second mounting bracket to the 2 holes at the bottom left of the aluminum bottom plate in the cabinet.
 
- <figure>
-  <img src='./assets/images/stage/carrier-assembly-2.png'>
- </figure>
+ ![](./assets/images/stage/carrier-assembly-2.png)
 
-3. We order a 3 ft. long cable and hose carrier. Count 17 pieces of the carrier and snap off the rest of them. Attach the carrier to both mounting brackets.
+3. We order a 3 ft long cable and hose carrier. Count 17 links and snap off the rest. Attach the carrier to both mounting brackets.
 
- <figure>
-  <img src='./assets/images/stage/carrier-assembly-3.png'>
- </figure>
+ ![](./assets/images/stage/carrier-assembly-3.png)
 
-## GERBER files
+## Gerber files {#gerber-files}
 
-1. Gerber files for the IR LED available <a href='/building/GERBER/IR-LED-circuit-for-optical-flow-sensor.zip'>here.</a>
+1. The Gerber files for the IR LED board are available <a href='/building/GERBER/IR-LED-circuit-for-optical-flow-sensor.zip'>here</a>.

@@ -5,18 +5,18 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-The main goals of the Ephys/Imaging Automation Pipeline in BRAINCoGS are:
+The main goals of the Ephys/Imaging Automation Pipeline in BRAIN CoGS are:
 
 + Automate spike sorting and imaging segmentation for all recordings
 + Centralize and standardize paths for recording data storage
 + Unify and register ephys/imaging processing
-+ Store processed data in the BRAINCoGS database (DJ)
++ Store processed data in the BRAIN CoGS database (DJ)
 
 To accomplish this, we developed three tools:
 
 + Ephys/Imaging Automation GUI (<a href="https://github.com/BrainCOGS/RecordingProcessJobGUI">RecordingProcessJobGUI</a>)
-+ Recording Workflow management (<a href="https://github.com/BrainCOGS/U19-pipeline_python/tree/master/u19_pipeline/automatic_job">Automatic_job directory in U19-pipeline_python </a>)
-+ Collab repositories to handle Ephys/Imaging Processing (<a href="https://github.com/BrainCOGS/BrainCogsEphysSorters">BrainCogsEphysSorters </a> and <a href="https://github.com/BrainCOGS/BrainCogsImagingSegmentation">BrainCogsImagingSegmentation </a>)
++ Recording Workflow management (<a href="https://github.com/BrainCOGS/U19-pipeline-python/tree/master/u19_pipeline/automatic_job">automatic_job directory in U19-pipeline-python</a>)
++ Collab repositories to handle Ephys/Imaging Processing (<a href="https://github.com/BrainCOGS/BrainCogsEphysSorters">BrainCogsEphysSorters</a> and <a href="https://github.com/BrainCOGS/BrainCogsImagingSegmentation">BrainCogsImagingSegmentation</a>)
 
 
 ## Ephys/Imaging Automation GUI
@@ -27,11 +27,11 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 - Follow these steps to create the executable:
 
-1. Connect to the 185a Recording machine.
-2. Open the **C:\Experiments\RecordingProcessJobGUI** directory.
+1. Connect to the 185a recording machine.
+2. Open the `C:\Experiments\RecordingProcessJobGUI` directory.
 3. Open the **Recording_Automation_GUI.prj** file.
 4. Click the **Package** button.
-5. When packaging is done, all files will be available in **\\cup.pni.princeton.edu\braininit\Shared\AutomationGUI_Installation**
+5. When packaging is done, all files will be available in `\\cup.pni.princeton.edu\braininit\Shared\AutomationGUI_Installation`.
 
 - To install the GUI:
 
@@ -45,10 +45,7 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 ### Automation GUI main screen
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/GUI_tab1_table_connection.png'>
-<center><figcaption>Automation GUI main screen fill values</figcaption></center>
-</figure>
+![Automation GUI main screen fill values](./assets/images/automation_pipeline_developer/GUI_tab1_table_connection.png)
 
 ### Ephys Preprocessing (precluster) parameters organization
 
@@ -58,10 +55,7 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
   + **u19_pipeline_ephys_element.pre_cluster_param_steps** (Ephys) Reference to a set of steps to perform in ephys preprocessing.
   + **u19_pipeline_ephys_element.pre_cluster_param_steps__step** These records indicate which sets of parameters for given preprocessing methods will be executed (and in which order).
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/precluster_params_example.png'>
-<center><figcaption>Precluster tables record examples </figcaption></center>
-</figure>
+![Precluster tables record examples](./assets/images/automation_pipeline_developer/precluster_params_example.png)
 
 + Depicted in the above image:
  1. Suppose **precluster_param_steps_name** = new_preprocessing_steps_1 (precluster_param_steps_id = 10) is selected for preprocessing.
@@ -70,34 +64,28 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
     * paramset_idx = 2 2nd
     * paramset_idx = 3 3rd.
  3. Checking **pre_cluster_param_set** for paramset_idx = 9, 2, 3, we conclude that preprocessing will comprise:
-    *   **Tprime** (Tprime ParamSet 1)
-    *   **Catgt** (Catgt ParamSet for Towers Task)
+    *   **TPrime** (Tprime ParamSet 1)
+    *   **CatGT** (Catgt ParamSet for Towers Task)
     *   **PreClustMethod1** (PreClusterMethod1 Paramset Mika)
 
 ### Ephys Processing (cluster) parameters organization
 
-+ This structure is simpler than preprocessing (there are no multiple steps involved): two tables organize the ephys processing parameters.
++ This structure is simpler than preprocessing (there are no multiple steps): two tables organize the ephys processing parameters.
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/cluster_params_example.png'>
-<center><figcaption>Cluster tables record examples </figcaption></center>
-</figure>
+![Cluster tables record examples](./assets/images/automation_pipeline_developer/cluster_params_example.png)
 
 #### Main tables
   + **u19_pipeline_ephys_element.#clustering_method** List of methods (or algorithms) supported for ephys processing.
   + **u19_pipeline_ephys_element.#clustering_param_set** Specific set of parameters (mainly a dictionary) for a given processing method. Multiple sets of parameters can be stored for the same method.
 
-+ Each recording (or, to be precise, each recording process) can be processed with a different set of parameters. Default parameters are used for the majority of recordings in BRAINCoGS.
++ Each recording (or, to be precise, each recording process) can be processed with a different set of parameters. Default parameters are used for the majority of recordings in BRAIN CoGS.
 
 ### Default parameters for preprocessing and processing
 
 + As seen in the Automation GUI main screen, **u19_recording.#modality** stores default parameters for each modality.
 + As a developer, **manually update the default parameters** for all modalities when the project requires it.
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/default_parameters_main.png'>
-<center><figcaption>From which tables default parameters are taken </figcaption></center>
-</figure>
+![From which tables default parameters are taken](./assets/images/automation_pipeline_developer/default_parameters_main.png)
 
 + The **u19_recording.#modality** table stores a reference to the default parameters most commonly used for processing ephys and imaging.
 + Main table to store preprocessing parameters:
@@ -109,19 +97,13 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 ### Imaging equivalence parameter tables:
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/imaging_equivalence_parameter_tables.png'>
-<center><figcaption>Imaging equivalence parameter tables </figcaption></center>
-</figure>
+![Imaging equivalence parameter tables](./assets/images/automation_pipeline_developer/imaging_equivalence_parameter_tables.png)
 
 + Everything described for the ephys preprocessing and processing tables applies to the imaging counterparts.
 
 ### Tables written when recording is registered:
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/new_default_recording_records.png'>
-<center><figcaption>Tables written when new recording is registered </figcaption></center>
-</figure>
+![Tables written when new recording is registered](./assets/images/automation_pipeline_developer/new_default_recording_records.png)
 
 + When a new recording is created, three tables are written:
     1. **u19_recording.recording**: Main table for recordings. The recording_id created here identifies the recording throughout the entire process.
@@ -151,89 +133,72 @@ This mini guide for the Automation GUI shows the relationship between the GUI an
 
 The workflow management code creates and coordinates a set of tasks for all recordings registered with the GUI to ensure they are fully processed.
 
-Shell code executed as a cronjob for workflow management:
-(<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/call_cronjob_automatic_job.sh">call_cronjob_automatic_job.sh
-</a>)
+The workflow management runs as a cron job, through the shell script <a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/call_cronjob_automatic_job.sh">call_cronjob_automatic_job.sh</a>.
 
-Workflow management is composed mainly of two classes that handle recordings and recording_processes (recording_processes, or jobs, are how recordings are composed):
+Workflow management consists mainly of two classes, which handle recordings and recording processes (a recording is made up of recording processes, or jobs):
  + Ephys recordings are composed of one or many independent probe electrophysiology recordings. Each probe recording corresponds to a job in the workflow management.
  + Calcium imaging recordings are composed of one or many independent field-of-view image stacks. Each field-of-view image stack corresponds to a job in the workflow management.
 
-The class that manages workflow at the recording level is (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>)
+The class that manages the workflow at the recording level is <a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>.
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/workflow_manager_recordings.png'>
-<center><figcaption>Workflow manager diagam at the recording level</figcaption></center>
-</figure>
+![Workflow manager diagram at the recording level](./assets/images/automation_pipeline_developer/workflow_manager_recordings.png)
 
 ### Main functions and variables in recording workflow manager
 
-+ **recording_status_dict** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and the corresponding functions to execute.
-+ **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main function in the recording workflow.
++ **recording_status_dict** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and the corresponding functions to execute.
++ **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main function in the recording workflow.
   1. Executes the corresponding functions based on status.
   2. Runs every 30 minutes to check for new recordings to handle.
   3. Sends notifications for processed and failed functions.
-  +  **exception_handler** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Python decorator for error handling.
-+  **modality_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main ingestion function from the recording to the recording_process tables. There are subcalls depending on the modality of the recording (ephys or imaging).
+  +  **exception_handler** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Python decorator for error handling.
++  **modality_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Main ingestion function from the recording to the recording_process tables. There are subcalls depending on the modality of the recording (ephys or imaging).
 
 #### Imaging preingestion main steps:
 
-+  **imaging_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to the recording_process table for an imaging recording. Gets all FOVs (TIFF stacks) for the recording and assigns a new job to each one, with the corresponding parameters fetched from the selection made in the Automation GUI.
-**Make function in AcquiredTiff** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/imaging_pipeline.py#L79">AcquiredTiff make function </a>): Population calls to:
-  1. **u19_imaging_pipeline.AcquiredTiff**: Each recording is divided into Tiff Splits (e.g. Mesoscope recordings contain multiple tiff stacks that are processed independently).
++  **imaging_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to the recording_process table for an imaging recording. Gets all FOVs (TIFF stacks) for the recording and assigns a new job to each one, with the corresponding parameters fetched from the selection made in the Automation GUI.
+**Make function in AcquiredTiff** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/imaging_pipeline.py#L79">AcquiredTiff make function </a>): Population calls to:
+  1. **u19_imaging_pipeline.AcquiredTiff**: Each recording is divided into TIFF splits (e.g. mesoscope recordings contain multiple TIFF stacks that are processed independently).
   2. **u19_imaging_pipeline.SyncImagingBehavior**: Finds the correspondence between the virtual reality frame in the behavior experiment and the calcium imaging frame in the recording.
-  (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/schemas/%2Bimaging_pipeline/SyncImagingBehavior.m">Code here</a>). Since most users use MATLAB to read sync data, this table is populated in the general **populate tables** cronjob script.  (<a href="https://braincogs.github.io/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob">populate tables script description</a>).
+  (<a href="https://github.com/BrainCOGS/U19-pipeline-matlab/blob/master/schemas/%2Bimaging_pipeline/SyncImagingBehavior.m">Code here</a>). Since most users use MATLAB to read sync data, this table is populated in the general **populate tables** cronjob script.  (<a href="/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob">populate tables script description</a>).
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/imaging_pipeline_basic_ERD.png'>
-<center><figcaption>ERD for imaging pipeline at the recording level</figcaption></center>
-</figure>
+![ERD for imaging pipeline at the recording level](./assets/images/automation_pipeline_developer/imaging_pipeline_basic_ERD.png)
 
 #### Ephys preingestion main steps:
 
-+  **electrophysiology_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to the recording_process table for an ephys recording. Gets all probes for the recording and assigns a new job to each one, with the corresponding parameters fetched from the selection made in the Automation GUI.
++  **electrophysiology_preingestion** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_handler.py">RecordingHandler</a>): Ingestion to the recording_process table for an ephys recording. Gets all probes for the recording and assigns a new job to each one, with the corresponding parameters fetched from the selection made in the Automation GUI.
  1. Ingest the **ephys_pipeline.EphysPipelineSession** table.
  2. Ingest the **ephys_element.ProbeInsertion** table.
  3. Ingest the **ephys_element.EphysRecording** table.
- 4. Ingest the **ephys_pipeline.BehaviorSync** table: Find the corresponding iteration in the ephys recording with the frame from the Virmen behavior task (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/ephys_pipeline.py">Code here </a>) (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/utils/ephys_utils.py"> and here </a>).
+ 4. Ingest the **ephys_pipeline.BehaviorSync** table: Finds the sample in the ephys recording that corresponds to each ViRMEn behavior iteration (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/ephys_pipeline.py">code here</a> and <a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/utils/ephys_utils.py">here</a>).
 5. For each probe (insertion_number) in the EphysSession, insert a Processing (job) in **u19_recording_process.Processing**.
 
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/ephys_pipeline_basic_ERD.png'>
-<center><figcaption>ERD for ephys pipeline at the recording level</figcaption></center>
-</figure>
+![ERD for ephys pipeline at the recording level](./assets/images/automation_pipeline_developer/ephys_pipeline_basic_ERD.png)
 
 ### Main functions and variables in recording_process workflow manager
 
-+ **recording_process_status_dict** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and the corresponding functions to execute.
-+ **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_process_handler.py">RecProcessHandler</a>): Main function in the recording process workflow.
++ **recording_process_status_dict** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/params_config.py">Params Config file</a>): This dictionary defines status definitions and the corresponding functions to execute.
++ **pipeline_handler_main** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_process_handler.py">RecProcessHandler</a>): Main function in the recording process workflow.
 1. Executes the corresponding functions based on status.
 2. Runs every 30 minutes to check for new recordings to handle.
 3. Sends notifications for processed and failed functions.
-+  **transfer check/review** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_process_handler.py">transfer_check/review</a>): Executes and monitors the globus transfer from PNI to Princeton University clusters. (Deprecated)
-+  **slurm_job_queue/check** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_process_handler.py">slurm_job_functions</a>): Generates the slurm file and queues the job on the cluster that will process the recording process. Monitors the job to check whether it has finished.
-+  **populate_element** in (<a href="https://github.com/BrainCOGS/U19-pipeline_python/blob/master/u19_pipeline/automatic_job/u19_pipeline/automatic_job/recording_process_handler.py">slurm_job_queue</a>): After processing jobs, populates the imaging or ephys element tables downstream from the results file.
++  **transfer check/review** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_process_handler.py">transfer_check/review</a>): Executes and monitors the Globus transfer from PNI to the Princeton University clusters (deprecated).
++  **slurm_job_queue/check** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_process_handler.py">slurm_job_functions</a>): Generates the Slurm file, queues the job on the cluster that processes the recording process, and monitors the job until it finishes.
++  **populate_element** in (<a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/automatic_job/recording_process_handler.py">slurm_job_queue</a>): After processing jobs, populates the imaging or ephys element tables downstream from the results file.
 
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/workflow_manager_jobs.png'>
-<center><figcaption>Workflow manager diagam at the recording process level</figcaption></center>
-</figure>
+![Workflow manager diagram at the recording process level](./assets/images/automation_pipeline_developer/workflow_manager_jobs.png)
 
 
-<figure>
-<img src='./assets/images/automation_pipeline_developer/u19_automation_ERD.png'>
-<center><figcaption>ERD from behavior session to recording process tables</figcaption></center>
-</figure>
+![ERD from behavior session to recording process tables](./assets/images/automation_pipeline_developer/u19_automation_ERD.png)
 
 ## Collab repositories to handle Ephys/Imaging Processing
 
 ### BrainCogsEphysSorters
 
-- BrainCogsEphysSorters is the electrophysiology processing pipeline used by BrainCOGS to preprocess, sort, and post-process Neuropixels recordings. This repository works with parameters defined in previous steps of the Automation Pipeline.
+- BrainCogsEphysSorters is the electrophysiology processing pipeline used by BRAIN CoGS to preprocess, sort, and post-process Neuropixels recordings. This repository works with parameters defined in previous steps of the Automation Pipeline.
 - **Location:** Current location of the repository: /mnt/cup/braininit/Shared/repos/AutomaticPipelineProcessing/electrophysiology_processing/BrainCogsEphysSorters
-- **System:** The repository is installed on **g-bcogs-u19proc2.pni.princeton.edu** and is run through the slurm job scheduler.
+- **System:** The repository is installed on **g-bcogs-u19proc2.pni.princeton.edu** and runs through the Slurm job scheduler.
 - **Logs locations:**
   - **ErrorLogs:** /mnt/cup/braininit/Shared/repos/AutomaticPipelineProcessing/u19_pipeline/automatic_job/ErrorLog
   - **OutputLogs:** /mnt/cup/braininit/Shared/repos/AutomaticPipelineProcessing/u19_pipeline/automatic_job/OutputLog
@@ -298,7 +263,7 @@ ppw.post_process_main(raw_data_directory, processed_data_directory, sorter_proce
 
 2. Preprocessing Layer
 
-- Checks which preprocessing steps to perform based on the preprocessing param file, then executes them (for now, only CatGT is implemented as a preprocessing stage).
+- Determines which preprocessing steps to run from the preprocessing param file, then runs them (for now, CatGT is the only implemented preprocessing stage).
 - **File:** u19_sorting/preprocess_wrappers.py
 - **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/catGT_output
 
@@ -337,7 +302,7 @@ sorter_processed_directory = pathlib.Path(processed_directory, process_parameter
 
 4. Post-Processing
 
-- Convert sorter outputs into the formats required by downstream analysis pipelines.
+- Converts sorter outputs into the formats required by downstream analysis pipelines.
 - **File:** u19_sorting/postprocess_wrappers.py
 - **Output result Location:**  braininit/Data/Processed/electrophysiology/(user)/(subject)/(session_date)_g(session#)/(g#_spikeglx_dir)/(imec#_spikeglx_dir)/job_id_(jobid)/ibl_data
 
@@ -359,9 +324,8 @@ sorter_processed_directory = pathlib.Path(processed_directory, process_parameter
   - Replace sorters
   - Add new preprocessing tools
   - Keep a common interface
-  - Configuration-Driven Execution
 
-- Behavior is controlled entirely by JSON files (created by the Automation Pipeline):
+- Execution is configuration-driven: behavior is controlled entirely by JSON files (created by the Automation Pipeline):
 
   - preprocess_paramset_(id).json
   - process_paramset_(id).json

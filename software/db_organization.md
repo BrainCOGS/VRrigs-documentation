@@ -5,28 +5,28 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-The following sections describe all databases on the BRAINCoGS host (datajoint00.pni.princeton.edu). The databases are subdivided into these categories:
+The following sections describe all databases on the BRAIN CoGS host (datajoint00.pni.princeton.edu). The databases fall into these categories:
 
-1. Lab & subject DBs
-2. Behavior DBs
-3. Ephys & Imaging DBs
+1. [Lab, subject & schedule DBs](#lab-subject-schedule-dbs)
+2. [Behavior DBs](#behavior-dbs)
+3. [Ephys & imaging DBs](#ephys-imaging-dbs)
 
 ## Lab, Subject & Schedule DBs
 
 ### **1. u19_lab**
 
-+ Stores all general information that applies across entire BRAINCoGS projects. It also stores general information about researchers.
++ Stores general information that applies across all BRAIN CoGS projects, including information about researchers.
 
 #### Main tables
 
-+ **User** Stores general information for all researchers and technicians in BRAINCoGS. Being registered in this table is a requirement to add subjects on your behalf. Check <a href="https://braincogs.github.io/software/db_access.html#add-researcher-to-user-table.html"> here </a> for more information. Important fields include user_id (NETID), active_gui_user, and slack_webhook URLs for users (for notifications). Check <a href="https://braincogs.github.io/software/alert_system.html#set-up-custom-slack-alerts.html"> set slack alerts </a> for more info.
++ **User** Stores general information for all researchers and technicians in BRAIN CoGS. You must be registered in this table to have subjects added under your name (see <a href="/software/db_access.html#add-researcher-to-user-table">here</a> for more information). Important fields include user_id (NETID), active_gui_user, and slack_webhook URLs for users (for notifications). See <a href="/software/alert_system.html#set-up-custom-slack-alerts">Slack alerts</a> for more information.
 + **Location** All systems associated with rigs, recordings, and technician use. Every behavior session is associated with one of the systems recorded here, and each recording (ephys/imaging) is associated with a system recorded here.
-+ **Path** Paths for the cup drives in BRAINCoGS. Paths are divided by OS and by local or network system type.
-+ **AcquisitionType** All possible acquisition modalities in BRAINCoGS (each location in Path is associated with one modality as well). Modalities include behavior, electrophysiology, 2photon, mesoscope, etc.
-+ **DjCustomVariables** Configuration variables for DataJoint, mainly paths for special directories. This table is used in the background when DB access is configured for a system. Check <a href="https://braincogs.github.io/software/db_access.html#db-access-for-matlab-repository"> DB Access section </a>.
-+ **DjStores** External storage path locations on the network drives (cup) for several DataJoint tables. This table is used in the background when DB access is configured for a system. Check <a href="https://braincogs.github.io/software/db_access.html#db-access-for-matlab-repository"> DB Access section </a>.
++ **Path** Paths for the cup drives in BRAIN CoGS. Paths are divided by OS and by local or network system type.
++ **AcquisitionType** All possible acquisition modalities in BRAIN CoGS (each location in Path is associated with one modality as well). Modalities include behavior, electrophysiology, 2photon, mesoscope, etc.
++ **DjCustomVariables** Configuration variables for DataJoint, mainly paths for special directories. This table is used in the background when DB access is configured for a system (see the <a href="/software/db_access.html#db-access-for-matlab-repository">DB access section</a>).
++ **DjStores** External storage path locations on the network drives (cup) for several DataJoint tables. This table is used in the background when DB access is configured for a system (see the <a href="/software/db_access.html#db-access-for-matlab-repository">DB access section</a>).
 + **InsertionDevice** Device types for insertion in subjects (from ephys electrodes to optogenetic cannulae). Paired with the u19_action.SurgeryLocation table.
-+ **SlackWebhooks** Slack webhook URLs for general notifications. Check <a href="https://braincogs.github.io/software/alert_system.html#set-up-custom-slack-alerts.html"> set slack alerts </a> for more info.
++ **SlackWebhooks** Slack webhook URLs for general notifications. See <a href="/software/alert_system.html#set-up-custom-slack-alerts">Slack alerts</a> for more information.
 
 ### **2. u19_subject**
 
@@ -34,23 +34,23 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 #### Main tables
 
-+ **Subject** Stores general information for all subjects in BRAINCoGS. Being registered in this table is a requirement to train and run behavior sessions.
-+ **LickometerMotorPosition** Stores ml, ap, and dv motor coordinates for a subject in a rig with a positioning motor installed. Check <a href="https://braincogs.github.io/software/virmen_guide.html#set-up-training"> Set up motor positioning subsection </a> for more information.
++ **Subject** Stores general information for all subjects in BRAIN CoGS. Being registered in this table is a requirement to train and run behavior sessions.
++ **LickometerMotorPosition** Stores ml, ap, and dv motor coordinates for a subject in a rig with a positioning motor installed. See the <a href="/software/virmen_guide.html#set-up-training">motor positioning setup</a> for more information.
 + **CagingStatus** Subject-cage relationship storage.
 + **HealthStatus** Daily health assessment for a subject. Fields include normal_behavior, posture_grooming, technician_comments, etc.
-+ **Allele** All subjects' genotypes in BRAINCoGS.
++ **Allele** All subjects' genotypes in BRAIN CoGS.
 + **Cage** Cage list for subjects.
 
 ### **3. u19_scheduler**
 
-+ Stores everything related to scheduling future sessions for subjects in the <a href="https://braincogs.github.io/software/virmen_developer.html#new-training-gui"> "NewTrainingGUI" model </a>.
++ Stores everything related to scheduling future sessions for subjects in the <a href="/software/virmen_developer.html#new-training-gui"> "NewTrainingGUI" model </a>.
 + It includes current rig IOs, training profiles for all experiments, and the schedule calendar for future sessions.
 
 #### Main tables
 
 + **Schedule** Records which subjects are scheduled to train, on which date, on which rig, and which training profile they are assigned.
-+ **TrainingProfile** All variables for a given experiment (e.g. experiment world, protocol, rewardFactor). Check <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> Rig Tester </a> documentation for more information.
-+ **InputOutputRig** All IO "types" defined for every rig (e.g. Reward, LeftAirPuff, Arduino). Check <a href="https://braincogs.github.io/software/virmen_developer.html#testvrrig-2-rig-tester"> Rig Tester </a> documentation for more information.
++ **TrainingProfile** All variables for a given experiment (e.g. experiment world, protocol, rewardFactor). See the <a href="/software/virmen_developer.html#testvrrig-2-rig-tester">Rig Tester</a> documentation for more information.
++ **InputOutputRig** All IO "types" defined for every rig (e.g. Reward, LeftAirPuff, Arduino). See the <a href="/software/virmen_developer.html#testvrrig-2-rig-tester">Rig Tester</a> documentation for more information.
 + **InputOutputRigParameters** All RigParameters.m parameters needed for a given IO.
 + **InputOutputProfile** Defines which IOs are needed for a specific rig and/or task.
 
@@ -66,9 +66,9 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 + **Session** Basic information (performance, experiment code used, etc.) for a behavior session. The record is written after training is finished.
 + **SessionBlock** Basic reference to all blocks from all behavior sessions.
 + **SessionBlockTrial** Basic reference to all trials from all behavior sessions.
-+ **SessionManipulation** Reference to which manipulation (if any) was performed for a behavior session. Check <a href="https://braincogs.github.io/software/manipulation_pipeline.html">manipulation pipeline section</a> for more information.
-+ **SessionSubtask** Reference to which subtask (if any) was performed for a behavior session. Check <a href="https://braincogs.github.io/software/subtask_pipeline.html">subtask pipeline section</a> for more information.
-+ **SessionVideo** Reference to video acquisition, if performed during a behavior session. Check <a href="https://braincogs.github.io/software/pupillometry_guide.html">Pupillometry Pipeline Guide</a> for more information.
++ **SessionManipulation** Reference to which manipulation (if any) was performed for a behavior session. See the <a href="/software/manipulation_pipeline.html">manipulation pipeline section</a> for more information.
++ **SessionSubtask** Reference to which subtask (if any) was performed for a behavior session. See the <a href="/software/subtask_pipeline.html">subtask pipeline section</a> for more information.
++ **SessionVideo** Reference to video acquisition, if performed during a behavior session. See the <a href="/software/pupillometry_guide.html">Pupillometry Pipeline Guide</a> for more information.
 
 ### **2. u19_action:**
 
@@ -78,8 +78,8 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 + **Weighing** Records the daily weight of subjects. Written by the weighingGUI used by technicians.
 + **WaterAdministration** Records daily water administration to subjects. Earned water is written at the end of training. Supplement water is written by the weighingGUI used by technicians.
-+ **Surgery** Records of surgeries performed on subjects. Written by the <a href="https://braincogs.github.io/software/automation_pipeline.html">Ephys/Imaging automation pipeline section</a>.
-+ **SurgeryLocation** Records device locations implanted in subjects during surgeries (e.g. NeuroPixel probes). Written by the <a href="https://braincogs.github.io/software/automation_pipeline.html">Ephys/Imaging automation pipeline section</a>.
++ **Surgery** Records of surgeries performed on subjects. Written by the <a href="/software/automation_pipeline.html">ephys/imaging automation pipeline</a>.
++ **SurgeryLocation** Records device locations implanted in subjects during surgeries (e.g. Neuropixels probes). Written by the <a href="/software/automation_pipeline.html">ephys/imaging automation pipeline</a>.
 + **DailyPositionData** For subjects with automatic motor positioning on a rig, stores daily ml, ap, and dv coordinates. If cameras are present on the rig, lateral and top reference images are also stored.
 
 ### **3. u19_behavior:**
@@ -90,16 +90,16 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 + **TowersBlock** Specific block data from behavior sessions (level, main_level, block_performance, etc.).
 + **TowersBlockTrial** Specific trial data from behavior sessions (tower positions, trial_type, choice, position, velocity, etc.).
-+ **SpatialTimeBlobs** Efficient time, position, and velocity storage (per session, not per trial). Check <a href="https://braincogs.github.io/software/db_analysis.html#matlab">get_full_trial_data with SpatialTimeBlobs </a> to learn how to use this.
-+ **Towers Session/Subject Psych** Group of tables with psychometric curve parameters per session, block_type (main, guiding), subject, etc. Check <a href="https://braincogs.github.io/software/db_analysis.html">Using psychometric data</a> to learn how to use this. Check <a href="https://braincogs01.pni.princeton.edu/">BRAINCoGS Data viewer </a> to view psychometric curves.
++ **SpatialTimeBlobs** Efficient time, position, and velocity storage (per session, not per trial). See <a href="/software/db_analysis.html#get-full-trial-data-with-spatialtimeblobs">get_full_trial_data with SpatialTimeBlobs</a> to learn how to use it.
++ **Towers Session/Subject Psych** Group of tables with psychometric curve parameters per session, block_type (main, guiding), subject, etc. View psychometric curves in the <a href="https://braincogs01.pni.princeton.edu/">BRAIN CoGS data viewer</a>.
 
 ### **4. u19_behavior_subtask:**
 
-+ Stores specific data for different subtask sessions. Check <a href="https://braincogs.github.io/software/subtask_pipeline.html">subtask pipeline section</a> for more information.
++ Stores specific data for different subtask sessions. See the <a href="/software/subtask_pipeline.html">subtask pipeline section</a> for more information.
 
 ### **5. u19_optogenetics**
 
-+ Optogenetic manipulation data. Review <a href="https://braincogs.github.io/software/manipulation_pipeline.html">Manipulation pipeline section</a> for more information and examples.
++ Optogenetic manipulation data. See the <a href="/software/manipulation_pipeline.html">manipulation pipeline section</a> for more information and examples.
 
 #### Main tables
 
@@ -110,7 +110,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **6. u19_thermal**
 
-+ Thermal manipulation data. Review <a href="https://braincogs.github.io/software/manipulation_pipeline.html">Manipulation pipeline section</a> for more information and examples. Identical structure to the Optogenetic DB.
++ Thermal manipulation data. See the <a href="/software/manipulation_pipeline.html">manipulation pipeline section</a> for more information and examples. Identical structure to the Optogenetic DB.
 
 ### **7. u19_puffs**
 
@@ -125,7 +125,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **1. u19_recording:**
 
-+ Stores all references to any recording (ephys and imaging) performed on BRAINCoGS. Check <a href="https://braincogs.github.io/software/automation_pipeline.html">Automation pipeline section</a> for more information.
++ Stores references to all recordings (ephys and imaging) made at BRAIN CoGS. See the <a href="/software/automation_pipeline.html">automation pipeline section</a> for more information.
 
 #### Main tables
 
@@ -136,7 +136,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **2. u19_recording_process:**
 
-+ Stores all references to processing jobs for ephys and imaging in the automation pipeline. Almost all information in this table is shown in the <a href="https://braincogs.github.io/software/automation_pipeline.html#monitor-jobs">Automation pipeline GUI </a>.
++ Stores all references to processing jobs for ephys and imaging in the automation pipeline. Almost all information in this table is shown in the <a href="/software/automation_pipeline.html#monitor-jobs">automation pipeline GUI</a>.
 
 #### Main tables
 
@@ -156,13 +156,13 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **4. u19_pipeline_ephys_element:**
 
-+ DataJoint element array electrophysiology DB. The database schema is designed to store all data from an ephys recording and the subsequent kilosort processing. More info: <a href="https://datajoint.com/docs/elements/element-array-ephys/0.2/">Datajoint element array electrophysiology docs</a>. For BRAINCoGS, the **ephys_precluster** schema was used.
++ DataJoint element array electrophysiology DB. The database schema is designed to store all data from an ephys recording and the subsequent Kilosort processing. More info: <a href="https://datajoint.com/docs/elements/element-array-ephys/0.2/">DataJoint Element Array Electrophysiology docs</a>. For BRAIN CoGS, the **ephys_precluster** schema was used.
 
 #### Main tables
 
 + **ClusteringParamSet** Contains a list of parameter dictionaries/structures used for the sorting process.
 + **PreClusterparamSet** Contains a list of parameter dictionaries/structures used for preprocessing steps.
-+ **PreClusterparamSteps** Contains lists of lists of PreCluster param sets that form a preprocessing sequence of preprocessing steps for recordings (e.g. catgt).
++ **PreClusterparamSteps** Contains lists of PreCluster param sets that form a sequence of preprocessing steps for recordings (e.g. CatGT).
 + **CuratedClusteringUnit** Main data for all the units found in the sorting process (**spike_times, cluster_quality_label**, etc.).
 + **LFPElectrode** LFP data for each of the electrodes in a recording.
 + **WaveformSetWaveform** All waveforms from a unit captured by each electrode in a recording.
@@ -170,7 +170,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **5. u19_pipeline_probe_element:**
 
-+ DataJoint element array electrophysiology DB for probes. The database schema is designed to store the probes and electrode configurations used in recordings. More info: <a href="https://datajoint.com/docs/elements/element-array-ephys/0.2/">Datajoint element array electrophysiology docs</a>. For BRAINCoGS, the **ephys_precluster** schema was used.
++ DataJoint element array electrophysiology DB for probes. The database schema is designed to store the probes and electrode configurations used in recordings. More info: <a href="https://datajoint.com/docs/elements/element-array-ephys/0.2/">DataJoint Element Array Electrophysiology docs</a>. For BRAIN CoGS, the **ephys_precluster** schema was used.
 
 #### Main tables
 
@@ -190,7 +190,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **7. u19_pipeline_imaging_element:**
 
-+ DataJoint element calcium imaging DB. The database schema is designed to store all data from an imaging recording and the subsequent segmentation process. More info: <a href="https://datajoint.com/docs/elements/element-calcium-imaging/0.5/">Datajoint element calcium imaging docs</a>.
++ DataJoint element calcium imaging DB. The database schema is designed to store all data from an imaging recording and the subsequent segmentation process. More info: <a href="https://datajoint.com/docs/elements/element-calcium-imaging/0.5/">DataJoint Element Calcium Imaging docs</a>.
 
 #### Main tables
 
@@ -203,7 +203,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **8. u19_pipeline_scan_element:**
 
-+ DataJoint element calcium imaging DB. The database schema is designed to store scan info and metadata from imaging files. More info: <a href="https://datajoint.com/docs/elements/element-calcium-imaging/0.5/">Datajoint element calcium imaging docs</a>.
++ DataJoint element calcium imaging DB. The database schema is designed to store scan info and metadata from imaging files. More info: <a href="https://datajoint.com/docs/elements/element-calcium-imaging/0.5/">DataJoint Element Calcium Imaging docs</a>.
 
 #### Main tables
 
@@ -213,7 +213,7 @@ The following sections describe all databases on the BRAINCoGS host (datajoint00
 
 ### **9. u19_pupillometry:**
 
-+ Stores everything related to pupillometry recordings, from references to behavior sessions to final results. Check <a href="https://braincogs.github.io/software/pupillometry_guide.html"> Pupillometry Pipeline Guide </a> for more information.
++ Stores everything related to pupillometry recordings, from references to behavior sessions to final results. See the <a href="/software/pupillometry_guide.html">Pupillometry Pipeline Guide</a> for more information.
 
 #### Main tables
 

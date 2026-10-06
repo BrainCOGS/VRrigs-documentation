@@ -8,16 +8,17 @@ lang: en-US
 ## MATLAB
 
 ### Prerequisites
-1. U19-pipeline-matlab repo added to MATLAB path
-2. Mounted network cup drives (braininit, u19_dj)
-+ See the <a href="https://braincogs.github.io/software/db_access.html">Database access section</a> for more info.
+1. The U19-pipeline-matlab repository is on the MATLAB path.
+2. The network cup drives (braininit, u19_dj) are mounted.
+
+See the [Database access section](/software/db_access.html) for more information.
 
 ### Recommended tutorial
 
-+ Go through ```U19-pipeline-matlab/tutorials/202103/session01_queries_fetches.mlx``` to learn basic tips on datajoint.
++ Go through `U19-pipeline-matlab/tutorials/202103/session01_queries_fetches.mlx` to learn the basics of DataJoint.
 
 
-### **Useful scripts and functions** for researcher general use:
+### Useful scripts and functions for researchers {#useful-scripts-and-functions-for-researcher-general-use}
 
 ### Read behavior file:
 
@@ -26,7 +27,7 @@ lang: en-US
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  [status,data] = lab.utils.read_behavior_file(key)
 ```
-2. If successful, ```status = 1``` and ```data = log behavioral file```.
+2. If successful, `status = 1` and `data` holds the behavior log file.
 
 ### Get behavior file location (local & for spock/scotty)
 
@@ -39,8 +40,8 @@ lang: en-US
 
 ### get_full_trial_data with SpatialTimeBlobs
 
-+ Get trial data (position, velocity, etc.) efficiently with the DB.
-+ New method to retrieve all trial data for multiple sessions faster.
++ Get trial data (position, velocity, etc.) efficiently from the database.
++ A newer, faster method to retrieve all trial data for multiple sessions.
 1. Execute:
 ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
@@ -63,7 +64,7 @@ lang: en-US
 ### get stats from session
 
 + Use this function to get behavior-file-like stats (at the trial level) for a single session or multiple sessions.
-+ Stats include, but are not limited to: (```correct_left, correct_right, cum_correct_trials, performance, goodFraction, numPerMin, numRewardsPerMin, bias```).
++ Stats include, but are not limited to, `correct_left`, `correct_right`, `cum_correct_trials`, `performance`, `goodFraction`, `numPerMin`, `numRewardsPerMin` and `bias`.
 ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  stat_struct = get_stats_from_session(key, "all")
@@ -71,7 +72,7 @@ lang: en-US
 
 ### get behaviorfile as db
 
-+ Function to unnest the behavior file structure to get a plain trial table (with block data merged).
++ Unnests the behavior file structure into a flat trial table (with block data merged in).
 ```matlab
  key = struct('subject_fullname', 'testuser_T06', 'session_date', '2022-04-20');
  data_struct = get_behaviorfile_as_db(key)
@@ -79,8 +80,8 @@ lang: en-US
 
 ### get time from iteration variable
 
-+ Example of how to "translate" a variable from iteration# to trial_time.
-+ In this case, the 1st row of the variable licks (iteration#) is translated to lick_times and then added to the original trial structure.
++ Example of how to "translate" a variable from iteration number to `trial_time`.
++ In this case, the 1st row of the variable `licks` (iteration numbers) is translated to `lick_times` and then added to the original trial structure.
 ```matlab
  key = struct('subject_fullname', 'efonseca_ef114_act114', 'session_date', '2023-01-11');
 trial_data = get_full_trial_data(key, behavior.TowersBlockTrial * behavior_subtask.TwolickspoutsBlockTrial);
@@ -99,10 +100,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  analyze_iteration_time(key)
 ```
 
- <figure>
-  <img src='./assets/images/db_analysis/plot_frequency_sessions1.png'>
-  <center><figcaption>Framerate trial by trial sessions</figcaption></center>
- </figure>
+ ![Framerate trial by trial sessions](./assets/images/db_analysis/plot_frequency_sessions1.png)
 
 ### plot framerate frequency levels and rigs
 
@@ -112,23 +110,17 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  analyze_iteration_time_level_rig(key)
 ```
 
- <figure>
-  <img src='./assets/images/db_analysis/plot_frequency_sessions2.png'>
-  <center><figcaption>Mean framerate by level and rig </figcaption></center>
- </figure>
+ ![Mean framerate by level and rig](./assets/images/db_analysis/plot_frequency_sessions2.png)
 
 ### plot velocity sessions
 
-+ Plot the mean and max range velocity by session for multiple behavior sessions.
++ Plot the mean and maximum velocity per session for multiple behavior sessions.
 ```matlab
  key = struct('subject_fullname', 'emdiamanti_gps7');
  plot_velocity_session(key)
 ```
 
- <figure>
-  <img src='./assets/images/db_analysis/velocity_subject.png'>
-  <center><figcaption>Velocity plot for multiple sessions</figcaption></center>
- </figure>
+ ![Velocity plot for multiple sessions](./assets/images/db_analysis/velocity_subject.png)
 
 ### get path table
 
@@ -138,10 +130,7 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  baseDir = fetch1(acquisition.SessionStarted & key, 'new_remote_path_behavior_file');
  [bucket_path, local_path] =  lab.utils.get_path_from_official_dir(baseDir)
 ```
- <figure>
-  <img src='./assets/images/db_analysis/path_table.png'>
-  <center><figcaption>Path table data</figcaption></center>
- </figure>
+ ![Path table data](./assets/images/db_analysis/path_table.png)
 
 ### Common errors and troubleshooting
 
@@ -161,11 +150,11 @@ trial_data = cat_struct(trial_data, licks_time_struct);
  Error in dj.store_plugins.File.download_buffer (line 63)
             result = fread(fileID);
 ```
-+ Just mount all cup drives and try again!
++ Mount all the cup drives and try again.
 
-2. The key references more than one session when the function was meant to work for a single session:
+2. The key references more than one session, but the function only works on a single session:
 ```matlab
   Error using dj.internal.GeneralRelvar/fetch1 (line 250)
   fetch1 can only retrieve a single existing tuple.
 ```
-+ Just recreate the key to reference a single session.
++ Change the key so it references a single session.

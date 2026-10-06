@@ -19,13 +19,15 @@
     "build": "vitepress build",
     "preview": "vitepress preview --port 8080",
     "test": "pnpm run build && pnpm run test:dist",
-    "test:dist": "pnpm run test:css-bom && pnpm run test:links && pnpm run test:visual-homepage",
+    "test:dist": "pnpm run test:css-bom && pnpm run test:links && pnpm run test:figures && pnpm run test:visual-homepage",
     "test:css-bom": "node .vitepress/scripts/test-css-bom.js",
     "test:links": "node .vitepress/scripts/test-links.js",
+    "test:figures": "node .vitepress/scripts/test-figures.js",
     "test:visual-homepage": "node .vitepress/scripts/test-visual-homepage.js",
     "audit": "pnpm audit --audit-level high"
   },
   "devDependencies": {
+    "@mdit/plugin-figure": "~1.1.1",
     "playwright": "^1.63.0",
     "vitepress": "^2.0.0-alpha.20"
   }

@@ -5,41 +5,38 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-+ This documentation guides the researcher through the process of creating a new subtask pipeline.
-+ Currently in BRAINCoGS, data from our well-known "VR Towers Task" is stored in the DB.
++ This guide walks researchers through creating a new subtask pipeline.
++ At BRAIN CoGS, the DB currently stores data from our well-known "VR Towers Task".
 + New behavior paradigms include new variables that were not part of our original design:
   + Context task
   + Doorstop task
   + Movie/Stationary task
-+ As a result, only a subset of the entire data is stored in the DB.
-+ The subtask pipeline was created to solve this problem. Its goal is to store specific subtask variables in a separate subset of tables in the DB.
++ As a result, only a subset of their data is stored in the DB.
++ The subtask pipeline solves this problem by storing subtask-specific variables in a separate set of tables in the DB.
 
-## What does the “subtask” pipeline include:
+## What does the “subtask” pipeline include? {#what-does-the-subtask-pipeline-include}
 
 + A minimal data framework for storing all relevant data from "VR Towers Task" variants in a DB.
 + Behavior integration: the training system includes the subtask as an option that can be selected for a behavior session.
 
 ## Prerequisites
 
-+ To create a new subtask, it is assumed that:
-+ The researcher can connect to the <a href="https://braincogs.github.io/software/db_access.html#db-access-for-matlab-repository">datajoint00.pni.princeton.edu DB</a>.
-+ The latest version of the u19_pipeline_matlab repository is installed.
++ To create a new subtask, you need to:
+  + be able to connect to the <a href="/software/db_access.html#db-access-for-matlab-repository">datajoint00.pni.princeton.edu DB</a>, and
+  + have the latest version of the U19-pipeline-matlab repository installed.
 
-## Initial set-up
+## Initial setup {#initial-set-up}
 
-+ Connect to the database: ```connect_datajoint00```
-+ Create the new subtask base code (substitute subtask_name with the real name of the subtask): ```create_new_subtask_classes('(subtask_name)')```
++ Connect to the database: `connect_datajoint00`
++ Create the base code for the new subtask (replace `subtask_name` with the actual subtask name): `create_new_subtask_classes('(subtask_name)')`
 + This creates the table code templates for the subtask — **(Subtask)Session.m, (Subtask)Block.m & (Subtask)Trial.m** — in the `U19-pipeline-matlab/schemas/+behavior_subtask` directory.
-+ (We will use the **"Twolickspouts" subtask** for this example.)
++ (We use the **"Twolickspouts" subtask** as the example.)
 
- <figure>
-  <img src='./assets/images/subtask_pipeline/Twolickspouts_subtask_files.png'>
-  <center><figcaption>Files created for Twolickspouts subtask on U19-pipeline-matlab/schemas/+behavior_subtask directory</figcaption></center>
- </figure>
+ ![Files created for the Twolickspouts subtask in the U19-pipeline-matlab/schemas/+behavior\_subtask directory](./assets/images/subtask_pipeline/Twolickspouts_subtask_files.png)
 
 ## Table description
 
-+ Throughout this table description section, we give an example based on an already working subtask pipeline (Twolickspouts).
++ Throughout this section, we use an existing, working subtask pipeline (Twolickspouts) as the example.
 
 ### task.Subtask table
 
@@ -78,7 +75,7 @@ lang: en-US
  classdef TwolickspoutsSession < dj.Imported
  ```
 
-+ There is no extra field to add at the session level, so no code is added to the file.
++ There are no extra fields at the session level, so no code is added to the file.
 
 ### TwolickspoutsBlock table code
 
@@ -104,7 +101,7 @@ trial_params              : blob                          # maze features of cur
 + In this example, two fields were added to the TwolickspoutsBlock table (sublevel & trial_params).
 + Two things are needed:
   1. Add them to the table definition (the 1st part of the code block).
-  2. Set how these fields are read from the **block_data** variable (search for the **fill here** section in the code). block_data holds all the block data from the behavior file.
+  2. Set how these fields are read from the **block_data** variable (search for the **fill here** section in the code). `block_data` holds all the block data from the behavior file.
 
 ### TwolickspoutsBlockTrial table code
 
@@ -139,26 +136,23 @@ trial_params              : blob                          # maze features of cur
 + In this example, three fields were added to the TwolickspoutsBlockTrial table (licks, trial_difficult_type & forced_automatic_reward).
 + Two things are needed:
   1. Add them to the table definition (the 1st part of the code block).
-  2. Set how these fields are read from the **trial_data** variable (search for the **fill here** section in the code). trial_data holds all the trial data from the behavior file.
+  2. Set how these fields are read from the **trial_data** variable (search for the **fill here** section in the code). `trial_data` holds all the trial data from the behavior file.
 
 ### Create tables
 
-+ Once all the code has been written in the "Subtask"Session, "Subtask"Block & "Subtask"BlockTrial codebase, you need to actually create the tables in the DB.
-+ Execute: ```create_new_subtask_tables('(subtask_name)')```
++ Once the code for the "Subtask"Session, "Subtask"Block and "Subtask"BlockTrial classes is written, create the tables in the DB.
++ Execute: `create_new_subtask_tables('(subtask_name)')`
 
-### Training with new subtask
+### Training with a new subtask {#training-with-new-subtask}
 
-+ Once all the code for the new subtask has been set up and the tables have been created, the researcher can select a specific subtask to associate with the schedule for a given animal. Subsequent behavior sessions will correspond to that selection.
++ Once all the code for the new subtask has been set up and the tables have been created, the researcher can select the subtask in an animal's training schedule, and subsequent behavior sessions will use it.
 
- <figure>
-  <img src='./assets/images/subtask_pipeline/subtask_trainingGUI.png'>
-  <center><figcaption>Subtask selection for a training schedule of a subject.</figcaption></center>
- </figure>
+ ![Subtask selection for a training schedule of a subject.](./assets/images/subtask_pipeline/subtask_trainingGUI.png)
 
-### Fetching Data
+### Fetching data {#fetching-data}
 
-+ After training, all relevant data is accessible in the corresponding tables in the behavior_subtask DB.
-+ <a href="https://docs.datajoint.org/matlab/queries/03-Fetch.html">Datajoint fetch guide</a>
++ After training, all relevant data is available in the corresponding tables of the behavior_subtask DB.
++ <a href="https://docs.datajoint.org/matlab/queries/03-Fetch.html">DataJoint fetch guide</a>
 + Example to fetch all Twolickspouts data for a single session:
 
 ```matlab

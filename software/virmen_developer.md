@@ -5,22 +5,22 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
-+ This documentation helps the BRAINCoGS Software Developer maintain and improve the old and new ViRMEn code, and serves as a guide to it.
++ This guide helps the BRAIN CoGS software developer understand, maintain and improve the old and new ViRMEn code.
 
 ## Old training GUI
 
 Here is an overview of the main functions that run, in chronological order:
 
 + Program scripts (Program-wrapper-file):
-  A script created by each researcher that defines the main data path, experiment name, and cohort name, and calls the **runCohortExperiment** function. See the <a href='https://braincogs.github.io/software/virmen_guide.html#program-wrapper-file'> Program-Wrapper-File </a> section for more info.
+  A script created by each researcher that defines the main data path, experiment name, and cohort name, and calls the **runCohortExperiment** function. See the <a href='/software/virmen_guide.html#program-wrapper-file'>Program wrapper file</a> section for more info.
 
 + runCohortExperiment
   Main function in charge of preparing and starting training. Its main tasks are:
 
     1. Opens the **"Old Training GUI" (TrainingRegiment)**.
-    ```vr.regiment   = TrainingRegiment( experName ...  ```
+    `vr.regiment   = TrainingRegiment( experName ...`
     2. Starts training via the **trainAnimal** function. The line below indicates that trainAnimal runs when the "Train" button is pressed.
-    ```vr.regiment.guiSelectAnimal({'TRAIN', 'Training'}, @trainAnimal, @cleanup);```
+    `vr.regiment.guiSelectAnimal({'TRAIN', 'Training'}, @trainAnimal, @cleanup);`
     3. Creates the **trainee** variable. The trainee variable holds all the data the training experiment needs to function correctly, including:
         1. **vr.trainee.experiment:** Path to the ViRMEn world function. Loading the world file creates the *exper* structure:
             1. **exper.transformationFunction:** Which kind of transformation is used for world projection.
@@ -29,7 +29,7 @@ Here is an overview of the main functions that run, in chronological order:
         2. **vr.trainee.stimulationProtocol** and **vr.trainee.softwareParams** for optogenetics experiments, if chosen in the GUI.
         3. **vr.trainee.RewardFactor**, the reward multiplier that depends on which level the subject is training at.
     4. Inserts an **acquisition.SessionStarted** record in the DB.
-    5. Starts training: ```status        = exper.run();```
+    5. Starts training: `status        = exper.run();`
 
 ## New Training GUI
 
@@ -52,21 +52,21 @@ Here is an overview of the main functions that run, in chronological order:
    - Set to **OK** all IOs that will be used on that rig.
    - Set to **N/A** all IOs that won't be used on that rig.
    (If updating an IO, only change the corresponding record to **OK** or **N/A**.)
-  3. Add the mandatory params to the **C:\Experiments\extras\RigParameters.m** file, based on the **schedule.InputOutputRigParameters** table and the corresponding IOs.
+  3. Add the mandatory params to the `C:\Experiments\extras\RigParameters.m` file, based on the **schedule.InputOutputRigParameters** table and the corresponding IOs.
 
-#### Things to do to add a new IO for experiments:
+#### Adding a new IO for experiments: {#things-to-do-to-add-a-new-io-for-experiments}
 
   1. Add the corresponding record to the **scheduler.InputOutputRig** table.
   2. Add the corresponding rigParameters params for the IO in **scheduler.InputOutputRigParameters**.
   3. For all rig records, add a corresponding record with this new IO in the **scheduler.RigStatus** table.
     - current_status = N/A for all rigs that will not have the new IO.
     - current_status = OK for all rigs that will contain the IO.
-  4. If needed (rarely the case), add a new test function in the <a href="https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/Test_VRrigs/TestSensorsFunctions">TestSensorsFunctions </a> directory.
-  5. Add the corresponding entry in the RigTester, <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_2/createComponents.m">createComponents code</a>.
+  4. If needed (rarely the case), add a new test function in the <a href="https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/Test_VRrigs/TestSensorsFunctions">TestSensorsFunctions</a> directory.
+  5. Add the corresponding entry in the Rig Tester's <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_2/createComponents.m">createComponents code</a>.
 
 #### Rig Tester operation:
 
-  - Creates a TestTable where each row corresponds to one of all the inputs and outputs enabled across all rigs (<a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_2/createComponents.m">createComponents function</a>).
+  - Creates a TestTable with one row for each input and output enabled on any rig (<a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_2/createComponents.m">createComponents function</a>).
     1. Each IO row has components to interact with and perform its corresponding task (button, switch, function to perform, parameters for each IO, etc.).
   - The TestTable is filtered down to the corresponding IOs:
     1. If used from **TrainingToday**: IOs = the corresponding IOs for all subjects to train on that rig. These IOs are taken from the InputOutput Profiles of the subjects in the schedule.
@@ -110,7 +110,7 @@ Here is an overview of the main functions that run, in chronological order:
   - **confirmSetup():** Runs **storeDailySubjectMotorPositionData()**, which stores the motor position and lateral and/or top camera images for reference in **action.DailySubjectPositionData**. Then proceeds to subject training.
 
 ### PostTrainingGUI
-  GUI to start the corresponding experiments for a given scheduled subject.
+  GUI shown after a session ends, to review the session and report problems.
   Location: <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40PostTrainingGUI/PostTrainingGUI.m">PostTrainingGUI main function</a>
   Its main tasks are:
 
@@ -123,7 +123,7 @@ Here is an overview of the main functions that run, in chronological order:
 
 ### NewTrainingGUI_BackwardCompatibility
 - To integrate existing experiment code and auxiliary classes with the new Training GUI structure, a "compatibility" layer was created.
-  Location: <a href="https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/common/NewTrainingGUI_BackwardCompatibility"> NewTrainingGUI_BackwardCompatibility </a>
+  Location: <a href="https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/common/NewTrainingGUI_BackwardCompatibility">NewTrainingGUI_BackwardCompatibility</a>
   Its main tasks are:
 
 - **runExperiment():** Main function of the compatibility layer. Triggered from **TrainingFlowGUI** to start training. runExperiment performs the following:
@@ -133,15 +133,15 @@ Here is an overview of the main functions that run, in chronological order:
   4. Loads the post-training instructions (for later use in the **PostTrainingGUI** call).
   5. Writes hardcoded "dummy" variables for **vr.trainee** (e.g. vr.trainee.sessionIndex = 1).
   6. Loads the protocol function: **vr.trainee.protocol = str2func(vr.trainee.protocol)** [Protocol Reference](./virmen_guide.md#protocol-file).
-  7. If in the 165 room, enables LiveStats: **vr.trainee.EnableLiveStats = true** (<a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/classes/ExperimentLog.m#L630"> Use of LiveStats </a>).
+  7. In room 165, enables LiveStats: **vr.trainee.EnableLiveStats = true** (<a href="https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/classes/ExperimentLog.m#L630">use of LiveStats</a>).
   8. Checks whether the level and/or sublevel will be overridden by the user (from the TrainingFlowGUI selection): **vr.trainee.overrideMazeID & vr.trainee.overrideSubMazeID**.
   9. Creates a minimal substitute for the *TrainingRegiment* class: **vr.regiment = TrainingRegiment_DBGUI;** (used mainly to create the filePath for the behavior file).
   10. Loads the experiment code into memory: **load(vr.trainee.experiment)**. Loads it into the **exper** variable.
   11. Gets **getTransformationFunction** and **getMovementFunction** for the exper variable.
   12. For future use, loads manipulation (e.g. optogenetics) parameters: **getExperimentManipulationVariables**.
   13. Checks that the rewardFactor variable is the appropriate length for all mazes: **checkRewardFactor**.
-  14. If Mesoscope recording, enables UDP communication: **check_connectionToSI**.
-  15. If Ephys recording is set up (RigParameters.SyncPulses = true or RigParameters.hasParallelCommNew = true), initializes the corresponding NIDAQ ports via **initializeCommPulses**.
+  14. For mesoscope recordings, enables UDP communication: **check_connectionToSI**.
+  15. If an ephys recording is set up (RigParameters.SyncPulses = true or RigParameters.hasParallelCommNew = true), initializes the corresponding NI-DAQ ports via **initializeCommPulses**.
   16. Inserts a record in the **acquisition.SessionStarted** table: insertNewSessionStartExperiment(). Gets the behavior file's full path from the **regiment.whichLog()** function.
   17. Creates the behavior file directory if it doesn't exist: **mkdir(experiment_dir)**.
   18. So the experiment code can work out the starting level and sublevel, gets the previous subject performance in oldTrainingGUI format: **vr.trainee.data = getPerformanceSubjectAsRegimentData()**.
@@ -157,7 +157,7 @@ Here is an overview of the main functions that run, in chronological order:
 - To keep the ability to run experiments even during a DB or internet outage, a ViRMEn Offline mode was implemented.
 - Below is a description of all the parts that make this mode possible.
 
-1. The <a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/alert_system/noDB_backup_creation/noDB_backup_creation_script.py"> No DB backup creation script </a> creates the following auxiliary files to remove the training DB dependency:
+1. The <a href="https://github.com/BrainCOGS/U19-pipeline-python/blob/master/u19_pipeline/alert_system/noDB_backup_creation/noDB_backup_creation_script.py">no-DB backup creation script</a> creates the following auxiliary files to remove the training DB dependency:
   - **DJCustomVariables.csv:** Copy of the **lab.DJCustomVariables** table. It contains paths to the root directories (behavior, ephys, imaging, etc.).
   - **SlackChannels.csv:** Copy of the **lab.SlackWebhooks** table. Used to get the Slack URLs that raise alerts when training fails. The webhook URLs are also encoded for security reasons.
   - **UserSlack.csv:** A subset of the **lab.User** table.
@@ -171,33 +171,33 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
 
 2. **Copy files to local machines:** A task is scheduled (**copyNODBFiles** in Task Scheduler) on all rig machines daily at 5:55 am to copy the files from step 1 to the local path **C:/Experiments/ViRMEn/extras**.
 
-3. <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/extras/GeneralParameters.m">GeneralParameters </a> holds a reference to all the files from step 1, to be named inside the ViRMEn repository.
+3. <a href="https://github.com/BrainCOGS/ViRMEn/blob/master/extras/GeneralParameters.m">GeneralParameters</a> defines the names of all the files from step 1 for use inside the ViRMEn repository.
 
 4. **Local "replacement" functions:** When the DB is not found, a set of "local" functions is used throughout the ViRMEn repository to replicate the functionality needed for normal subject training. Here is a list of all those functions:
 
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\createNewRemoteBehaviorFilenameLocal.m
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadScheduleLocal.m
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadTrainingProfileLocal.m
-- ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadWaterAllocLocal.m
-- ViRMEn\experiments\utility\Test_VRrigs\@PostTrainingGUI\getLocalDataPosttrainingGUI.m
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_2\getLocalFileTests.m
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\getSubjectMotorPositionLocal.m
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_double_valve_local.m
-- ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_puffs_local.m
-- ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_rig_io_subject_status_local.m
-- ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_subject_already_trained_status_local.m
-- ViRMEn\experiments\utility\find_remote_name_from_local_name.m
-- ViRMEn\experiments\utility\get_if_rig_double_valve_local.m
-- ViRMEn\notifications\error_training_notification_slack_local.m
+- `ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\createNewRemoteBehaviorFilenameLocal.m`
+- `ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadScheduleLocal.m`
+- `ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadTrainingProfileLocal.m`
+- `ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\loadWaterAllocLocal.m`
+- `ViRMEn\experiments\utility\Test_VRrigs\@PostTrainingGUI\getLocalDataPosttrainingGUI.m`
+- `ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_2\getLocalFileTests.m`
+- `ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\getSubjectMotorPositionLocal.m`
+- `ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_double_valve_local.m`
+- `ViRMEn\experiments\utility\Test_VRrigs\@TestVRRig_Setup\get_if_rig_puffs_local.m`
+- `ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_rig_io_subject_status_local.m`
+- `ViRMEn\experiments\utility\TrainingFlowGUI\@TrainingFlow_GUI\get_subject_already_trained_status_local.m`
+- `ViRMEn\experiments\utility\find_remote_name_from_local_name.m`
+- `ViRMEn\experiments\utility\get_if_rig_double_valve_local.m`
+- `ViRMEn\notifications\error_training_notification_slack_local.m`
 
-## Select Maze for each experiment
+## Select the maze for each experiment {#select-maze-for-each-experiment}
 
 - This works exactly the same way whether started from the Old Training GUI or the New Training GUI:
 
 1. Inside the experiment code, the previous performance data is saved in the **trainee** variable, accessed in the experiment code as **vr.exper.userdata.trainee**.
 2. In the **setupTrials** function, the **getTrainingLevel** function (declared for all experiments) is executed.
-3. The new level (or maze) to run is defined in the **getTrainingLevel** function. For details on how this is achieved, refer to the function code itself (it is very well documented): <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/common/getTrainingLevel.m'> Code here </a>.
-4. Two functions, **getTrainingLevel_josh** and **getTrainingLevelSublevelMode**, replace the common getTrainingLevel function and take extra variables in specific experiments into account (context and sublevel stats).
+3. The new level (or maze) to run is defined in the **getTrainingLevel** function. For details on how this is achieved, refer to the function code itself, which is well documented (<a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/common/getTrainingLevel.m'>code here</a>).
+4. Two functions, **getTrainingLevel_josh** and **getTrainingLevelSublevelMode**, replace the common getTrainingLevel function in specific experiments and take extra variables into account (context and sublevel stats).
 
 ### Sublevel selection
 
@@ -207,25 +207,25 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
 2. **selectInitialSubLevel:** Sets the maze-specific sublevel variables for the experiment.
 
 
-## Behavior File creation
+## Behavior file creation {#behavior-file-creation}
 
 - Behavior files (or log files) are stored locally for each ViRMEn session.
-- These files are later copied to the braininit Drive and populated into the database. See the <a href='https://braincogs.github.io/software/virmen_developer.html#lists-of-current-scheduled-tasks'> Scheduled tasks </a> and <a href='https://braincogs.github.io/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob'> Behavior DB population cronjob </a> sections for more info on those processes.
+- These files are later copied to the braininit drive and ingested into the database. See the <a href='#lists-of-current-scheduled-tasks'>Scheduled tasks</a> and <a href='/software/automated_cronjobs.html#behavior-manipulation-optogenetics-pupillometry-tables-ingestion-matlab-cronjob'>behavior DB population cron job</a> sections for more information.
 
-- Behavior file creation is handled by the **ExperimentLog** class, specifically in that class's **save** function. The **ExperimentLog** class handles all data collection throughout a session. See the <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/classes/ExperimentLog.m'> ExperimentLog code </a> for more information.
+- Behavior file creation is handled by the **ExperimentLog** class, specifically in that class's **save** function. The **ExperimentLog** class handles all data collection throughout a session. See the <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/classes/ExperimentLog.m'>ExperimentLog code</a> for more information.
 
 
 ### Behavior filepath in Old Training GUI
 
   - The filepath is created in the **TrainingRegiment** class, specifically in the **whichLog** function.
   - The TrainingRegiment class is the code for the "Old Training GUI" itself.
-  - Most of the TrainingRegiment class's actions are described <a href='https://braincogs.github.io/software/virmen_developer.html#old-training-gui'> here </a> and <a href='https://braincogs.github.io/software/virmen_guide.html#training-gui-detailed-description'> here </a>.
-  - The filepath is given by the <a href='https://braincogs.github.io/software/virmen_guide.html#program-wrapper-file'> Program wrapper file </a>, where the **dataPath**, **experName**, and **cohortName** variables are defined following this convention:
+  - Most of the TrainingRegiment class's actions are described <a href='#old-training-gui'>here</a> and <a href='/software/virmen_guide.html#old-training-gui-detailed-description'>here</a>.
+  - The file path comes from the <a href='/software/virmen_guide.html#program-wrapper-file'>program wrapper file</a>, where the **dataPath**, **experName**, and **cohortName** variables are defined following this convention:
 
   ```matlab
   behaviorfilepath = [ dataPath, filesep, strrep(experName,' ',''), '_', cohortName '_', RigParameters.rig, '.mat' ]
   ```
-  - Example behaviorfilepath: **C:\Data\josh\data\jjulian_jj077\josh_context_josh_poisson_blocks_context_165I-Rig4-T_jjulian_jj077_T_20230324_1.mat**
+  - Example behaviorfilepath: `C:\Data\josh\data\jjulian_jj077\josh_context_josh_poisson_blocks_context_165I-Rig4-T_jjulian_jj077_T_20230324_1.mat`
 
 ### Behavior filepath in New Training GUI
 
@@ -240,7 +240,7 @@ All these files are stored in **braininit/Shared/NoDBVirmenBackup** by this scri
           '_', char(datetime('now', 'Format', 'uuuuMMdd')), ...
           '_',  num2str(session_number),'.mat']
   ```
-  - Example behaviorfilepath: **C:\Data\jk8386\jk8386_jk73\Session_jesse_chronic_spatfreq_TTL_165I-Rig4-T_jk8386_jk73_20250423_0_1.mat**
+  - Example behaviorfilepath: `C:\Data\jk8386\jk8386_jk73\Session_jesse_chronic_spatfreq_TTL_165I-Rig4-T_jk8386_jk73_20250423_0_1.mat`
 
 
 ## Initialize Trial World Sequence
@@ -637,15 +637,15 @@ In practice:
 - `initializeTrialWorld` in Stim Bank dependency is a stimulus-driven trial presentation engine.
 
 
-## Most common errors handling
+## Handling the most common errors {#most-common-errors-handling}
 
 Errors that occur during training are registered in the **acquisition.SessionErrorLog** table.
-The list below covers the most common errors and a way to fix each one.
+The list below covers the most common errors and how to fix each one.
 
 #### Invalid or deleted object
 
   + **Cause:** Commonly caused by the technician closing the LaserSetupGUI before an optogenetic session.
-  + **Solution:** There is no known solution, just attention from users. This error does not affect training.
+  + **Solution:** There is no fix other than care from users. This error does not affect training.
 
 #### Serial write error:  Unknown
 
@@ -657,7 +657,7 @@ The list below covers the most common errors and a way to fix each one.
 
 #### NI-DAQ task has not been set up. Call 'init' before ...
 
-  + **Cause:** Use of a compiled C++ function before calling init first.
+  + **Cause:** A compiled C++ function was used before calling `init`.
   + **Solution:** Check why the appropriate initialize_daq function was not called.
   + Common initialize_daq functions:
         + C:\Experiments\ViRMEn\experiments\common\NewTrainingGUI_BackwardCompatibility\initializeCommPulses.m
@@ -673,7 +673,7 @@ The list below covers the most common errors and a way to fix each one.
 #### No supported formats found for this device. See IMAQHWINFO(ADAPTORNAME).
 
   + **Cause:** The camera is not properly configured.
-  + **Solution:** The most common cause is that an image acquisition toolbox was not installed. See the <a href='https://braincogs.github.io/software/configure_systems.html#matlab-add-ons'> MATLAB Add-Ons </a> section for more info.
+  + **Solution:** The most common cause is a missing Image Acquisition Toolbox package. See the <a href='/software/configure_systems.html#matlab-add-ons'>MATLAB add-ons</a> section for more info.
 
 
 #### Multiple image acquisition objects cannot access the same device simultaneously.
@@ -684,7 +684,7 @@ The list below covers the most common errors and a way to fix each one.
 
 #### Open failed: Port: COM(x) is not available. Available ports: COM(y).
 
-  + **Cause:** The Arduino sensor COM port was most likely updated.
+  + **Cause:** The Arduino sensor's COM port has most likely changed.
   + **Solution:** Update the **arduinoPort** variable in RigParameters to the correct port.
 
 
@@ -694,22 +694,22 @@ The list below covers the most common errors and a way to fix each one.
   + **Solution:** Check with the experimenter.
 
 
-## cpp NI DAQ functions
+## C++ NI-DAQ functions {#cpp-ni-daq-functions}
 
-- The **C:\Experiments\ViRMEn\experiments\daq** directory holds a set of C++ functions: low-level MEX-compiled functions that set up tasks directly on the NIDAQ card for "real-time" IO control in ViRMEn.
-- If you need to create a new task for the NIDAQ, here are the most basic recommended steps to follow:
+- The `C:\Experiments\ViRMEn\experiments\daq` directory holds a set of C++ functions: low-level MEX-compiled functions that set up tasks directly on the NI-DAQ card for "real-time" IO control in ViRMEn.
+- To create a new task for the NI-DAQ, these are the basic recommended steps:
   1. Copy a "similar" task from the ones already created in the daq folder.
-  2. See the <a href='https://www.ni.com/docs/en-US/bundle/ni-daqmx-c-api-ref/page/group__ni-daqmx__c__functions.html'> NIDAQ C API reference </a> for all the functions and properties that can be used for NIDAQ cards.
-  3. When ready to test, open the **C:\Experiments\ViRMEn\compile_daqcomm.m** file and add the newly created function to the list of .cpp functions to compile (lines 13-34, approximately).
-  4. Run **C:\Experiments\ViRMEn\compile_daqcomm.m** to compile the newly created function.
+  2. See the <a href='https://www.ni.com/docs/en-US/bundle/ni-daqmx-c-api-ref/page/group__ni-daqmx__c__functions.html'>NI-DAQmx C API reference</a> for all the functions and properties available for NI-DAQ cards.
+  3. When ready to test, open the `C:\Experiments\ViRMEn\compile_daqcomm.m` file and add the newly created function to the list of .cpp functions to compile (lines 13-34, approximately).
+  4. Run `C:\Experiments\ViRMEn\compile_daqcomm.m` to compile the newly created function.
   5. Remember that these functions are normally run like this:
-        - **function ('init', ...)** to initialize the nidaq function.
+        - **function ('init', ...)** to initialize the NI-DAQ function.
         - **function (specific functionality: read, on, off, etc.)** to execute the function.
         - **function ('end')** to end the functionality and close the port for the next task.
-- Common places for nidaq functions in experiments. Although there are no specific places in experiments where nidaq functions must go, there are common patterns:
-    + **Input functions:** Usually located in runTimeCodeFun before the main BehaviorState switch case is checked. These functions must run every iteration to poll for any update on the input port (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/LSTT_Active_TrialStructure_EF.m#L130'> islick2 </a>).
-    + **Syncing signal outputs:** Usually located at the end of runTimeCodeFun after the main BehaviorState switch case is checked. Like inputs, these functions must run every iteration for ephys/imaging syncing purposes (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/doorstop_track.m#L1685'> updateDAQSyncSignals </a>).
-    + **General pulse outputs:** Normally executed once (or a few times) per trial. These are commonly located inside the main BehaviorState switch, because they run only in a specific portion of the trial (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/poisson_patchesAndPuff_laserTTL_multiregion.m#L206'> nidaqPulse3 in the poisson_patchesAndPuff_laserTTL_multiregion experiment </a>).
+- Where NI-DAQ functions go in experiments: there are no fixed places, but there are common patterns:
+    + **Input functions:** Usually located in runTimeCodeFun before the main BehaviorState switch case is checked. These functions must run every iteration to poll for any update on the input port (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/LSTT_Active_TrialStructure_EF.m#L130'>islick2</a>).
+    + **Syncing signal outputs:** Usually located at the end of runTimeCodeFun after the main BehaviorState switch case is checked. Like inputs, these functions must run every iteration for ephys/imaging syncing purposes (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/doorstop_track.m#L1685'>updateDAQSyncSignals</a>).
+    + **General pulse outputs:** Normally executed once (or a few times) per trial. These are commonly located inside the main BehaviorState switch, because they run only in a specific portion of the trial (e.g. <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/poisson_patchesAndPuff_laserTTL_multiregion.m#L206'>nidaqPulse3 in the poisson_patchesAndPuff_laserTTL_multiregion experiment</a>).
 
 ## Scheduled tasks
 - Several tasks have been created to handle common daily jobs on rig computers.
@@ -718,7 +718,7 @@ The list below covers the most common errors and a way to fix each one.
   + C:\Experiments\ViRMEn\extras\import_scheduled_tasks.ps1
   + C:\Experiments\ViRMEn\extras\import_main_scheduled_tasks.ps1
 
-### Lists of current Scheduled tasks
+### List of current scheduled tasks {#lists-of-current-scheduled-tasks}
 
 #### CopyNODBFiles.xml
  - **Description:** Copies the **braininit/Shared/NoDBVirmenBackup** CSV files to the **C:/Experiments/ViRMEn/extras** directory. These files act as a DB replacement so training can continue during a DB outage.
@@ -740,29 +740,29 @@ The list below covers the most common errors and a way to fix each one.
 
  #### RestartComputer.xml
  - **Description:** Restarts the computer automatically.
- - **Script Run:** shutdown  /r /f /t 0
+ - **Script Run:** `shutdown /r /f /t 0`
  - **Schedule:** Daily at 7:00 am
  - **Which Rigs:** "165" Rigs
 
  #### start_matlab.xml
  - **Description:** Starts the latest MATLAB version automatically.
  - **Script Run:** C:\Experiments\ViRMEn\extras\start_latest_matlab.ps1
- - **Schedule:** At user log on
+ - **Schedule:** At user logon
  - **Which Rigs:** "165" Rigs
 
 
 
-### Steps to create a new Scheduled task for Rigs
+### Steps to create a new scheduled task for rigs {#steps-to-create-a-new-scheduled-task-for-rigs}
 
 1. Manually create a new scheduled task via Task Scheduler on a Windows machine.
 2. Export the task to an XML file via the Action -> Export menu.
 3. Copy the XML file to the **braininit/Shared/TasksScheduler** directory.
 4. Modify the PowerShell script to include the newly created task:
-  + C:\Experiments\ViRMEn\extras\import_scheduled_tasks.ps1 (for 165 room rigs)
+  + C:\Experiments\ViRMEn\extras\import_scheduled_tasks.ps1 (for room 165 rigs)
   + C:\Experiments\ViRMEn\extras\import_main_scheduled_tasks.ps1 (for acquisition rigs)
 5. Open MATLAB as administrator.
 6. Run:
- + `import_scheduled_tasks(1)` if this is a 165 room rig (or one mainly managed by techs).
+ + `import_scheduled_tasks(1)` if this is a rig in room 165 (or one mainly managed by techs).
  + `import_scheduled_tasks(0)` if this is an acquisition (ephys/imaging) rig or a rig managed by researchers.
 7. Repeat steps 5-6 for all rigs where this task will be scheduled.
 
@@ -781,12 +781,9 @@ The list below covers the most common errors and a way to fix each one.
 
 
 + Weighing GUI code:
-  <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/WeighingGUI'> Code here </a>
+  <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/WeighingGUI'>Code here</a>
 
- <figure>
-  <img src='./assets/images/virmen_developer/WeighingGUI.png'>
-  <center><figcaption>Weighing GUI</figcaption></center>
- </figure>
+ ![Weighing GUI](./assets/images/virmen_developer/WeighingGUI.png)
 
 ## Water Pubs GUI
 
@@ -801,30 +798,24 @@ The list below covers the most common errors and a way to fix each one.
   - Count licks for each subject "scheduled" in each Water Pub to administer the desired volume of water.
 
 + Water Pubs GUI repository:
-  <a href='https://github.com/BrainCOGS/WaterPubsGUI'> Code here </a>
+  <a href='https://github.com/BrainCOGS/WaterPubsGUI'>Code here</a>
 
- <figure>
-  <img src='./assets/images/virmen_developer/WaterPubGUI.png'>
-  <center><figcaption>Water Pubs GUI</figcaption></center>
- </figure>
+ ![Water Pubs GUI](./assets/images/virmen_developer/WaterPubGUI.png)
 
 
 ## Test Laser GUI
 
-- MATLAB graphical interface to register laser power (mw) and hardware settings for lasers "installed" on rig machines.
+- MATLAB graphical interface to register laser power (mW) and hardware settings for lasers "installed" on rig machines.
 - More detailed documentation is in the code.
 
 + Basic features:
-  - Data is stored in **action.LaserMeasurement** table
-  - Prompted inside Rig Tester GUI after a month has passed since last measurement.
+  - Data is stored in the **action.LaserMeasurement** table.
+  - The Rig Tester GUI prompts for it when a month has passed since the last measurement.
 
-+ Test Laser GUI code in Virmen Repository:
-  <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/Test_VRrigs/%40TestLaserGUI'> Code here </a>
++ Test Laser GUI code in the ViRMEn repository:
+  <a href='https://github.com/BrainCOGS/ViRMEn/tree/master/experiments/utility/Test_VRrigs/%40TestLaserGUI'>Code here</a>
 
- <figure>
-  <img src='./assets/images/virmen_developer/TestLaserGUI.png'>
-  <center><figcaption>Water Pubs GUI</figcaption></center>
- </figure>
+ ![Test Laser GUI](./assets/images/virmen_developer/TestLaserGUI.png)
 
 ## Known fixes to update to MATLAB >= 2025
 
@@ -839,8 +830,8 @@ Error in createFigures (line 82)
 ```
 
 + Update the Zaber MATLAB Toolbox and code.
-  + See <a href='https://software.zaber.com/motion-library/docs/tutorials/install/matlab'> Zaber MATLAB </a> for more information.
-  + Functions like <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_Setup/getMotorPosition.m'> getMotorPosition </a> will need to be updated. Look for functions and scripts with the line **getMotorPosition**.
+  + See <a href='https://software.zaber.com/motion-library/docs/tutorials/install/matlab'>Zaber MATLAB</a> for more information.
+  + Functions like <a href='https://github.com/BrainCOGS/ViRMEn/blob/master/experiments/utility/Test_VRrigs/%40TestVRRig_Setup/getMotorPosition.m'>getMotorPosition</a> will need to be updated. Look for functions and scripts that call **getMotorPosition**.
 
 
 ## Run Live Calibration
@@ -853,7 +844,4 @@ run_live_calibration
 
 - You should see something similar to this image on the rig projector:
 
- <figure>
-  <img src='./assets/images/virmen_developer/virmen_calibration_image.png'>
-  <center><figcaption>Virmen Calibration Projection</figcaption></center>
- </figure>
+ ![Virmen Calibration Projection](./assets/images/virmen_developer/virmen_calibration_image.png)

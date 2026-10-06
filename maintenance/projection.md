@@ -5,30 +5,28 @@ lang: en-US
 
 # {{ $frontmatter.title }}
 
- The projection module maintenance consist primarily on the initial calibration and subsequent maintenance calibrations that should be performed every ~6 months, and the projector bulb replacement that must be done whenever the projector ask for it, since the projector has an internal counter of how many hours the bulb has been used.
+ Maintenance of the projection module consists mainly of the initial calibration, recalibration every ~6 months, and replacing the projector bulb whenever the projector asks for it (the projector keeps count of the bulb's hours of use).
 
  ## Projection calibration
 
- The projection system use a spherical mirror to project into the dome. The image transformation is based on a [hemispherical dome projection principle](http://www.domerama.com/general/geodesic-dome-projection/hemispherical-dome-projection/).
+ The projection system uses a spherical mirror to project onto the dome. The image transformation is based on a [hemispherical dome projection principle](http://www.domerama.com/general/geodesic-dome-projection/hemispherical-dome-projection/).
 
- Creating correctly warped images given a particular projector, mirror, and dome arrangement requires finding the point on the projector frustum for any point on the dome. The problem is three-dimensional but can be turned into a simpler two dimensional problem by firstly translating the geometry so the spherical mirror is at the origin and then rotating the geometry so that the point on the mirror, dome, and projector lies in a single plane.
+ Creating correctly warped images for a particular projector, mirror and dome arrangement requires finding the point on the projector frustum for any point on the dome. The problem is three-dimensional, but it can be turned into a simpler two-dimensional problem by first translating the geometry so the spherical mirror is at the origin, and then rotating it so that the points on the mirror, dome and projector lie in a single plane.
 
- The projector is located at P1, the mirror is of radius r, and the position on the dome is P2. The path length from the projector to the mirror is L1, the path length from the dome to the mirror is L2. In the case of a spherical mirror: the line at mid-angle between the vectors OP1 and OP2 and its intersection with the surface of the mirror defines the reflection point.
+ The projector is located at P1, the mirror is of radius r, and the position on the dome is P2. The path length from the projector to the mirror is L1, and the path length from the dome to the mirror is L2.
 
- Fermat’s principle states that light travels by the shortest route, so the reflection point on the mirror can be found by minimising the total light path length from the projector to the position on the dome, namely minimising (L1^2 + L2^2)^1/2. It is quite simple in the case of a spherical mirror: the line at mid-angle between the vectors OP1 and OP2 and its intersection with the surface of the mirror defines the reflection point.
+ Fermat’s principle states that light travels by the shortest route, so the reflection point on the mirror can be found by minimizing the total light path length from the projector to the position on the dome, namely L1 + L2. This is quite simple for a spherical mirror: the line at mid-angle between the vectors OP1 and OP2 and its intersection with the surface of the mirror defines the reflection point.
 
-<figure>
-  <img src='./assets/images/projection/projection-1.png'>
-</figure>
+![](./assets/images/projection/projection-1.png)
 
-The projection calibration will align the projection within certain boundaries, specifically the horizon, the center and the left and right side will be aligned to the physical position of the dome. This method has a trade-off in the time that has to be inverted to perform the alignment vs the accuracy of the rendered projection, since the height of the towers might be different across systems.
+The projection calibration aligns the projection within certain boundaries: the horizon, the center, and the left and right sides are aligned to the physical position of the dome. This method trades off the time invested in the alignment against the accuracy of the rendered projection, since the height of the towers might differ across systems.
 
 To calibrate the projection:
 
-1. Turn on the projector and make sure to mirror the projection horizontally, otherwise left/right will be inverted.
-2. Place the alignment tool. We recommend to use a [3 laser alignment tool](https://www.grainger.com/product/BOSCH-Alignment-Laser-3-Beams-450W78?internalSearchTerm=Alignment+Laser%3A+3+Beams%2C+0+Dots%2C+0+Lines%2C+Red%2C+200+ft+Range+w%2Fo+Detector&suggestConfigId=8&searchBar=true&opr=THKS). Use the marked lines at the bottom plate to align the center and sides lasers on the dome. Set the height of the horizontal laser to 12" from the bottom plate.
-3. Create a new subject in the ViRMEn training GUI and select the livecalibration.mat experiment. This is the calibration world that was developed, it is necessary to set the simulation mode to true in the RigParameters file. This will project a static world with 3 towers set at the center and at the left and right of the mouse eyes. The goal is to align the horizon to the animal eyes position, the center tower to the center of the screen and the left and right towers to the mouse eyes position.
-4. Set the initial vairables of the projection parameters as below (these parameters has been obatained empirically and they are a good starting point for the training mini VR rigs as they are built).
+1. Turn on the projector and make sure to mirror the projection horizontally; otherwise, left and right will be swapped.
+2. Place the alignment tool. We recommend a [3-beam laser alignment tool](https://www.grainger.com/product/BOSCH-Alignment-Laser-3-Beams-450W78?internalSearchTerm=Alignment+Laser%3A+3+Beams%2C+0+Dots%2C+0+Lines%2C+Red%2C+200+ft+Range+w%2Fo+Detector&suggestConfigId=8&searchBar=true&opr=THKS). Use the lines marked on the bottom plate to align the center and side lasers on the dome. Set the horizontal laser 12" above the bottom plate.
+3. Create a new subject in the ViRMEn training GUI and select the `livecalibration.mat` experiment, our calibration world. Simulation mode must be set to true in the `RigParameters` file. This projects a static world with 3 towers: one at the center and one to the left and right of the mouse's eyes. The goal is to align the horizon with the animal's eye level, the center tower with the center of the screen, and the left and right towers with the position of the mouse's eyes.
+4. Set the initial values of the projection parameters as below (these values were obtained empirically and are a good starting point for training mini VR rigs built as described here).
 
 ```
 %% Mini VR projection parameters
@@ -66,30 +64,27 @@ proj_param_vshift       =   -1.017;
 
 ```
 
-4. First, try to align certain variables by physically moving the projector. Unscrew the plate that holds the projector and move it horizontally until the middle tower is centered with the laser. Make sure that the left and rigth towers are equidistant from the middle of the dome, you may be able to achieve this by slightly moving the plate forward from one side or the other.
+5. First, align what you can by physically moving the projector. Unscrew the plate that holds the projector and move it horizontally until the middle tower is centered on the laser. Make sure that the left and right towers are equidistant from the middle of the dome; you may be able to achieve this by moving one side of the plate slightly forward.
 
 ::: tip
 
-The position of the towers will move when the plate is thightened, don't untight the screws all the way if it is not necessary, unthight until it is possible to move the plate and checking the projection, then thight and adjust accordingly.
+The towers will shift when the plate is tightened. Don't loosen the screws all the way unless necessary: loosen them just enough to move the plate while checking the projection, then tighten them and adjust accordingly.
 
 :::
 
-The goal of doing this physically instead of modifying the projection transformation parameters is that it decreases the differences across the projections in different training rigs.
+Doing this physically, instead of changing the projection transformation parameters, reduces the differences between the projections of different training rigs.
 
-5. Adjust the rest of the parameters until the towers and horizon are aligned. A brief description of how each parameter adjust the projection can be found below.
+6. Adjust the rest of the parameters until the towers and horizon are aligned. Below is a brief description of how each parameter changes the projection.
 
 * **Rs** should not be modified.
-* **xsm** will adjust the middle tower height without affecting the lateral towers, values should be around [1.5 - 2]. This value canbe adjusted since there will be idiosincrasies due to the screen fabrication.
-* **zOm** will adjust the horizon. This value can be adjusted since there can be differences in how the mirror is glued to its aluminum base.
-* **xP1o** will extend or contract the lateral towers and **zP1o** will lower or elevate the middle tower but will modify the distal part of the lateral towers. These values can be adjusted since there are idiosincrasies in the origin of the projection between projectors in their fabrication.
-* The **hrescaling** and the **vrescaling** should be the same, otherwise it will modify elongate or contract the projection, and there will be significant differences across sytems.
-* The **hshift** and **vshift** will move the entire projection up, down, left or right. Ideally the **hshift** should be 0 if the projection is calibrated manually, but it can be modified if necessary since it shouldn't affect significatly the projection across differente systems.
+* **xsm** adjusts the height of the middle tower without affecting the lateral towers; values should be around 1.5 to 2. This value can be adjusted, since each screen has its own quirks from fabrication.
+* **zOm** adjusts the horizon. This value can be adjusted, since mirrors can differ in how they are glued to their aluminum base.
+* **xP1o** stretches or shrinks the lateral towers, and **zP1o** lowers or raises the middle tower but also changes the distal part of the lateral towers. These values can be adjusted, since the projection origin differs slightly between individual projectors.
+* **hrescaling** and **vrescaling** should be equal; otherwise, the projection is stretched or squeezed, and there will be significant differences across systems.
+* **hshift** and **vshift** move the entire projection up, down, left or right. Ideally, **hshift** should be 0 if the projection is calibrated manually, but it can be changed if necessary, since it shouldn't significantly affect the projection across different systems.
 
-<figure>
-  <img src='./assets/images/projection/projection-2.png'>
-  <center><figcaption><small>Projection calibration. Due to the principle of the spherical mirror projection, the lateral towers will be slightly curved, the projection should be fine as long as they are equidistant and centered at the top (or the bottom, just make sure to keep the same policy across rigs).</small></figcaption></center>
-</figure>
+![Projection calibration. Because of how spherical mirror projection works, the lateral towers will be slightly curved; the projection is fine as long as they are equidistant and centered at the top (or the bottom; just keep the same convention across rigs).](./assets/images/projection/projection-2.png)
 
- ## Projector bulb replacement.
+ ## Projector bulb replacement
 
- The projector has a counter used to determine how long the bulb has been used, it will emit an alert that the bulb should be replaced. Make sure to have in stock projector bulbs and follow each projector instruction to replace it.
+ The projector counts how long the bulb has been used and alerts you when it should be replaced. Keep projector bulbs in stock, and follow the projector's instructions to replace them.

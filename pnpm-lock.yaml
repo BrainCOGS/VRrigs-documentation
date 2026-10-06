@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@mdit/plugin-figure':
+        specifier: ~1.1.1
+        version: 1.1.1
       playwright:
         specifier: ^1.63.0
         version: 1.63.0
@@ -51,6 +54,15 @@ packages:
 
   '@jridgewell/sourcemap-codec@1.6.0':
     resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
+
+  '@mdit/plugin-figure@1.1.1':
+    resolution: {integrity: sha512-78hGR8RCWqFkf56ApQ7i3LYu9RkA1KVAjMukeNO5Z0fFrOwNPGLpTNLVaMwfYhT46H1Le5fniMf7qEKLF7KnUQ==}
+    engines: {node: '>=22'}
+    peerDependencies:
+      markdown-it: ^14.2.0
+    peerDependenciesMeta:
+      markdown-it:
+        optional: true
 
   '@oxc-project/types@0.151.0':
     resolution: {integrity: sha512-J1yXrIlNDZVzE3ada310xeAw7nH8yCAyLPuUIsjKatFPmfn5bS1oW+cM+QsGOtVWd5nhSpbwZWx/rue+r5Z+PA==}
@@ -668,6 +680,10 @@ snapshots:
   '@iconify/types@2.0.0': {}
 
   '@jridgewell/sourcemap-codec@1.6.0': {}
+
+  '@mdit/plugin-figure@1.1.1':
+    dependencies:
+      '@types/markdown-it': 14.2.0
 
   '@oxc-project/types@0.151.0': {}
 

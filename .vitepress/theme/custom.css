@@ -26,3 +26,34 @@
 .dark .vp-doc img {
   background-color: #fff;
 }
+
+/*
+ * Figure captions (the alt text of `![Caption](./assets/x.png)`, rendered
+ * by @mdit/plugin-figure) are centered under the image and set small, the
+ * look the pages used to get from <center> and <small> markup. 80% is the
+ * size the VitePress theme gives <small>; the 24px line height is the body
+ * text's, which those <small> captions sat in.
+ */
+.vp-doc figcaption {
+  text-align: center;
+  font-size: 80%;
+  line-height: 24px;
+}
+
+/*
+ * Home page hero: the site name in a green gradient.
+ * Ref: https://vitepress.dev/reference/default-theme-home-page
+ */
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #3eaf7c 30%, #2c7fb8);
+}
+
+/*
+ * The logo is dark grey line art on a transparent background, which all but
+ * disappears on the dark theme. Brighten it there (invert would also flip
+ * the colors of the microscopy images inside the letters).
+ */
+.dark .VPHero .image-src {
+  filter: brightness(1.9);
+}

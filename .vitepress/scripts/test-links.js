@@ -2,8 +2,8 @@
 // Broken-link check over the built site (run `pnpm run build` first).
 //
 // VitePress's own dead-link check (which fails `vitepress build`) only sees
-// Markdown links. Most downloads and images on this site are raw HTML
-// (`<a href='./assets/...zip'>`, `<img src=...>`), which it never checks, so
+// Markdown links. File downloads on this site are raw HTML
+// (`<a href='/building/drawings/...zip' download>`), which it never checks, so
 // this script walks every built HTML page instead and verifies that each
 // same-site href/src resolves to a file in dist, and that each #fragment
 // points at an element id on the target page. External URLs are not

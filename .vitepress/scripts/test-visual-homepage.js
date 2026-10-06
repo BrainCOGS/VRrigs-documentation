@@ -194,6 +194,36 @@ async function main() {
       fail(`content images have background "${lightBg}" in light mode; expected none`);
     }
 
+    // Figure captions are centered and set smaller than body text by CSS
+    // (.vitepress/theme/custom.css), not by <center>/<small> markup. Two
+    // captions on the positioning page credit the mouse drawings with three
+    // links, which must survive as links.
+    {
+      const p = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+      await p.goto(`http://localhost:${PORT}/building/positioning.html`, { waitUntil: 'networkidle' });
+      const caption = p.locator('.vp-doc figcaption').first();
+      if ((await caption.count()) === 0) {
+        fail('/building/positioning.html has no figure captions');
+      } else {
+        const style = await caption.evaluate((el) => {
+          const cs = getComputedStyle(el);
+          const body = getComputedStyle(document.querySelector('.vp-doc p'));
+          return { textAlign: cs.textAlign, fontSize: parseFloat(cs.fontSize), bodySize: parseFloat(body.fontSize) };
+        });
+        if (style.textAlign !== 'center') {
+          fail(`figure captions are aligned "${style.textAlign}", expected "center"`);
+        }
+        if (!(style.fontSize < style.bodySize)) {
+          fail(`figure captions are ${style.fontSize}px, expected smaller than body text (${style.bodySize}px)`);
+        }
+      }
+      const creditLinks = await p.locator('.vp-doc figcaption a[href*="zenodo"]').count();
+      if (creditLinks !== 3) {
+        fail(`expected 3 image-credit links in /building/positioning.html captions, found ${creditLinks}`);
+      }
+      await p.close();
+    }
+
     // Every page must hydrate cleanly. A mismatch means the static HTML
     // differs from what the browser renders, e.g. raw-HTML tags Vue does not
     // know (<center>) compiled as components and dropped from the static
