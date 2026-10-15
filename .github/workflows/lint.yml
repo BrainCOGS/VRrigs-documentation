@@ -31,4 +31,13 @@ jobs:
           enable-cache: true
 
       - name: Run prek
+        env:
+          # gitleaks scans staged changes, of which there are none here: it runs
+          # in the next step on the commits of the PR instead
+          SKIP: gitleaks
         run: uvx prek run --all-files --show-diff-on-failure
+
+      - name: Scan the commits of the PR (or push) for secrets
+        env:
+          GITLEAKS_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: uvx prek run gitleaks --all-files --verbose
