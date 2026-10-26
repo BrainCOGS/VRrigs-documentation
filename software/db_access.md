@@ -90,7 +90,7 @@ lang: en-US
 
       + For example:
         ```bash
-        conda create -n <environment_name> python=3.9
+        conda create -n <environment_name> python=3.13
         ```
 
     + Activate the Conda environment:
