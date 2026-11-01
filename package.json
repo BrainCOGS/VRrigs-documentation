@@ -27,8 +27,8 @@
     "audit": "pnpm audit --audit-level high"
   },
   "devDependencies": {
-    "@mdit/plugin-figure": "~1.1.1",
-    "playwright": "^1.63.0",
+    "@mdit/plugin-figure": "~1.2.3",
+    "playwright": "^1.64.1",
     "vitepress": "^2.0.0-alpha.20"
   }
 }
