@@ -100,17 +100,27 @@ lang: en-US
 
 ### MATLAB add-ons {#matlab-add-ons}
 
-If not all toolboxes were installed with MATLAB, make sure these add-ons are installed:
+Install these through MATLAB Add-Ons unless otherwise noted.
 
-+ Image Acquisition Toolbox
-+ Image Processing Toolbox
-+ Image Acquisition Toolbox Support Package for GenICam Interface
-+ Image Acquisition Toolbox Support Package for OS Generic Video Interface
-+ PsychToolbox
-+ Statistics and Machine Learning Toolbox
-+ Instrument Control Toolbox
-+ Data Acquisition Toolbox
-+ Zaber
+#### Required on every rig
+
++ **Statistics and Machine Learning Toolbox** — session statistics in `ChoiceExperimentStats` (`normcdf`, `normpdf`), stimulus generation, and inter-trial intervals.
++ **Image Processing Toolbox** — session displays and training (`imadjust`, `padarray`), automatic session termination (`imgaussfilt`), and the world editor.
++ **Instrument Control Toolbox** — UDP communication with rig hardware and TCP/IP synchronization (`udp`, `tcpip`).
++ **Image Acquisition Toolbox**, plus **Image Acquisition Toolbox Support Package for GenICam Interface** and **Image Acquisition Toolbox Support Package for OS Generic Video Interface** — camera acquisition in the rig tester and rig photos (`videoinput`).
++ **NI-DAQmx driver** (not a MATLAB toolbox) — standard rig DAQ communication uses MEX files compiled by `compile_daqcomm.m`, which links `NIDAQmx`; follow the NI-DAQmx install step above.
+
+#### Only for specific experiments/setups
+
++ **Data Acquisition Toolbox** — only for experiments using `daq("ni")`: `doorstop_track*.m`, `invisible_linear_track.m`, and `jeremy_poisson_blocks_thermo.m`.
++ **Psychtoolbox-3** — sound in doorstop experiments (`PsychPortAudio`, `InitializePsychSound`); `startup.m` calls `PsychStartup` when present.
++ **MATLAB Support Package for USB Webcams** — headplate reference images in `headplateReference.m` (`webcam`).
++ **<a href="https://software.zaber.com/motion-library/docs/tutorials/install/matlab">Zaber Motion Library</a>** — motor control in the rig tester.
++ **Database (DataJoint) rigs:** install **DataJoint** through **Add-Ons → Get Add-Ons → DataJoint**, following the <a href="https://github.com/BrainCOGS/U19-pipeline-matlab#readme">U19-pipeline-matlab README</a>, plus **GHToolbox** and **compareVersions**; `startup.m` loads these installed add-ons by name.
+
+For database rigs, `startup.m` also expects **mym** at the hardcoded path `C:\Experiments\mym-mariadbconn` and adds its `distribution\mexw64` subdirectory to the MATLAB path.
+
+GUI Layout Toolbox (`GUILayout/`) and SlackMatlab (`notifications/`) are included in ViRMEn and need no separate installation.
 
 
 ## Change the sleep settings {#modify-the-sleep-behaviors}
